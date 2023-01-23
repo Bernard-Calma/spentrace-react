@@ -2,3 +2,8 @@
     width: 100%;
     text-align: center;
 }
+
+.title {
+    font-family: 'Russo One', sans-serif;
+    font-size: 4rem;
+}
