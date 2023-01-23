@@ -1,0 +1,8 @@
+.footerContainer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: gray;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}

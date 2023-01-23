@@ -2,11 +2,11 @@ import "./NavBar.css"
 
 const NavBar = () => {
     return(
-        <div className="navBarContainer">
+        <section className="navBarContainer">
             <p className="navBarItem">Add</p>
             <p className="navBarItem">Edit</p>
             <p className="navBarItem">Delete</p>
-        </div>
+        </section>
     )
 }
 

@@ -1,13 +1,14 @@
 import React ,{Component} from 'react';
+import "./Main.css"
 
-class  Footer extends Component {
+class  Main extends Component {
     render(){
         return(
             <>
-                <h1>Footer</h1>
+                <h1>Main</h1>
             </>
         )
     }
 }
 
-export default Footer;
+export default Main;
