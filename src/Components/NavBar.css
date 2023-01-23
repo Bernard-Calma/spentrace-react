@@ -8,4 +8,6 @@
 .navBarItem {
     margin: 0 10px;
     font-family: 'Ubuntu', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
 }

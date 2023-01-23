@@ -4,9 +4,15 @@ import "./Main.css"
 class  Main extends Component {
     render(){
         return(
-            <>
-                <h1>Main</h1>
-            </>
+            <main className='mainContainer'>
+                <div className='categoriesContainer'>
+                    <li>Date</li>
+                    <li>Amount</li>
+                    <li>Income/Expense</li>
+                    <li>Running Total</li>
+                    <li>Target</li>
+                </div>
+            </main>
         )
     }
 }
