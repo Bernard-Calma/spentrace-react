@@ -1,4 +1,5 @@
 import React ,{Component} from 'react';
+import NavBar from '../../Components/NavBar';
 import "./header.css"
 
 class  Header extends Component {
@@ -6,6 +7,7 @@ class  Header extends Component {
         return(
             <div className='header'>
                 <h1 className="title">Spentrace</h1>
+                <NavBar />
             </div>
         )
     }
