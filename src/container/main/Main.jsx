@@ -1,15 +1,25 @@
+import Bill from "../../Components/Bill";
 import "./Main.css"
 
-const Main = () => {
+const Main = (props) => {
     return(
         <main className='mainContainer'>
             <div className='categoriesContainer'>
-                <div className='listContainer'><li>Date</li></div>
-                <div className='listContainer'><li>Amount</li></div>
-                <div className='listContainer'><li>Type</li></div>
-                <div className='listContainer'><li>Running Total</li></div>
-                <div className='listContainer'><li>Target</li></div>
+                <div className='listContainer'><h2>Date</h2></div>
+                <div className='listContainer'><h2>Amount</h2></div>
+                <div className='listContainer'><h2>Type</h2></div>
+                <div className='listContainer'><h2>Running Total</h2></div>
+                <div className='listContainer'><h2>Target</h2></div>
             </div>
+            {
+                props.bills.map((bill, index) =>
+                    <Bill 
+                        key={index}
+                        index={index}
+                        bill={bill}
+                    />
+                )
+            }
         </main>
     )
 }

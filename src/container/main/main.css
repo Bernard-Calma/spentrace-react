@@ -6,6 +6,7 @@ li {
 /* Main Container Styles */
 .mainContainer {
     margin: 20px auto;
+    padding: 0 5px;
 }
 
 .categoriesContainer {
@@ -19,7 +20,7 @@ li {
     border: solid black;
 }
 
-.listContainer > li {
+.listContainer > h2 {
     margin: auto;
     overflow-wrap: break-word;
     font-family: 'Space Mono', monospace;
