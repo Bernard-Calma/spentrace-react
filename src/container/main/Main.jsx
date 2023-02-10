@@ -6,11 +6,11 @@ class  Main extends Component {
         return(
             <main className='mainContainer'>
                 <div className='categoriesContainer'>
-                    <li>Date</li>
-                    <li>Amount</li>
-                    <li>Income/Expense</li>
-                    <li>Running Total</li>
-                    <li>Target</li>
+                    <div className='listContainer'><li>Date</li></div>
+                    <div className='listContainer'><li>Amount</li></div>
+                    <div className='listContainer'><li>Type</li></div>
+                    <div className='listContainer'><li>Running Total</li></div>
+                    <div className='listContainer'><li>Target</li></div>
                 </div>
             </main>
         )

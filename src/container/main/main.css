@@ -5,20 +5,28 @@ li {
 
 /* Main Container Styles */
 .mainContainer {
-    border: solid black;
-    width: 1000px;
     margin: 20px auto;
 }
 
 .categoriesContainer {
     display: flex;
+    border: solid black;
+    justify-content: space-evenly;
 }
 
-.categoriesContainer > li {
-    flex-grow: 1;
+.listContainer{
+    width: 20%;
+    border: solid black;
+}
+
+.listContainer > li {
+    margin: auto;
+    overflow-wrap: break-word;
     font-family: 'Space Mono', monospace;
     font-size: 2rem;
-    border: solid black;
     text-align: center;
     font-weight: bold;
+
+    
+    /* border: solid black; */
 }
