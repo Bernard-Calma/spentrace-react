@@ -6,7 +6,9 @@ const Main = (props) => {
 
     return(
         <main className='mainContainer'>
-            <NavBar />
+            <NavBar 
+                setView = {props.setView}
+            />
             <div className='categoriesContainer'>
                 <div className='listContainer'><h2>Date</h2></div>
                 <div className='listContainer'><h2>Amount</h2></div>

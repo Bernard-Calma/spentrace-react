@@ -30,6 +30,7 @@ const App = () => {
         view === "Main"
         ?<Main
           bills = {bills}
+          setView = {setView}
         />
         : view === "Add"
         ? <Add
