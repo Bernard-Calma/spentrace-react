@@ -1,9 +1,12 @@
 import Bill from "../../Components/Bill";
+import NavBar from "../../Components/NavBar";
 import "./Main.css"
 
 const Main = (props) => {
+
     return(
         <main className='mainContainer'>
+            <NavBar />
             <div className='categoriesContainer'>
                 <div className='listContainer'><h2>Date</h2></div>
                 <div className='listContainer'><h2>Amount</h2></div>

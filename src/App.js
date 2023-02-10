@@ -1,10 +1,12 @@
 import './App.css';
+import { useState } from 'react';
 
 import Header from './container/header/Header';
 import Main from './container/main/Main';
+import Add from './container/add/Add';
 import Footer from './container/footer/Footer';
-import { useState } from 'react';
 import NavBar from './Components/NavBar';
+
 
 const App = () => {
   const [bills, setBills] = useState([
@@ -19,13 +21,24 @@ const App = () => {
       type: "Income"
     },
   ])
+
+  const [view, setView] = useState("Main")
   return (
     <div className="App">
       <Header/>
-      <NavBar />
-      <Main
-        bills = {bills}
-      />
+      {
+        view === "Main"
+        ?<Main
+          bills = {bills}
+        />
+        : view === "Add"
+        ? <Add
+          bills = {bills}
+          setBills = {setBills}
+        />
+        :<></>
+      }
+      
       <Footer/>
     </div>
   );

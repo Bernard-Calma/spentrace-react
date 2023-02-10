@@ -1,0 +1,38 @@
+.addContainer {
+    border: solid black;
+    width: 1000px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.navTitle {
+    font-family: "Russo One";
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.addForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.addFormInput {
+    font-family: "Space Mono";
+    font-size: 1.5rem;
+}
+
+.addFormNotes {
+    width: 50%;
+    height: 200px;
+    margin: auto;
+}
+
+#addFormSubmit {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    margin: 10px auto 0;
+}
