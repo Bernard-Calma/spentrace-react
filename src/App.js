@@ -5,7 +5,6 @@ import Header from './container/header/Header';
 import Main from './container/main/Main';
 import Add from './container/add/Add';
 import Footer from './container/footer/Footer';
-import NavBar from './Components/NavBar';
 
 
 const App = () => {
@@ -39,7 +38,6 @@ const App = () => {
         />
         :<></>
       }
-      
       <Footer/>
     </div>
   );
