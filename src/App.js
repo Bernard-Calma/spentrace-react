@@ -5,9 +5,11 @@ import Header from './container/header/Header';
 import Main from './container/main/Main';
 import Add from './container/add/Add';
 import Footer from './container/footer/Footer';
+import Login from './container/login/Login';
 
 
 const App = () => {
+  const [user, setUser] = useState(null)
   const [bills, setBills] = useState([
     {
       date: "01/01/01",
@@ -26,18 +28,26 @@ const App = () => {
     <div className="App">
       <Header/>
       {
-        view === "Main"
-        ?<Main
-          bills = {bills}
-          setView = {setView}
-        />
-        : view === "Add"
-        ? <Add
-          bills = {bills}
-          setBills = {setBills}
-        />
-        :<></>
+        user ?
+        <>
+        {
+          view === "Main"
+          ?<Main
+            bills = {bills}
+            setView = {setView}
+          />
+          : view === "Add"
+          ? <Add
+            bills = {bills}
+            setBills = {setBills}
+          />
+          :<></>
+        }
+        </>
+        :
+        <Login />
       }
+      <Footer />
     </div>
   );
 }
