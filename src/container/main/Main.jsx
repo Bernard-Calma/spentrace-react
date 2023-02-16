@@ -6,19 +6,49 @@ import "./Main.css"
 const Main = (props) => {
 
     const [bills, setBills] = useState([])
+    const [totalIncome, setTotalIncome] = useState(0);
+    const [totalExpense, setTotalExpense] = useState(0);
     const getBills = () => {
+        console.log("GetBills")
         fetch("http://localhost:8000/plans")
         .then((res) => res.json())
-        .then((data) => setBills(data))
+        .then((data) => {
+            console.log("setBills")
+            setBills(data)
+        })
     }
 
-    const modifyDate = () => {
-        // console.log(bills.map(bill => bill))
+    const getTotalIncome = () => {
+        console.log("Get Total Incom")
+        var totalIncome = 0
+        for (var bill of bills) {
+            if (!bill.expense) {
+                totalIncome += bill.amount;
+            }
+        }
+        setTotalIncome(totalIncome);
+        console.log("Total Income: ", totalIncome)
+    }
+
+    const getTotalExpense = () => {
+        var totalExpense = 0
+        for (var bill of bills) {
+            if (bill.expense) {
+                totalExpense += bill.amount;
+            }
+        }
+        setTotalExpense(totalExpense);
+        console.log("Total Expense: ", totalExpense)
+    }
+
+    const getRunningTotal = (bill) => {
+
     }
 
     useEffect(()=>{
         getBills();
-        modifyDate(); 
+        getTotalIncome();
+        getTotalExpense();
     }, [])
     return(
         <main className='mainContainer'>
@@ -27,6 +57,7 @@ const Main = (props) => {
             />
             <div className='categoriesContainer'>
                 <div className='listContainer'><h2>Date</h2></div>
+                <div className='listContainer'><h2>Name</h2></div>
                 <div className='listContainer'><h2>Amount</h2></div>
                 <div className='listContainer'><h2>Type</h2></div>
                 <div className='listContainer'><h2>Running Total</h2></div>
