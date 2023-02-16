@@ -1,0 +1,26 @@
+.containerLogin {
+    border: solid black;
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+}
+
+.formLogin > label {
+    display: flex;
+    flex-direction: column;
+}
+
+.formLogin > label > input {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.btnLogin {
+    width: 25%;
+    margin: 10px auto;
+}
