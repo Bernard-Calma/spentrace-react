@@ -1,9 +1,25 @@
+import { useEffect, useState } from "react";
 import Bill from "../../Components/Bill";
 import NavBar from "../../Components/NavBar";
 import "./Main.css"
 
 const Main = (props) => {
 
+    const [bills, setBills] = useState([])
+    const getBills = () => {
+        fetch("http://localhost:8000/plans")
+        .then((res) => res.json())
+        .then((data) => setBills(data))
+    }
+
+    const modifyDate = () => {
+        // console.log(bills.map(bill => bill))
+    }
+
+    useEffect(()=>{
+        getBills();
+        modifyDate(); 
+    }, [])
     return(
         <main className='mainContainer'>
             <NavBar 
@@ -17,7 +33,7 @@ const Main = (props) => {
                 <div className='listContainer'><h2>Target</h2></div>
             </div>
             {
-                props.bills.map((bill, index) =>
+                bills.map((bill, index) =>
                     <Bill 
                         key={index}
                         index={index}
