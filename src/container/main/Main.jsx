@@ -8,6 +8,7 @@ const Main = (props) => {
     const [bills, setBills] = useState([])
     const [totalIncome, setTotalIncome] = useState(0);
     const [totalExpense, setTotalExpense] = useState(0);
+
     const getBills = () => {
         console.log("GetBills")
         fetch("http://localhost:8000/plans")

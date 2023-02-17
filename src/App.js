@@ -9,7 +9,11 @@ import Login from './container/login/Login';
 
 
 const App = () => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    loggedIn: false
+  })
   const [bills, setBills] = useState([
     {
       date: "01/01/01",
@@ -22,13 +26,32 @@ const App = () => {
       type: "Income"
     },
   ])
-
   const [view, setView] = useState("Main")
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    fetch("http://localhost:8000/users/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.username) {
+        delete user.password
+        setUser({...user, ...data, loggedIn: true})
+      }
+    })
+    .catch(err => console.error("Error : ", err))
+  }
+    
   return (
     <div className="App">
       <Header/>
       {
-        user ?
+        user.loggedIn ?
         <>
         {
           view === "Main"
@@ -45,7 +68,11 @@ const App = () => {
         }
         </>
         :
-        <Login />
+        <Login 
+          handleLogin = {handleLogin}
+          setUser = {setUser}
+          user = {user}
+        />
       }
       <Footer />
     </div>
