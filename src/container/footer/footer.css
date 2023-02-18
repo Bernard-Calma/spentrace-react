@@ -3,10 +3,10 @@
     width: 100%;
     background-color: gray;
     font-family: 'Ubuntu', sans-serif;
-    height: 2rem;
+    height: 3vh;
 }
 
-.footerContainer > h1 {
+.footerContent {
     text-align: center;
     margin: auto;
 }
