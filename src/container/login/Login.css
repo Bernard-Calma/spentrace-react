@@ -35,6 +35,16 @@
     margin: 20px auto;
 }
 
+.containerLogin > p {
+    margin: 0 auto 20px;
+    width: 100px;
+}
+
+.return {
+    margin: 0;
+}
+
 .return:hover {
     cursor: pointer;
+    
 }

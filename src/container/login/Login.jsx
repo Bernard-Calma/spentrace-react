@@ -1,12 +1,6 @@
-import { useState } from "react";
 import "./Login.css"
 
 const Login = (props) => {
-    const [loginData, setLoginData] = useState({
-        username: "",
-        password: "",
-    })
-
     return(
         <div className="containerLogin">
             <h1> LOGIN </h1>

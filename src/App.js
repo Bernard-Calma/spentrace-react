@@ -1,10 +1,8 @@
 import './App.css';
 import { useState } from 'react';
 
-import Header from './container/header/Header';
 import Main from './container/main/Main';
 import Add from './container/add/Add';
-import Footer from './container/footer/Footer';
 import Login from './container/login/Login';
 import Register from './container/login/Register';
 
