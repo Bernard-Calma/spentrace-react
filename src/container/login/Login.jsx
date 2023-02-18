@@ -7,29 +7,21 @@ const Login = (props) => {
         password: "",
     })
 
-    const handleChange = (event) => {
-        props.setUser({...props.user, [event.target.name]: event.target.value})
-    }
-
-    const handleRegister = () => {
-        
-    }
-
     return(
         <div className="containerLogin">
             <h1> LOGIN </h1>
             <form className="formLogin" onSubmit={props.handleLogin}>
                 <label htmlFor="username">
                     Username: 
-                    <input type="text" name="username" placeholder="username" value={props.user.username} onChange={handleChange}/>
+                    <input type="text" name="username" placeholder="username" value={props.user.username} onChange={props.handleChange}/>
                 </label>
                 <label htmlFor="password">
                     Password: 
-                    <input type="password" name="password" placeholder="password" value={props.user.password} onChange={handleChange}/>
+                    <input type="password" name="password" placeholder="password" value={props.user.password} onChange={props.handleChange}/>
                 </label>
                 <button className="btnLogin">Login</button>
             </form>
-            <p>Register Here</p>
+            <p onClick={() => props.handleChangeView("Register")}>Register Here</p>
         </div>
     )
 }

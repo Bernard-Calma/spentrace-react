@@ -1,27 +1,40 @@
-.containerLogin {
+.containerLogin, .containerRegister {
     border: solid black;
     width: 500px;
     text-align: center;
     margin: auto;
 }
 
-.formLogin {
+.registerHeader {
+    display: flex;
+    flex: row;
+}
+
+.loginTitle {
+    flex: 1;
+}
+
+.formLogin, .formRegister {
     display: flex;
     flex-direction: column;
     font-family: 'Ubuntu', sans-serif;
 }
 
-.formLogin > label {
+.formLogin > label, .formRegister > label {
     display: flex;
     flex-direction: column;
 }
 
-.formLogin > label > input {
+.formLogin > label > input, .formRegister > label > input {
     width: 80%;
     margin: 10px auto;
 }
 
-.btnLogin {
+.btnLogin, .btnRegister {
     width: 25%;
     margin: 20px auto;
+}
+
+.return:hover {
+    cursor: pointer;
 }

@@ -29,6 +29,10 @@ const App = () => {
     },
   ])
 
+  const handleChange = (event) => {
+    setUser({...user, [event.target.name]: event.target.value})
+  }
+
   const handleLogin = (event) => {
     event.preventDefault();
     fetch("http://localhost:8000/users/login", {
@@ -46,6 +50,10 @@ const App = () => {
       }
     })
     .catch(err => console.error("Error : ", err))
+  }
+
+  const handleChangeView = (view) => {
+    setView(view)
   }
     
   return (
@@ -71,10 +79,17 @@ const App = () => {
         <>
           { view === "Register"
           ?
-          <Register />
+          <Register 
+            setUser = {setUser}
+            user = {user}
+            handleChange = {handleChange}
+            handleChangeView = {handleChangeView}
+          />
           :
           <Login 
+            handleChange = {handleChange}
             handleLogin = {handleLogin}
+            handleChangeView = {handleChangeView}
             setUser = {setUser}
             user = {user}
           />
