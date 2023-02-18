@@ -6,9 +6,11 @@ import Main from './container/main/Main';
 import Add from './container/add/Add';
 import Footer from './container/footer/Footer';
 import Login from './container/login/Login';
+import Register from './container/login/Register';
 
 
 const App = () => {
+  const [view, setView] = useState("Main")
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -26,7 +28,6 @@ const App = () => {
       type: "Income"
     },
   ])
-  const [view, setView] = useState("Main")
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -67,11 +68,20 @@ const App = () => {
         }
         </>
         :
-        <Login 
-          handleLogin = {handleLogin}
-          setUser = {setUser}
-          user = {user}
-        />
+        <>
+          { view === "Register"
+          ?
+          <Register />
+          :
+          <Login 
+            handleLogin = {handleLogin}
+            setUser = {setUser}
+            user = {user}
+          />
+          
+          }
+        </>
+        
       }
     </div>
   );

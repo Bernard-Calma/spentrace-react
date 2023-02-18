@@ -1,13 +1,14 @@
 .containerLogin {
     border: solid black;
     width: 500px;
-    margin: auto;
     text-align: center;
+    margin: auto;
 }
 
 .formLogin {
     display: flex;
     flex-direction: column;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .formLogin > label {
@@ -22,5 +23,5 @@
 
 .btnLogin {
     width: 25%;
-    margin: 10px auto;
+    margin: 20px auto;
 }

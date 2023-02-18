@@ -11,6 +11,10 @@ const Login = (props) => {
         props.setUser({...props.user, [event.target.name]: event.target.value})
     }
 
+    const handleRegister = () => {
+        
+    }
+
     return(
         <div className="containerLogin">
             <h1> LOGIN </h1>
@@ -25,6 +29,7 @@ const Login = (props) => {
                 </label>
                 <button className="btnLogin">Login</button>
             </form>
+            <p>Register Here</p>
         </div>
     )
 }
