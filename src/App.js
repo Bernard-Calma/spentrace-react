@@ -74,7 +74,6 @@ const App = () => {
           user = {user}
         />
       }
-      <Footer />
     </div>
   );
 }
