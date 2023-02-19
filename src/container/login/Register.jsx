@@ -1,9 +1,11 @@
+import BackButton from "../../Components/Buttons/BackButton"
+
 const Register = (props) => {
 
     return(
         <div className="containerRegister">
             <div className="registerHeader">
-                <h1 className = "return" onClick={() => props.handleChangeView("")}>◄</h1>
+                <BackButton handleChangeView = {props.handleChangeView}/>
                 <h1 className="loginTitle">REGISTER</h1>
             </div>
             <h1>Registration is closed for now.</h1>

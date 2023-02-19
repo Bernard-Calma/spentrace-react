@@ -44,33 +44,6 @@ const Main = (props) => {
         
     }
 
-
-    const getTotalIncome = (data) => {
-        console.log("Get Total Incom")
-        var totalIncome = 0
-        for (var bill of data) {
-            if (!bill.expense) {
-                totalIncome += bill.amount;
-            }
-        }
-        setTotalIncome(totalIncome);
-    }
-
-    const getTotalExpense = (data) => {
-        var totalExpense = 0
-        for (var bill of data) {
-            if (bill.expense) {
-                totalExpense += bill.amount;
-            }
-        }
-        setTotalExpense(totalExpense);
-        console.log("Total Expense: ", totalExpense)
-    }
-
-    const getRunningTotal = (bill) => {
-
-    }
-
     useEffect(()=>{
         getBills()
         
@@ -78,7 +51,7 @@ const Main = (props) => {
     return(
         <main className='mainContainer'>
             <NavBar 
-                setView = {props.setView}
+                handleChangeView = {props.handleChangeView}
             />
             <div className='categoriesContainer'>
                 <div className='listContainer'><h2>Date</h2></div>

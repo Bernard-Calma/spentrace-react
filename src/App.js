@@ -64,7 +64,7 @@ const App = () => {
           view === "Main"
           ?<Main
             bills = {bills}
-            setView = {setView}
+            handleChangeView = {handleChangeView}
           />
           : view === "Add"
           ? <Add
