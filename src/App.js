@@ -64,6 +64,7 @@ const App = () => {
         <>
         <NavBar 
           handleChangeView = {handleChangeView}
+          view = {view}
         />
         {
           view === "Main"

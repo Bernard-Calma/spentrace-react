@@ -4,8 +4,11 @@ import './Add.css'
 const newBill = (props) => {
     return (
         <div className="addContainer">
-            <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
-            <h2 className='navTitle'>Add new bill</h2>
+            <div className='addHeader'>
+                <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
+                <h2 className='navTitle'>Add new bill</h2>
+            </div>
+            
             <form action="" className='addForm'>
                 <label htmlFor="date" className='addFormInput'>
                     Date: 
