@@ -5,6 +5,7 @@ import Main from './container/main/Main';
 import Add from './container/add/Add';
 import Login from './container/login/Login';
 import Register from './container/login/Register';
+import NavBar from './Components/NavBar';
 
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
   }
 
   const handleChangeView = (view) => {
+    console.log("View changed to ", view)
     setView(view)
   }
     
@@ -60,6 +62,9 @@ const App = () => {
       {
         user.loggedIn ?
         <>
+        <NavBar 
+          handleChangeView = {handleChangeView}
+        />
         {
           view === "Main"
           ?<Main
@@ -70,6 +75,7 @@ const App = () => {
           ? <Add
             bills = {bills}
             setBills = {setBills}
+            handleChangeView = {handleChangeView}
           />
           :<></>
         }

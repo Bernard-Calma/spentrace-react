@@ -1,8 +1,10 @@
+import BackButton from '../../Components/Buttons/BackButton'
 import './Add.css'
 
 const newBill = (props) => {
     return (
         <div className="addContainer">
+            <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
             <h2 className='navTitle'>Add new bill</h2>
             <form action="" className='addForm'>
                 <label htmlFor="date" className='addFormInput'>

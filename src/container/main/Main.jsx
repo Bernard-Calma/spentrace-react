@@ -15,7 +15,7 @@ const Main = (props) => {
         fetch("http://localhost:8000/plans")
         .then((res) => res.json())
         .then((data) => {
-            console.log("setBills", totalIncome)
+            // console.log("setBills", totalIncome)
             var runningTarget = 0;
             var total = 0;
             for (var bill of data) {
@@ -29,7 +29,7 @@ const Main = (props) => {
                     runningTarget -= bill.amount;
                     total += bill.amount;
                 } 
-                console.log(bill.amount)
+                // console.log(bill.amount)
                 if (runningTarget < 0) {
                     bill.target = 0;
                 } else {
@@ -50,9 +50,6 @@ const Main = (props) => {
     }, [])
     return(
         <main className='mainContainer'>
-            <NavBar 
-                handleChangeView = {props.handleChangeView}
-            />
             <div className='categoriesContainer'>
                 <div className='listContainer'><h2>Date</h2></div>
                 <div className='listContainer'><h2>Name</h2></div>
