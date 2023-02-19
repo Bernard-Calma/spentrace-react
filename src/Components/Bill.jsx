@@ -20,7 +20,7 @@ const Bill = (props) => {
             <div className="dataContainer"><p className="billData">{props.bill.name}</p></div>
             <div className="dataContainer"><p className="billData">${props.bill.amount.toFixed(2)}</p></div>
             <div className="dataContainer"><p className="billData">{props.bill.expense ? "Expense" : "Income"}</p></div>
-            <div className="dataContainer"><p className="billData">${props.bill.runningTotal.toFixed(2)}</p></div>
+            <div className="dataContainer"><p className="billData">{props.bill.runningTotal < 0 ? "-$"+props.bill.runningTotal.toFixed(2).slice(1) : "$"+props.bill.runningTotal.toFixed(2)}</p></div>
             <div className="dataContainer"><p className="billData">${props.bill.target.toFixed(2)}</p></div>
         </div>
     )
