@@ -5,8 +5,16 @@ li {
 
 /* Main Container Styles */
 .mainContainer {
-    margin: 20px auto;
-    padding: 0 5px;
+    padding: 0 40px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+/* Hide Scrollbar */
+.mainContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .categoriesContainer {

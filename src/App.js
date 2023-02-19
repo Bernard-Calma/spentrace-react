@@ -45,6 +45,7 @@ const App = () => {
       if (data.username) {
         delete user.password
         setUser({...user, ...data, loggedIn: true})
+        setView("Main")
       }
     })
     .catch(err => console.error("Error : ", err))

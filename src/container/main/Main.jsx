@@ -16,24 +16,26 @@ const Main = (props) => {
         .then((data) => {
             console.log("setBills")
             setBills(data)
+            getTotalIncome(data);
+            getTotalExpense(data);
         })
+        
     }
 
-    const getTotalIncome = () => {
+    const getTotalIncome = (data) => {
         console.log("Get Total Incom")
         var totalIncome = 0
-        for (var bill of bills) {
+        for (var bill of data) {
             if (!bill.expense) {
                 totalIncome += bill.amount;
             }
         }
         setTotalIncome(totalIncome);
-        console.log("Total Income: ", totalIncome)
     }
 
-    const getTotalExpense = () => {
+    const getTotalExpense = (data) => {
         var totalExpense = 0
-        for (var bill of bills) {
+        for (var bill of data) {
             if (bill.expense) {
                 totalExpense += bill.amount;
             }
@@ -47,9 +49,8 @@ const Main = (props) => {
     }
 
     useEffect(()=>{
-        getBills();
-        getTotalIncome();
-        getTotalExpense();
+        getBills()
+        
     }, [])
     return(
         <main className='mainContainer'>
@@ -70,6 +71,8 @@ const Main = (props) => {
                         key={index}
                         index={index}
                         bill={bill}
+                        totalIncome = {totalIncome}
+                        totalExpense = {totalExpense}
                     />
                 )
             }
