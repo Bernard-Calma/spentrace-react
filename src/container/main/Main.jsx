@@ -15,6 +15,7 @@ const Main = (props) => {
         fetch("http://192.168.1.80:8000/plans")
         .then((res) => res.json())
         .then((data) => {
+            console.log(data)
             // console.log("setBills", totalIncome)
             var runningTarget = 0;
             var total = 0;

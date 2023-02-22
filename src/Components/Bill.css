@@ -34,11 +34,11 @@
         font-size: 14px;
         padding: 0;
         text-align: center;
-        margin: 2px auto;
+        margin: auto;
     }
     
     .date {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .name {

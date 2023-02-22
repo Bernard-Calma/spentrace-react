@@ -1,11 +1,21 @@
-import { useState } from "react"
 import "./Bill.css"
 
 const Bill = (props) => {
-    const [date] = useState(new Date(props.bill.date).toLocaleDateString())
+    const getDate = () => {
+        // console.log(new Date(Date.now()).toISOString().slice(0,10))
+        let billDate =  new Date(props.bill.date).toISOString().slice(0,10);
+        // console.log(typeof(billDate))
+        // console.log(parseInt(billDate[lastCharIndex]) + 1)
+        const lastCharIndex = billDate.length - 1;
+        const lastIndexChange = parseInt(billDate[lastCharIndex]) + 1;
+        billDate = billDate.slice(0, lastCharIndex) + lastIndexChange; // Change last index to add 1 by itself
+        // console.log(billDate)
+        const todayDate = new Date(Date.now()).toISOString().slice(0,10);
+        return billDate === todayDate ? "Today": billDate.slice(5);
+    }
     return (
         <div className="billContainer">
-            <div className="dataContainer"><p className="billData date">{date}</p></div>
+            <div className="dataContainer"><p className="billData date">{getDate()}</p></div>
             <div className="dataContainer"><p className="billData name">{props.bill.name}</p></div>
             <div className="dataContainer"><p className="billData">${props.bill.amount.toFixed(2)}</p></div>
             <div className="dataContainer"><p className="billData">{props.bill.expense ? "Expense" : "Income"}</p></div>
@@ -15,4 +25,4 @@ const Bill = (props) => {
     )
 }
 
-export default Bill
+export default Bill 
