@@ -3,6 +3,7 @@
     width: 500px;
     text-align: center;
     margin: auto;
+    font-family: 'Space Mono', monospace;
 }
 
 .registerHeader {
@@ -12,6 +13,7 @@
 
 .loginTitle {
     flex: 1;
+    font-size: 40px;
 }
 
 .formLogin, .formRegister {
@@ -23,21 +25,24 @@
 .formLogin > label, .formRegister > label {
     display: flex;
     flex-direction: column;
+    font-family: 'Space Mono', monospace;
 }
 
 .formLogin > label > input, .formRegister > label > input {
     width: 80%;
     margin: 10px auto;
+    font-family: 'Space Mono', monospace;
 }
 
 .btnLogin, .btnRegister {
     width: 25%;
     margin: 20px auto;
+    
 }
 
 .containerLogin > p {
     margin: 0 auto 20px;
-    width: 100px;
+    width: auto;
 }
 
 .return {
@@ -52,6 +57,24 @@
 @media screen and (max-width: 900px) {
     .containerLogin, .containerRegister {
         width: auto;
-        margin: 0 20px
+        margin: 20px 20px
+    }
+
+    .formLogin {
+        font-size: 30px;
+    }
+
+    .containerLogin > p {
+        font-size: 30px;
+        width: auto;
+    }
+
+    .formLogin > label > input {
+        font-size: 20px;
+    }
+
+    .btnLogin {
+        font-size: 20px;
+        width: auto;
     }
 }

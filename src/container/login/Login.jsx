@@ -3,7 +3,7 @@ import "./Login.css"
 const Login = (props) => {
     return(
         <div className="containerLogin">
-            <h1> LOGIN </h1>
+            <h1 className="loginTitle"> LOGIN </h1>
             <form className="formLogin" onSubmit={props.handleLogin}>
                 <label htmlFor="username">
                     Username: 

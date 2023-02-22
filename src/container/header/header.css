@@ -11,8 +11,3 @@
     margin: 0;
 }
 
-@media screen and (max-width: 900px) {
-    .header {
-        display: none;
-    }
-}
