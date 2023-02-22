@@ -22,21 +22,27 @@
     .dataContainer{
         overflow: hidden;
         border-width: 1px;
+        
     }
 
     .billContainer {
         border-width: 1px;
-    }
-
-    .billContainer:nth-child(0) {
-        font-size: 1rem;
+        
     }
 
     .billData {
-        font-size: 0.9rem;
+        font-size: 14px;
         padding: 0;
         text-align: center;
         margin: 2px auto;
+    }
+    
+    .date {
+        font-size: 13px;
+    }
+
+    .name {
+        font-size: 12px;
     }
 
 }
