@@ -12,6 +12,7 @@
     font-weight: bold;
     margin: 0;
     flex: 1;
+    text-align: center;
 }
 
 .addForm {
@@ -41,4 +42,22 @@
 .addHeader {
     display: flex;
     flex: row;
+}
+
+@media screen and (max-width: 900px) {
+    .addContainer {
+        width: auto;
+        margin: 20px;
+        text-align: start;
+    }
+
+    .addFormNotes {
+        width: 300px;
+        margin: auto;
+    }
+
+    #addFormSubmit {
+        text-align: center;
+        padding: 0;
+    }
 }
