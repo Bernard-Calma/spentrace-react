@@ -9,3 +9,13 @@ body {
   height: 87vh;
 }
 
+
+@media only screen and (max-width: 900px) {
+  body {
+    height: auto;
+  }
+
+  .App {
+    height: 100vh;
+  }
+}

@@ -39,3 +39,21 @@ li {
     
     /* border: solid black; */
 }
+
+
+@media screen and (max-width: 900px) {
+    .mainContainer {
+        width: 95%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .listContainer {
+        border-width: 1.5px;
+        overflow:auto;
+    }
+
+    .listContainer > h2 {
+        font-size: 0.7rem;
+    }
+}

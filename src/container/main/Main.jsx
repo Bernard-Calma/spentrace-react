@@ -12,7 +12,7 @@ const Main = (props) => {
 
     const getBills = () => {
         console.log("GetBills")
-        fetch("http://localhost:8000/plans")
+        fetch("http://192.168.1.80:8000/plans")
         .then((res) => res.json())
         .then((data) => {
             // console.log("setBills", totalIncome)
