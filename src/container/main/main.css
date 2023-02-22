@@ -48,12 +48,16 @@ li {
         padding: 0;
     }
 
+    .categoriesContainer {
+        border-width: 1px;
+    }
+
     .listContainer {
         border-width: 1.5px;
         overflow:auto;
     }
 
     .listContainer > h2 {
-        font-size: 0.7rem;
+        font-size: 0.78rem;
     }
 }
