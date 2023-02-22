@@ -34,7 +34,7 @@ const App = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    fetch("http://localhost:8000/users/login", {
+    fetch("http://192.168.1.80:8000/users/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
