@@ -31,7 +31,7 @@ li {
 .listContainer > h2 {
     margin: auto;
     overflow-wrap: break-word;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Roboto', monospace;
     font-size: 2rem;
     text-align: center;
     font-weight: bold;
@@ -44,7 +44,8 @@ li {
 @media screen and (max-width: 900px) {
     .mainContainer {
         width: 95%;
-        margin: 0 auto;
+        height: 85%;
+        margin: 20px auto;
         padding: 0;
     }
 

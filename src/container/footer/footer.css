@@ -4,6 +4,7 @@
     background-color: #B0B7C4;
     font-family: 'Ubuntu', sans-serif;
     height: 3vh;
+    color: black;
 }
 
 .footerContent {
@@ -19,6 +20,5 @@
 @media screen and (max-width: 900px) {
     .footerContainer {
         height: 4.5vh;
-        color: black;
     }
 }
