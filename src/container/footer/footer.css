@@ -19,5 +19,6 @@
 @media screen and (max-width: 900px) {
     .footerContainer {
         height: 4.5vh;
+        color: black;
     }
 }
