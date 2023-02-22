@@ -6,6 +6,7 @@ import Add from './container/add/Add';
 import Login from './container/login/Login';
 import Register from './container/login/Register';
 import NavBar from './Components/NavBar';
+import Categories from './Components/Categories';
 
 
 const App = () => {
@@ -68,10 +69,14 @@ const App = () => {
         />
         {
           view === "Main"
-          ?<Main
-            bills = {bills}
-            handleChangeView = {handleChangeView}
-          />
+          ?
+          <>
+            <Categories />
+            <Main
+              bills = {bills}
+              handleChangeView = {handleChangeView}
+            />
+          </>
           : view === "Add"
           ? <Add
             bills = {bills}
