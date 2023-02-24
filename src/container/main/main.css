@@ -46,14 +46,24 @@ li {
         height: 85%;
         padding: 0;
         overflow:auto;
+        
+    }
+
+    .categoriesContainer {
+        border-width: 4px;
     }
 
     .listContainer {
         border-width: 1.5px;
-        
+        padding-top: 10px;
     }
 
     .listContainer > h2 {
-        font-size: 0.8rem;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .listContainer:nth-child(5){
+        padding-top: 0px;
     }
 }
