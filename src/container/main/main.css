@@ -26,18 +26,21 @@ li {
 .listContainer{
     width: 20%;
     border: solid black;
+    padding-top: 25px;
 }
 
 .listContainer > h2 {
     margin: auto;
     overflow-wrap: break-word;
     font-family: 'Roboto', monospace;
-    font-size: 2rem;
+    font-size: 40px;
     text-align: center;
     font-weight: bold;
-
-    
     /* border: solid black; */
+}
+
+.listContainer:nth-child(5){
+    padding-top: 0px;
 }
 
 
@@ -60,7 +63,6 @@ li {
 
     .listContainer > h2 {
         font-size: 15px;
-        text-align: center;
     }
 
     .listContainer:nth-child(5){
