@@ -9,6 +9,8 @@ body {
 
 .App {
   height: 87vh;
+  width: 1000px;
+  margin: 0 auto;
 }
 
 
@@ -19,5 +21,6 @@ body {
 
   .App {
     height: 73vh;
+    width: auto;
   }
 }
