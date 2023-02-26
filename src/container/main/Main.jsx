@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Bill from "../../Components/Bill";
 import NavBar from "../../Components/NavBar";
+import Show from "../show/Show";
 import "./Main.css"
 
 const Main = (props) => {
@@ -8,8 +9,7 @@ const Main = (props) => {
     const [bills, setBills] = useState([])
     let [totalIncome, setTotalIncome] = useState(0);
     let [totalExpense, setTotalExpense] = useState(0);
-
-
+ 
     const getBills = () => {
         console.log("GetBills")
         fetch("http://192.168.1.80:8000/plans")
@@ -49,6 +49,7 @@ const Main = (props) => {
         getBills()
         
     }, [])
+
     return(
         <main className='mainContainer'>
             {
@@ -59,9 +60,12 @@ const Main = (props) => {
                         bill={bill}
                         totalIncome = {totalIncome}
                         totalExpense = {totalExpense}
+                        handleChangeView = {props.handleChangeView}
+                        handleView = {props.handleView}
                     />
                 )
             }
+        
         </main>
     )
 }

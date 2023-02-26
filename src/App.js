@@ -7,6 +7,7 @@ import Login from './container/login/Login';
 import Register from './container/login/Register';
 import NavBar from './Components/NavBar';
 import Categories from './Components/Categories';
+import Show from './container/show/Show';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
       type: "Income"
     },
   ])
+  let [openBill, setOpenBill] = useState({});
 
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
@@ -53,10 +55,17 @@ const App = () => {
     .catch(err => console.error("Error : ", err))
   }
 
+  // HANDLE VIEW CHANGE WHEN NAVIGATING
   const handleChangeView = (view) => {
     console.log("View changed to ", view)
     setView(view)
   }
+
+  // HANLDE VIEW CHANGE WHEN OPENING A BILL
+  const handleView = (bill) => {
+    setOpenBill(bill)
+    handleChangeView("Show")
+}
     
   return (
     <div className="App">
@@ -75,12 +84,19 @@ const App = () => {
             <Main
               bills = {bills}
               handleChangeView = {handleChangeView}
+              view={view}
+              handleView = {handleView}
             />
           </>
           : view === "Add"
           ? <Add
             bills = {bills}
             setBills = {setBills}
+            handleChangeView = {handleChangeView}
+          />
+          : view === "Show"
+          ? <Show
+            openBill = {openBill}
             handleChangeView = {handleChangeView}
           />
           :<></>
