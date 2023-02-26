@@ -5,7 +5,7 @@ li {
 
 /* Main Container Styles */
 .mainContainer {
-    height: 80vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
