@@ -1,0 +1,29 @@
+.containerShow {
+    border: solid gray;
+    margin: 10% auto;
+    width: 800px;
+}
+
+.containerShowInner {
+    width: 300px;
+    margin: auto;
+    text-align: start;
+}
+
+.closeBtn {
+    width: 20px;
+    margin: 0 -250px -50px;
+    border: solid gray;
+    text-align: center;
+}
+
+.showInfo {
+    font-family: "Space Mono", sans-serif;
+    word-wrap: break-word;
+    font-size: 30px;
+}
+
+.notes {
+    margin: -30px 0 20px;
+    width: 450px;
+}
