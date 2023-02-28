@@ -40,9 +40,9 @@ const App = () => {
     event.preventDefault();
     fetch("http://192.168.1.80:8000/users/login", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
-            credentials: 'include'
         },
         body: JSON.stringify(user)
     })

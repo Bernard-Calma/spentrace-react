@@ -12,10 +12,7 @@ const Main = (props) => {
  
     const getBills = () => {
         console.log("GetBills")
-        fetch("http://192.168.1.80:8000/plans/" + props.user._id, {
-            headers:{
-                credentials: "include"}
-            })
+        fetch("http://localhost:8000/plans/" + props.user._id, {credentials: "include"})
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
