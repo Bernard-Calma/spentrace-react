@@ -13,6 +13,10 @@ const Login = (props) => {
                     Password: 
                     <input type="password" name="password" placeholder="password" value={props.user.password} onChange={props.handleChange}/>
                 </label>
+                
+                {
+                    props.loginMessage !== ""? <p className="loginMessage">{props.loginMessage}</p> : <></>
+                }
                 <button className="btnLogin">Login</button>
             </form>
             <p onClick={() => props.handleChangeView("Register")}>Register Here</p>

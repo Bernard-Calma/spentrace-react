@@ -30,6 +30,7 @@ const App = () => {
     },
   ])
   let [openBill, setOpenBill] = useState({});
+  const [loginMessage, setLoginMessage] = useState("")
 
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
@@ -47,13 +48,19 @@ const App = () => {
     })
     .then(res => res.json())
     .then(data => {
+      // console.log(data)
       if (data.username) {
         delete user.password
         setUser({...user, ...data, loggedIn: true})
         setView("Main")
+      } else {
+        setLoginMessage(data.message)
       }
     })
-    .catch(err => console.error("Error : ", err))
+    .catch(err => {
+      console.error("Error : ", err)
+      setLoginMessage(err.message)
+    })
   }
 
   // HANDLE VIEW CHANGE WHEN NAVIGATING
@@ -122,6 +129,7 @@ const App = () => {
             handleChangeView = {handleChangeView}
             setUser = {setUser}
             user = {user}
+            loginMessage = {loginMessage}
           />
           
           }

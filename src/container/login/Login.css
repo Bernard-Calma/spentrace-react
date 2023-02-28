@@ -51,7 +51,10 @@
 
 .return:hover {
     cursor: pointer;
-    
+}
+
+.loginMessage {
+    color: rgb(252, 78, 78)
 }
 
 @media screen and (max-width: 900px) {
