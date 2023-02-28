@@ -40,7 +40,8 @@ const App = () => {
     fetch("http://192.168.1.80:8000/users/login", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            credentials: 'include'
         },
         body: JSON.stringify(user)
     })
@@ -75,6 +76,7 @@ const App = () => {
         <NavBar 
           handleChangeView = {handleChangeView}
           view = {view}
+          openBill = {openBill}
         />
         {
           view === "Main"
@@ -86,6 +88,7 @@ const App = () => {
               handleChangeView = {handleChangeView}
               view={view}
               handleView = {handleView}
+              user = {user}
             />
           </>
           : view === "Add"

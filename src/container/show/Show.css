@@ -1,5 +1,5 @@
 .containerShow {
-    border: solid gray;
+    border:  groove;
     margin: 10% auto;
     width: 800px;
 }
@@ -12,8 +12,8 @@
 
 .closeBtn {
     width: 20px;
-    margin: 0 -250px -50px;
-    border: solid gray;
+    margin: -3px 0 -50px 175.5%;
+    border:  groove;
     text-align: center;
 }
 
@@ -36,7 +36,14 @@
     }
 
     .closeBtn {
-        margin: 0 -50px -50px;
+        margin: -2px 0 -50px 149.7%;
     }
 
+}
+
+
+@media screen and (max-width: 500px) {
+    .closeBtn {
+        margin: -3px 0 -50px 323px;
+    }
 }
