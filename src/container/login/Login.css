@@ -1,9 +1,14 @@
 .containerLogin, .containerRegister {
-    border: solid black;
-    width: 500px;
+    border: solid #B0B7C4;
+    border-radius: 20px;
+    height: 80%;
+    width: 400px;
     text-align: center;
     margin: auto;
     font-family: 'Space Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .registerHeader {
@@ -12,11 +17,11 @@
 }
 
 .loginTitle {
-    flex: 1;
     font-size: 40px;
 }
 
 .formLogin, .formRegister {
+    flex: 1;
     display: flex;
     flex-direction: column;
     font-family: 'Ubuntu', sans-serif;
@@ -28,21 +33,29 @@
     font-family: 'Space Mono', monospace;
 }
 
-.formLogin > label > input, .formRegister > label > input {
-    width: 80%;
+.formLogin > input, .formRegister > input {
+    width: 50%;
     margin: 10px auto;
     font-family: 'Space Mono', monospace;
+    border-radius: 10px;
+    height: 40px;
 }
 
 .btnLogin, .btnRegister {
-    width: 25%;
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #B0B7C4;
+    color: #414449;
     margin: 20px auto;
-    
+    font-weight: bold;
 }
 
-.containerLogin > p {
-    margin: 0 auto 20px;
-    width: auto;
+.btnLogin:hover, .btnRegister:hover {
+    background-color: #414449;
+    color: #B0B7C4;
+    height: 40px;
+    margin-top: 15px;
 }
 
 .return {
@@ -55,6 +68,15 @@
 
 .loginMessage {
     color: rgb(252, 78, 78)
+}
+
+.registerLink:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.registerText {
+    font-size: 15px !important;
 }
 
 @media screen and (max-width: 900px) {
