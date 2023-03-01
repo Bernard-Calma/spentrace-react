@@ -13,9 +13,13 @@
     font-size: 1vw;
 }
 
-#protfolioLink {
+#portfolioLink {
     text-decoration: none;
     color: black;
+}
+
+.myLogo {
+    width: 100%;
 }
 
 @media screen and (max-width: 900px) {

@@ -37,3 +37,66 @@
     align-self: end;
     margin: 10px;
 }
+
+
+/* OPEN NAVBAR COMPONENT */
+.containerMinimizeNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: black solid;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(173, 170, 170);
+    color: black;
+    overflow: hidden;
+    align-items: center;
+}
+
+.minimizeHeader {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(77, 77, 77, 0.493);
+    border-bottom: black solid;
+    box-shadow: 1px 1px 1px 1px gray;
+}
+
+.title {
+    font-family: 'Russo One', sans-serif;
+    font-size: 3.5vw;
+    margin: 0;
+    color: black;
+}
+
+
+
+.navIcon {
+    width: 40px;
+    margin: auto;
+}
+
+
+.minimizeBtnLogout{
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.minimizeFooter {
+    text-align: center;
+    background-color: rgba(77, 77, 77, 0.493);
+    border-top: black solid;
+}
+
+.minimizeFooter > h1 {
+    margin: 0;
+}
+
+#portfolioLink:hover {
+    color: white;
+}
+

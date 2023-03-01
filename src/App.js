@@ -8,6 +8,7 @@ import Register from './container/login/Register';
 import NavBar from './Components/NavBar';
 import Categories from './Components/Categories';
 import Show from './container/show/Show';
+import OpenNav from './Components/MinimizeNav';
 
 
 const App = () => {
@@ -77,7 +78,7 @@ const App = () => {
   }
     
   const handleShowNav = () => {
-    setShowNav(true);
+    setShowNav(!showNav);
   }
 
   return (
@@ -91,9 +92,15 @@ const App = () => {
             handleChangeView = {handleChangeView}
             view = {view}
             openBill = {openBill}
+            handleShowNav = {handleShowNav}
           />
           :
-          <></>
+          <OpenNav 
+            handleChangeView = {handleChangeView}
+            view = {view}
+            openBill = {openBill}
+            handleShowNav = {handleShowNav}
+          />
         }
         
         {

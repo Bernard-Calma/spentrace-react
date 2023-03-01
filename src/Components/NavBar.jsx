@@ -1,12 +1,13 @@
 import Footer from "../container/footer/Footer"
 import Header from "../container/header/Header"
-import BackButton from "./Buttons/BackButton"
 import "./NavBar.css"
 
 const NavBar = (props) => {
     return(
         <section className="navBarContainer">
-            <Header />
+            <Header 
+                handleShowNav = {props.handleShowNav}
+            />
             <div className="navBar">
             {
                 props.view === "Main" ? <p className="navBarItem" onClick={()=> props.handleChangeView("Add")}>Add</p>
