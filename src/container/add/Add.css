@@ -1,9 +1,12 @@
 .addContainer {
-    border: solid black;
-    width: 1000px;
+    border: solid #B0B7C4;
+    border-radius: 20px;
+    width: 700px;
     margin: auto;
     text-align: center;
     padding: 20px;
+    background-color: rgb(53, 52, 52);;
+
 }
 
 .navTitle {
@@ -17,7 +20,10 @@
 
 .addForm {
     display: flex;
+    margin: auto;
+    width: 400px;
     flex-direction: column;
+    text-align: start;
 }
 
 .addFormInput {
@@ -26,17 +32,16 @@
 }
 
 .addFormNotes {
-    width: 50%;
     height: 200px;
-    margin: auto;
 }
 
 #addFormSubmit {
-    width: 80px;
+    width: auto;
     height: 80px;
     border-radius: 50%;
     font-size: 1.2rem;
     margin: 10px auto 0;
+    font-family: "Space Mono", sans-serif;
 }
 
 .addHeader {

@@ -1,20 +1,23 @@
 .containerShow {
-    border:  groove;
+    border: solid #B0B7C4;
+    border-radius: 20px;
+    background-color: rgb(53, 52, 52);
     margin: 10% auto;
-    width: 800px;
+    width: 600px;
 }
 
 .containerShowInner {
     width: 300px;
-    margin: auto;
+    margin: 10px auto 200px;
     text-align: start;
 }
 
 .closeBtn {
     width: 20px;
-    margin: -3px 0 -50px 175.5%;
-    border:  groove;
     text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0 10px;
 }
 
 .showInfo {
@@ -33,17 +36,5 @@
     .containerShow {
         width: 95%;
         margin: 20px auto;
-    }
-
-    .closeBtn {
-        margin: -2px 0 -50px 149.7%;
-    }
-
-}
-
-
-@media screen and (max-width: 500px) {
-    .closeBtn {
-        margin: -3px 0 -50px 323px;
     }
 }

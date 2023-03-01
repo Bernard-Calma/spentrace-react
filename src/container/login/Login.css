@@ -1,7 +1,7 @@
 .containerLogin, .containerRegister {
     border: solid #B0B7C4;
     border-radius: 20px;
-    height: 80%;
+    height: 500px;
     width: 400px;
     text-align: center;
     margin: auto;
@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: rgb(53, 52, 52);
 }
 
 .registerHeader {
@@ -42,13 +43,15 @@
 }
 
 .btnLogin, .btnRegister {
-    width: 50%;
+    width: 100px;
     height: 30px;
     border-radius: 5px;
     background-color: #B0B7C4;
     color: #414449;
     margin: 20px auto;
     font-weight: bold;
+    font-family: "Russo One";
+    font-size: 20px;
 }
 
 .btnLogin:hover, .btnRegister:hover {

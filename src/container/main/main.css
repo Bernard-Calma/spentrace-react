@@ -9,7 +9,10 @@ li {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    border-style: groove;
+    border: solid #B0B7C4;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(53, 52, 52);
 }
 
 /* Hide Scrollbar */
@@ -19,8 +22,12 @@ li {
 
 .categoriesContainer {
     display: flex;
-    border: groove;
+    border: solid #B0B7C4;
     justify-content: space-evenly;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgb(53, 52, 52);
+    overflow: hidden;
 }
 
 .listContainer{

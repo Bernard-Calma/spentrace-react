@@ -20,7 +20,7 @@ const newBill = (props) => {
                 </label>
                 <label htmlFor="amount" className='addFormInput'>
                     Amount: 
-                    <input type="text" name="amount" id="addAmount" />
+                    <input type="number" name="amount" id="addAmount" />
                 </label>
                 <div className='radio'>
                     <label htmlFor="type" className='addFormInput'>
