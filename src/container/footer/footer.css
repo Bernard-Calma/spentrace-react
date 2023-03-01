@@ -3,13 +3,14 @@
     width: 100%;
     background-color: #B0B7C4;
     font-family: 'Ubuntu', sans-serif;
-    height: 3vh;
+    height: 2vh;
     color: black;
 }
 
 .footerContent {
     text-align: center;
     margin: auto;
+    font-size: 1vw;
 }
 
 #protfolioLink {

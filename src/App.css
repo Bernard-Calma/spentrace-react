@@ -5,10 +5,17 @@ body {
   height: 100vh;
   background-color: #414449;
   color: #B0B7C4;
+  overflow: hidden;
+}
+
+#root {
+  height: inherit;
+  padding-top: 100px;
+
 }
 
 .App {
-  height: 87vh;
+  height: 85vh;
   width: 1000px;
   margin: 0 auto;
 }

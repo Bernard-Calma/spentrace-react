@@ -1,17 +1,39 @@
 .navBarContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-right: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: black solid;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(173, 170, 170);
+    color: black;
+    overflow: hidden;
+}
+
+.navBar {
+    flex:1;
+    margin-top: 20px;
 }
 
 .navBarItem {
     margin: 0 10px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Space Mono', sans-serif;
     font-size: 2rem;
     font-weight: bold;
 }
 
 .navBarItem:hover{
     cursor: pointer;
+}
+
+
+.btnLogout {
+    width: 10%;
+    align-self: end;
+    margin: 10px;
 }

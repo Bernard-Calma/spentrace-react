@@ -31,6 +31,7 @@ const App = () => {
   ])
   let [openBill, setOpenBill] = useState({});
   const [loginMessage, setLoginMessage] = useState("")
+  let [showNav, setShowNav] = useState(false)
 
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
@@ -73,18 +74,28 @@ const App = () => {
   const handleView = (bill) => {
     setOpenBill(bill)
     handleChangeView("Show")
-}
+  }
     
+  const handleShowNav = () => {
+    setShowNav(true);
+  }
+
   return (
     <div className="App">
       {
         user.loggedIn ?
         <>
-        <NavBar 
-          handleChangeView = {handleChangeView}
-          view = {view}
-          openBill = {openBill}
-        />
+        {
+          showNav?  
+          <NavBar 
+            handleChangeView = {handleChangeView}
+            view = {view}
+            openBill = {openBill}
+          />
+          :
+          <></>
+        }
+        
         {
           view === "Main"
           ?
