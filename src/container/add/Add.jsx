@@ -9,7 +9,7 @@ const newBill = (props) => {
                 <h2 className='navTitle'>Add new bill</h2>
             </div>
             
-            <form action="" className='addForm'>
+            <form className='addForm'>
                 <label htmlFor="date" className='addFormInput'>
                     Date: 
                     <input type="date" name="date" id="addDate" />
