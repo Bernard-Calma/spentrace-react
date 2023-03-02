@@ -7,10 +7,11 @@ const Bill = (props) => {
         // console.log(typeof(billDate))
         // console.log(parseInt(billDate[lastCharIndex]) + 1)
         const lastCharIndex = billDate.length - 1;
-        const lastIndexChange = parseInt(billDate[lastCharIndex]) + 1;
+        const lastIndexChange = parseInt(billDate[lastCharIndex]); // +1 FOR DEPLOYMENT
         billDate = billDate.slice(0, lastCharIndex) + lastIndexChange; // Change last index to add 1 by itself
         // console.log(billDate)
         const todayDate = new Date(Date.now()).toISOString().slice(0,10);
+        // console.log("Billdate" + billDate + "Today" + todayDate)
         return billDate === todayDate ? "Today": new Date(billDate).toString().slice(4,10);
     }
 
