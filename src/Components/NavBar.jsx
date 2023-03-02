@@ -12,7 +12,7 @@ const NavBar = (props) => {
                     onClick={()=> props.handleChangeView("Add")}
                 />
                 : props.view === "Show" ? <>
-                    <p className="navBarItem">Edit</p>
+                    <p className="navBarItem" onClick={()=> props.handleChangeView("Edit")}>Edit</p>
                     <p className="navBarItem">Delete</p>
                 </>
                 : <>

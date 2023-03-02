@@ -11,6 +11,7 @@ import Show from './container/show/Show';
 import OpenNav from './Components/MinimizeNav';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
+import EditBill from './container/edit/EditBill';
 
 
 const App = () => {
@@ -116,7 +117,12 @@ const App = () => {
             openBill = {openBill}
             handleChangeView = {handleChangeView}
           />
-          :<></>
+          : view === "Edit" ?
+            <EditBill
+              openBill = {openBill}
+              handleChangeView = {handleChangeView} 
+            />
+          : <></>
         }
         </>
         :
