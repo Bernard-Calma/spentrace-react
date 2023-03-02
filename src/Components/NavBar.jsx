@@ -5,12 +5,8 @@ import "./NavBar.css"
 const NavBar = (props) => {
     return(
         <section className="navBarContainer">
-            <Header 
-                handleShowNav = {props.handleShowNav}
-            />
-            <div className="navBar">
             {
-                props.view === "Main" ? <p className="navBarItem" onClick={()=> props.handleChangeView("Add")}>Add</p>
+                props.view === "Main" ? <img className="navBarItem navIcon"  src="https://www.flaticon.com/svg/vstatic/svg/9243/9243903.svg?token=exp=1677635808~hmac=64dc26a1ea060cb9c641892211927cfc" alt="add" onClick={()=> props.handleChangeView("Add")}/>
                 : <>
                     {
                         props.view === "Add" ? <></>
@@ -20,11 +16,7 @@ const NavBar = (props) => {
                         </>
                     }
                 </>
-
             }
-            </div>
-            <img src="https://cdn-icons-png.flaticon.com/512/126/126467.png" alt="logout" className="btnLogout"/>
-        <   Footer />
         </section>
     )
 }

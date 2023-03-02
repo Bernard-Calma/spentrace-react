@@ -6,9 +6,11 @@ import Add from './container/add/Add';
 import Login from './container/login/Login';
 import Register from './container/login/Register';
 import NavBar from './Components/NavBar';
-import Categories from './Components/Categories';
+import Categories from './container/main/Categories';
 import Show from './container/show/Show';
 import OpenNav from './Components/MinimizeNav';
+import Header from './container/header/Header';
+import Footer from './container/footer/Footer';
 
 
 const App = () => {
@@ -87,27 +89,9 @@ const App = () => {
         user.loggedIn ?
         <>
         {
-          showNav?  
-          <NavBar 
-            handleChangeView = {handleChangeView}
-            view = {view}
-            openBill = {openBill}
-            handleShowNav = {handleShowNav}
-          />
-          :
-          <OpenNav 
-            handleChangeView = {handleChangeView}
-            view = {view}
-            openBill = {openBill}
-            handleShowNav = {handleShowNav}
-          />
-        }
-        
-        {
           view === "Main"
           ?
           <>
-            <Categories />
             <Main
               bills = {bills}
               handleChangeView = {handleChangeView}
@@ -129,9 +113,15 @@ const App = () => {
           />
           :<></>
         }
+          <NavBar 
+            handleChangeView = {handleChangeView}
+            view = {view}
+            openBill = {openBill}
+          />
         </>
         :
         <>
+          <Header />
           { view === "Register"
           ?
           <Register 
@@ -154,6 +144,7 @@ const App = () => {
         </>
         
       }
+      <Footer />
     </div>
   );
 }

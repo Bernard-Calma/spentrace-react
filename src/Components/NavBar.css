@@ -2,26 +2,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: black solid;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 20%;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    background-color: rgb(173, 170, 170);
-    color: black;
-    overflow: hidden;
-}
-
-.navBar {
-    flex:1;
-    margin-top: 20px;
+    /* border: black solid;  */
+    bottom: 0;
+    margin: 0px auto 50px;
+    /* border-radius: 20px; */
+    /* background-color: rgb(173, 170, 170); */
+    filter: invert(63%) sepia(6%) saturate(22%) hue-rotate(336deg) brightness(90%) contrast(85%);
 }
 
 .navBarItem {
-    margin: 0 10px;
+    margin: auto;
     font-family: 'Space Mono', sans-serif;
     font-size: 2rem;
     font-weight: bold;
@@ -36,6 +26,18 @@
     width: 10%;
     align-self: end;
     margin: 10px;
+}
+
+.addBtn {
+    margin: 0 20px;
+}
+
+.addBtn > span {
+    font-family: "Space Mono", sans-serif;
+    font-size: 30px;  
+    margin: 0 20px;
+    height: auto;
+    padding-bottom: 10px
 }
 
 
@@ -65,15 +67,6 @@
     border-bottom: black solid;
     box-shadow: 1px 1px 1px 1px gray;
 }
-
-.title {
-    font-family: 'Russo One', sans-serif;
-    font-size: 3.5vw;
-    margin: 0;
-    color: black;
-}
-
-
 
 .navIcon {
     width: 40px;

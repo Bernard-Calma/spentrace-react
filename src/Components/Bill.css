@@ -1,19 +1,18 @@
 .billContainer {
     display: flex;
     justify-content: space-evenly;
-    border: black solid;
+    border: solid #B0B7C4;
 }
 
 .dataContainer{
     width: 20%;
-    border: black solid;
-    border-width: 0 3px;
+    border: solid #B0B7C4;
+    border-width: 0 2px;
 }
 
 .billData {
     font-family: "Ubuntu";
-    font-size: 35px;
-    padding-left: 5px;
+    font-size: 20px;
     text-align: center;
 }
 

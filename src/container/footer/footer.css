@@ -3,23 +3,23 @@
     width: 100%;
     background-color: #B0B7C4;
     font-family: 'Ubuntu', sans-serif;
-    height: 2vh;
+    height: 3vh;
     color: black;
+    padding-bottom: 5px;
 }
 
 .footerContent {
     text-align: center;
     margin: auto;
-    font-size: 1vw;
 }
 
-#portfolioLink {
+#protfolioLink {
     text-decoration: none;
     color: black;
 }
 
-.myLogo {
-    width: 100%;
+#protfolioLink:hover{
+    color: white;
 }
 
 @media screen and (max-width: 900px) {

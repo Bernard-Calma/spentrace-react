@@ -1,14 +1,18 @@
 .header {
+    width: 100%;
     text-align: center;
-    background-color: rgba(77, 77, 77, 0.493);
-    border-bottom: black solid;
-    box-shadow: 1px 1px 1px 1px gray;
+    height: 80px;
 }
 
 .title {
     font-family: 'Russo One', sans-serif;
-    font-size: 3.5vw;
+    font-size: 4rem;
+    color: #B0B7C4;
     margin: 0;
-    color: black;
 }
 
+@media screen and (max-width: 900px) {
+    .header {
+        display: none;
+    }
+}

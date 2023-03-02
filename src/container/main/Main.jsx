@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Bill from "../../Components/Bill";
+import Categories from "./Categories";
 import NavBar from "../../Components/NavBar";
 import Show from "../show/Show";
 import "./Main.css"
@@ -52,20 +53,22 @@ const Main = (props) => {
 
     return(
         <main className='mainContainer'>
-            {
-                bills.map((bill, index) =>
-                    <Bill 
-                        key={index}
-                        index={index}
-                        bill={bill}
-                        totalIncome = {totalIncome}
-                        totalExpense = {totalExpense}
-                        handleChangeView = {props.handleChangeView}
-                        handleView = {props.handleView}
-                    />
-                )
-            }
-        
+            <Categories />
+            <div className="billsContainer">
+                {
+                    bills.map((bill, index) =>
+                        <Bill 
+                            key={index}
+                            index={index}
+                            bill={bill}
+                            totalIncome = {totalIncome}
+                            totalExpense = {totalExpense}
+                            handleChangeView = {props.handleChangeView}
+                            handleView = {props.handleView}
+                        />
+                    )
+                }
+            </div>
         </main>
     )
 }

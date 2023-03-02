@@ -5,52 +5,45 @@ li {
 
 /* Main Container Styles */
 .mainContainer {
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+    height: 80%;
+    margin: 20px 50px 50px;
     border: solid #B0B7C4;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 10px 20px 3px;
     background-color: rgb(53, 52, 52);
-    margin: auto;
+    overflow: hidden;
 }
 
-/* Hide Scrollbar */
-.mainContainer::-webkit-scrollbar {
-    display: none;
-}
+/* CATEGORIES CONTAINER */
 
 .categoriesContainer {
     display: flex;
     border: solid #B0B7C4;
     justify-content: space-evenly;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-color: rgb(53, 52, 52);
-    overflow: hidden;
 }
 
 .listContainer{
     width: 20%;
-    border: solid black;
-    padding-top: 25px;
+    border: solid #B0B7C4;
 }
 
 .listContainer > h2 {
     margin: auto;
     overflow-wrap: break-word;
     font-family: 'Roboto', monospace;
-    font-size: 40px;
+    font-size: 25px;
     text-align: center;
     font-weight: bold;
     /* border: solid black; */
 }
-
-.listContainer:nth-child(5){
-    padding-top: 0px;
+/* BILLS CONTAINER */
+.billsContainer{
+    height: 100%;
+    overflow: scroll;
 }
 
+.billsContainer::-webkit-scrollbar{
+    display: none;
+}
 
 @media screen and (max-width: 900px) {
     .mainContainer {
