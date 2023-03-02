@@ -2,7 +2,7 @@
     border: solid #B0B7C4;
     border-radius: 20px;
     background-color: rgb(53, 52, 52);
-    margin: 10% auto;
+    margin: 20px auto auto;
     width: 600px;
 }
 
@@ -23,7 +23,7 @@
 .showInfo {
     font-family: "Space Mono", sans-serif;
     word-wrap: break-word;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .notes {
