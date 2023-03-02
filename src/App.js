@@ -14,7 +14,7 @@ import Footer from './container/footer/Footer';
 
 
 const App = () => {
-  const [view, setView] = useState("Main")
+  const [view, setView] = useState("Login")
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -85,6 +85,11 @@ const App = () => {
 
   return (
     <div className="App">
+      <Header 
+          handleChangeView = {handleChangeView}
+          view = {view}
+          openBill = {openBill}
+      />
       {
         user.loggedIn ?
         <>
@@ -113,15 +118,9 @@ const App = () => {
           />
           :<></>
         }
-          <NavBar 
-            handleChangeView = {handleChangeView}
-            view = {view}
-            openBill = {openBill}
-          />
         </>
         :
         <>
-          <Header />
           { view === "Register"
           ?
           <Register 

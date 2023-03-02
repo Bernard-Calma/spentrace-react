@@ -1,18 +1,16 @@
 .header {
-    width: 100%;
-    text-align: center;
-    height: 80px;
+    margin-bottom: 10px;
+    border-bottom: solid rgb(230, 230, 230) 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
 .title {
     font-family: 'Russo One', sans-serif;
-    font-size: 4rem;
-    color: #B0B7C4;
+    width: 250px;
+    font-size: 50px;
+    color: #dbdbdb;
     margin: 0;
-}
-
-@media screen and (max-width: 900px) {
-    .header {
-        display: none;
-    }
 }

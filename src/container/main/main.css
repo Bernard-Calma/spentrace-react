@@ -5,12 +5,12 @@ li {
 
 /* Main Container Styles */
 .mainContainer {
-    height: 80%;
-    margin: 20px 50px 50px;
+    flex: 1;
     border: solid #B0B7C4;
-    border-radius: 10px 20px 3px;
+    border-radius: 10px;
     background-color: rgb(53, 52, 52);
     overflow: hidden;
+    margin: 10px;
 }
 
 /* CATEGORIES CONTAINER */
@@ -33,7 +33,6 @@ li {
     font-size: 25px;
     text-align: center;
     font-weight: bold;
-    /* border: solid black; */
 }
 /* BILLS CONTAINER */
 .billsContainer{
