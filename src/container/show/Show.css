@@ -7,8 +7,8 @@
 }
 
 .containerShowInner {
-    width: 300px;
-    margin: 10px auto 200px;
+    width: 400px;
+    margin: 0 auto 200px;
     text-align: start;
 }
 
@@ -23,7 +23,8 @@
 .showInfo {
     font-family: "Space Mono", sans-serif;
     word-wrap: break-word;
-    font-size: 25px;
+    font-size: 2rem;
+    margin-top: 0;
 }
 
 .notes {

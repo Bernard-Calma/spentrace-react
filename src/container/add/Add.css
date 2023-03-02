@@ -24,24 +24,28 @@
 .addForm {
     display: flex;
     margin:  50px auto auto;
-    width: 400px;
+    width: 500px;
     flex-direction: column;
     text-align: start;
 }
 
 .addFormInput {
     font-family: "Space Mono";
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 10px 0;
+}
+
+.addFormInput > input {
+    font-size: 1.5rem;
 }
 
 .addFormNotes {
     margin: 10px 0;
     height: 200px;
+    font-size: 1.5rem;
 }
 
 #addFormSubmit {
-    width: 100px;
     height: 80px;
     border-radius: 50%;
     font-size: 1.2rem;
