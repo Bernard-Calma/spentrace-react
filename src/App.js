@@ -108,15 +108,15 @@ const App = () => {
           </>
           : view === "Add"
           ? <Add
-            bills = {bills}
-            setBills = {setBills}
-            handleChangeView = {handleChangeView}
-          />
+              bills = {bills}
+              setBills = {setBills}
+              handleChangeView = {handleChangeView}
+            />
           : view === "Show"
           ? <Show
-            openBill = {openBill}
-            handleChangeView = {handleChangeView}
-          />
+              openBill = {openBill}
+              handleChangeView = {handleChangeView}
+            />
           : view === "Edit" ?
             <EditBill
               openBill = {openBill}
