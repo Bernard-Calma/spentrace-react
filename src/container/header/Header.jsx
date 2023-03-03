@@ -9,6 +9,7 @@ const Header = (props) => {
                 handleChangeView = {props.handleChangeView}
                 view = {props.view}
                 openBill = {props.openBill}
+                user = {props.user}
             />
         </div>
     )

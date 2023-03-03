@@ -1,6 +1,16 @@
 import "./NavBar.css"
 
 const NavBar = (props) => {
+
+    const handleDelete = () => {
+        let url = "http://localhost:8000/plans/"+props.openBill._id
+        console.log("Fetch : " + url)
+        fetch(url, {
+            method: "DELETE",
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
     return(
         <section className="navBarContainer">
             {
@@ -13,7 +23,7 @@ const NavBar = (props) => {
                 />
                 : props.view === "Show" ? <>
                     <p className="navBarItem" onClick={()=> props.handleChangeView("Edit")}>Edit</p>
-                    <p className="navBarItem">Delete</p>
+                    <p className="navBarItem" onClick={handleDelete}>Delete</p>
                 </>
                 : <>
                 </>

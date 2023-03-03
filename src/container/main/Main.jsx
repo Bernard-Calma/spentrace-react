@@ -12,7 +12,7 @@ const Main = (props) => {
     let [totalExpense, setTotalExpense] = useState(0);
  
     const getBills = () => {
-        console.log("GetBills")
+        // console.log("GetBills")
         fetch("http://localhost:8000/plans/" + props.user._id, {
             credentials: "include",
             headers: {
@@ -21,7 +21,7 @@ const Main = (props) => {
         })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             // console.log("setBills", totalIncome)
             var runningTarget = 0;
             var total = 0;

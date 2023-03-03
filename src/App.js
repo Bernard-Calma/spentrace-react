@@ -91,6 +91,7 @@ const App = () => {
           handleChangeView = {handleChangeView}
           view = {view}
           openBill = {openBill}
+          user = {user}
       />
       {
         user.loggedIn ?
