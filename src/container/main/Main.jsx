@@ -13,7 +13,12 @@ const Main = (props) => {
  
     const getBills = () => {
         console.log("GetBills")
-        fetch("http://localhost:8000/plans/" + props.user._id, {credentials: "include"})
+        fetch("http://localhost:8000/plans/" + props.user._id, {
+            credentials: "include",
+            headers: {
+                "Access-Control-Allow-Origin": "http://localhost:3000"
+            },
+        })
         .then((res) => res.json())
         .then((data) => {
             console.log(data)

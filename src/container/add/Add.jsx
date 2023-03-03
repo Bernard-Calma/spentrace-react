@@ -3,31 +3,32 @@ import BackButton from '../../Components/Buttons/BackButton'
 import './Add.css'
 
 const Add = (props) => {
-    let [newBill, setNewBill] = useState()
+    let [newBill, setNewBill] = useState({userId:props.user._id})
 
     const handleChange=(e)=>{
-        e.target.style.backgroundColor = ""
+        // e.target.style.backgroundColor = "" // remove color for empty input
         if (e.target.name === "expense") setNewBill({...newBill, [e.target.name]: e.target.value === "Expense" ? true : false})
-        setNewBill({...newBill, [e.target.name]: e.target.value})
+        else setNewBill({...newBill, [e.target.name]: e.target.value})
     }
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
         console.log(newBill)
-        let inputs = e.target.querySelectorAll("input") // list of all inputs
-        let expenseMessage = e.target.querySelector("span")
-        let allInputFilled = true;
-        for (let input of inputs){
-            if (input.value === "" && input.type !== "submit") {
-                input.style.backgroundColor = "rgb(255, 61, 61)"
-                allInputFilled = false;
-            }
-        } 
-        if (!inputs[3].checked && !inputs[4].checked) { // check if income and expense is selected, if not show message
-            expenseMessage.removeAttribute("hidden")
-            allInputFilled = false;
-        } else expenseMessage.setAttribute("hidden", true)
-        if (allInputFilled === false) return
+        // Add style to input when empty
+        // let inputs = e.target.querySelectorAll("input") // list of all inputs
+        // let expenseMessage = e.target.querySelector("span")
+        // let allInputFilled = true;
+        // for (let input of inputs){
+        //     if (input.value === "" && input.type !== "submit") {
+        //         input.style.backgroundColor = "rgb(255, 61, 61)"
+        //         allInputFilled = false;
+        //     }
+        // } 
+        // if (!inputs[3].checked && !inputs[4].checked) { // check if income and expense is selected, if not show message
+        //     expenseMessage.removeAttribute("hidden")
+        //     allInputFilled = false;
+        // } else expenseMessage.setAttribute("hidden", true)
+        // if (allInputFilled === false) return
         fetch("http://192.168.1.80:8000/plans/", {
             method: "POST",
             credentials: "include",
@@ -48,24 +49,24 @@ const Add = (props) => {
             <form className='addForm' onSubmit={handleSubmitAdd}>
                 <label htmlFor="date" className='addFormInput'>
                     Date: 
-                    <input type="date" name="date" id="addDate" onChange={handleChange}/>
+                    <input type="date" name="date" id="addDate" onChange={handleChange} required/>
                 </label>
                 <label htmlFor="name" className='addFormInput'>
                     Name: 
-                    <input type="text" name="name" id="addName" onChange={handleChange}/>
+                    <input type="text" name="name" id="addName" onChange={handleChange} required/>
                 </label>
                 <label htmlFor="amount" className='addFormInput'>
                     Amount: 
-                    <input type="number" name="amount" id="addAmount" onChange={handleChange}/>
+                    <input type="number" name="amount" id="addAmount" onChange={handleChange} />
                 </label>
                 <div className='radio'>
                     <label htmlFor="type" className='addFormInput'>
                         Income: 
-                        <input type="radio" name="expense" id="addTypeIncome" value="Income" onChange={handleChange}/>
+                        <input type="radio" name="expense" id="addTypeIncome" value="Income" onChange={handleChange} required/>
                     </label>
                         <label htmlFor="type" className='addFormInput'>
                         Expense: 
-                        <input type="radio" name="expense" id="addTypeExpense" value="Expense" onChange={handleChange}/>
+                        <input type="radio" name="expense" id="addTypeExpense" value="Expense" onChange={handleChange} required/>
                 </label>
                 </div>
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>

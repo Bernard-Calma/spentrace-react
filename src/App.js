@@ -48,6 +48,7 @@ const App = () => {
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://192.168.1.80:3000"
         },
         body: JSON.stringify(user)
     })
@@ -111,6 +112,7 @@ const App = () => {
               bills = {bills}
               setBills = {setBills}
               handleChangeView = {handleChangeView}
+              user = {user}
             />
           : view === "Show"
           ? <Show
