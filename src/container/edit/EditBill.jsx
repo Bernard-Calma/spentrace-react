@@ -38,6 +38,7 @@ const EditBill = (props) => {
             body: JSON.stringify(editBill)
         }).then(res => res.json())
         .then(data => console.log(data))
+        props.handleChangeView("Main")
     }
 
     return (

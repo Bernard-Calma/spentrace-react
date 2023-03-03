@@ -10,6 +10,7 @@ const NavBar = (props) => {
         })
         .then(res => res.json())
         .then(data => console.log(data))
+        props.handleChangeView("Main")
     }
     return(
         <section className="navBarContainer">
