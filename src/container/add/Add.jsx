@@ -6,12 +6,28 @@ const Add = (props) => {
     let [newBill, setNewBill] = useState()
 
     const handleChange=(e)=>{
+        e.target.style.backgroundColor = ""
         if (e.target.name === "expense") setNewBill({...newBill, [e.target.name]: e.target.value === "Expense" ? true : false})
         setNewBill({...newBill, [e.target.name]: e.target.value})
     }
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
+        console.log(newBill)
+        let inputs = e.target.querySelectorAll("input") // list of all inputs
+        let expenseMessage = e.target.querySelector("span")
+        let allInputFilled = true;
+        for (let input of inputs){
+            if (input.value === "" && input.type !== "submit") {
+                input.style.backgroundColor = "rgb(255, 61, 61)"
+                allInputFilled = false;
+            }
+        } 
+        if (!inputs[3].checked && !inputs[4].checked) { // check if income and expense is selected, if not show message
+            expenseMessage.removeAttribute("hidden")
+            allInputFilled = false;
+        } else expenseMessage.setAttribute("hidden", true)
+        if (allInputFilled === false) return
         fetch("http://192.168.1.80:8000/plans/", {
             method: "POST",
             credentials: "include",
@@ -19,7 +35,8 @@ const Add = (props) => {
             "Content-Type": "application/json",
         },
             body: JSON.stringify(newBill)
-        })
+        }).then(res => res.json())
+        .then(data => console.log(data))
     }
     return (
         <div className="addContainer">
@@ -51,6 +68,8 @@ const Add = (props) => {
                         <input type="radio" name="expense" id="addTypeExpense" value="Expense" onChange={handleChange}/>
                 </label>
                 </div>
+                <span className = "expenseMessage" hidden>Select a transaction type above.</span>
+
                 <textarea name="notes" id="addNotes" className='addFormNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
                 <input type="submit" name="submit" id="addFormSubmit" />
             </form>
