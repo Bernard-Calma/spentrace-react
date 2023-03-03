@@ -11,6 +11,35 @@ const EditBill = (props) => {
         else setEditBill({...editBill, [e.target.name]: e.target.value})
     }
 
+    const handleSubmitEdit = (e) => {
+        e.preventDefault();
+        console.log(editBill)
+        // Add style to input when empty
+        // let inputs = e.target.querySelectorAll("input") // list of all inputs
+        // let expenseMessage = e.target.querySelector("span")
+        // let allInputFilled = true;
+        // for (let input of inputs){
+        //     if (input.value === "" && input.type !== "submit") {
+        //         input.style.backgroundColor = "rgb(255, 61, 61)"
+        //         allInputFilled = false;
+        //     }
+        // } 
+        // if (!inputs[3].checked && !inputs[4].checked) { // check if income and expense is selected, if not show message
+        //     expenseMessage.removeAttribute("hidden")
+        //     allInputFilled = false;
+        // } else expenseMessage.setAttribute("hidden", true)
+        // if (allInputFilled === false) return
+        fetch("http://192.168.1.80:8000/plans/", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+            "Content-Type": "application/json",
+        },
+            body: JSON.stringify(editBill)
+        }).then(res => res.json())
+        .then(data => console.log(data))
+    }
+
     return (
         <div className="editContainer">
             <div className='editHeader'>
@@ -18,7 +47,7 @@ const EditBill = (props) => {
                 <h2 className='navTitle'>Edit</h2>
             </div>
             
-            <form className='editForm'>
+            <form className='editForm' onSubmit={handleSubmitEdit}>
                 <label htmlFor="date" className='editFormInput'>
                     Date: 
                     <input type="date" name="date" id="editDate" value={new Date(editBill.date).toISOString().slice(0,10)} onChange = {handleChange} required/>
