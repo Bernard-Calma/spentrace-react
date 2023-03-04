@@ -17,10 +17,10 @@
 
 @media screen and (max-width: 900px) {
     .header {
-        padding: 0 5px;
+        padding: 0;
     }
     .title{
         font-size: 25px;
-        margin: auto;
+        margin: 0 10px;
     }
 }
