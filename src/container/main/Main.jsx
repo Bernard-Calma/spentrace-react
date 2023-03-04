@@ -46,7 +46,7 @@ const Main = (props) => {
 
     useEffect(()=>{
         getBills()       
-    })
+    },[])
 
     return(
         <main className='mainContainer'>
