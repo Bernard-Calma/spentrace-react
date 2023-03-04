@@ -3,7 +3,7 @@ import "./NavBar.css"
 const NavBar = (props) => {
 
     const handleDelete = () => {
-        let url = "http://localhost:8000/plans/"+props.openBill._id
+        let url = process.env.REACT_APP_SERVER_URL+"/plans/"+props.openBill._id
         console.log("Fetch : " + url)
         fetch(url, {
             method: "DELETE",

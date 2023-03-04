@@ -5,10 +5,7 @@ import Main from './container/main/Main';
 import Add from './container/add/Add';
 import Login from './container/login/Login';
 import Register from './container/login/Register';
-import NavBar from './Components/NavBar';
-import Categories from './container/main/Categories';
 import Show from './container/show/Show';
-import OpenNav from './Components/MinimizeNav';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
@@ -35,20 +32,15 @@ const App = () => {
   ])
   let [openBill, setOpenBill] = useState({});
   const [loginMessage, setLoginMessage] = useState("")
-  let [showNav, setShowNav] = useState(false)
-
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
   }
-
   const handleLogin = (event) => {
     event.preventDefault();
-    fetch("http://192.168.1.80:8000/users/login", {
+    fetch(process.env.REACT_APP_SERVER_URL+"/users/login", {
         method: "POST",
-        credentials: "include",
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "http://192.168.1.80:3000"
         },
         body: JSON.stringify(user)
     })
@@ -79,10 +71,6 @@ const App = () => {
   const handleView = (bill) => {
     setOpenBill(bill)
     handleChangeView("Show")
-  }
-    
-  const handleShowNav = () => {
-    setShowNav(!showNav);
   }
 
   return (

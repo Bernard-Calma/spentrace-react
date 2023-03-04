@@ -29,7 +29,7 @@ const Add = (props) => {
         //     allInputFilled = false;
         // } else expenseMessage.setAttribute("hidden", true)
         // if (allInputFilled === false) return
-        fetch("http://192.168.1.80:8000/plans/", {
+        fetch(process.env.REACT_APP_SERVER_URL+"/plans/", {
             method: "POST",
             credentials: "include",
             headers: {
@@ -37,7 +37,7 @@ const Add = (props) => {
         },
             body: JSON.stringify(newBill)
         }).then(res => res.json())
-        .then(data => console.log(data))
+        // .then(data => console.log(data))
         props.handleChangeView("Main")
     }
     return (

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Bill from "../../Components/Bill";
 import Categories from "./Categories";
-import NavBar from "../../Components/NavBar";
-import Show from "../show/Show";
 import "./Main.css"
 
 const Main = (props) => {
@@ -13,12 +11,7 @@ const Main = (props) => {
  
     const getBills = () => {
         // console.log("GetBills")
-        fetch("http://localhost:8000/plans/" + props.user._id, {
-            credentials: "include",
-            headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
-            },
-        })
+        fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + props.user._id)
         .then((res) => res.json())
         .then((data) => {
             // console.log(data)
@@ -52,9 +45,8 @@ const Main = (props) => {
     }
 
     useEffect(()=>{
-        getBills()
-        
-    }, [])
+        getBills()       
+    })
 
     return(
         <main className='mainContainer'>
