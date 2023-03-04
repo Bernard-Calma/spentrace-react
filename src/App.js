@@ -39,6 +39,7 @@ const App = () => {
     event.preventDefault();
     fetch(process.env.REACT_APP_SERVER_URL+"/users/login", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
