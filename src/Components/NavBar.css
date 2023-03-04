@@ -100,8 +100,12 @@
     color: white;
 }
 
-.fi{
-    font-size: 30px;
-    margin: 0 10px;
+
+@media screen and (max-width: 900px) {
+    .fi{
+        font-size: 30px;
+        margin: 0 10px;
+    }
 }
+
 
