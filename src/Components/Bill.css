@@ -27,14 +27,22 @@
 
     .billContainer {
         border-width: 1px;
-        
     }
 
     .billData {
-        font-size: 1rem;
+        font-size: 17px;
         padding: 5px 0;
         text-align: center;
         margin: auto;
+    }
+
+    .dataContainer:nth-child(2){
+        height: auto;
+    }
+
+    .dataContainer:nth-child(2) > p{
+        font-size: 20px;
+        margin: 0 5px;
     }
     
     .date {

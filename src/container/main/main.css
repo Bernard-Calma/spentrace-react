@@ -49,7 +49,7 @@ li {
         height: 85%;
         padding: 0;
         overflow:auto;
-        
+        margin: 0;
     }
 
     .categoriesContainer {
@@ -62,7 +62,7 @@ li {
     }
 
     .listContainer > h2 {
-        font-size: 15px;
+        font-size: 17px;
     }
 
     .listContainer:nth-child(5){
