@@ -14,3 +14,13 @@
     color: #dbdbdb;
     margin: 0;
 }
+
+@media screen and (max-width: 900px) {
+    .header {
+        padding: 0 5px;
+    }
+    .title{
+        font-size: 25px;
+        margin: auto;
+    }
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Bill from "../../Components/Bill";
 import Categories from "./Categories";
-import "./Main.css"
+import "./main.css"
 
 const Main = (props) => {
 
