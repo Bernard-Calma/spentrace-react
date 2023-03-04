@@ -16,15 +16,12 @@ const NavBar = (props) => {
         <section className="navBarContainer">
             {
                 props.view === "Main" 
-                ? <img 
-                    className="navBarItem navIcon"  
-                    src="https://www.flaticon.com/svg/vstatic/svg/9243/9243903.svg?token=exp=1677635808~hmac=64dc26a1ea060cb9c641892211927cfc" 
-                    alt="add" 
+                ? <i className="fi fi-rr-add"
                     onClick={()=> props.handleChangeView("Add")}
-                />
+                ></i>
                 : props.view === "Show" ? <>
-                    <p className="navBarItem" onClick={()=> props.handleChangeView("Edit")}>Edit</p>
-                    <img className="navIcon" src="https://cdn-icons.flaticon.com/svg/3917/3917411.svg?token=exp=1677893570~hmac=640fb2f0918f5c6ffad6ca5afdc88dc4" alt="delete" onClick={handleDelete}/>
+                    <i class="fi fi-rr-edit" onClick={()=> props.handleChangeView("Edit")}></i>
+                    <i class="fi fi-rr-trash" onClick={handleDelete}></i>
                 </>
                 : <>
                 </>
