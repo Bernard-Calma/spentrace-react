@@ -39,7 +39,9 @@
 
 @media screen and (max-width: 900px) {
     .containerShow {
-        margin-top: 100px;
+        margin: 0;
+        position: fixed;
+        top: 50px;
         width: 95%;
     }
 }
