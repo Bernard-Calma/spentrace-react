@@ -38,7 +38,7 @@ const App = () => {
   }
   const handleLogin = (event) => {
     event.preventDefault();
-    fetch("http://localhost:8000/users/login", {
+    fetch(process.env.REACT_APP_SERVER_URL+"/users/login", {
         method: "POST",
         credentials: "include",
         headers: {
