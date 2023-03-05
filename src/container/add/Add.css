@@ -70,6 +70,7 @@
         margin: 70px 30px;
         text-align: start;
         justify-content: start;
+        padding: 10px;
     }
 
     .addForm {
@@ -83,6 +84,7 @@
 
     .addFormInput {
         font-size: 25px;
+        margin: 0;
     }
 
     #addFormSubmit {
