@@ -67,7 +67,7 @@
 @media screen and (max-width: 900px) {
     .addContainer {
         width: auto;
-        margin: 20px;
+        margin: 30px;
         text-align: start;
         justify-content: start;
     }

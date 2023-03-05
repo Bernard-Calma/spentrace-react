@@ -1,11 +1,11 @@
 .billContainer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border: solid #B0B7C4;
 }
 
 .dataContainer{
-    width: 20%;
+    width: 17%;
     border: solid #B0B7C4;
     border-width: 0 2px;
 }
@@ -21,36 +21,41 @@
 @media screen and (max-width: 900px) {
     .dataContainer{
         overflow: hidden;
-        border-width: 1px;
-        
+        border: none;  
+        width: 47%;  
     }
 
     .billContainer {
-        border-width: 1px;
+        border: none;
+        justify-content: start;
     }
-
+    
     .billData {
-        font-size: 17px;
+        font-size: 18px;
         padding: 5px 0;
         text-align: center;
         margin: auto;
     }
 
-    .dataContainer:nth-child(2){
-        height: auto;
+    .dataContainer:nth-child(1){
+        width: 14%;
+    }
+    .dataContainer:nth-child(n+3){
+        width: 13%;
+    }
+    .dataContainer:nth-child(n+3) > p {
+        text-align: start;
     }
 
-    .dataContainer:nth-child(2) > p{
-        font-size: 20px;
-        margin: 0 5px;
-    }
-    
-    .date {
-        font-size: 14px;
+    .expense > .dataContainer > .amount{
+        color: red;
     }
 
-    .name {
-        font-size: 12px;
+    .income > .dataContainer > .amount{
+        color: green;  
     }
 
+    .type {
+        display: none;
+    }
 }

@@ -9,6 +9,7 @@
     top: 0;
     width: 100%;
     height: 60px;
+    background-color: black;
 }
 
 .title {
@@ -22,7 +23,7 @@
 @media screen and (max-width: 900px) {
     .header {
         padding: 0;
-        height: 30px;
+        height: 40px;
     }
     .title{
         font-size: 25px;

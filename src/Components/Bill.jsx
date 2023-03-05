@@ -16,11 +16,11 @@ const Bill = (props) => {
     }
 
     return (
-        <div className="billContainer">
+        <div className = {props.bill.expense ? "billContainer expense" : "billContainer income"}>
             <div className="dataContainer"><p className="billData date">{getDate()}</p></div>
             <div className="dataContainer"><p className="billData name" onClick={() => props.handleView(props.bill)}>{props.bill.name}</p></div>
-            <div className="dataContainer"><p className="billData">${props.bill.amount}</p></div>
-            <div className="dataContainer"><p className="billData">{props.bill.expense ? "Expense" : "Income"}</p></div>
+            <div className="dataContainer"><p className="billData amount">${props.bill.amount}</p></div>
+            <div className="dataContainer type"><p className="billData type">{props.bill.expense ? "Expense" : "Income"}</p></div>
             <div className="dataContainer"><p className="billData">{props.bill.runningTotal < 0 ? "-$"+Math.abs(props.bill.runningTotal) : "$"+props.bill.runningTotal}</p></div>
             <div className="dataContainer"><p className="billData">${props.bill.target}</p></div>
         </div>
