@@ -69,6 +69,7 @@
         width: auto;
         margin: 20px;
         text-align: start;
+        justify-content: start;
     }
 
     .addForm {
@@ -78,6 +79,10 @@
 
     .addFormNotes {
         width: 300px;
+    }
+
+    .addFormInput {
+        font-size: 25px;
     }
 
     #addFormSubmit {

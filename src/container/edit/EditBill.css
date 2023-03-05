@@ -63,6 +63,7 @@
         width: auto;
         margin: 20px;
         text-align: start;
+        justify-content: start;
     }
 
     .editForm {
@@ -74,7 +75,15 @@
         width: 300px;
     }
 
+    .editFormInput {
+        font-size: 25px;
+    }
+
     #editFormSubmit {
         text-align: center;
+    }
+
+    .navTitle {
+        font-size: 2rem;
     }
 }

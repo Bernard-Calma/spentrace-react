@@ -20,8 +20,8 @@ const NavBar = (props) => {
                     onClick={()=> props.handleChangeView("Add")}
                 ></i>
                 : props.view === "Show" ? <>
-                    <i class="fi fi-rr-edit" onClick={()=> props.handleChangeView("Edit")}></i>
-                    <i class="fi fi-rr-trash" onClick={handleDelete}></i>
+                    <i className="fi fi-rr-edit" onClick={()=> props.handleChangeView("Edit")}></i>
+                    <i className="fi fi-rr-trash" onClick={handleDelete}></i>
                 </>
                 : <>
                 </>
