@@ -9,9 +9,10 @@ import Show from './container/show/Show';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
-
+console.log("test");
 const App = () => {
   console.log("Development/Production: " + process.env.NODE_ENV)
+  console.log("test");
   const [view, setView] = useState("Login")
   const [user, setUser] = useState({
     username: "",
