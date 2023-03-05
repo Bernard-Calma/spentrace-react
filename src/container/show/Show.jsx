@@ -11,7 +11,7 @@ const Show = (props) => {
         billDate = billDate.slice(0, lastCharIndex) + lastIndexChange; // Change last index to add 1 by itself
         // console.log(billDate)
         const todayDate = new Date(Date.now()).toISOString().slice(0,10);
-        return billDate === todayDate ? "Today": new Date(billDate).toString().slice(4,15);
+        return billDate === todayDate ? "Today": new Date(billDate).toString().slice(4,16);
     }
 
     return(

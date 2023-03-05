@@ -61,20 +61,20 @@ const EditBill = (props) => {
                     <input type="number" name="amount" id="editAmount" value={editBill.amount} onChange = {handleChange} required/>
                 </label>
                 <div className='radio'>
-                    <label htmlFor="type" className='editFormInput'>
+                    <label htmlFor="expense" className='editFormInput'>
                         Income: 
                         {
                             editBill.expense
-                            ?<input type="radio" name="type" id="editTypeIncome"  onChange = {handleChange} required/>
-                            :<input type="radio" name="type" id="editTypeIncome" checked onChange = {handleChange} required/>
+                            ?<input type="radio" name="expense" id="editTypeIncome"  value="Income" onChange = {handleChange} required/>
+                            :<input type="radio" name="expense" id="editTypeIncome" value="Income" checked onChange = {handleChange} required/>
                         }
                     </label>
-                        <label htmlFor="type" className='editFormInput'>
+                        <label htmlFor="expense" className='editFormInput'>
                         Expense: 
                         {
                             editBill.expense
-                            ?<input type="radio" name="type" id="editTypeIncome" checked onChange = {handleChange} required/>
-                            :<input type="radio" name="type" id="editTypeIncome" onChange = {handleChange} required/>
+                            ?<input type="radio" name="expense" id="editTypeIncome" value="Expense" checked onChange = {handleChange} required/>
+                            :<input type="radio" name="expense" id="editTypeIncome" value="Expense" onChange = {handleChange} required/>
                         }
                 </label>
                 </div>

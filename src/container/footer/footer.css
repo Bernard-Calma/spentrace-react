@@ -1,11 +1,8 @@
 .footerContainer {
-    bottom: 0px;
     width: 100%;
     background-color: #B0B7C4;
     font-family: 'Ubuntu', sans-serif;
-    height: 3vh;
     color: black;
-    padding-bottom: 10px;
 }
 
 .footerContent {
@@ -23,7 +20,5 @@
 }
 
 @media screen and (max-width: 900px) {
-    .footerContainer {
-        height: 2vh;
-    }
+
 }

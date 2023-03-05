@@ -20,6 +20,10 @@
     margin: 0 10px;
 }
 
+.closeBtn:hover{
+    cursor: pointer;
+}
+
 .showInfo {
     font-family: "Space Mono", sans-serif;
     word-wrap: break-word;
