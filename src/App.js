@@ -11,6 +11,7 @@ import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
 
 const App = () => {
+  console.log("Development/Production: " + process.env.NODE_ENV)
   const [view, setView] = useState("Login")
   const [user, setUser] = useState({
     username: "",
