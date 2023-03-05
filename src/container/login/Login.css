@@ -85,7 +85,7 @@
 @media screen and (max-width: 900px) {
     .containerLogin, .containerRegister {
         width: auto;
-        margin: 20px 20px
+        margin: 0;
     }
 
     .formLogin {
