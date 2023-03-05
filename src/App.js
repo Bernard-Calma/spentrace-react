@@ -10,7 +10,6 @@ import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
 
-
 const App = () => {
   const [view, setView] = useState("Login")
   const [user, setUser] = useState({

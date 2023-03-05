@@ -36,7 +36,6 @@ li {
 }
 /* BILLS CONTAINER */
 .billsContainer{
-    height: 100%;
     overflow: scroll;
 }
 
@@ -46,7 +45,6 @@ li {
 
 @media screen and (max-width: 900px) {
     .mainContainer {
-        height: 85%;
         padding: 0;
         overflow:auto;
         margin: 0;
