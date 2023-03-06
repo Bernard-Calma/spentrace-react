@@ -1,12 +1,19 @@
 import Login from "../login/Login";
 import Register from "../login/Register";
 import "./landingPage.css"
+// MainPage Image
+import mainPageImage from "../../img/MainPage.png"
+import mobilePage from "../../img/MobilePage.png"
 
 const LandingPage = (props) =>{
     return(
         <div className="containerLandingPage">
             <div className="introduction">
-                <p>Spentrace can help you list your earnings and expenses and provide how much you need to earn for your next bills</p>
+                <div className="mobilePageImage">
+                    <p>Spentrace can help you list your earnings and expenses and provide how much you need to earn for your next bills</p>
+                    <img src={mobilePage} alt="Main Page Image"/>
+                </div>
+                <img src={mainPageImage} alt="Main Page Image" className="mainPageImage"/>
             </div>
             { props.view === "Register"
             ?

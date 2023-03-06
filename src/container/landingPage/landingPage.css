@@ -1,32 +1,44 @@
 .containerLandingPage{
     border: solid white;
     border-radius: 50px;
-    margin: 10% 50px;
-    padding: 100px;
+    margin: 100px auto 0;
+    width: 1000px;
     display: flex;
     justify-content: center;
     overflow: hidden;
     background: linear-gradient(rgb(37, 34, 34), rgb(161, 158, 158));
     box-shadow: 1px 1px 5px 2px white;
-
 }
 
 
 .introduction{
     /* border: solid gray; */
-    padding: 20px;
+    padding: 60px 20px;
     font-family: "Space Mono";
     font-size: 25px;
-    width: 50%;
+    width: 40%;
 }
 
+.mainPageImage{
+    width: 100%;
+}
+
+.mobilePageImage > p{
+    width: 50%;
+    margin: 0;
+}
+
+.mobilePageImage{
+    display: flex;
+    align-items: center;
+}
 
 @media screen and (max-width: 900px) {
     .containerLandingPage{
         all: unset;
     }
 
-    .introduction {
+    .introduction, .mainPageImage, .mobilePageImage {
         display: none;
     }
 }
