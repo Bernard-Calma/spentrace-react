@@ -23,6 +23,12 @@
     font-family: "Russo One", sans-serif;
 }
 
+.registerTitle{
+    font-size: 40px;
+    font-family: "Russo One", sans-serif;
+    margin: 15px auto 20px
+}
+
 .formLogin, .formRegister {
     flex: 1;
     display: flex;
@@ -36,7 +42,7 @@
     font-family: 'Space Mono', monospace;
 }
 
-.formLogin > input, .formRegister > input {
+.formLogin > input, .formRegister > label > input {
     width: 50%;
     margin: 10px auto;
     font-family: 'Space Mono', monospace;

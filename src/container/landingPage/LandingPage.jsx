@@ -22,6 +22,7 @@ const LandingPage = (props) =>{
                 user = {props.user}
                 handleChange = {props.handleChange}
                 handleChangeView = {props.handleChangeView}
+                clearPasswords = {props.clearPasswords}
             />
             :
             <Login 

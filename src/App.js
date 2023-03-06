@@ -10,14 +10,14 @@ import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
-console.log("test");
+
 const App = () => {
-  console.log("Development/Production: " + process.env.NODE_ENV)
-  console.log("test");
+  // console.log("Development/Production: " + process.env.NODE_ENV)
   const [view, setView] = useState("Login")
   const [user, setUser] = useState({
     username: "",
     password: "",
+    verifyPassword: "",
     loggedIn: false
   })
   const [bills, setBills] = useState([
@@ -60,13 +60,14 @@ const App = () => {
     })
     .catch(err => {
       console.error("Error : ", err)
+      clearPasswords()
       setLoginMessage(err.message)
     })
   }
 
   // HANDLE VIEW CHANGE WHEN NAVIGATING
   const handleChangeView = (view) => {
-    console.log("View changed to ", view)
+    // console.log("View changed to ", view)
     setView(view)
   }
 
@@ -76,6 +77,10 @@ const App = () => {
     handleChangeView("Show")
   }
 
+  // CLEAR PASSWORDS
+  const clearPasswords = () => {
+    setUser({...user, password: "", verifyPassword: ""})
+  }
   return (
     <div className="App">
       <Header 
@@ -127,6 +132,7 @@ const App = () => {
           handleChangeView = {handleChangeView}
           handleLogin = {handleLogin}
           loginMessage = {loginMessage}
+          clearPasswords = {clearPasswords}
         /> 
       }
       <Footer />
