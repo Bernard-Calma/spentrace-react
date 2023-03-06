@@ -9,6 +9,7 @@ import Show from './container/show/Show';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
+import LandingPage from './container/landingPage/LandingPage';
 console.log("test");
 const App = () => {
   console.log("Development/Production: " + process.env.NODE_ENV)
@@ -118,29 +119,15 @@ const App = () => {
           : <></>
         }
         </>
-        :
-        <>
-          { view === "Register"
-          ?
-          <Register 
-            setUser = {setUser}
-            user = {user}
-            handleChange = {handleChange}
-            handleChangeView = {handleChangeView}
-          />
-          :
-          <Login 
-            handleChange = {handleChange}
-            handleLogin = {handleLogin}
-            handleChangeView = {handleChangeView}
-            setUser = {setUser}
-            user = {user}
-            loginMessage = {loginMessage}
-          />
-          
-          }
-        </>
-        
+        : <LandingPage 
+          view = {view}
+          setUser = {setUser}
+          user = {user}
+          handleChange = {handleChange}
+          handleChangeView = {handleChangeView}
+          handleLogin = {handleLogin}
+          loginMessage = {loginMessage}
+        /> 
       }
       <Footer />
     </div>

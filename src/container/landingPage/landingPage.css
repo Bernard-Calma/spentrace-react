@@ -1,0 +1,32 @@
+.containerLandingPage{
+    border: solid white;
+    border-radius: 50px;
+    margin: 10% 50px;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(rgb(37, 34, 34), rgb(161, 158, 158));
+    box-shadow: 1px 1px 5px 2px white;
+
+}
+
+
+.introduction{
+    /* border: solid gray; */
+    padding: 20px;
+    font-family: "Space Mono";
+    font-size: 25px;
+    width: 50%;
+}
+
+
+@media screen and (max-width: 900px) {
+    .containerLandingPage{
+        all: unset;
+    }
+
+    .introduction {
+        display: none;
+    }
+}
