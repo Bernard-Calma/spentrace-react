@@ -1,7 +1,7 @@
 .containerLandingPage{
     border: solid white;
     border-radius: 50px;
-    margin: 100px auto 0;
+    margin: 80px auto 0;
     width: 1000px;
     display: flex;
     justify-content: center;
@@ -13,14 +13,15 @@
 
 .introduction{
     /* border: solid gray; */
-    padding: 60px 20px;
+    padding: 30px;
     font-family: "Space Mono";
     font-size: 25px;
-    width: 40%;
+    width: 50%;
 }
 
 .mainPageImage{
-    width: 100%;
+    width: 300px;
+    padding-left: 100px;
 }
 
 .mobilePageImage > p{
@@ -38,7 +39,7 @@
         all: unset;
     }
 
-    .introduction, .mainPageImage, .mobilePageImage {
+    .introduction{
         display: none;
     }
 }

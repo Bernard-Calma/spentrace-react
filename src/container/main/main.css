@@ -8,8 +8,12 @@ li {
     flex: 1;
     border: solid #B0B7C4;
     background-color: rgb(53, 52, 52);
-    overflow: hidden;
+    overflow: scroll;
     margin: 80px 10px;
+}
+
+.mainContainer::-webkit-scrollbar{
+    display: none;
 }
 
 /* CATEGORIES CONTAINER */

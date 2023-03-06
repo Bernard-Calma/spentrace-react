@@ -10,7 +10,7 @@ const LandingPage = (props) =>{
         <div className="containerLandingPage">
             <div className="introduction">
                 <div className="mobilePageImage">
-                    <p>Spentrace can help you list your earnings and expenses and provide how much you need to earn for your next bills</p>
+                    <p>Spentrace will help you list your earnings and expenses then provides how much you need to earn for your next bills.</p>
                     <img src={mobilePage} alt="Main Page Image"/>
                 </div>
                 <img src={mainPageImage} alt="Main Page Image" className="mainPageImage"/>
