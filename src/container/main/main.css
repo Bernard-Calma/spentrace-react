@@ -10,6 +10,7 @@ li {
     background-color: rgb(53, 52, 52);
     overflow: scroll;
     margin: 80px 10px;
+    max-height: 700px;
 }
 
 .mainContainer::-webkit-scrollbar{
@@ -41,6 +42,7 @@ li {
 /* BILLS CONTAINER */
 .billsContainer{
     overflow: scroll;
+    height: 80%;
 }
 
 .billsContainer::-webkit-scrollbar{
@@ -56,6 +58,7 @@ li {
         overflow: scroll;
         border: none;
         margin: 0;
+        max-height: 700px;
     }
 
     .categoriesContainer {

@@ -14,12 +14,23 @@ body {
   justify-content: space-between;
 }
 
+.signout {
+  position: fixed;
+  bottom: 20px;
+  right: -30px;
+}
 
 @media only screen and (max-width: 900px) {
   body,html {
     height: 100vh;
     margin: 0;
     padding: 0;
+  }
+
+  .signout {
+    position: fixed;
+    bottom: 30px;
+    right: -5px;
   }
 }
 

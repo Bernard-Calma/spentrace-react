@@ -3,8 +3,6 @@ import { useState } from 'react';
 
 import Main from './container/main/Main';
 import Add from './container/add/Add';
-import Login from './container/login/Login';
-import Register from './container/login/Register';
 import Show from './container/show/Show';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
@@ -64,7 +62,18 @@ const App = () => {
       setLoginMessage(err.message)
     })
   }
-
+  const handleSignout = () => {
+    console.log("Sign Out Completely")
+    fetch(process.env.REACT_APP_SERVER_URL+"/users/signout")
+    .then(res => res.json())
+    .then(data => setLoginMessage(data.message))
+    setUser({
+      username: "",
+      password: "",
+      verifyPassword: "",
+      loggedIn: false
+    })
+  }
   // HANDLE VIEW CHANGE WHEN NAVIGATING
   const handleChangeView = (view) => {
     // console.log("View changed to ", view)
@@ -103,6 +112,7 @@ const App = () => {
               handleView = {handleView}
               user = {user}
             />
+            <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
           </>
           : view === "Add"
           ? <Add
