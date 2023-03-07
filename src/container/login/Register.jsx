@@ -6,19 +6,27 @@ const Register = (props) => {
     const handleSubmitRegister = (e) => {
         e.preventDefault();
         // console.log(props.user)
+        // USERNAME CHECK
+        let checkSpaceUserName = props.user.username.match(" ")
+        if(checkSpaceUserName) {
+            props.clearPasswords()
+            setRegisterMessage("Username must not contain any spaces.")
+            return
+        }
+        // PASSWORD CHECK
         let verifyPasswordMatch = props.user.password === props.user.verifyPassword
         let checkSpacePassword = props.user.password.match(" ") || props.user.verifyPassword.match(" ")
         let checkPasswordLength = props.user.password.length > 5
         // console.log(checkPasswordLength)
         if (!checkPasswordLength) {
             props.clearPasswords()
-            setRegisterMessage("Password should be at least 6 characters")
+            setRegisterMessage("Password should be at least 6 characters.")
         } else if (checkSpacePassword) {
             props.clearPasswords()
-            setRegisterMessage("Password must not contain any spaces")
+            setRegisterMessage("Password must not contain any spaces.")
         } else if (!verifyPasswordMatch){
             props.clearPasswords()
-            setRegisterMessage("Password does not match")
+            setRegisterMessage("Password does not match.")
         } else {
             // console.log("Register Sucessfully")
             fetch("http://localhost:8000/users/register", {
