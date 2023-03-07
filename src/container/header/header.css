@@ -23,6 +23,7 @@
     .header {
         padding: 0;
         height: 35px;
+        width: 100%;
     }
     .title{
         font-size: 25px;

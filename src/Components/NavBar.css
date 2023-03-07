@@ -48,6 +48,11 @@
     margin-right: 50px;
 }
 
+.fi:hover{
+    cursor: pointer;
+    font-size: 51px;
+}
+
 /* OPEN NAVBAR COMPONENT */
 .containerMinimizeNav {
     display: flex;

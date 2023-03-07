@@ -26,7 +26,7 @@
 .registerTitle{
     font-size: 40px;
     font-family: "Russo One", sans-serif;
-    margin: 15px auto 20px
+    margin: 15px 0 20px;
 }
 
 .formLogin, .formRegister {
@@ -98,9 +98,7 @@
 @media screen and (max-width: 900px) {
     .containerLogin, .containerRegister {
         width: auto;
-        margin: 0 20px;
-        position: fixed;
-        top: 60px;
+        margin: 60px auto;
     }
 
     .formLogin {
@@ -109,6 +107,10 @@
 
     .registerText {
         font-size: 15px;
+    }
+
+    .registerTitle{
+        margin: 0 10%;
     }
 
     .formLogin > input {

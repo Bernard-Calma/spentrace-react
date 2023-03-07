@@ -4,6 +4,7 @@
     background-color: rgb(53, 52, 52);
     margin: 80px auto auto;
     width: 600px;
+    box-shadow: 1px 1px 5px 1px white;
 }
 
 .containerShowInner {
@@ -27,8 +28,15 @@
 .showInfo {
     font-family: "Space Mono", sans-serif;
     word-wrap: break-word;
-    font-size: 2rem;
+    font-size: 30px;
     margin-top: 0;
+}
+
+.showInfo > span {
+    font-weight: bolder;
+    font-size: 35px;
+    padding-left: 10px;
+    color: #e0e7f3;
 }
 
 .notes {
@@ -37,11 +45,16 @@
 }
 
 
+
+
 @media screen and (max-width: 900px) {
     .containerShow {
-        margin: 0;
-        position: fixed;
-        top: 50px;
+        margin: 50px auto;
         width: 95%;
+    }
+
+    .containerShowInner {
+        width: 100%;
+        margin-bottom: 50px;
     }
 }

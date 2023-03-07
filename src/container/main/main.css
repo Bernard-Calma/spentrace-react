@@ -20,11 +20,13 @@ li {
 
 .categoriesContainer {
     display: flex;
+    background-color: rgb(43, 43, 43);
 }
 
 .listContainer{
     width: 17%;
     border: solid #B0B7C4;
+    padding: 10px
 }
 
 .listContainer > h2 {
@@ -67,6 +69,7 @@ li {
     .listContainer {
         border: none;
         width: 30%;  
+        padding: 0;
     }
 
     .listContainer > h2 {

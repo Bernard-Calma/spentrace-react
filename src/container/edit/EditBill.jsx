@@ -13,7 +13,7 @@ const EditBill = (props) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        console.log(editBill)
+        // console.log(editBill)
         // Add style to input when empty
         // let inputs = e.target.querySelectorAll("input") // list of all inputs
         // let expenseMessage = e.target.querySelector("span")
