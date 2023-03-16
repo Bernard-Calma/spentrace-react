@@ -10,7 +10,6 @@ import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
 
 const App = () => {
-  // console.log("Development/Production: " + process.env.NODE_ENV)
   const [view, setView] = useState("Login")
   const [user, setUser] = useState({
     username: "",
@@ -32,9 +31,11 @@ const App = () => {
   ])
   let [openBill, setOpenBill] = useState({});
   const [loginMessage, setLoginMessage] = useState("")
+  
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
   }
+
   const handleLogin = (event) => {
     event.preventDefault();
     fetch(process.env.REACT_APP_SERVER_URL+"/users/login", {
@@ -42,6 +43,7 @@ const App = () => {
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': "*"
         },
         body: JSON.stringify(user)
     })

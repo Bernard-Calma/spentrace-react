@@ -2,16 +2,10 @@ import "./Show.css"
 
 const Show = (props) => {
     const getDate = () => {
-        // console.log(new Date(Date.now()).toISOString().slice(0,10))
-        let billDate =  new Date(props.openBill.date).toISOString().slice(0,10);
-        // console.log(typeof(billDate))
-        // console.log(parseInt(billDate[lastCharIndex]) + 1)
-        const lastCharIndex = billDate.length - 1;
-        const lastIndexChange = parseInt(billDate[lastCharIndex]) + 1;
-        billDate = billDate.slice(0, lastCharIndex) + lastIndexChange; // Change last index to add 1 by itself
-        // console.log(billDate)
-        const todayDate = new Date(Date.now()).toISOString().slice(0,10);
-        return billDate === todayDate ? "Today": new Date(billDate).toString().slice(4,16);
+        // Get today and bill's month and date and compare
+        let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate()
+        let dateBill = new Date(props.bill.date).toDateString().slice(4,7) + " " + (new Date(props.bill.date).getDate() + 1) // Add 1 to provide accurate day
+        return dateToday === dateBill ? "Today": dateBill;
     }
 
     return(
