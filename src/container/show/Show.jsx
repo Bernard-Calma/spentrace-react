@@ -2,9 +2,8 @@ import "./Show.css"
 
 const Show = (props) => {
     const getDate = () => {
-        // Get today and bill's month and date and compare
         let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate()
-        let dateBill = new Date(props.bill.date).toDateString().slice(4,7) + " " + (new Date(props.bill.date).getDate() + 1) // Add 1 to provide accurate day
+        let dateBill = new Date(props.openBill.date).toDateString().slice(4,7) + " " + (new Date(props.openBill.date).getDate() + 1) // Add 1 to provide accurate day
         return dateToday === dateBill ? "Today": dateBill;
     }
 
