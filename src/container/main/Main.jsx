@@ -76,6 +76,7 @@ const Main = (props) => {
                             totalIncome = {totalIncome}
                             totalExpense = {totalExpense}
                             handleChangeView = {props.handleChangeView}
+                            handleShowBill = {props.handleShowBill}
                         />
                     )
                 }

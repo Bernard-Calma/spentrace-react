@@ -82,6 +82,12 @@ const App = () => {
     setView(view)
   }
 
+  // HANLDE VIEW CHANGE WHEN OPENING A BILL
+  const handleShowBill = (bill) => {
+    setOpenBill(bill)
+    handleChangeView("Show")
+  }
+
   // CLEAR PASSWORDS
   const clearPasswords = () => {
     setUser({...user, password: "", verifyPassword: ""})
@@ -104,6 +110,7 @@ const App = () => {
             <Main
               handleChangeView = {handleChangeView}
               view={view}
+              handleShowBill = {handleShowBill}
               user = {user}
             />
             <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>

@@ -25,7 +25,7 @@ li {
 }
 
 .listContainer{
-    width: 17%;
+    width: 25%;
     border: solid #B0B7C4;
     padding: 10px
 }
@@ -64,37 +64,33 @@ li {
     .categoriesContainer {
         border: none;
         background-color: #50555f;
-        justify-content: space-evenly;
+        justify-content: space-between;
         box-shadow: 1px 1px 5px 1px white;
         margin-bottom: 5px;
+        padding: 0 5px;
     }
 
     .listContainer {
         border: none;
-        width: 30%;  
         padding: 0;
+        width: 60px;
+        flex: 1
     }
 
     .listContainer > h2 {
         font-size: 15px;
-        text-align: start;
     }
 
-    .listContainer:nth-child(5){
-        padding-top: 0px;
+    .name h2 {
+       text-align: start;
     }
 
-    .listContainer:nth-child(1){
-        width: 14%;
+    .name {
+        flex: 3;
     }
 
-    .listContainer:nth-child(2){
-        padding-left: 10px;
+    .date {
+        flex: 1
     }
-    .listContainer:nth-child(3){
-        width: 20%;
-    }
-    .listContainer:nth-child(n+4){
-        width: 13%;
-    }
+
 }

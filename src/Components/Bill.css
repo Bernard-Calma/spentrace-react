@@ -5,7 +5,7 @@
 }
 
 .dataContainer{
-    width: 17%;
+    width: 20%;
     border: solid #B0B7C4;
     border-width: 0 2px;
 }
@@ -19,41 +19,27 @@
 
 
 @media screen and (max-width: 900px) {
+    .billContainer {
+        border: none;
+        display: flex;
+        justify-content: space-between;
+    }
+
     .dataContainer{
         overflow: hidden;
         border: none;  
-        width: 40%;  
+        display: flex;
+        width: unset;
+        flex: 1;
     }
 
-    .billContainer {
-        border: none;
-        justify-content: start;
-    }
-    
     .billData {
         font-size: 18px;
         padding: 5px 0;
         text-align: start;
         margin: auto;
+        flex: 1;
     }
-
-    .dataContainer:nth-child(1){
-        width: 16%;
-    }
-    .dataContainer:nth-child(2){
-        padding-left: 5px;
-    }
-    .dataContainer:nth-child(n+3){
-        width: 13%;
-    }
-    .dataContainer:nth-child(n+3) > p {
-        text-align: start;
-    }
-
-    .dataContainer:last-child > p{
-        text-align: end;
-    }
-
 
     .expense > .dataContainer > .amount{
         color: red;
@@ -65,5 +51,6 @@
 
     .type {
         display: none;
+        width: 0;
     }
 }
