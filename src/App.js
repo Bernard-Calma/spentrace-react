@@ -31,10 +31,6 @@ const App = () => {
   
   // Bills Information
   const [bills, setBills] = useState([])
-  let [totalIncome, setTotalIncome] = useState(0);
-  let [totalExpense, setTotalExpense] = useState(0);
-  let runningTarget = 0;
-  let total = 0;
   let [openBill, setOpenBill] = useState({});
 
   const handleChange = (event) => {
@@ -54,19 +50,22 @@ const App = () => {
     })
     .then(res => res.json())
     .then(data => {
-      // console.log(data)
       if (data.username) {
         delete user.password
         setUser({...user, ...data, loggedIn: true})
-        setView("Main")
       } else {
-        setLoginMessage(data.message)
+        setLoginMessage(data.message) 
       }
+      return data
     })
     .catch(err => {
       console.error("Error : ", err)
       clearPasswords()
       setLoginMessage(err.message)
+    })
+    .then(data => {
+      getBills(data._id)
+      setView("Main")
     })
   }
 
@@ -100,42 +99,12 @@ const App = () => {
   }
 
   // UPDATE BILLS
-  const getBills = () => {
-    fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + user._id)
+  const getBills = (id) => {
+    fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + id)
     .then(res => res.json())
     .then(data => {
       setBills(data)
-      getRunningBalanceTarget()
     })
-  }
-
-  const getRunningBalanceTarget = () => {
-    /**
-     * Compute for running balance and target
-     * from bill parameter from bills array
-     */
-    // Set variables back to 0 to prevent adding values from previous computation
-    runningTarget = 0;
-    total = 0;
-    let updateBill = bills
-    for (var bill of updateBill) {
-      if (bill.expense === true) {
-          setTotalExpense(totalExpense += bill.amount)
-          runningTarget += bill.amount;
-          total -= bill.amount;
-      } else if (bill.expense === false) {
-          setTotalIncome(totalIncome += bill.amount)
-          runningTarget -= bill.amount;
-          total += bill.amount;
-      } 
-      if (runningTarget < 0) {
-          bill.target = 0;
-      } else {
-          bill.target = runningTarget;
-      }
-      bill.runningTotal = total;  
-    }
-    setBills(updateBill)
   }
 
   const updateBills = (newBill) => {
@@ -154,12 +123,8 @@ const App = () => {
 
   const addBill = (newBill) => {
     setBills([...bills, newBill])
-    console.log("Added", newBill)
+    console.log("add bill")
   }
-
-  useEffect(()=>{
-    getBills()
-  },[user])
 
   return (
     <div className="App">
