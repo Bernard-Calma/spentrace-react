@@ -4,7 +4,7 @@ import './EditBill.css'
 
 const EditBill = (props) => {
     const [editBill, setEditBill] = useState(props.openBill)
-
+    
     const handleChange=(e)=>{
         // e.target.style.backgroundColor = "" // remove color for empty input
         if (e.target.name === "expense") setEditBill({...editBill, [e.target.name]: e.target.value === "Expense" ? true : false})

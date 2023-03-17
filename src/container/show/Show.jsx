@@ -9,7 +9,7 @@ const Show = (props) => {
 
     return(
         <div className="containerShow">
-            <i class="fi fi-rr-angle-small-left" onClick={()=>props.handleChangeView("Main")}></i>
+            <i className="fi fi-rr-angle-small-left" onClick={()=>props.handleChangeView("Main")}></i>
             <div className="containerShowInner">
                 <p className='showInfo date'> <span>Date:</span> {getDate()}</p>
                 <p className='showInfo name'> <span>Name:</span> {props.openBill.name}</p>

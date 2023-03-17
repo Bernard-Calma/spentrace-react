@@ -10,7 +10,15 @@ import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
 
 const App = () => {
+  // Server
+  const herokuServer = process.env.REACT_APP_SERVER_URL 
+  const [server] = useState(
+    // Set server to be local host if on development else use heroku backend server
+    process.env.NODE_ENV === 'development' ? "http://localhost:8000" : herokuServer
+  )
+  // View
   const [view, setView] = useState("Login")
+  // User information
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -38,7 +46,7 @@ const App = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    fetch(process.env.REACT_APP_SERVER_URL+"/users/login", {
+    fetch(server+"/users/login", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -64,9 +72,10 @@ const App = () => {
       setLoginMessage(err.message)
     })
   }
+
   const handleSignout = () => {
     console.log("Sign Out Completely")
-    fetch(process.env.REACT_APP_SERVER_URL+"/users/signout")
+    fetch(server+"/users/signout")
     .then(res => res.json())
     .then(data => setLoginMessage(data.message))
     setUser({
