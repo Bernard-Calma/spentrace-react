@@ -8,7 +8,6 @@ const NavBar = (props) => {
             method: "DELETE",
         })
         .then(res => res.json())
-        .then(data => console.log(data))
         props.handleChangeView("Main")
     }
     return(

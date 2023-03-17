@@ -20,7 +20,7 @@ const Add = (props) => {
         },
             body: JSON.stringify(newBill)
         }).then(res => res.json())
-        .then(data => {props.updateBills(data)
+        .then(data => {props.addBill(data)
         })
         props.handleChangeView("Main")
     }

@@ -104,36 +104,38 @@ const App = () => {
     fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + user._id)
     .then(res => res.json())
     .then(data => {
-        // Set variables back to 0 to prevent adding values from previous computation
-        runningTarget = 0;
-        total = 0;
-        for (var bill of data) {
-            getRunningBalanceTarget(bill)
-        }
-        setBills(data)  
+      setBills(data)
+      getRunningBalanceTarget()
     })
   }
 
-  const getRunningBalanceTarget = (bill) => {
+  const getRunningBalanceTarget = () => {
     /**
      * Compute for running balance and target
      * from bill parameter from bills array
      */
-    if (bill.expense === true) {
-        setTotalExpense(totalExpense += bill.amount)
-        runningTarget += bill.amount;
-        total -= bill.amount;
-    } else if (bill.expense === false) {
-        setTotalIncome(totalIncome += bill.amount)
-        runningTarget -= bill.amount;
-        total += bill.amount;
-    } 
-    if (runningTarget < 0) {
-        bill.target = 0;
-    } else {
-        bill.target = runningTarget;
+    // Set variables back to 0 to prevent adding values from previous computation
+    runningTarget = 0;
+    total = 0;
+    let updateBill = bills
+    for (var bill of updateBill) {
+      if (bill.expense === true) {
+          setTotalExpense(totalExpense += bill.amount)
+          runningTarget += bill.amount;
+          total -= bill.amount;
+      } else if (bill.expense === false) {
+          setTotalIncome(totalIncome += bill.amount)
+          runningTarget -= bill.amount;
+          total += bill.amount;
+      } 
+      if (runningTarget < 0) {
+          bill.target = 0;
+      } else {
+          bill.target = runningTarget;
+      }
+      bill.runningTotal = total;  
     }
-    bill.runningTotal = total;  
+    setBills(updateBill)
   }
 
   const updateBills = (newBill) => {
@@ -144,14 +146,21 @@ const App = () => {
      * 
      * Return newBill if id matches inside current bills array.
      */
-    let newBillsList = bills.map((bill)=> bill.id === newBill.id ? newBill : bill)
-    setBills(newBillsList);
+    console.log(newBill)
+    let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
+    setBills(newBillsList); 
+    console.log("Bills changed.")
+  }
+
+  const addBill = (newBill) => {
+    setBills([...bills, newBill])
+    console.log("Added", newBill)
   }
 
   useEffect(()=>{
     getBills()
   },[user])
-  
+
   return (
     <div className="App">
       <Header 
@@ -182,7 +191,7 @@ const App = () => {
               handleChangeView = {handleChangeView}
               user = {user}
               server = {server}
-              updateBills = {updateBills}
+              addBill = {addBill}
             />
           : view === "Show"
           ? <Show
