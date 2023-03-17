@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Main from './container/main/Main';
 import Add from './container/add/Add';
@@ -18,18 +18,26 @@ const App = () => {
   )
   // View
   const [view, setView] = useState("Login")
+  const [loginMessage, setLoginMessage] = useState("")
+  
+
   // User information
   const [user, setUser] = useState({
+
     username: "",
     password: "",
     verifyPassword: "",
     loggedIn: false
   })
-
+  
+  // Bills Information
+  const [bills, setBills] = useState([])
+  let [totalIncome, setTotalIncome] = useState(0);
+  let [totalExpense, setTotalExpense] = useState(0);
+  let runningTarget = 0;
+  let total = 0;
   let [openBill, setOpenBill] = useState({});
 
-  const [loginMessage, setLoginMessage] = useState("")
-  
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
   }
@@ -76,13 +84,12 @@ const App = () => {
     })
   }
 
-  // HANDLE VIEW CHANGE WHEN NAVIGATING
+  // Handle view change while navigating
   const handleChangeView = (view) => {
     // console.log("View changed to ", view)
     setView(view)
   }
 
-  // HANLDE VIEW CHANGE WHEN OPENING A BILL
   const handleShowBill = (bill) => {
     setOpenBill(bill)
     handleChangeView("Show")
@@ -92,6 +99,56 @@ const App = () => {
   const clearPasswords = () => {
     setUser({...user, password: "", verifyPassword: ""})
   }
+
+  // UPDATE BILLS
+  const getBills = () => {
+    fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + user._id)
+    .then(res => res.json())
+    .then(data => {
+        // Set variables back to 0 to prevent adding values from previous computation
+        runningTarget = 0;
+        total = 0;
+        for (var bill of data) {
+            getRunningBalanceTarget(bill)
+        }
+        setBills(data)  
+    })
+  }
+
+  const getRunningBalanceTarget = (bill) => {
+    /**
+     * Compute for running balance and target
+     * from bill parameter from bills array
+     */
+    if (bill.expense === true) {
+        setTotalExpense(totalExpense += bill.amount)
+        runningTarget += bill.amount;
+        total -= bill.amount;
+    } else if (bill.expense === false) {
+        setTotalIncome(totalIncome += bill.amount)
+        runningTarget -= bill.amount;
+        total += bill.amount;
+    } 
+    if (runningTarget < 0) {
+        bill.target = 0;
+    } else {
+        bill.target = runningTarget;
+    }
+    bill.runningTotal = total;  
+  }
+
+  const updateBills = (newBill) => {
+    /**
+     * This function udpates state
+     * instead of doing an API call
+     * to provide better performance
+     * 
+     * Return newBill if id matches inside current bills array.
+     */
+    let newBillsList = bills.map((bill)=> bill.id === newBill.id ? newBill : bill)
+    setBills(newBillsList);
+  }
+
   return (
     <div className="App">
       <Header 
@@ -108,10 +165,12 @@ const App = () => {
           ?
           <>
             <Main
-              handleChangeView = {handleChangeView}
               view={view}
-              handleShowBill = {handleShowBill}
               user = {user}
+              bills = {bills}
+              handleChangeView = {handleChangeView}
+              handleShowBill = {handleShowBill}
+              getBills = {getBills}
             />
             <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
           </>
@@ -136,12 +195,12 @@ const App = () => {
         </>
         : <LandingPage 
           view = {view}
-          setUser = {setUser}
           user = {user}
+          loginMessage = {loginMessage}
+          setUser = {setUser}
           handleChange = {handleChange}
           handleChangeView = {handleChangeView}
           handleLogin = {handleLogin}
-          loginMessage = {loginMessage}
           clearPasswords = {clearPasswords}
         /> 
       }
