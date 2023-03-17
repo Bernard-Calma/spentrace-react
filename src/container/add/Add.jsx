@@ -6,30 +6,13 @@ const Add = (props) => {
     let [newBill, setNewBill] = useState({userId:props.user._id})
 
     const handleChange=(e)=>{
-        // e.target.style.backgroundColor = "" // remove color for empty input
         if (e.target.name === "expense") setNewBill({...newBill, [e.target.name]: e.target.value === "Expense" ? true : false})
         else setNewBill({...newBill, [e.target.name]: e.target.value})
     }
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
-        console.log(newBill)
-        // Add style to input when empty
-        // let inputs = e.target.querySelectorAll("input") // list of all inputs
-        // let expenseMessage = e.target.querySelector("span")
-        // let allInputFilled = true;
-        // for (let input of inputs){
-        //     if (input.value === "" && input.type !== "submit") {
-        //         input.style.backgroundColor = "rgb(255, 61, 61)"
-        //         allInputFilled = false;
-        //     }
-        // } 
-        // if (!inputs[3].checked && !inputs[4].checked) { // check if income and expense is selected, if not show message
-        //     expenseMessage.removeAttribute("hidden")
-        //     allInputFilled = false;
-        // } else expenseMessage.setAttribute("hidden", true)
-        // if (allInputFilled === false) return
-        fetch(process.env.REACT_APP_SERVER_URL+"/plans/", {
+        fetch(props.server+"/plans/", {
             method: "POST",
             credentials: "include",
             headers: {
@@ -37,7 +20,6 @@ const Add = (props) => {
         },
             body: JSON.stringify(newBill)
         }).then(res => res.json())
-        // .then(data => console.log(data))
         props.handleChangeView("Main")
     }
     return (

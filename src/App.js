@@ -25,19 +25,9 @@ const App = () => {
     verifyPassword: "",
     loggedIn: false
   })
-  const [bills, setBills] = useState([
-    {
-      date: "01/01/01",
-      amount: 30.00,
-      type: "Expense"
-    },
-    {
-      date: "02/02/02",
-      amount: 30.00,
-      type: "Income"
-    },
-  ])
+
   let [openBill, setOpenBill] = useState({});
+
   const [loginMessage, setLoginMessage] = useState("")
   
   const handleChange = (event) => {
@@ -85,16 +75,11 @@ const App = () => {
       loggedIn: false
     })
   }
+
   // HANDLE VIEW CHANGE WHEN NAVIGATING
   const handleChangeView = (view) => {
     // console.log("View changed to ", view)
     setView(view)
-  }
-
-  // HANLDE VIEW CHANGE WHEN OPENING A BILL
-  const handleView = (bill) => {
-    setOpenBill(bill)
-    handleChangeView("Show")
   }
 
   // CLEAR PASSWORDS
@@ -117,20 +102,17 @@ const App = () => {
           ?
           <>
             <Main
-              bills = {bills}
               handleChangeView = {handleChangeView}
               view={view}
-              handleView = {handleView}
               user = {user}
             />
             <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
           </>
           : view === "Add"
           ? <Add
-              bills = {bills}
-              setBills = {setBills}
               handleChangeView = {handleChangeView}
               user = {user}
+              server = {server}
             />
           : view === "Show"
           ? <Show
