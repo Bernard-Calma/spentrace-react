@@ -20,6 +20,8 @@ const Add = (props) => {
         },
             body: JSON.stringify(newBill)
         }).then(res => res.json())
+        .then(data => {props.updateBills(data)
+        })
         props.handleChangeView("Main")
     }
     return (

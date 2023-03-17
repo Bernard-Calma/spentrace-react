@@ -1,9 +1,9 @@
+import { useEffect } from "react";
 import Bill from "../../Components/Bill";
 import Categories from "./Categories";
 import "./main.css"
 
 const Main = (props) => {
-
     return(
         <main className='mainContainer'>
             <Categories />

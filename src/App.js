@@ -23,7 +23,6 @@ const App = () => {
 
   // User information
   const [user, setUser] = useState({
-
     username: "",
     password: "",
     verifyPassword: "",
@@ -149,6 +148,10 @@ const App = () => {
     setBills(newBillsList);
   }
 
+  useEffect(()=>{
+    getBills()
+  },[user])
+  
   return (
     <div className="App">
       <Header 
@@ -179,6 +182,7 @@ const App = () => {
               handleChangeView = {handleChangeView}
               user = {user}
               server = {server}
+              updateBills = {updateBills}
             />
           : view === "Show"
           ? <Show
