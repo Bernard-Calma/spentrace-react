@@ -9,12 +9,12 @@ import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
 
 const App = () => { 
-  console.log(process.env.NODE_ENV)
+  console.log(process.env.ENVIRONMENT)
   // Server
   const herokuServer = process.env.REACT_APP_SERVER_URL 
   const [server] = useState(
     // Set server to be local host if on development else use heroku backend server
-    process.env.NODE_ENV === 'development' ? "http://localhost:8000" : herokuServer
+    process.env.ENVIRONMENT === 'development' ? "http://localhost:8000" : herokuServer
   )
   // View
   const [view, setView] = useState("Login")
