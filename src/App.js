@@ -7,6 +7,7 @@ import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
+import Home from './container/home/Home';
 
 const App = () => { 
   // Server
@@ -167,6 +168,11 @@ const App = () => {
               server = {server}
               handleChangeView = {handleChangeView} 
               updateBills = {updateBills}
+            />
+          : view === "Home" ?
+            <Home 
+              handleChangeView = {handleChangeView}   
+              bills = {bills} 
             />
           : <></>
         }

@@ -4,7 +4,10 @@ import "./header.css"
 const Header = (props) => {
     return(
         <div className='header'>
-            <h1 className="title">Spentrace</h1> 
+            <h1 
+                className="title" 
+                onClick={() => props.handleChangeView("Home")}
+            >Spentrace</h1> 
             <NavBar 
                 handleChangeView = {props.handleChangeView}
                 view = {props.view}
