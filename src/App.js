@@ -9,8 +9,6 @@ import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
 
 const App = () => { 
-  console.log(process.env.REACT_APP_ENVIRONMENT)
-  console.log(process.env.REACT_APP_NODE_ENV)
   // Server
   const herokuServer = process.env.REACT_APP_SERVER_URL 
   const [server] = useState(
