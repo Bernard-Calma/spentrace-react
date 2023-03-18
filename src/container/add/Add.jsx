@@ -51,7 +51,7 @@ const Add = (props) => {
                         <label htmlFor="type" className='addFormInput'>
                         Expense: 
                         <input type="radio" name="expense" id="addTypeExpense" value="Expense" onChange={handleChange} required/>
-                </label>
+                    </label>
                 </div>
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>
 

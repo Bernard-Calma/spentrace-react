@@ -115,10 +115,8 @@ const App = () => {
      * 
      * Return newBill if id matches inside current bills array.
      */
-    console.log(newBill)
     let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
     setBills(newBillsList); 
-    console.log("Bills changed.")
   }
 
   const addBill = (newBill) => {
@@ -169,6 +167,7 @@ const App = () => {
               openBill = {openBill}
               server = {server}
               handleChangeView = {handleChangeView} 
+              updateBills = {updateBills}
             />
           : <></>
         }

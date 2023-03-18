@@ -13,22 +13,6 @@ const EditBill = (props) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        // console.log(editBill)
-        // Add style to input when empty
-        // let inputs = e.target.querySelectorAll("input") // list of all inputs
-        // let expenseMessage = e.target.querySelector("span")
-        // let allInputFilled = true;
-        // for (let input of inputs){
-        //     if (input.value === "" && input.type !== "submit") {
-        //         input.style.backgroundColor = "rgb(255, 61, 61)"
-        //         allInputFilled = false;
-        //     }
-        // } 
-        // if (!inputs[3].checked && !inputs[4].checked) { // check if income and expense is selected, if not show message
-        //     expenseMessage.removeAttribute("hidden")
-        //     allInputFilled = false;
-        // } else expenseMessage.setAttribute("hidden", true)
-        // if (allInputFilled === false) return
         fetch(props.server+"/plans/" + props.openBill._id, {
             method: "POST",
             headers: {
@@ -36,7 +20,7 @@ const EditBill = (props) => {
         },
             body: JSON.stringify(editBill)
         }).then(res => res.json())
-        // .then(data => console.log(data))
+        .then(data => props.updateBills(data))
         props.handleChangeView("Main")
     }
 
@@ -61,22 +45,30 @@ const EditBill = (props) => {
                     <input type="number" name="amount" id="editAmount" value={editBill.amount} onChange = {handleChange} required/>
                 </label>
                 <div className='radio'>
-                    <label htmlFor="expense" className='editFormInput'>
-                        Income: 
-                        {
-                            editBill.expense
-                            ?<input type="radio" name="expense" id="editTypeIncome"  value="Income" onChange = {handleChange} required/>
-                            :<input type="radio" name="expense" id="editTypeIncome" value="Income" checked onChange = {handleChange} required/>
-                        }
-                    </label>
-                        <label htmlFor="expense" className='editFormInput'>
-                        Expense: 
-                        {
-                            editBill.expense
-                            ?<input type="radio" name="expense" id="editTypeIncome" value="Expense" checked onChange = {handleChange} required/>
-                            :<input type="radio" name="expense" id="editTypeIncome" value="Expense" onChange = {handleChange} required/>
-                        }
-                </label>
+                    {
+                        editBill.expense ?
+                        <>
+                            <label htmlFor="type" className='addFormInput'>
+                                Income: 
+                                <input type="radio" name="expense" id="addTypeIncome" value="Income" onChange={handleChange} required/>
+                            </label>
+                                <label htmlFor="type" className='addFormInput'>
+                                Expense: 
+                                <input type="radio" name="expense" id="addTypeExpense" value="Expense" checked onChange={handleChange} required/>
+                            </label>
+                        </>
+                        :
+                        <>
+                            <label htmlFor="type" className='addFormInput'>
+                                Income: 
+                                <input type="radio" name="expense" id="addTypeIncome" value="Income" checked onChange={handleChange} required/>
+                            </label>
+                                <label htmlFor="type" className='addFormInput'>
+                                Expense: 
+                                <input type="radio" name="expense" id="addTypeExpense" value="Expense" onChange={handleChange} required/>
+                            </label>
+                        </>
+                    }
                 </div>
                 <textarea name="notes" id="editNotes" className='editFormNotes' placeholder='enter notes here' value={editBill.notes} onChange = {handleChange}></textarea>
                 <input type="submit" name="submit" id="editFormSubmit" />
