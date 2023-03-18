@@ -4,7 +4,7 @@ import Categories from "./Categories";
 import "./main.css"
 
 const Main = (props) => {
-    const [bills, setBills] = useState(props.bills)
+    const [bills, setBills] = useState(props.bills.sort((a, b) => (a.date > b.date) ? 1 : -1))
     let [totalIncome, setTotalIncome] = useState(0);
     let [totalExpense, setTotalExpense] = useState(0);
     let runningTarget = 0;
@@ -48,17 +48,16 @@ const Main = (props) => {
             <Categories />
             <div className="billsContainer">
                 {
-                    bills.map((bill, index) =>
+                    bills?.map((bill, index) => 
                         <Bill 
-                            key={index}
-                            index={index}
-                            bill={bill}
-                            totalIncome = {totalIncome}
-                            totalExpense = {totalExpense}
-                            handleChangeView = {props.handleChangeView}
-                            handleShowBill = {props.handleShowBill}
-                        />
-                    )
+                        key={index}
+                        index={index}
+                        bill={bill}
+                        totalIncome = {totalIncome}
+                        totalExpense = {totalExpense}
+                        handleChangeView = {props.handleChangeView}
+                        handleShowBill = {props.handleShowBill}
+                    />)
                 }
             </div>
         </main>
