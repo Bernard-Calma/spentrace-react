@@ -11,9 +11,9 @@ const LandingPage = (props) =>{
             <div className="introduction">
                 <div className="mobilePageImage">
                     <p>Spentrace will help you list your earnings and expenses then provides how much you need to earn for your next bills.</p>
-                    <img src={mobilePage} alt="Main Page Image"/>
+                    <img src={mobilePage} alt="Main Page"/>
                 </div>
-                <img src={mainPageImage} alt="Main Page Image" className="mainPageImage"/>
+                <img src={mainPageImage} alt="Main Page" className="mainPageImage"/>
             </div>
             { props.view === "Register"
             ?

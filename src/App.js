@@ -1,6 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import Main from './container/main/Main';
 import Add from './container/add/Add';
 import Show from './container/show/Show';
@@ -9,7 +8,7 @@ import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
 
-const App = () => {
+const App = () => { 
   // Server
   const herokuServer = process.env.REACT_APP_SERVER_URL 
   const [server] = useState(
