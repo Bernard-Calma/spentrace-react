@@ -4,7 +4,7 @@ import './EditBill.css'
 
 const EditBill = (props) => {
     const [editBill, setEditBill] = useState(props.openBill)
-    
+
     const handleChange=(e)=>{
         // e.target.style.backgroundColor = "" // remove color for empty input
         if (e.target.name === "expense") setEditBill({...editBill, [e.target.name]: e.target.value === "Expense" ? true : false})
@@ -29,7 +29,7 @@ const EditBill = (props) => {
         //     allInputFilled = false;
         // } else expenseMessage.setAttribute("hidden", true)
         // if (allInputFilled === false) return
-        fetch(process.env.REACT_APP_SERVER_URL+"/plans/", {
+        fetch(props.server+"/plans/" + props.openBill._id, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",

@@ -123,7 +123,6 @@ const App = () => {
 
   const addBill = (newBill) => {
     setBills([...bills, newBill])
-    console.log("add bill")
   }
 
   return (
@@ -168,6 +167,7 @@ const App = () => {
           : view === "Edit" ?
             <EditBill
               openBill = {openBill}
+              server = {server}
               handleChangeView = {handleChangeView} 
             />
           : <></>
