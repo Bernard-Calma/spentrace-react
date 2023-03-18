@@ -129,10 +129,12 @@ const App = () => {
   return (
     <div className="App">
       <Header 
-          handleChangeView = {handleChangeView}
-          view = {view}
-          openBill = {openBill}
-          user = {user}
+        view = {view}
+        user = {user}
+        bills = {bills}
+        setBills = {setBills}
+        handleChangeView = {handleChangeView}
+        openBill = {openBill}
       />
       {
         user.loggedIn ?

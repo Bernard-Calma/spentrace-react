@@ -10,6 +10,8 @@ const Header = (props) => {
                 view = {props.view}
                 openBill = {props.openBill}
                 user = {props.user}
+                bills = {props.bills}
+                setBills = {props.setBills}
             />
         </div>
     )

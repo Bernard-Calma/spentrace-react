@@ -8,6 +8,8 @@ const NavBar = (props) => {
             method: "DELETE",
         })
         .then(res => res.json())
+        // Remove bill from bills list
+        props.setBills(props.bills.filter((bill) => bill._id != props.openBill._id)); 
         props.handleChangeView("Main")
     }
     return(

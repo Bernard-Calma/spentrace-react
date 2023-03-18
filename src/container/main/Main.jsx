@@ -36,7 +36,6 @@ const Main = (props) => {
           }
           bill.runningTotal = total;  
         }
-        console.log("Update Bills:", updateBills)
         setBills(updateBills)
       }
 
