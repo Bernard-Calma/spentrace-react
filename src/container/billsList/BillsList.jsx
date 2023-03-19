@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import Bill from '../../Components/Plan'
+import Bill from '../../Components/Bill'
 import './billsList.css'
 
 const BillsList = (props) => {
-    const [bills, setBills] = useState([
-
-    ])
+    const [bills, setBills] = useState([])
+    let [month, setMonth] = useState( new Date().toLocaleString('en-us',{month: "long"}))
     const totalExpense = 0;
     const totalIncome = 0;
 
@@ -20,7 +19,7 @@ const BillsList = (props) => {
     },[])
     return(
         <section className='containerBillsList'>
-            <h1>Bills List</h1>
+            <h1 className='month'>{month}</h1>
             <div className="billsContainer">
                 {
                     bills?.map((bill, index) => 
