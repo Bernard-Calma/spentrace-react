@@ -57,7 +57,7 @@ const Home = (props) => {
                 <p onClick={() => props.handleChangeView("Bills List")}>Bills List</p>
             </div>
             <div className='dashboard'>
-                <div className='containerCircleGraph'>
+                <div className='containerPlansDashboard'>
                     <div className='grapSubTitle'>
                         <h2>Expense</h2>
                         <h2>${totalExpense}</h2>
@@ -73,10 +73,14 @@ const Home = (props) => {
                         <h2>Income</h2>
                         <h2>${totalIncome}</h2>
                     </div>
+                    <div className='containerNextTarget'>
+                        <h2 className='nextTarget'>Date: {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount)}</h2>
+                    </div>
                 </div>
-                <div className='containerNextTarget'>
-                    <h2 className='nextTarget'>Date: {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                    <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount)}</h2>
+                <div className='containerBillsDashboard'>
+                    <h1>Bills</h1>
+                    
                 </div>
                 
             </div>

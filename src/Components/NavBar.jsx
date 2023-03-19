@@ -3,13 +3,13 @@ import "./NavBar.css"
 const NavBar = (props) => {
 
     const handleDelete = () => {
-        let url = process.env.REACT_APP_SERVER_URL+"/plans/"+props.openBill._id
+        let url = process.env.REACT_APP_SERVER_URL+"/plans/"+props.openPlan._id
         fetch(url, {
             method: "DELETE",
         })
         .then(res => res.json())
-        // Remove bill from bills list
-        props.setBills(props.bills.filter((bill) => bill._id !== props.openBill._id)); 
+        // Remove plan from plans list
+        props.setPlans(props.plans.filter((plan) => plan._id !== props.openPlan._id)); 
         props.handleChangeView("Main")
     }
     return(

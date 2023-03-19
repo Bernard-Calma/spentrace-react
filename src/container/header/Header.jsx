@@ -11,10 +11,10 @@ const Header = (props) => {
             <NavBar 
                 handleChangeView = {props.handleChangeView}
                 view = {props.view}
-                openBill = {props.openBill}
+                openPlan = {props.openPlan}
                 user = {props.user}
-                bills = {props.bills}
-                setBills = {props.setBills}
+                plans = {props.plans}
+                setPlans = {props.setPlans}
             />
         </div>
     )

@@ -1,13 +1,23 @@
 .containerHome{
     margin: 80px 10px;
-    font-family: 'Space Mono';
+    font-family: 'Space Mono';    
 }
 
-.containerCircleGraph {
+.dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerPlansDashboard, .containerBillsDashboard {
     display: flex;
     flex-direction: row;
     color: white;
     align-items: center;
+    margin: auto;
+}
+
+.containerNextTarget {
+    margin: 20px;
 }
 
 .grapSubTitle {
@@ -46,3 +56,6 @@
     font-size: 17px;
     text-shadow: 1px 0 green;
 }
+
+
+/* Bills */

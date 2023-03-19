@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Bill from "../../Components/Plan";
+import Plan from "../../Components/Plan";
 import Categories from "./Categories";
 import "./main.css"
 
 const Main = (props) => {
-    const [bills, setBills] = useState(props.bills.sort((a, b) => (a.date > b.date) ? 1 : -1))
+    const [plans, setPlans] = useState(props.plans.sort((a, b) => (a.date > b.date) ? 1 : -1))
     let [totalIncome, setTotalIncome] = useState(0);
     let [totalExpense, setTotalExpense] = useState(0);
     let runningTarget = 0;
@@ -13,49 +13,49 @@ const Main = (props) => {
     const getRunningBalanceTarget = () => {
         /**
          * Compute for running balance and target
-         * from bill parameter from bills array
+         * from plan parameter from plans array
          */
         // Set variables back to 0 to prevent adding values from previous computation
         runningTarget = 0;
         total = 0;
-        let updateBills = props.bills
-        for (var bill of updateBills) {
-          if (bill.expense === true) {
-              setTotalExpense(totalExpense += bill.amount)
-              runningTarget += bill.amount;
-              total -= bill.amount;
-          } else if (bill.expense === false) {
-              setTotalIncome(totalIncome += bill.amount)
-              runningTarget -= bill.amount;
-              total += bill.amount;
+        let updatePlans = props.plans
+        for (var plan of updatePlans) {
+          if (plan.expense === true) {
+              setTotalExpense(totalExpense += plan.amount)
+              runningTarget += plan.amount;
+              total -= plan.amount;
+          } else if (plan.expense === false) {
+              setTotalIncome(totalIncome += plan.amount)
+              runningTarget -= plan.amount;
+              total += plan.amount;
           } 
           if (runningTarget < 0) {
-              bill.target = 0;
+              plan.target = 0;
           } else {
-              bill.target = runningTarget;
+              plan.target = runningTarget;
           }
-          bill.runningTotal = total;  
+          plan.runningTotal = total;  
         }
-        setBills(updateBills)
+        setPlans(updatePlans)
       }
 
     useEffect(()=>{
         getRunningBalanceTarget()
-    },[props.bills])
+    },[props.plans])
     return(
         <main className='mainContainer'>
             <Categories />
             <div className="plansContainer">
                 {
-                    bills?.map((bill, index) => 
-                        <Bill 
+                    plans?.map((plan, index) => 
+                        <Plan 
                         key={index}
                         index={index}
-                        bill={bill}
+                        plan={plan}
                         totalIncome = {totalIncome}
                         totalExpense = {totalExpense}
                         handleChangeView = {props.handleChangeView}
-                        handleShowBill = {props.handleShowBill}
+                        handleShowPlan = {props.handleShowPlan}
                     />)
                 }
             </div>

@@ -3,11 +3,11 @@ import BackButton from '../../Components/Buttons/BackButton'
 import './Add.css'
 
 const Add = (props) => {
-    let [newBill, setNewBill] = useState({userId:props.user._id})
+    let [newPlan, setNewPlan] = useState({userId:props.user._id})
 
     const handleChange=(e)=>{
-        if (e.target.name === "expense") setNewBill({...newBill, [e.target.name]: e.target.value === "Expense" ? true : false})
-        else setNewBill({...newBill, [e.target.name]: e.target.value})
+        if (e.target.name === "expense") setNewPlan({...newPlan, [e.target.name]: e.target.value === "Expense" ? true : false})
+        else setNewPlan({...newPlan, [e.target.name]: e.target.value})
     }
 
     const handleSubmitAdd = (e) => {
@@ -18,16 +18,16 @@ const Add = (props) => {
             headers: {
             "Content-Type": "application/json",
         },
-            body: JSON.stringify(newBill)
+            body: JSON.stringify(newPlan)
         }).then(res => res.json())
-        .then(data => props.addBill(data))
+        .then(data => props.addPlan(data))
         props.handleChangeView("Main")
     }
     return (
         <div className="addContainer">
             <div className='addHeader'>
                 <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
-                <h2 className='navTitle'>Add new bill</h2>
+                <h2 className='navTitle'>Add new plan</h2>
             </div>
             
             <form className='addForm' onSubmit={handleSubmitAdd}>

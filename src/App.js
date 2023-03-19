@@ -5,7 +5,7 @@ import Add from './container/add/Add';
 import Show from './container/show/Show';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
-import EditBill from './container/edit/EditBill';
+import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 import BillsList from './container/billsList/BillsList';
@@ -30,9 +30,9 @@ const App = () => {
     loggedIn: false
   })
   
-  // Bills Information
-  const [bills, setBills] = useState([])
-  let [openBill, setOpenBill] = useState({});
+  // plans Information
+  const [plans, setPlans] = useState([])
+  let [openPlan, setOpenPlan] = useState({});
 
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
@@ -65,7 +65,7 @@ const App = () => {
       setLoginMessage(err.message)
     })
     .then(data => {
-      getBills(data._id)
+      getplans(data._id)
       setView("Main")
     })
   }
@@ -89,8 +89,8 @@ const App = () => {
     setView(view)
   }
 
-  const handleShowBill = (bill) => {
-    setOpenBill(bill)
+  const handleShowPlan = (plan) => {
+    setOpenPlan(plan)
     handleChangeView("Show")
   }
 
@@ -99,29 +99,29 @@ const App = () => {
     setUser({...user, password: "", verifyPassword: ""})
   }
 
-  // UPDATE BILLS
-  const getBills = (id) => {
+  // UPDATE planS
+  const getplans = (id) => {
     fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + id)
     .then(res => res.json())
     .then(data => {
-      setBills(data)
+      setPlans(data)
     })
   }
 
-  const updateBills = (newBill) => {
+  const updatePlans = (newPlan) => {
     /**
      * This function udpates state
      * instead of doing an API call
      * to provide better performance
      * 
-     * Return newBill if id matches inside current bills array.
+     * Return newplan if id matches inside current plans array.
      */
-    let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
-    setBills(newBillsList); 
+    let newPlansList = plans.map((plan)=> plan._id === newPlan._id ? newPlan : plan)
+    setPlans(newPlansList); 
   }
 
-  const addBill = (newBill) => {
-    setBills([...bills, newBill])
+  const addPlan = (newplan) => {
+    setPlans([...plans, newplan])
   }
 
   return (
@@ -129,10 +129,10 @@ const App = () => {
       <Header 
         view = {view}
         user = {user}
-        bills = {bills}
-        setBills = {setBills}
+        plans = {plans}
+        setPlans = {setPlans}
         handleChangeView = {handleChangeView}
-        openBill = {openBill}
+        openPlan = {openPlan}
       />
       {
         user.loggedIn ?
@@ -144,10 +144,10 @@ const App = () => {
             <Main
               view={view}
               user = {user}
-              bills = {bills}
+              plans = {plans}
               handleChangeView = {handleChangeView}
-              handleShowBill = {handleShowBill}
-              getBills = {getBills}
+              handleShowPlan = {handleShowPlan}
+              getplans = {getplans}
             />
             <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
           </>
@@ -156,27 +156,27 @@ const App = () => {
               handleChangeView = {handleChangeView}
               user = {user}
               server = {server}
-              addBill = {addBill}
+              addPlan = {addPlan}
             />
           : view === "Show"
           ? <Show
-              openBill = {openBill}
+              openPlan = {openPlan}
               handleChangeView = {handleChangeView}
             />
           : view === "Edit" ?
-            <EditBill
-              openBill = {openBill}
+            <EditPlan
+            openPlan = {openPlan}
               server = {server}
               handleChangeView = {handleChangeView} 
-              updateBills = {updateBills}
+              updatePlans = {updatePlans}
             />
           : view === "Home" ?
             <Home 
               handleChangeView = {handleChangeView}   
-              bills = {bills} 
+              plans = {plans} 
             />
-          : view === "Bills List" ?
-            <BillsList 
+          : view === "plans List" ?
+            <BillsList
               handleChangeView = {handleChangeView}
               server = {server}
             />
