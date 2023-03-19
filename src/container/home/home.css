@@ -1,12 +1,12 @@
 .containerHome{
     margin: 80px 10px;
-    background-color: white;
+    font-family: 'Space Mono';
 }
 
 .containerCircleGraph {
     display: flex;
     flex-direction: row;
-    color: black;
+    color: white;
     align-items: center;
 }
 
@@ -26,6 +26,6 @@
 
 .balance, .nextTarget {
     font-size: 36px;
-    color: black;
+    color: white;
     margin: 0;
 }

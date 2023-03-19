@@ -41,7 +41,7 @@ const CircleGraph = ({ data, colors, width, height, value }) => {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.font = 'bold 36px sans-serif';
-    ctx.fillText(value, centerX, centerY);
+    ctx.fillText(value >= 0?"$"+value: "-$"+value.toString().slice(1), centerX, centerY);
   }, [data, colors, value]);
 
   return (
