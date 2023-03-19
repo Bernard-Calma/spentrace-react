@@ -8,6 +8,7 @@ import Footer from './container/footer/Footer';
 import EditBill from './container/edit/EditBill';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
+import BillsList from './container/billsList/BillsList';
 
 const App = () => { 
   // Server
@@ -174,7 +175,11 @@ const App = () => {
               handleChangeView = {handleChangeView}   
               bills = {bills} 
             />
-          : <></>
+          : view === "Bills List" ?
+            <BillsList 
+              handleChangeView = {handleChangeView}
+            />
+        : <></>
         }
         </>
         : <LandingPage 

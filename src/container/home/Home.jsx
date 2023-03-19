@@ -54,7 +54,7 @@ const Home = (props) => {
         <section className="containerHome">
             <div className='homeNavBar'>
                 <p onClick={() => props.handleChangeView("Main")}>Budget Tracker</p>
-                <p>Bills List</p>
+                <p onClick={() => props.handleChangeView("Bills List")}>Bills List</p>
             </div>
             <div className='dashboard'>
                 <div className='containerCircleGraph'>
