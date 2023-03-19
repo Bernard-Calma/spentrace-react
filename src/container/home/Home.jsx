@@ -52,6 +52,10 @@ const Home = (props) => {
     }, [])
     return(
         <section className="containerHome">
+            <div className='homeNavBar'>
+                <p onClick={() => props.handleChangeView("Main")}>Budget Tracker</p>
+                <p>Bills List</p>
+            </div>
             <div className='dashboard'>
                 <div className='containerCircleGraph'>
                     <div className='grapSubTitle'>
@@ -76,8 +80,7 @@ const Home = (props) => {
                 </div>
                 
             </div>
-            <p onClick={() => props.handleChangeView("Main")}>Budget Tracker</p>
-            <p>Bills List</p>
+
         </section>
     )
 }

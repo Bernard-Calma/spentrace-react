@@ -29,3 +29,20 @@
     color: white;
     margin: 0;
 }
+
+/* NavBar */
+.homeNavBar {
+    display: flex;
+    height: 30px;
+    overflow: hidden;
+}
+
+.homeNavBar p {
+    margin: 0 10px;
+}
+
+.homeNavBar p:hover {
+    cursor: pointer;
+    font-size: 17px;
+    text-shadow: 1px 0 green;
+}
