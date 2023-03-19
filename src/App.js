@@ -178,6 +178,7 @@ const App = () => {
           : view === "Bills List" ?
             <BillsList 
               handleChangeView = {handleChangeView}
+              server = {server}
             />
         : <></>
         }

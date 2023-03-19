@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Bill from "../../Components/Bill";
+import Bill from "../../Components/Plan";
 import Categories from "./Categories";
 import "./main.css"
 

@@ -1,6 +1,6 @@
-import "./Bill.css"
+import "./Plan.css"
 
-const Bill = (props) => {
+const Plan = (props) => {
     const getDate = () => {
         // Get today and bill's month and date and compare
         let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate()
@@ -20,4 +20,4 @@ const Bill = (props) => {
     )
 }
 
-export default Bill 
+export default Plan 
