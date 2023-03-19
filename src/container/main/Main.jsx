@@ -45,7 +45,7 @@ const Main = (props) => {
     return(
         <main className='mainContainer'>
             <Categories />
-            <div className="billsContainer">
+            <div className="plansContainer">
                 {
                     bills?.map((bill, index) => 
                         <Bill 

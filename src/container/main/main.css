@@ -40,12 +40,12 @@ li {
     font-weight: bold;
 }
 /* BILLS CONTAINER */
-.billsContainer{
+.plansContainer{
     overflow: scroll;
     height: 80%;
 }
 
-.billsContainer::-webkit-scrollbar{
+.plansContainer::-webkit-scrollbar{
     display: none;
 }
 
