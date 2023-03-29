@@ -11,7 +11,6 @@ const Home = (props) => {
         date: ''
     })
     const [planList] = useState(props.plans)
-    console.log(props)
     const getBalance = () =>{ 
         let runningBalance = 0
         let totalIncome = 0
@@ -78,12 +77,7 @@ const Home = (props) => {
                         <h2 className='nextTarget'>Date: {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
                         <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount)}</h2>
                     </div>
-                </div>
-                <div className='containerBillsDashboard'>
-                    <h1>Bills</h1>
-                    
-                </div>
-                
+                </div>                
             </div>
 
         </section>

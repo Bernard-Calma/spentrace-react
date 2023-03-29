@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Bill from '../../Components/Bill'
 import './billsList.css'
@@ -9,11 +10,13 @@ const BillsList = (props) => {
     const totalIncome = 0;
 
     const handleGetBills = () => {
-        fetch(props.server+"/bills/test")
-        .then(res => res.json())
-        .then(data => setBills(data))
+        try {
+            axios.get(props.server+"/bills/test")
+            .then(res => setBills(res.data))
+        } catch (err) {
+            console.log(err)
+        }
     }
-
     useEffect(()=>{
         handleGetBills()
     },[])

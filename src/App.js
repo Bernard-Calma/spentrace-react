@@ -175,11 +175,17 @@ const App = () => {
               handleChangeView = {handleChangeView}   
               plans = {plans} 
             />
-          : view === "plans List" ?
+          : view === "Plans List" ?
             <BillsList
               handleChangeView = {handleChangeView}
               server = {server}
             />
+          : view === "Bills List" ?
+            <BillsList
+              handleChangeView = {handleChangeView}
+              server = {server}
+              user = {user}
+            />  
         : <></>
         }
         </>
