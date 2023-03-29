@@ -10,18 +10,19 @@ const Home = (props) => {
         amount: 0,
         date: ''
     })
-
+    const [planList] = useState(props.plans)
+    console.log(props)
     const getBalance = () =>{ 
         let runningBalance = 0
         let totalIncome = 0
         let totalExpense = 0
-        for (const bill of props.bills) {
-            if (bill.expense) {
-                runningBalance -= bill.amount
-                totalExpense += bill.amount
+        for (const plan of planList) {
+            if (plan.expense) {
+                runningBalance -= plan.amount
+                totalExpense += plan.amount
             } else {
-                runningBalance += bill.amount
-                totalIncome += bill.amount
+                runningBalance += plan.amount
+                totalIncome += plan.amount
             }
         }
         setBalance(runningBalance)
@@ -35,7 +36,7 @@ const Home = (props) => {
             amount: 0,
             date: ""
         }
-        for (const bill of props.bills) {
+        for (const bill of planList) {
             bill.expense ? balance -= bill.amount :  balance += bill.amount
             if (balance < 0) {
                 nextTarget.amount = balance;

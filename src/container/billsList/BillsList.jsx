@@ -4,7 +4,7 @@ import './billsList.css'
 
 const BillsList = (props) => {
     const [bills, setBills] = useState([])
-    let [month, setMonth] = useState( new Date().toLocaleString('en-us',{month: "long"}))
+    let [month] = useState( new Date().toLocaleString('en-us',{month: "long"}))
     const totalExpense = 0;
     const totalIncome = 0;
 
