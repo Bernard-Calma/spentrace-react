@@ -3,7 +3,7 @@ import axios from "axios"
 
 const NavBar = (props) => {
     const handleDelete = () => {
-        let url = props.view === "Show" ? process.env.REACT_APP_SERVER_URL+"/plans/"+props.openPlan._id : process.env.REACT_APP_SERVER_URL+"/bills/"+props.openBill?._id
+        let url = props.view === "Show" ? process.env.REACT_APP_SERVER_URL+"/plans/"+props.openPlan._id : process.env.REACT_APP_SERVER_URL+"/bills/"+props.openBill._id
         console.log(url)
         axios.delete(url)
         .then(res => console.log(res))
