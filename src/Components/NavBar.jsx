@@ -27,7 +27,7 @@ const NavBar = (props) => {
                 <>
                     <i 
                         className="fi fi-rr-add"
-                        onClick={()=> props.handleChangeView("Add")}
+                        onClick={()=> props.handleChangeView("Add Bill")}
                     ></i>
                 </>
                 : 

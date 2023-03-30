@@ -9,6 +9,7 @@ import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 import BillsList from './container/billsList/BillsList';
+import AddBill from './container/add/AddBill';
 
 const App = () => { 
   // Server
@@ -187,8 +188,15 @@ const App = () => {
               server = {server}
               user = {user}
             />  
-        : <></>
-        }
+            : view === "Add Bill"
+            ? <AddBill
+                handleChangeView = {handleChangeView}
+                user = {user}
+                server = {server}
+                addPlan = {addPlan}
+              />
+            : <></>
+          }
         </>
         : <LandingPage 
           view = {view}
