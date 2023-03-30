@@ -26,37 +26,46 @@ const AddBill = (props) => {
     return (
         <div className="addContainer">
             <div className='addHeader'>
-                <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
+                <BackButton handleChangeView = {() => props.handleChangeView("Bills List")}/>
                 <h2 className='navTitle'>Add new bill</h2>
             </div>
             
             <form className='addForm' onSubmit={handleSubmitAdd}>
-                <label htmlFor="date" className='addFormInput'>
-                    Date: 
-                    <input type="date" name="date" id="addDate" onChange={handleChange} required/>
+                <label htmlFor="dueDate" className='addFormInput'>
+                    Due Date: 
+                    <input type="date" name="dueDate" id="addBillDate" onChange={handleChange} required/>
                 </label>
                 <label htmlFor="name" className='addFormInput'>
                     Name: 
-                    <input type="text" name="name" id="addName" onChange={handleChange} required/>
+                    <input type="text" name="name" id="addBillName" onChange={handleChange} required/>
                 </label>
                 <label htmlFor="amount" className='addFormInput'>
                     Amount: 
-                    <input type="number" name="amount" id="addAmount" onChange={handleChange} />
+                    <input type="number" name="amount" id="addBillAmount" onChange={handleChange} />
                 </label>
-                <div className='radio'>
-                    <label htmlFor="type" className='addFormInput'>
-                        Income: 
-                        <input type="radio" name="expense" id="addTypeIncome" value="Income" onChange={handleChange} required/>
-                    </label>
-                        <label htmlFor="type" className='addFormInput'>
-                        Expense: 
-                        <input type="radio" name="expense" id="addTypeExpense" value="Expense" onChange={handleChange} required/>
-                    </label>
-                </div>
+                <label htmlFor="category" className='addFormInput'>
+                    Category: 
+                    <input type="number" name="category" id="addBillAmount" onChange={handleChange} />
+                </label>
+                <label htmlFor="autoPay" className='addFormInput'></label>
+                <label htmlFor="autoPay" className='addFormInput'>
+                    Autopay: 
+                    <input type="checkbox" name="autoPay" id="addBillAmount" onChange={handleChange} />
+                </label>
+                <label htmlFor="repeat" className='addFormInput'>
+                    Repeat: 
+                    <select name="repeat" id="addBillRepeat" size='5'>
+                        <option value='never'>Never</option>
+                        <option value='every week'>Every Week</option>
+                        <option value='every 2 weeks'>Every 2 Weeks</option>
+                        <option value='every month'>Every Month</option>
+                        <option value='every 2 months'>Every 2 Months</option>
+                    </select>
+                </label>
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>
 
-                <textarea name="notes" id="addNotes" className='addFormNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
-                <input type="submit" name="submit" id="addFormSubmit" />
+                <textarea name="notes" id="addBillNotes" className='addFormNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
+                <input type="submit" name="submit" id="addBillFormSubmit" />
             </form>
         </div>
     )
