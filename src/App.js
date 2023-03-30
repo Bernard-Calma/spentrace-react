@@ -139,6 +139,7 @@ const App = () => {
         setPlans = {setPlans}
         handleChangeView = {handleChangeView}
         openPlan = {openPlan}
+        openBill = {openBill}
       />
       {
         user.loggedIn ?
