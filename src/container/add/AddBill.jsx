@@ -1,27 +1,24 @@
 import { useState } from 'react'
 import BackButton from '../../Components/Buttons/BackButton'
 import './Add.css'
+import axios from 'axios'
 
 const AddBill = (props) => {
-    let [newPlan, setNewPlan] = useState({userId:props.user._id})
-
+    let [newBill, setNewBill] = useState({
+        autopay: false,
+        userId: props.user._id
+    })
     const handleChange=(e)=>{
-        if (e.target.name === "expense") setNewPlan({...newPlan, [e.target.name]: e.target.value === "Expense" ? true : false})
-        else setNewPlan({...newPlan, [e.target.name]: e.target.value})
+        if (e.target.name === "autopay") setNewBill({...newBill, [e.target.name]: e.target.checked})
+        else setNewBill({...newBill, [e.target.name]: e.target.value})
+        
     }
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
-        fetch(props.server+"/plans/", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-            "Content-Type": "application/json",
-        },
-            body: JSON.stringify(newPlan)
-        }).then(res => res.json())
-        .then(data => props.addPlan(data))
-        props.handleChangeView("Main")
+        axios.post(`${props.server}/bills`, newBill)
+        .then(res => console.log("Response", res))
+        .catch(err => console.log(err))
     }
     return (
         <div className="addContainer">
@@ -50,11 +47,11 @@ const AddBill = (props) => {
                 <label htmlFor="autoPay" className='addBillFormInput'></label>
                 <label htmlFor="autoPay" className='addBillFormInput'>
                     Autopay: 
-                    <input type="checkbox" name="autoPay" id="addBillAmount" onChange={handleChange} />
+                    <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
                 </label>
                 <label htmlFor="repeat" className='addBillFormInput'>
                     Repeat: 
-                    <select name="repeat" id="addBillRepeat" size='5' required>
+                    <select name="repeat" id="addBillRepeat" size='5' required onChange={handleChange}>
                         <option value='never' className='repeatOption'>Never</option>
                         <option value='every week' className='repeatOptiom'>Every Week</option>
                         <option value='every 2 weeks' className='repeatOptiom'>Every 2 Weeks</option>
