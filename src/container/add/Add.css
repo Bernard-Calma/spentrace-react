@@ -1,3 +1,16 @@
+/* Add */
+.addForm, .addBillForm {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin:  50px auto auto;
+}
+
+.addBillForm > input {
+    font-size: 1rem;
+}
+
+/* Add Plan */
 .addContainer {
     display: flex;
     flex: 1;
@@ -22,14 +35,10 @@
 }
 
 .addForm {
-    display: flex;
-    margin:  50px auto auto;
     width: 500px;
-    flex-direction: column;
-    text-align: start;
 }
 
-.addFormInput {
+.addFormInput, .addBillFormInput {
     font-family: "Space Mono";
     font-size: 2rem;
     margin: 10px 0;
@@ -62,6 +71,23 @@
     font-size: 1rem;
     color: rgb(255, 61, 61);
     font-style: italic;
+}
+
+/* Add Bill Form */
+.addBillFormInput {
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addBillFormInput > input , .repeatOption  {
+    width: 250px;
+    font-size: 1rem;
+}
+
+.addBillFormNotes {
+    margin-top: 10px;
+    height: 100px;
 }
 
 @media screen and (max-width: 900px) {
