@@ -17,8 +17,8 @@ const AddBill = (props) => {
     const handleSubmitAdd = (e) => {
         e.preventDefault();
         axios.post(`${props.server}/bills`, newBill)
-        .then(res => console.log("Response", res))
         .catch(err => console.log(err))
+        props.handleChangeView("Bills List")
     }
     return (
         <div className="addContainer">
