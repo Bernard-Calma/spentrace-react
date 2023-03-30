@@ -11,7 +11,7 @@ const BillsList = (props) => {
 
     const handleGetBills = () => {
         try {
-            axios.get(props.server+"/bills/test")
+            axios.get(`${props.server}/bills/${props.user._id}`)
             .then(res => setBills(res.data))
         } catch (err) {
             console.log(err)
