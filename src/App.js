@@ -10,6 +10,7 @@ import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 import BillsList from './container/billsList/BillsList';
 import AddBill from './container/add/AddBill';
+import ShowBill from './container/show/ShowBill';
 
 const App = () => { 
   // Server
@@ -34,6 +35,10 @@ const App = () => {
   // plans Information
   const [plans, setPlans] = useState([])
   let [openPlan, setOpenPlan] = useState({});
+
+  // Bills Information
+  const [bills, setBills] = useState([])
+  const [openBill, setOpenBill] = useState()
 
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
@@ -164,9 +169,14 @@ const App = () => {
               openPlan = {openPlan}
               handleChangeView = {handleChangeView}
             />
+          : view === "Show Bill"
+          ? <ShowBill
+              handleChangeView = {handleChangeView}
+              openBill = {openBill}
+            />
           : view === "Edit" ?
             <EditPlan
-            openPlan = {openPlan}
+              openPlan = {openPlan}
               server = {server}
               handleChangeView = {handleChangeView} 
               updatePlans = {updatePlans}
@@ -176,17 +186,15 @@ const App = () => {
               handleChangeView = {handleChangeView}   
               plans = {plans} 
             />
-          : view === "Plans List" ?
-            <BillsList
-              handleChangeView = {handleChangeView}
-              server = {server}
-            />
           : view === "Bills List" ?
             <BillsList
               handleChangeView = {handleChangeView}
               handleShowPlan = {handleShowPlan}
+              setBills = {setBills}
+              setOpenBill = {setOpenBill}
               server = {server}
               user = {user}
+              bills = {bills}
             />  
             : view === "Add Bill"
             ? <AddBill

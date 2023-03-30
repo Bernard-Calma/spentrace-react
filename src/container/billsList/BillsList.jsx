@@ -4,7 +4,7 @@ import Bill from '../../Components/Bill'
 import './billsList.css'
 
 const BillsList = (props) => {
-    const [bills, setBills] = useState([])
+    
     let [month] = useState( new Date().toLocaleString('en-us',{month: "long"}))
     const totalExpense = 0;
     const totalIncome = 0;
@@ -12,11 +12,17 @@ const BillsList = (props) => {
     const handleGetBills = () => {
         try {
             axios.get(`${props.server}/bills/${props.user._id}`)
-            .then(res => setBills(res.data))
+            .then(res => props.setBills(res.data))
         } catch (err) {
             console.log(err)
         }
     }
+
+    const handleShowBill = (bill) => {
+        props.setOpenBill(bill)
+        props.handleChangeView("Show Bill")
+    }
+
     useEffect(()=>{
         handleGetBills()
     },[])
@@ -25,7 +31,7 @@ const BillsList = (props) => {
             <h1 className='month'>{month}</h1>
             <div className="billsContainer">
                 {
-                    bills?.map((bill, index) => 
+                    props.bills?.map((bill, index) => 
                         <Bill 
                         key={index}
                         index={index}
@@ -33,7 +39,7 @@ const BillsList = (props) => {
                         totalIncome = {totalIncome}
                         totalExpense = {totalExpense}
                         handleChangeView = {props.handleChangeView}
-                        handleShowBill = {props.handleShowBill}
+                        handleShowBill = {handleShowBill}
                     />)
                 }
             </div>
