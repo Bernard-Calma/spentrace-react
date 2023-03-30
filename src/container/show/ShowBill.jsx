@@ -9,7 +9,7 @@ const ShowBill = (props) => {
 
     return(
         <div className="containerShowBill">
-            <i className="fi fi-rr-angle-small-left" onClick={()=>props.handleChangeView("Main")}></i>
+            <i className="fi fi-rr-angle-small-left" onClick={()=>props.handleChangeView("Bills List")}></i>
             <div className="containerShowBillInner">
                 <p className='showInfo date'> <span>Date:</span> {getDate()}</p>
                 <p className='showInfo name'> <span>Name:</span> {props.openBill.name}</p>
