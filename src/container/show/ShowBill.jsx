@@ -3,7 +3,7 @@ import "./Show.css"
 const ShowBill = (props) => {
     const getDate = () => {
         let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate()
-        let dateBill = new Date(props.openBill.date).toDateString().slice(4,7) + " " + (new Date(props.openBill.date).getDate() + 1) // Add 1 to provide accurate day
+        let dateBill = new Date(props.openBill.dueDate).toDateString().slice(4,7) + " " + (new Date(props.openBill.dueDate).getDate() + 1) // Add 1 to provide accurate day
         return dateToday === dateBill ? "Today": dateBill;
     }
 
