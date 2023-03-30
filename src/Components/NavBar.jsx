@@ -23,7 +23,15 @@ const NavBar = (props) => {
                     <i className="fi fi-rr-edit" onClick={()=> props.handleChangeView("Edit")}></i>
                     <i className="fi fi-rr-trash" onClick={handleDelete}></i>
                 </>
-                : <>
+                : props.view === "Bills List" ? 
+                <>
+                    <i 
+                        className="fi fi-rr-add"
+                        onClick={()=> props.handleChangeView("Add")}
+                    ></i>
+                </>
+                : 
+                <>
                 </>
             }
         </section>

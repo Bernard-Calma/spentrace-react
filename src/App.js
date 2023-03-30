@@ -183,6 +183,7 @@ const App = () => {
           : view === "Bills List" ?
             <BillsList
               handleChangeView = {handleChangeView}
+              handleShowPlan = {handleShowPlan}
               server = {server}
               user = {user}
             />  
