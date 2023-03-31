@@ -15,20 +15,13 @@ const EdditBill = (props) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        if(editBill === props.openBill) console.log("No Changes")
-        console.log("Edit Submitted", editBill)
-        axios.patch(`${props.server}/bills/${editBill._id}`, editBill)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-        // fetch(props.server+"/bill/" + props.openBill._id, {
-        //     method: "POST",
-        //     headers: {
-        //     "Content-Type": "application/json",
-        // },
-        //     body: JSON.stringify(editBill)
-        // }).then(res => res.json())
-        // .then(data => props.updateBills(data))
-        // props.handleChangeView("Bills List")
+        if(editBill !== props.openBill){
+            console.log("Edit Submitted", editBill)
+            axios.patch(`${props.server}/bills/${editBill._id}`, editBill)
+            // .then(res => console.log(res))
+            .catch(err => console.log(err))
+        }
+        props.handleChangeView("Bills List")
     }
 
     return (
