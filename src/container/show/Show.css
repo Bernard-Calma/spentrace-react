@@ -1,4 +1,4 @@
-.containerShow {
+.containerShow, .containerShowBill {
     border: solid #B0B7C4;
     border-radius: 20px;
     background-color: rgb(53, 52, 52);
@@ -7,6 +7,8 @@
     box-shadow: 1px 1px 5px 1px white;
 }
 
+
+/* Plan */
 .containerShowInner {
     width: 400px;
     margin: 0 auto 200px;
@@ -45,6 +47,7 @@
 }
 
 
+/* Bill */
 
 
 @media screen and (max-width: 900px) {

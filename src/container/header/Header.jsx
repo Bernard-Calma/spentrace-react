@@ -15,6 +15,7 @@ const Header = (props) => {
                 user = {props.user}
                 plans = {props.plans}
                 setPlans = {props.setPlans}
+                openBill = {props.openBill}
             />
         </div>
     )

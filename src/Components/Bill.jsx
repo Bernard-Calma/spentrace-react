@@ -4,8 +4,7 @@ const Bill = (props) => {
     const [dueDate] = useState( ()=> {
         const date = new Date(props.bill.dueDate)
         return date.toLocaleDateString('us', {weekday: 'short'}) + " " + date.getDate()
-    }
-    )
+    })
     return(
         <div className = {props.bill.expense ? "planContainer expense" : "planContainer income"}>
             <div className="dataContainer date"><p className="planData date">{dueDate}</p></div>

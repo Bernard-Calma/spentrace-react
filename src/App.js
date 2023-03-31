@@ -9,6 +9,9 @@ import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 import BillsList from './container/billsList/BillsList';
+import AddBill from './container/add/AddBill';
+import ShowBill from './container/show/ShowBill';
+import EdditBill from './container/edit/EditBill';
 
 const App = () => { 
   // Server
@@ -33,6 +36,10 @@ const App = () => {
   // plans Information
   const [plans, setPlans] = useState([])
   let [openPlan, setOpenPlan] = useState({});
+
+  // Bills Information
+  const [bills, setBills] = useState([])
+  const [openBill, setOpenBill] = useState()
 
   const handleChange = (event) => {
     setUser({...user, [event.target.name]: event.target.value})
@@ -120,6 +127,11 @@ const App = () => {
     setPlans(newPlansList); 
   }
 
+  const updateBills = (newBill) => {
+    let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
+    setPlans(newBillsList); 
+  }
+
   const addPlan = (newplan) => {
     setPlans([...plans, newplan])
   }
@@ -133,6 +145,7 @@ const App = () => {
         setPlans = {setPlans}
         handleChangeView = {handleChangeView}
         openPlan = {openPlan}
+        openBill = {openBill}
       />
       {
         user.loggedIn ?
@@ -163,25 +176,49 @@ const App = () => {
               openPlan = {openPlan}
               handleChangeView = {handleChangeView}
             />
+          : view === "Show Bill"
+          ? <ShowBill
+              handleChangeView = {handleChangeView}
+              openBill = {openBill}
+            />
           : view === "Edit" ?
             <EditPlan
-            openPlan = {openPlan}
+              openPlan = {openPlan}
               server = {server}
               handleChangeView = {handleChangeView} 
               updatePlans = {updatePlans}
+            />
+          : view === "Edit Bill" ?
+            <EdditBill
+              openBill = {openBill}
+              server = {server}
+              handleChangeView = {handleChangeView} 
+              updateBills = {updateBills}
             />
           : view === "Home" ?
             <Home 
               handleChangeView = {handleChangeView}   
               plans = {plans} 
             />
-          : view === "plans List" ?
+          : view === "Bills List" ?
             <BillsList
               handleChangeView = {handleChangeView}
+              handleShowPlan = {handleShowPlan}
+              setBills = {setBills}
+              setOpenBill = {setOpenBill}
               server = {server}
-            />
-        : <></>
-        }
+              user = {user}
+              bills = {bills}
+            />  
+            : view === "Add Bill"
+            ? <AddBill
+                handleChangeView = {handleChangeView}
+                user = {user}
+                server = {server}
+                addPlan = {addPlan}
+              />
+            : <></>
+          }
         </>
         : <LandingPage 
           view = {view}
