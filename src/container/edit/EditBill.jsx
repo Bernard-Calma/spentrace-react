@@ -15,8 +15,11 @@ const EdditBill = (props) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
+        if(editBill === props.openBill) console.log("No Changes")
         console.log("Edit Submitted", editBill)
-        axios.patch(`${props.server}/bills/${editBill._id}`)
+        axios.patch(`${props.server}/bills/${editBill._id}`, editBill)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
         // fetch(props.server+"/bill/" + props.openBill._id, {
         //     method: "POST",
         //     headers: {
