@@ -44,7 +44,6 @@ const AddBill = (props) => {
                     Category: 
                     <input type="text" name="category" id="addBillAmount" onChange={handleChange} />
                 </label>
-                <label htmlFor="autoPay" className='addBillFormInput'></label>
                 <label htmlFor="autoPay" className='addBillFormInput'>
                     Autopay: 
                     <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
@@ -53,10 +52,10 @@ const AddBill = (props) => {
                     Repeat: 
                     <select name="repeat" id="addBillRepeat" size='5' required onChange={handleChange}>
                         <option value='never' className='repeatOption'>Never</option>
-                        <option value='every week' className='repeatOptiom'>Every Week</option>
-                        <option value='every 2 weeks' className='repeatOptiom'>Every 2 Weeks</option>
-                        <option value='every month' className='repeatOptiom'>Every Month</option>
-                        <option value='every 2 months' className='repeatOptiom'>Every 2 Months</option>
+                        <option value='every week' className='repeatOption'>Every Week</option>
+                        <option value='every 2 weeks' className='repeatOption'>Every 2 Weeks</option>
+                        <option value='every month' className='repeatOption'>Every Month</option>
+                        <option value='every 2 months' className='repeatOption'>Every 2 Months</option>
                     </select>
                 </label>
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>

@@ -11,6 +11,7 @@ import Home from './container/home/Home';
 import BillsList from './container/billsList/BillsList';
 import AddBill from './container/add/AddBill';
 import ShowBill from './container/show/ShowBill';
+import EdditBill from './container/edit/EditBill';
 
 const App = () => { 
   // Server
@@ -126,6 +127,11 @@ const App = () => {
     setPlans(newPlansList); 
   }
 
+  const updateBills = (newBill) => {
+    let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
+    setPlans(newBillsList); 
+  }
+
   const addPlan = (newplan) => {
     setPlans([...plans, newplan])
   }
@@ -181,6 +187,13 @@ const App = () => {
               server = {server}
               handleChangeView = {handleChangeView} 
               updatePlans = {updatePlans}
+            />
+          : view === "Edit Bill" ?
+            <EdditBill
+              openBill = {openBill}
+              server = {server}
+              handleChangeView = {handleChangeView} 
+              updateBills = {updateBills}
             />
           : view === "Home" ?
             <Home 

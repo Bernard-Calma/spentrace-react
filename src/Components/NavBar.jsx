@@ -36,7 +36,7 @@ const NavBar = (props) => {
                     ></i>
                 </>
                 : props.view === "Show Bill" ? <>
-                    <i className="fi fi-rr-edit" onClick={()=> props.handleChangeView("Edit")}></i>
+                    <i className="fi fi-rr-edit" onClick={()=> props.handleChangeView("Edit Bill")}></i>
                     <i className="fi fi-rr-trash" onClick={handleDelete}></i>
                 </>
                 : 
