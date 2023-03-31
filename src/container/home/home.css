@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 
-.containerPlansDashboard, .containerBillsDashboard {
+.containerPlansDashboard, .cotnainerBillsDashboard {
     display: flex;
     flex-direction: row;
     color: white;
@@ -20,11 +20,11 @@
     margin: 20px;
 }
 
-.grapSubTitle {
+.graphSubTitle {
     text-align: center;
 }
 
-.grapSubTitle h2 {
+.graphSubTitle h2 {
     margin: 0;
 }
 

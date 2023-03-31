@@ -199,6 +199,7 @@ const App = () => {
             <Home 
               handleChangeView = {handleChangeView}   
               plans = {plans} 
+              bills = {bills}
             />
           : view === "Bills List" ?
             <BillsList

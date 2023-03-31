@@ -6,3 +6,12 @@
 .month {
     text-align: center;
 }
+
+.billsContainer {
+    height: 80vh;
+    overflow: scroll;
+}
+
+.billsContainer::-webkit-scrollbar{
+    display: none;
+}
