@@ -8,7 +8,8 @@ const Home = (props) => {
     const [totalExpense, setTotalExpense] = useState(0)
     const [nextTarget, setNextTarget] = useState({
         amount: 0,
-        date: ''
+        date: '',
+        name: ''
     })
     const [planList] = useState(props.plans)
     const getBalance = () =>{ 
@@ -39,6 +40,7 @@ const Home = (props) => {
             bill.expense ? balance -= bill.amount :  balance += bill.amount
             if (balance < 0) {
                 nextTarget.amount = balance;
+                nextTarget.name = bill.name
                 nextTarget.date = bill.date
                 setNextTarget(nextTarget)
                 return
@@ -74,8 +76,8 @@ const Home = (props) => {
                         <h2>${totalIncome}</h2>
                     </div>
                     <div className='containerNextTarget'>
-                        <h2 className='nextTarget'>Date: {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount)}</h2>
+                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
+                        <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
                     </div>
                 </div>                
             </div>
