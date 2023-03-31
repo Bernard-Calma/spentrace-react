@@ -4,10 +4,11 @@ import './EditPlan.css'
 
 const EdditBill = (props) => {
     const [editBill, setEditBill] = useState(props.openBill)
+    const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months'])
 
     const handleChange=(e)=>{
         // e.target.style.backgroundColor = "" // remove color for empty input
-        if (e.target.name === "expense") setEditBill({...editBill, [e.target.name]: e.target.value === "Expense" ? true : false})
+        if (e.target.name === "autopay") setEditBill({...editBill, [e.target.name]: !e.target.value})
         else setEditBill({...editBill, [e.target.name]: e.target.value})
     }
 
@@ -28,7 +29,7 @@ const EdditBill = (props) => {
     return (
         <div className="editContainer">
             <div className='editHeader'>
-                <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
+                <BackButton handleChangeView = {() => props.handleChangeView("Bills List")}/>
                 <h2 className='navTitle'>Edit</h2>
             </div>
             
@@ -51,16 +52,21 @@ const EdditBill = (props) => {
                 </label>
                 <label htmlFor="autoPay" className='editFormInput'>
                     Autopay: 
-                    <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
+                    {editBill.paid 
+                    ?   <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} checked/>
+                    :   <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />}
+                    
                 </label>
                 <label htmlFor="repeat" className='editFormInput'>
                     Repeat: 
                     <select name="repeat" id="aeditBillRepeat" size='5' required onChange={handleChange}>
-                        <option value='never' className='repeatOption'>Never</option>
-                        <option value='every week' className='repeatOption'>Every Week</option>
-                        <option value='every 2 weeks' className='repeatOption'>Every 2 Weeks</option>
-                        <option value='every month' className='repeatOption'>Every Month</option>
-                        <option value='every 2 months' className='repeatOption'>Every 2 Months</option>
+                        {
+                            repeatOptions.map((option, index) => 
+                                editBill.repeat === option 
+                                ?<option key={index} value={option} className='repeatOption' selected>{option}</option>
+                                :<option key={index} value={option} className='repeatOption' >{option}</option>
+                            )
+                        }
                     </select>
                 </label>
                 <textarea name="notes" id="editNotes" className='editBillFormNotes' placeholder='enter notes here' value={editBill.notes} onChange = {handleChange}></textarea>

@@ -109,6 +109,7 @@ const Home = (props) => {
                     </div>
                 </div> 
                 <h1 className='dashboardBillMonth'>{new Intl.DateTimeFormat("en-US", {month: "long"}).format(Date.now())}</h1>
+                {/* TODO: ADD FUNCTION TO SWITCH MONTHS */}
                 <div className='cotnainerBillsDashboard'>
                     <div className='graphSubTitle'>
                         <h2>Paid</h2>
