@@ -8,7 +8,7 @@ const EdditBill = (props) => {
 
     const handleChange=(e)=>{
         // e.target.style.backgroundColor = "" // remove color for empty input
-        if (e.target.name === "autopay") setEditBill({...editBill, [e.target.name]: !e.target.value})
+        if (e.target.name === "autoPay") setEditBill({...editBill, [e.target.name]: !editBill.autoPay})
         else setEditBill({...editBill, [e.target.name]: e.target.value})
     }
 
@@ -52,9 +52,9 @@ const EdditBill = (props) => {
                 </label>
                 <label htmlFor="autoPay" className='editFormInput'>
                     Autopay: 
-                    {editBill.paid 
-                    ?   <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} checked/>
-                    :   <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />}
+                    {editBill.autoPay 
+                    ?   <input type="checkbox" name="autoPay" id="addBillAmount" onChange={handleChange} checked/>
+                    :   <input type="checkbox" name="autoPay" id="addBillAmount" onChange={handleChange} />}
                     
                 </label>
                 <label htmlFor="repeat" className='editFormInput'>
