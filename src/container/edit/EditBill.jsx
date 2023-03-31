@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState } from 'react'
 import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
@@ -15,6 +16,7 @@ const EdditBill = (props) => {
     const handleSubmitEdit = (e) => {
         e.preventDefault();
         console.log("Edit Submitted", editBill)
+        axios.patch(`${props.server}/bills/${editBill._id}`)
         // fetch(props.server+"/bill/" + props.openBill._id, {
         //     method: "POST",
         //     headers: {
@@ -48,7 +50,7 @@ const EdditBill = (props) => {
                 </label>
                 <label htmlFor="category" className='editFormInput'>
                     Category: 
-                    <input type="number" name="category" id="editCategory" value={editBill.category} onChange = {handleChange} required/>
+                    <input type="test" name="category" id="editCategory" value={editBill.category} onChange = {handleChange}/>
                 </label>
                 <label htmlFor="autoPay" className='editFormInput'>
                     Autopay: 
