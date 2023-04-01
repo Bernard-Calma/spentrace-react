@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Plan from "../../Components/Plan";
 import Categories from "./Categories";
@@ -39,8 +40,18 @@ const Main = (props) => {
         setPlans(updatePlans)
       }
 
+    const handleGetBills = () => {
+        try {
+            axios.get(`${props.server}/bills/${props.user._id}`)
+            .then(res => props.setBills(res.data))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     useEffect(()=>{
         getRunningBalanceTarget()
+        handleGetBills()
     },[props.plans])
     return(
         <main className='mainContainer'>

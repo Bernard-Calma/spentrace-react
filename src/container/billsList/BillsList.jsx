@@ -9,23 +9,10 @@ const BillsList = (props) => {
     const totalExpense = 0;
     const totalIncome = 0;
 
-    const handleGetBills = () => {
-        try {
-            axios.get(`${props.server}/bills/${props.user._id}`)
-            .then(res => props.setBills(res.data))
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     const handleShowBill = (bill) => {
         props.setOpenBill(bill)
         props.handleChangeView("Show Bill")
     }
-
-    useEffect(()=>{
-        handleGetBills()
-    },[])
     return(
         <section className='containerBillsList'>
             <h1 className='month'>{month}</h1>

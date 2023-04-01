@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import CircleGraph from '../../Components/CircleGraph'
 import './home.css'
@@ -75,9 +76,11 @@ const Home = (props) => {
         })
         setNextUnpaidBill(unpaidBill)
     }
+
     useEffect(() => {
         setBills()
         getNextUpaidBill()
+        
     }, [])
 
     return(
@@ -108,7 +111,7 @@ const Home = (props) => {
                         <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
                     </div>
                 </div> 
-                <h1 className='dashboardBillMonth'>{new Intl.DateTimeFormat("en-US", {month: "long"}).format(Date.now())}</h1>
+                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>
                 {/* TODO: ADD FUNCTION TO SWITCH MONTHS */}
                 <div className='cotnainerBillsDashboard'>
                     <div className='graphSubTitle'>
@@ -117,7 +120,7 @@ const Home = (props) => {
                     </div>    
                     <CircleGraph 
                         data = {[totalBillsUnpaid, totalBillsPaid]}
-                        colors = {['red', 'green']}
+                        colors = {['red', 'green']}  
                         width = {250}
                         height = {250}
                         value = {totalBillsUnpaid - totalBillsPaid}

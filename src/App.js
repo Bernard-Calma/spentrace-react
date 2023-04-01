@@ -158,9 +158,11 @@ const App = () => {
               view={view}
               user = {user}
               plans = {plans}
+              server = {server}
               handleChangeView = {handleChangeView}
               handleShowPlan = {handleShowPlan}
               getplans = {getplans}
+              setBills = {setBills}
             />
             <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
           </>
@@ -197,9 +199,10 @@ const App = () => {
             />
           : view === "Home" ?
             <Home 
-              handleChangeView = {handleChangeView}   
+              user = {user}
               plans = {plans} 
               bills = {bills}
+              handleChangeView = {handleChangeView}
             />
           : view === "Bills List" ?
             <BillsList
