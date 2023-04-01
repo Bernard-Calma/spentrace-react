@@ -20,13 +20,13 @@ const LandingPage = (props) =>{
             <Register 
                 setUser = {props.setUser}
                 user = {props.user}
-                handleChange = {props.handleChange}
+                handleChangeUser = {props.handleChangeUser}
                 handleChangeView = {props.handleChangeView}
                 clearPasswords = {props.clearPasswords}
             />
             :
             <Login 
-                handleChange = {props.handleChange}
+                handleChangeUser = {props.handleChangeUser}
                 handleLogin = {props.handleLogin}
                 handleChangeView = {props.handleChangeView}
                 setUser = {props.setUser}

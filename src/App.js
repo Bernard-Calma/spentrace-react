@@ -14,17 +14,18 @@ import ShowBill from './container/show/ShowBill';
 import EdditBill from './container/edit/EditBill';
 
 const App = () => { 
+  // VARIABLES
   // Server
   const herokuServer = process.env.REACT_APP_SERVER_URL 
   const [server] = useState(
     // Set server to be local host if on development else use heroku backend server
     process.env.REACT_APP_ENVIRONMENT === 'development' ? "http://localhost:8000" : herokuServer
   )
+
   // View
   const [view, setView] = useState("Login")
   const [loginMessage, setLoginMessage] = useState("")
   
-
   // User information
   const [user, setUser] = useState({
     username: "",
@@ -33,7 +34,7 @@ const App = () => {
     loggedIn: false
   })
   
-  // plans Information
+  // Plans
   const [plans, setPlans] = useState([])
   let [openPlan, setOpenPlan] = useState({});
 
@@ -41,10 +42,8 @@ const App = () => {
   const [bills, setBills] = useState([])
   const [openBill, setOpenBill] = useState()
 
-  const handleChange = (event) => {
-    setUser({...user, [event.target.name]: event.target.value})
-  }
-
+  // FUNCTIONS
+  // Login
   const handleLogin = (event) => {
     event.preventDefault();
     fetch(server+"/users/login", {
@@ -88,6 +87,10 @@ const App = () => {
       verifyPassword: "",
       loggedIn: false
     })
+  }
+
+  const handleChangeUser = (event) => {
+    setUser({...user, [event.target.name]: event.target.value})
   }
 
   // Handle view change while navigating
@@ -229,7 +232,7 @@ const App = () => {
           user = {user}
           loginMessage = {loginMessage}
           setUser = {setUser}
-          handleChange = {handleChange}
+          handleChangeUser = {handleChangeUser}
           handleChangeView = {handleChangeView}
           handleLogin = {handleLogin}
           clearPasswords = {clearPasswords}

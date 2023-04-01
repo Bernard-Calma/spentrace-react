@@ -4,8 +4,8 @@ const Login = (props) => {
         <div className="containerLogin">
             <h1 className="loginTitle"> LOGIN </h1>
             <form className="formLogin" onSubmit={props.handleLogin}>
-                <input type="text" name="username" placeholder="username" value={props.user.username} onChange={props.handleChange}/>
-                <input type="password" name="password" placeholder="password" value={props.user.password} onChange={props.handleChange}/>
+                <input type="text" name="username" placeholder="username" value={props.user.username} onChange={props.handleChangeUser}/>
+                <input type="password" name="password" placeholder="password" value={props.user.password} onChange={props.handleChangeUser}/>
                 {
                     props.loginMessage !== ""? <p className="loginMessage">{props.loginMessage}</p> : <></>
                 }
