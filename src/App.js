@@ -90,9 +90,15 @@ const App = () => {
   }
 
   const handleChangeUser = (event) => {
+    event.preventDefault()
     setUser({...user, [event.target.name]: event.target.value})
   }
 
+  const clearPasswords = () => {
+    setUser({...user, password: "", verifyPassword: ""})
+  }
+
+  // View
   // Handle view change while navigating
   const handleChangeView = (view) => {
     // console.log("View changed to ", view)
@@ -104,12 +110,7 @@ const App = () => {
     handleChangeView("Show")
   }
 
-  // CLEAR PASSWORDS
-  const clearPasswords = () => {
-    setUser({...user, password: "", verifyPassword: ""})
-  }
-
-  // UPDATE planS
+  // Plans
   const getplans = (id) => {
     fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + id)
     .then(res => res.json())
@@ -130,13 +131,14 @@ const App = () => {
     setPlans(newPlansList); 
   }
 
+  const addPlan = (newplan) => {
+    setPlans([...plans, newplan])
+  }
+
+  // Bills
   const updateBills = (newBill) => {
     let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
     setPlans(newBillsList); 
-  }
-
-  const addPlan = (newplan) => {
-    setPlans([...plans, newplan])
   }
 
   return (
