@@ -57,14 +57,11 @@ const EdditBill = (props) => {
                 </label>
                 <label htmlFor="repeat" className='editFormInput'>
                     Repeat: 
-                    <select name="repeat" id="aeditBillRepeat" size='5' required onChange={handleChange}>
+                    <select name="repeat" id="aeditBillRepeat" size='5' required onChange={handleChange} value={editBill.repeat}>
                         {
                             repeatOptions.map((option, index) => 
-                                editBill.repeat === option 
-                                ?<option key={index} value={option} className='repeatOption' selected>{option}</option>
-                                :<option key={index} value={option} className='repeatOption' >{option}</option>
-                            )
-                        }
+                                <option key={index} value={option} className='repeatOption' >{option}</option>
+                        )}
                     </select>
                 </label>
                 <textarea name="notes" id="editNotes" className='editBillFormNotes' placeholder='enter notes here' value={editBill.notes} onChange = {handleChange}></textarea>
