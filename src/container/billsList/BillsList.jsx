@@ -4,7 +4,6 @@ import Bill from '../../Components/Bill'
 import './billsList.css'
 
 const BillsList = (props) => {
-    
     const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"])
     let [month, setMonth] = useState(new Date().getMonth())
     let [monthText, setMonthText] = useState()
@@ -42,6 +41,7 @@ const BillsList = (props) => {
             <div className="billsContainer">
                 {
                     props.bills?.map((bill, index) => 
+                        new Date(bill.dueDate).getMonth() === month ?
                         <Bill 
                         key={index}
                         index={index}
@@ -50,7 +50,7 @@ const BillsList = (props) => {
                         totalExpense = {totalExpense}
                         handleChangeView = {props.handleChangeView}
                         handleShowBill = {handleShowBill}
-                    />)
+                    />: <></>)
                 }
             </div>
         </section>
