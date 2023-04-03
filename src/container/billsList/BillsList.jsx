@@ -15,7 +15,17 @@ const BillsList = (props) => {
         props.setOpenBill(bill)
         props.handleChangeView("Show Bill")
     }
+
+    const handlePrevMonth = () => {
+        if (month === 0) setMonth(11)
+        else setMonth(month -= 1)
+    }
     
+    const handleNextMonth = () => {
+        if (month === 11) setMonth(0)
+        else setMonth(month += 1)
+    }
+
     useEffect(() => {
         monthNames.forEach((monthName, index) => {
             if(month === index) setMonthText(monthName);
@@ -24,9 +34,9 @@ const BillsList = (props) => {
     return(
         <section className='containerBillsList'>
             <div className='billsListHeader'>
-                <i className="fi fi-rr-arrow-small-left btnPrevious"></i>
+                <i className="fi fi-rr-arrow-small-left btnPrevious" onClick={handlePrevMonth}></i>
                 <h1 className='month'>{monthText}</h1>
-                <i className="fi fi-rr-arrow-small-right btnNext"></i>
+                <i className="fi fi-rr-arrow-small-right btnNext" onClick={handleNextMonth}></i>
             </div>
 
             <div className="billsContainer">
