@@ -6,7 +6,7 @@ import './billsList.css'
 const BillsList = (props) => {
     const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"])
     let [month, setMonth] = useState(new Date().getMonth())
-    let [monthText, setMonthText] = useState()
+    let [monthText, setMonthText] = useState(monthNames[month])
     const totalExpense = 0;
     const totalIncome = 0;
 
@@ -18,18 +18,14 @@ const BillsList = (props) => {
     const handlePrevMonth = () => {
         if (month === 0) setMonth(11)
         else setMonth(month -= 1)
+        setMonthText(monthNames[month])
     }
     
     const handleNextMonth = () => {
         if (month === 11) setMonth(0)
         else setMonth(month += 1)
+        setMonthText(monthNames[month])
     }
-
-    useEffect(() => {
-        monthNames.forEach((monthName, index) => {
-            if(month === index) setMonthText(monthName);
-        })
-    }, [month])
     return(
         <section className='containerBillsList'>
             <div className='billsListHeader'>
