@@ -1,10 +1,14 @@
 .containerBillsList{
     margin: 80px 10px;
+    padding-top: 50px;
     font-family: 'Space Mono';
+    position: relative;
 }
 
 .month {
     text-align: center;
+    font-size: 35px;
+    margin: 0;
 }
 
 .billsContainer {
@@ -14,4 +18,17 @@
 
 .billsContainer::-webkit-scrollbar{
     display: none;
+}
+
+.billsListHeader{
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    top: 0;
+    left: 40%;
+}
+
+.btnPrevious, .btnNext {
+    font-size: 3rem;
+    margin: 0;
 }
