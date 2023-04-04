@@ -2,6 +2,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Bill from '../../Components/Bill'
 import './billsList.css'
+import MonthlyBill from './MonthlyBill'
+import Paid from './Paid'
+import Unpaid from './Unpaid'
 
 const BillsList = (props) => {
     const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"])
@@ -9,10 +12,6 @@ const BillsList = (props) => {
     let [monthText, setMonthText] = useState(monthNames[month])
     const totalExpense = 0;
     const totalIncome = 0;
-
-    // Paid
-    let [totalPaid, setTotalPaid] = useState(0);
-    let [totalUnpaid, setTotalUnpaid] = useState(0);
 
     const handleShowBill = (bill) => {
         props.setOpenBill(bill)
@@ -31,20 +30,11 @@ const BillsList = (props) => {
         setMonthText(monthNames[month])
     }
 
-    const getTotalPaid = () => {
-        let paid = 0;
-        let unpaid = 0;
-        props.bills.forEach(element => {
-            if (element.paid) paid += element.amount
-            else unpaid += element.amount
-        });
-        setTotalPaid(paid)
-        setTotalUnpaid(unpaid)
+    const getMonthlyBill = (month) => {
+        let monthBills = []
+        monthBills = props.bills.filter(bill => new Date(bill.dueDate).getMonth() === month)
+        return monthBills
     }
-
-    useEffect(()=> {
-        getTotalPaid()
-    },[])
     return(
         <section className='containerBillsList'>
             <div className='billsListHeader'>
@@ -54,10 +44,9 @@ const BillsList = (props) => {
             </div>
 
             <div className="billsContainer">
-                <div className='containerPaid'>
-                    <p>Unaid: </p>
-                    <p>${totalPaid.toFixed(2)}</p>
-                </div>
+                <Unpaid 
+                    bills = {getMonthlyBill(month)}
+                />
                 {
                     props.bills?.map((bill, index) => 
                         new Date(bill.dueDate).getMonth() === month ?
@@ -74,10 +63,9 @@ const BillsList = (props) => {
                         </>
                         : <></>)
                 }
-                <div className='containerPaid'>
-                    <p>Paid: </p>
-                    <p>${totalUnpaid.toFixed(2)}</p>
-                </div>
+                <Paid 
+                    bills = {getMonthlyBill(month)}
+                />
             </div>
         </section>
     )
