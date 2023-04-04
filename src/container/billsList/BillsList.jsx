@@ -1,6 +1,7 @@
 import {  useState } from 'react'
 import Bill from '../../Components/Bill'
 import './billsList.css'
+import MonthHeader from './MonthHeader'
 import Paid from './Paid'
 import Unpaid from './Unpaid'
 
@@ -8,8 +9,6 @@ const BillsList = (props) => {
     const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"])
     let [month, setMonth] = useState(new Date().getMonth())
     let [monthText, setMonthText] = useState(monthNames[month])
-    const totalExpense = 0;
-    const totalIncome = 0;
 
     const handleShowBill = (bill) => {
         props.setOpenBill(bill)
@@ -35,11 +34,11 @@ const BillsList = (props) => {
     }
     return(
         <section className='containerBillsList'>
-            <div className='billsListHeader'>
-                <i className="fi fi-rr-arrow-small-left btnPrevious" onClick={handlePrevMonth}></i>
-                <h1 className='month'>{monthText}</h1>
-                <i className="fi fi-rr-arrow-small-right btnNext" onClick={handleNextMonth}></i>
-            </div>
+            <MonthHeader 
+                monthText = {monthText}
+                handlePrevMonth = {handlePrevMonth}
+                handleNextMonth = {handleNextMonth}
+            />
 
             <div className="billsContainer">
                 <Unpaid 
