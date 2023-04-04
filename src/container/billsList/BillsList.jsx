@@ -1,8 +1,6 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import Bill from '../../Components/Bill'
 import './billsList.css'
-import MonthlyBill from './MonthlyBill'
 import Paid from './Paid'
 import Unpaid from './Unpaid'
 
@@ -45,26 +43,14 @@ const BillsList = (props) => {
 
             <div className="billsContainer">
                 <Unpaid 
+                    month = {month}
                     bills = {getMonthlyBill(month)}
+                    handleShowBill = {handleShowBill}
                 />
-                {
-                    props.bills?.map((bill, index) => 
-                        new Date(bill.dueDate).getMonth() === month ?
-                        <>
-                            <Bill 
-                            key={index}
-                            index={index}
-                            bill={bill}
-                            totalIncome = {totalIncome}
-                            totalExpense = {totalExpense}
-                            handleChangeView = {props.handleChangeView}
-                            handleShowBill = {handleShowBill}
-                            />
-                        </>
-                        : <></>)
-                }
                 <Paid 
+                    month = {month}
                     bills = {getMonthlyBill(month)}
+                    handleShowBill = {handleShowBill}
                 />
             </div>
         </section>
