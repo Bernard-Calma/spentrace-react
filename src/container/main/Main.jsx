@@ -40,18 +40,8 @@ const Main = (props) => {
         setPlans(updatePlans)
       }
 
-    const handleGetBills = () => {
-        try {
-            axios.get(`${props.server}/bills/${props.user._id}`)
-            .then(res => props.setBills(res.data))
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     useEffect(()=>{
         getRunningBalanceTarget()
-        handleGetBills()
     },[props.plans])
     return(
         <main className='mainContainer'>

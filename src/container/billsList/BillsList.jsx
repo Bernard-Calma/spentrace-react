@@ -1,5 +1,4 @@
 import {  useState } from 'react'
-import Bill from '../../Components/Bill'
 import './billsList.css'
 import MonthHeader from './MonthHeader'
 import Paid from './Paid'
@@ -39,7 +38,6 @@ const BillsList = (props) => {
                 handlePrevMonth = {handlePrevMonth}
                 handleNextMonth = {handleNextMonth}
             />
-
             <div className="billsContainer">
                 <Unpaid 
                     month = {month}

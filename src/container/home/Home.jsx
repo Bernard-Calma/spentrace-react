@@ -1,6 +1,11 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import CircleGraph from '../../Components/CircleGraph'
+import AddBill from '../add/AddBill'
+import BillsList from '../billsList/BillsList'
+import EdditBill from '../edit/EditBill'
+import ShowBill from '../show/ShowBill'
+import DashBoard from './Dashboard'
 import './home.css'
 
 const Home = (props) => {
@@ -50,19 +55,33 @@ const Home = (props) => {
         }
     }
 
+    const handleGetBills = () => {
+        try {
+            axios.get(`${props.server}/bills/${props.user._id}`)
+            .then(res => setBills(res.data))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     useEffect(()=>{
         getBalance()
         getTarget()
+        handleGetBills()
     }, [])
 
-    // Bills
+    // Bills Information
+    const [bills, setBills] = useState([])
+    const [openBill, setOpenBill] = useState()
     const [totalBillsPaid, setTotalBillsPaid] = useState(0)
     const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
     const [nextUnpaidBill , setNextUnpaidBill] = useState({})
-    const setBills = () => {
+
+    
+    const setBillsPaid = () => {
         let totalPaid = 0;
         let totalUnpaid = 0;
-        props.bills.forEach(bill => {
+        bills.forEach(bill => {
             bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
             setTotalBillsPaid(totalPaid)
             setTotalBillsUnpaid(totalUnpaid)
@@ -70,15 +89,22 @@ const Home = (props) => {
     }
 
     const getNextUpaidBill = () => {
-        let unpaidBill = props.bills[0]
-        props.bills.forEach(bill => {
+        let unpaidBill = bills[0]
+        bills.forEach(bill => {
             if(!bill.paid) return unpaidBill = bill
         })
         setNextUnpaidBill(unpaidBill)
     }
 
+    
+    // Bills
+    const updateBills = (newBill) => {
+        let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
+        setBills(newBillsList); 
+    }
+
     useEffect(() => {
-        setBills()
+        setBillsPaid()
         getNextUpaidBill()
         
     }, [])
@@ -89,52 +115,48 @@ const Home = (props) => {
                 <p onClick={() => props.handleChangeView("Main")}>Budget Tracker</p>
                 <p onClick={() => props.handleChangeView("Bills List")}>Bills List</p>
             </div>
-            <div className='dashboard'>
-                <div className='containerPlansDashboard'>
-                    <div className='graphSubTitle'>
-                        <h2>Expense</h2>
-                        <h2>${totalExpense}</h2>
-                    </div>       
-                    <CircleGraph 
-                        data = {[totalExpense, totalIncome]}
-                        colors = {['red', 'green']}
-                        width = {250}
-                        height = {250}
-                        value = {balance}
-                    />
-                    <div className='graphSubTitle'>
-                        <h2>Income</h2>
-                        <h2>${totalIncome}</h2>
-                    </div>
-                    <div className='containerNextTarget'>
-                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
-                        <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                    </div>
-                </div> 
-                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>
-                {/* TODO: ADD FUNCTION TO SWITCH MONTHS */}
-                <div className='cotnainerBillsDashboard'>
-                    <div className='graphSubTitle'>
-                        <h2>Paid</h2>
-                        <h2>${totalBillsPaid}</h2>
-                    </div>    
-                    <CircleGraph 
-                        data = {[totalBillsUnpaid, totalBillsPaid]}
-                        colors = {['red', 'green']}  
-                        width = {250}
-                        height = {250}
-                        value = {totalBillsUnpaid - totalBillsPaid}
-                    />
-                    <div className='graphSubTitle'>
-                        <h2>Unpaid</h2>
-                        <h2>${totalBillsUnpaid}</h2>
-                    </div>
-                    <div className='containerNextTarget'>
-                        <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
-                        <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
-                    </div>
-                </div>               
-            </div>
+            {
+                props.view === "Home" ?
+                <DashBoard 
+                    totalExpense = {totalExpense}
+                    totalIncome = {totalIncome}
+                    balance = {balance}
+                    nextTarget = {nextTarget}
+                    totalBillsPaid = {totalBillsPaid}
+                    totalBillsUnpaid = {totalBillsUnpaid}
+                    nextUnpaidBill = {nextUnpaidBill}
+                />
+                : props.view === "Bills List" ?
+                <BillsList
+                  handleChangeView = {props.handleChangeView}
+                  handleShowPlan = {props.handleShowPlan}
+                  setBills = {setBills}
+                  setOpenBill = {setOpenBill}
+                  server = {props.server}
+                  user = {props.user}
+                  bills = {bills}
+                />  
+                : props.view === "Add Bill"
+                ? <AddBill
+                    handleChangeView = {props.handleChangeView}
+                    user = {props.user}
+                    server = {props.server}
+                  />
+                : props.view === "Show Bill"
+                ? <ShowBill
+                    handleChangeView = {props.handleChangeView}
+                    openBill = {openBill}
+                />
+                : props.view === "Edit Bill" ?
+                <EdditBill
+                  openBill = {openBill}
+                  server = {props.server}
+                  handleChangeView = {props.handleChangeView} 
+                  updateBills = {updateBills}
+                />
+                : <></>
+                
+            }
 
         </section>
     )

@@ -8,10 +8,6 @@ import Footer from './container/footer/Footer';
 import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
-import BillsList from './container/billsList/BillsList';
-import AddBill from './container/add/AddBill';
-import ShowBill from './container/show/ShowBill';
-import EdditBill from './container/edit/EditBill';
 
 const App = () => { 
   // VARIABLES
@@ -38,10 +34,7 @@ const App = () => {
   const [plans, setPlans] = useState([])
   let [openPlan, setOpenPlan] = useState({});
 
-  // Bills Information
-  const [bills, setBills] = useState([])
-  const [openBill, setOpenBill] = useState()
-
+  let [openBill, setOpenBill] = useState({})
   // FUNCTIONS
   // Login
   const handleLogin = (event) => {
@@ -135,11 +128,6 @@ const App = () => {
     setPlans([...plans, newplan])
   }
 
-  // Bills
-  const updateBills = (newBill) => {
-    let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
-    setPlans(newBillsList); 
-  }
 
   return (
     <div className="App">
@@ -167,7 +155,6 @@ const App = () => {
               handleChangeView = {handleChangeView}
               handleShowPlan = {handleShowPlan}
               getplans = {getplans}
-              setBills = {setBills}
             />
             <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
           </>
@@ -183,11 +170,6 @@ const App = () => {
               openPlan = {openPlan}
               handleChangeView = {handleChangeView}
             />
-          : view === "Show Bill"
-          ? <ShowBill
-              handleChangeView = {handleChangeView}
-              openBill = {openBill}
-            />
           : view === "Edit" ?
             <EditPlan
               openPlan = {openPlan}
@@ -195,38 +177,16 @@ const App = () => {
               handleChangeView = {handleChangeView} 
               updatePlans = {updatePlans}
             />
-          : view === "Edit Bill" ?
-            <EdditBill
-              openBill = {openBill}
-              server = {server}
-              handleChangeView = {handleChangeView} 
-              updateBills = {updateBills}
-            />
           : view === "Home" ?
             <Home 
               user = {user}
               plans = {plans} 
-              bills = {bills}
-              handleChangeView = {handleChangeView}
-            />
-          : view === "Bills List" ?
-            <BillsList
-              handleChangeView = {handleChangeView}
-              handleShowPlan = {handleShowPlan}
-              setBills = {setBills}
-              setOpenBill = {setOpenBill}
+              view = {view}
               server = {server}
-              user = {user}
-              bills = {bills}
-            />  
-            : view === "Add Bill"
-            ? <AddBill
-                handleChangeView = {handleChangeView}
-                user = {user}
-                server = {server}
-                addPlan = {addPlan}
-              />
-            : <></>
+              handleChangeView = {handleChangeView}
+              setOpenBill = {setOpenBill}
+            />
+          : <></>
           }
         </>
         : <LandingPage 
