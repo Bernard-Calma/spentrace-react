@@ -9,6 +9,7 @@ import DashBoard from './Dashboard'
 import './home.css'
 
 const Home = (props) => {
+    let [homeView, setHomeView] = useState('Home')
     // Plans
     const [balance, setBalance] = useState(0)
     const [totalIncome, setTotalIncome] = useState(0)
@@ -113,10 +114,10 @@ const Home = (props) => {
         <section className="containerHome">
             <div className='homeNavBar'>
                 <p onClick={() => props.handleChangeView("Main")}>Budget Tracker</p>
-                <p onClick={() => props.handleChangeView("Bills List")}>Bills List</p>
+                <p onClick={() => setHomeView("Bills List")}>Bills List</p>
             </div>
             {
-                props.view === "Home" ?
+                homeView === "Home" ?
                 <DashBoard 
                     totalExpense = {totalExpense}
                     totalIncome = {totalIncome}
@@ -126,8 +127,7 @@ const Home = (props) => {
                     totalBillsUnpaid = {totalBillsUnpaid}
                     nextUnpaidBill = {nextUnpaidBill}
                 />
-                
-                : props.view === "Bills List" ?
+                : homeView === "Bills List" ?
                 <BillsList
                   handleChangeView = {props.handleChangeView}
                   handleShowPlan = {props.handleShowPlan}
@@ -137,18 +137,18 @@ const Home = (props) => {
                   user = {props.user}
                   bills = {bills}
                 />  
-                : props.view === "Add Bill"
+                : homeView === "Add Bill"
                 ? <AddBill
                     handleChangeView = {props.handleChangeView}
                     user = {props.user}
                     server = {props.server}
                   />
-                : props.view === "Show Bill"
+                : homeView === "Show Bill"
                 ? <ShowBill
                     handleChangeView = {props.handleChangeView}
                     openBill = {openBill}
                 />
-                : props.view === "Edit Bill" ?
+                : homeView === "Edit Bill" ?
                 <EdditBill
                   openBill = {openBill}
                   server = {props.server}
