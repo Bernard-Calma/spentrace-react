@@ -20,7 +20,7 @@ const Main = (props) => {
         runningTarget = 0;
         total = 0;
         let updatePlans = props.plans
-        for (var plan of updatePlans) {
+        updatePlans.forEach( plan => {
           if (plan.expense === true) {
               setTotalExpense(totalExpense += plan.amount)
               runningTarget += plan.amount;
@@ -36,7 +36,7 @@ const Main = (props) => {
               plan.target = runningTarget;
           }
           plan.runningTotal = total;  
-        }
+        })
         setPlans(updatePlans)
       }
 

@@ -19,6 +19,15 @@ const Home = (props) => {
         name: ''
     })
     const [planList] = useState(props.plans)
+
+    // Bills Information
+    const [bills, setBills] = useState([])
+    const [openBill, setOpenBill] = useState()
+    const [totalBillsPaid, setTotalBillsPaid] = useState(0)
+    const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
+    const [nextUnpaidBill , setNextUnpaidBill] = useState({})
+
+    // Plan Functions
     const getBalance = () =>{ 
         let runningBalance = 0
         let totalIncome = 0
@@ -55,37 +64,30 @@ const Home = (props) => {
         }
     }
 
+        
+    // Bills
     const handleGetBills = () => {
         try {
             axios.get(`${props.server}/bills/${props.user._id}`)
-            .then(res => setBills(res.data))
+            .then(res => {
+                setBills(res.data)
+                // Get paid and unpaid graph
+                let totalPaid = 0;
+                let totalUnpaid = 0;
+                res.data.forEach(bill => {
+                    bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
+                    setTotalBillsPaid(totalPaid)
+                    setTotalBillsUnpaid(totalUnpaid)
+                })
+            })
         } catch (err) {
             console.log(err)
         }
     }
 
-    useEffect(()=>{
-        getBalance()
-        getTarget()
-        handleGetBills()
-    }, [])
-
-    // Bills Information
-    const [bills, setBills] = useState([])
-    const [openBill, setOpenBill] = useState()
-    const [totalBillsPaid, setTotalBillsPaid] = useState(0)
-    const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
-    const [nextUnpaidBill , setNextUnpaidBill] = useState({})
-
-    
-    const setBillsPaid = () => {
-        let totalPaid = 0;
-        let totalUnpaid = 0;
-        bills.forEach(bill => {
-            bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
-            setTotalBillsPaid(totalPaid)
-            setTotalBillsUnpaid(totalUnpaid)
-        })
+    const updateBills = (newBill) => {
+        let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
+        setBills(newBillsList); 
     }
 
     const getNextUpaidBill = () => {
@@ -96,18 +98,16 @@ const Home = (props) => {
         setNextUnpaidBill(unpaidBill)
     }
 
-    
-    // Bills
-    const updateBills = (newBill) => {
-        let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
-        setBills(newBillsList); 
-    }
-
-    useEffect(() => {
-        setBillsPaid()
-        getNextUpaidBill()
-        
+    useEffect(()=>{
+        getBalance()
+        getTarget()
     }, [])
+    useEffect(() => {
+        handleGetBills()
+        getNextUpaidBill()
+
+    }, [])
+
 
     return(
         <section className="containerHome">
@@ -126,6 +126,7 @@ const Home = (props) => {
                     totalBillsUnpaid = {totalBillsUnpaid}
                     nextUnpaidBill = {nextUnpaidBill}
                 />
+                
                 : props.view === "Bills List" ?
                 <BillsList
                   handleChangeView = {props.handleChangeView}
