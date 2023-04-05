@@ -141,64 +141,25 @@ const App = () => {
         openBill = {openBill}
       />
       {
-        user.loggedIn ?
-        <>
-        {
-          view === "Main"
-          ?
-          <>
-            <PlanList
-              view={view}
-              user = {user}
-              plans = {plans}
-              server = {server}
-              handleChangeView = {handleChangeView}
-              handleShowPlan = {handleShowPlan}
-              getplans = {getplans}
-            />
-            <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
-          </>
-          : view === "Add"
-          ? <Add
-              handleChangeView = {handleChangeView}
-              user = {user}
-              server = {server}
-              addPlan = {addPlan}
-            />
-          : view === "Show"
-          ? <Show
-              openPlan = {openPlan}
-              handleChangeView = {handleChangeView}
-            />
-          : view === "Edit" ?
-            <EditPlan
-              openPlan = {openPlan}
-              server = {server}
-              handleChangeView = {handleChangeView} 
-              updatePlans = {updatePlans}
-            />
-          : view === "Home" ?
-            <Home 
-              user = {user}
-              plans = {plans} 
-              view = {view}
-              server = {server}
-              handleChangeView = {handleChangeView}
-              setOpenBill = {setOpenBill}
-            />
-          : <></>
-          }
-        </>
+        user.loggedIn 
+        ? <Home 
+            user = {user}
+            plans = {plans} 
+            view = {view}
+            server = {server}
+            handleChangeView = {handleChangeView}
+            setOpenBill = {setOpenBill}
+          />
         : <LandingPage 
-          view = {view}
-          user = {user}
-          loginMessage = {loginMessage}
-          setUser = {setUser}
-          handleChangeUser = {handleChangeUser}
-          handleChangeView = {handleChangeView}
-          handleLogin = {handleLogin}
-          clearPasswords = {clearPasswords}
-        /> 
+            view = {view}
+            user = {user}
+            loginMessage = {loginMessage}
+            setUser = {setUser}
+            handleChangeUser = {handleChangeUser}
+            handleChangeView = {handleChangeView}
+            handleLogin = {handleLogin}
+            clearPasswords = {clearPasswords}
+          /> 
       }
       <Footer />
     </div>
