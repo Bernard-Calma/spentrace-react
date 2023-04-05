@@ -43,11 +43,13 @@ const BillsList = (props) => {
                     month = {month}
                     bills = {getMonthlyBill(month)}
                     handleShowBill = {handleShowBill}
+                    setHomeView = {props.setHomeView}
                 />
                 <Paid 
                     month = {month}
                     bills = {getMonthlyBill(month)}
                     handleShowBill = {handleShowBill}
+                    setHomeView = {props.setHomeView}
                 />
             </div>
         </section>

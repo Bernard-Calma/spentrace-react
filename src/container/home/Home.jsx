@@ -131,6 +131,7 @@ const Home = (props) => {
                 <BillsList
                   handleChangeView = {props.handleChangeView}
                   handleShowPlan = {props.handleShowPlan}
+                  setHomeView = {setHomeView}
                   setBills = {setBills}
                   setOpenBill = {setOpenBill}
                   server = {props.server}
@@ -145,7 +146,7 @@ const Home = (props) => {
                   />
                 : homeView === "Show Bill"
                 ? <ShowBill
-                    handleChangeView = {props.handleChangeView}
+                    setHomeView = {props.handleChangeView}
                     openBill = {openBill}
                 />
                 : homeView === "Edit Bill" ?

@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import Main from './container/main/Main';
+import Main from './container/plan/PlansList';
 import Add from './container/add/Add';
 import Show from './container/show/Show';
 import Header from './container/header/Header';

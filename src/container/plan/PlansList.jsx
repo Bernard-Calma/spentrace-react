@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Plan from "../../Components/Plan";
 import Categories from "./Categories";
-import "./main.css"
+import "./PlanList.css"
 
 const Main = (props) => {
     const [plans, setPlans] = useState(props.plans.sort((a, b) => (a.date > b.date) ? 1 : -1))
