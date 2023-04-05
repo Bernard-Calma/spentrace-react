@@ -1,6 +1,5 @@
 import './App.css';
 import { useState } from 'react';
-import Main from './container/plan/PlansList';
 import Add from './container/add/Add';
 import Show from './container/show/Show';
 import Header from './container/header/Header';
@@ -8,6 +7,7 @@ import Footer from './container/footer/Footer';
 import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
+import PlanList from './container/plan/PlansList';
 
 const App = () => { 
   // VARIABLES
@@ -147,7 +147,7 @@ const App = () => {
           view === "Main"
           ?
           <>
-            <Main
+            <PlanList
               view={view}
               user = {user}
               plans = {plans}

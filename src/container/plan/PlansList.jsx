@@ -3,7 +3,7 @@ import Plan from "../../Components/Plan";
 import Categories from "./Categories";
 import "./PlanList.css"
 
-const Main = (props) => {
+const PlanList = (props) => {
     const [plans, setPlans] = useState(props.plans.sort((a, b) => (a.date > b.date) ? 1 : -1))
     let [totalIncome, setTotalIncome] = useState(0);
     let [totalExpense, setTotalExpense] = useState(0);
@@ -63,4 +63,4 @@ const Main = (props) => {
     )
 }
 
-export default Main;
+export default PlanList;
