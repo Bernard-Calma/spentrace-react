@@ -150,14 +150,7 @@ const App = () => {
             setOpenBill = {setOpenBill}
           />
         : <LandingPage 
-            view = {view}
-            user = {user}
-            loginMessage = {loginMessage}
             setUser = {setUser}
-            handleChangeUser = {handleChangeUser}
-            handleChangeView = {handleChangeView}
-            handleLogin = {handleLogin}
-            clearPasswords = {clearPasswords}
           /> 
       }
       <Footer />

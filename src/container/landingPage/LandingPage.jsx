@@ -19,6 +19,10 @@ const LandingPage = (props) =>{
         setLoginUser({...loginUser, [event.target.name]: event.target.value})
     }
 
+    const clearPasswords = () => {
+        setLoginUser({...loginUser, password: "", verifyPassword: ""})
+    }
+
     // Register
     const handleSubmitRegister = (e) => {
         e.preventDefault();
@@ -26,7 +30,7 @@ const LandingPage = (props) =>{
         // USERNAME CHECK
         let checkSpaceUserName = loginUser.username.match(" ")
         if(checkSpaceUserName) {
-            props.clearPasswords()
+            clearPasswords()
             setErrorMessage("Username must not contain any spaces.")
             return
         }
@@ -36,13 +40,13 @@ const LandingPage = (props) =>{
         let checkPasswordLength = loginUser.password.length > 5
         // console.log(checkPasswordLength)
         if (!checkPasswordLength) {
-            props.clearPasswords()
+            clearPasswords()
             setErrorMessage("Password should be at least 6 characters.")
         } else if (checkSpacePassword) {
-            props.clearPasswords()
+            clearPasswords()
             setErrorMessage("Password must not contain any spaces.")
         } else if (!verifyPasswordMatch){
-            props.clearPasswords()
+            clearPasswords()
             setErrorMessage("Password does not match.")
         } else {
             console.log("Register Sucessfully")
@@ -57,11 +61,16 @@ const LandingPage = (props) =>{
             //     // console.log(data)
             //     if(data.error){
             //         setRegisterMessage("Username is already taken")
-            //         props.clearPasswords()
             //     } else {
-            //         setRegisterMessage("Registration Complete")
+            //         setErrorMessage("Registration Complete")
             //     }
             // })
+            setLoginUser({...loginUser, password: "", verifyPassword: ""})
+            props.setUser({
+                userID: 0,
+                username: loginUser.username,
+                loggedIn: true
+            })
         }
     }
     return(
@@ -86,7 +95,7 @@ const LandingPage = (props) =>{
                     handleChangeUser = {handleChangeUser}
                     setLandingPageView = {setLandingPageView}
                     handleSubmitRegister = {handleSubmitRegister}
-                    clearPasswords = {props.clearPasswords}
+                    clearPasswords = {clearPasswords}
                 />
             }
         </div>
