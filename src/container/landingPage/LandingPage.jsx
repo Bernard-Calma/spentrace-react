@@ -1,11 +1,23 @@
-import Login from "../login/Login";
-import Register from "../login/Register";
+import Login from "./login/Login";
+import Register from "./login/Register";
 import "./landingPage.css"
-// MainPage Image
+// Landing Page Image
 import mainPageImage from "../../img/MainPage.png"
 import mobilePage from "../../img/MobilePage.png"
+import { useState } from "react";
 
 const LandingPage = (props) =>{
+    const [loginUser, setLoginUser] = useState({
+        username: "",
+        password: "",
+        passwordCheck: "",
+        errorMessage: "",
+    })
+    let [landingPageView, setLandingPageView] = useState("Login")
+
+    const handleChangeUser = (event) => {
+        setLoginUser({...loginUser, [event.target.name]: event.target.value})
+    }
     return(
         <div className="containerLandingPage">
             <div className="introduction">
@@ -15,24 +27,20 @@ const LandingPage = (props) =>{
                 </div>
                 <img src={mainPageImage} alt="Main Page" className="mainPageImage"/>
             </div>
-            { props.view === "Register"
-            ?
-            <Register 
-                setUser = {props.setUser}
-                user = {props.user}
-                handleChangeUser = {props.handleChangeUser}
-                handleChangeView = {props.handleChangeView}
-                clearPasswords = {props.clearPasswords}
-            />
-            :
-            <Login 
-                handleChangeUser = {props.handleChangeUser}
-                handleLogin = {props.handleLogin}
-                handleChangeView = {props.handleChangeView}
-                setUser = {props.setUser}
-                user = {props.user}
-                loginMessage = {props.loginMessage}
-            />
+            { landingPageView === "Login"
+            ?   <Login 
+                    loginUser = {loginUser}
+                    handleChangeUser = {handleChangeUser}
+                    handleLogin = {props.handleLogin}
+                    setLandingPageView = {setLandingPageView}
+                />
+            :   <Register 
+                    loginUser = {loginUser}
+                    setUser = {props.setUser}
+                    handleChangeUser = {props.handleChangeUser}
+                    handleChangeView = {props.handleChangeView}
+                    clearPasswords = {props.clearPasswords}
+                />
             }
         </div>
     )

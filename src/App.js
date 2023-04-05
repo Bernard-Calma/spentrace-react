@@ -24,9 +24,8 @@ const App = () => {
   
   // User information
   const [user, setUser] = useState({
+    id: "",
     username: "",
-    password: "",
-    verifyPassword: "",
     loggedIn: false
   })
   

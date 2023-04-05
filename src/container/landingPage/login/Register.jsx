@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BackButton from "../../Components/Buttons/BackButton"
+import BackButton from "../../../Components/Buttons/BackButton"
 
 const Register = (props) => {
     let [registerMessage, setRegisterMessage] = useState("")
