@@ -1,10 +1,13 @@
+import { useState } from "react";
+import axios from "axios";
+
 import Login from "./login/Login";
 import Register from "./login/Register";
 import "./landingPage.css"
 // Landing Page Image
 import mainPageImage from "../../img/MainPage.png"
 import mobilePage from "../../img/MobilePage.png"
-import { useState } from "react";
+
 
 const LandingPage = (props) =>{
     const [loginUser, setLoginUser] = useState({
@@ -77,26 +80,17 @@ const LandingPage = (props) =>{
       // Login
     const handleLogin = (event) => {
         event.preventDefault();
-        fetch(props.server+"/users/login", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                'Access-Control-Allow-Origin': "*"
-            },
-            body: JSON.stringify(loginUser)
+        axios.post(props.server+"/users/login", loginUser)
+        .then(res => {
+            const data = res.data
+            props.setUser({
+                userID: data._id,
+                username: data.username,
+                loggedIn: true
+            })
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.username) {
-                props.setUser({
-                    userID: data._id,
-                    username: data.username,
-                    loggedIn: true
-                })
-            } else {
-                errorMessage(data.message) 
-            }
+        .catch(error => {
+            setErrorMessage(error.response.data.message )
         })
     }
 
@@ -112,6 +106,7 @@ const LandingPage = (props) =>{
             { landingPageView === "Login"
             ?   <Login 
                     loginUser = {loginUser}
+                    errorMessage = {errorMessage}
                     handleChangeUser = {handleChangeUser}
                     handleLogin = {handleLogin}
                     setLandingPageView = {setLandingPageView}

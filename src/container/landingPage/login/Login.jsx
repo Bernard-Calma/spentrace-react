@@ -4,10 +4,10 @@ const Login = (props) => {
         <div className="containerLogin">
             <h1 className="loginTitle"> LOGIN </h1>
             <form className="formLogin" onSubmit={props.handleLogin}>
-                <input type="text" name="username" placeholder="username" value={props.loginUser.username} onChange={props.handleChangeUser}/>
-                <input type="password" name="password" placeholder="password" value={props.loginUser.password} onChange={props.handleChangeUser}/>
+                <input type="text" name="username" placeholder="username" value={props.loginUser.username} onChange={props.handleChangeUser} required/>
+                <input type="password" name="password" placeholder="password" value={props.loginUser.password} onChange={props.handleChangeUser} required/>
                 {
-                    props.loginMessage !== ""? <p className="loginMessage">{props.loginMessage}</p> : <></>
+                    props.errorMessage !== ""? <p className="loginMessage">{props.errorMessage}</p> : <></>
                 }
                 <button className="btnLogin">Login</button>
             </form>
