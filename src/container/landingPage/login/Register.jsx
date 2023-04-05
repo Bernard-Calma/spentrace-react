@@ -4,7 +4,7 @@ const Register = (props) => {
     return(
         <div className="containerRegister">
             <div className="registerHeader">
-                <BackButton handleChangeView = {props.handleChangeView}/>
+                <BackButton handleChangeView = {() => props.handleChangeView("Login")}/>
                 <h1 className="registerTitle">REGISTER</h1>
             </div>
             <form className="formRegister" onSubmit={props.handleSubmitRegister}>

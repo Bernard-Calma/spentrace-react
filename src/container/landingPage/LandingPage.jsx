@@ -26,6 +26,16 @@ const LandingPage = (props) =>{
         setLoginUser({...loginUser, password: "", verifyPassword: ""})
     }
 
+    const handleChangeView = (view) => {
+        setLoginUser({
+            username: "",
+            password: "",
+            verifyPassword: "",
+        })
+        clearPasswords()
+        setLandingPageView(view)
+    }
+
     // Register
     const handleSubmitRegister = (event) => {
         event.preventDefault();
@@ -53,27 +63,19 @@ const LandingPage = (props) =>{
             setErrorMessage("Password does not match.")
         } else {
             console.log("Register Sucessfully")
-            // fetch("http://localhost:8000/users/register", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            //     body: JSON.stringify(loginUser)
-            // }).then(res => res.json())
-            // .then(data => {
-            //     // console.log(data)
-            //     if(data.error){
-            //         setRegisterMessage("Username is already taken")
-            //     } else {
-            //         setErrorMessage("Registration Complete")
-            //     }
+            // axios.post(props.server + "/users/register", loginUser)
+            // .then(res => {
+            //     const data = res.data
+            //     props.setUser({
+            //         userID: data._id,
+            //         username: data.username,
+            //         loggedIn: true
+            //     })
             // })
-            setLoginUser({...loginUser, password: "", verifyPassword: ""})
-            props.setUser({
-                userID: 0,
-                username: loginUser.username,
-                loggedIn: true
-            })
+            // .catch(error => {
+            //     clearPasswords()
+            //     setErrorMessage(error.response.data.message )
+            // })
         }
     }
 
@@ -90,6 +92,7 @@ const LandingPage = (props) =>{
             })
         })
         .catch(error => {
+            clearPasswords()
             setErrorMessage(error.response.data.message )
         })
     }
@@ -108,14 +111,14 @@ const LandingPage = (props) =>{
                     loginUser = {loginUser}
                     errorMessage = {errorMessage}
                     handleChangeUser = {handleChangeUser}
-                    handleLogin = {handleLogin}
-                    setLandingPageView = {setLandingPageView}
+                    handleChangeView = {handleChangeView}
+                    handleLogin = {handleLogin}   
                 />
             :   <Register 
                     loginUser = {loginUser}
                     errorMessage = {errorMessage}
                     handleChangeUser = {handleChangeUser}
-                    setLandingPageView = {setLandingPageView}
+                    handleChangeView = {handleChangeView}
                     handleSubmitRegister = {handleSubmitRegister}
                     clearPasswords = {clearPasswords}
                 />
