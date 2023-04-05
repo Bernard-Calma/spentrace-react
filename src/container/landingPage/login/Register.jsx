@@ -56,15 +56,15 @@ const Register = (props) => {
             <form className="formRegister" onSubmit={handleSubmitRegister}>
                 <label htmlFor="username">
                     Username: 
-                    <input type="text" name="username" placeholder="username" value={props.user.username} onChange={props.handleChange} required/>
+                    <input type="text" name="username" placeholder="username" value={props.loginUser.username} onChange={props.handleChangeUser} required/>
                 </label>
                 <label htmlFor="password">
                     Password: 
-                    <input type="password" name="password" placeholder="password" value={props.user.password} onChange={props.handleChange} required/>
+                    <input type="password" name="password" placeholder="password" value={props.loginUser.password} onChange={props.handleChangeUser} required/>
                 </label>
                 <label htmlFor="verifyPassword">
                     Verify Password: 
-                    <input type="password" name="verifyPassword" placeholder="verify password" value={props.user.verifyPassword} onChange={props.handleChange} required/>
+                    <input type="password" name="verifyPassword" placeholder="verify password" value={props.loginUser.verifyPassword} onChange={props.handleChangeUser} required/>
                 </label>
                 {
                     registerMessage !== ""? <p className="loginMessage">{registerMessage}</p> : <></>

@@ -11,7 +11,7 @@ const Login = (props) => {
                 }
                 <button className="btnLogin">Login</button>
             </form>
-            <p className="registerText">Don't have an account yet? <span onClick={() => props.handleChangeView("Register")} className="registerText registerLink">Register Here</span></p>
+            <p className="registerText">Don't have an account yet? <span onClick={() => props.setLandingPageView("Register")} className="registerText registerLink">Register Here</span></p>
         </div>
     )
 }

@@ -10,7 +10,7 @@ const LandingPage = (props) =>{
     const [loginUser, setLoginUser] = useState({
         username: "",
         password: "",
-        passwordCheck: "",
+        verifyPassword: "",
         errorMessage: "",
     })
     let [landingPageView, setLandingPageView] = useState("Login")
@@ -36,9 +36,8 @@ const LandingPage = (props) =>{
                 />
             :   <Register 
                     loginUser = {loginUser}
-                    setUser = {props.setUser}
-                    handleChangeUser = {props.handleChangeUser}
-                    handleChangeView = {props.handleChangeView}
+                    handleChangeUser = {handleChangeUser}
+                    setLandingPageView = {setLandingPageView}
                     clearPasswords = {props.clearPasswords}
                 />
             }
