@@ -3,7 +3,7 @@ const Login = (props) => {
     return(
         <div className="containerLogin">
             <h1 className="loginTitle"> LOGIN </h1>
-            <form className="formLogin" /*onSubmit={props.handleLogin}*/>
+            <form className="formLogin" onSubmit={props.handleLogin}>
                 <input type="text" name="username" placeholder="username" value={props.loginUser.username} onChange={props.handleChangeUser}/>
                 <input type="password" name="password" placeholder="password" value={props.loginUser.password} onChange={props.handleChangeUser}/>
                 {

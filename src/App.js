@@ -35,38 +35,6 @@ const App = () => {
 
   let [openBill, setOpenBill] = useState({})
   // FUNCTIONS
-  // Login
-  const handleLogin = (event) => {
-    event.preventDefault();
-    fetch(server+"/users/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': "*"
-        },
-        body: JSON.stringify(user)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.username) {
-        delete user.password
-        setUser({...user, ...data, loggedIn: true})
-      } else {
-        setLoginMessage(data.message) 
-      }
-      return data
-    })
-    .catch(err => {
-      console.error("Error : ", err)
-      clearPasswords()
-      setLoginMessage(err.message)
-    })
-    .then(data => {
-      getplans(data._id)
-      setView("Main")
-    })
-  }
 
   const handleSignout = () => {
     console.log("Sign Out Completely")
@@ -81,16 +49,8 @@ const App = () => {
     })
   }
 
-  const handleChangeUser = (event) => {
-    event.preventDefault()
-    setUser({...user, [event.target.name]: event.target.value})
-  }
 
-  const clearPasswords = () => {
-    setUser({...user, password: "", verifyPassword: ""})
-  }
-
-  // View
+// View
   // Handle view change while navigating
   const handleChangeView = (view) => {
     // console.log("View changed to ", view)
@@ -151,6 +111,7 @@ const App = () => {
           />
         : <LandingPage 
             setUser = {setUser}
+            server = {server}
           /> 
       }
       <Footer />

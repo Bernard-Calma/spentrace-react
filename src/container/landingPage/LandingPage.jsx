@@ -24,8 +24,8 @@ const LandingPage = (props) =>{
     }
 
     // Register
-    const handleSubmitRegister = (e) => {
-        e.preventDefault();
+    const handleSubmitRegister = (event) => {
+        event.preventDefault();
         // console.log(loginUser)
         // USERNAME CHECK
         let checkSpaceUserName = loginUser.username.match(" ")
@@ -73,6 +73,33 @@ const LandingPage = (props) =>{
             })
         }
     }
+
+      // Login
+    const handleLogin = (event) => {
+        event.preventDefault();
+        fetch(props.server+"/users/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                'Access-Control-Allow-Origin': "*"
+            },
+            body: JSON.stringify(loginUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.username) {
+                props.setUser({
+                    userID: data._id,
+                    username: data.username,
+                    loggedIn: true
+                })
+            } else {
+                errorMessage(data.message) 
+            }
+        })
+    }
+
     return(
         <div className="containerLandingPage">
             <div className="introduction">
@@ -86,7 +113,7 @@ const LandingPage = (props) =>{
             ?   <Login 
                     loginUser = {loginUser}
                     handleChangeUser = {handleChangeUser}
-                    handleLogin = {props.handleLogin}
+                    handleLogin = {handleLogin}
                     setLandingPageView = {setLandingPageView}
                 />
             :   <Register 
