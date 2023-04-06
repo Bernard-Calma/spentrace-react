@@ -8,6 +8,10 @@ const Register = (props) => {
                 <h1 className="registerTitle">REGISTER</h1>
             </div>
             <form className="formRegister" onSubmit={props.handleSubmitRegister}>
+                <label htmlFor="email">
+                    Email: 
+                    <input type="email" name="email" placeholder="email" value={props.loginUser.email} onChange={props.handleChangeUser} required/>
+                </label>
                 <label htmlFor="username">
                     Username: 
                     <input type="text" name="username" placeholder="username" value={props.loginUser.username} onChange={props.handleChangeUser} required/>

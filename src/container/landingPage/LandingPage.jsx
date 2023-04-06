@@ -28,6 +28,7 @@ const LandingPage = (props) =>{
 
     const handleChangeView = (view) => {
         setLoginUser({
+            email: "",
             username: "",
             password: "",
             verifyPassword: "",
@@ -62,20 +63,21 @@ const LandingPage = (props) =>{
             clearPasswords()
             setErrorMessage("Password does not match.")
         } else {
-            console.log("Register Sucessfully")
-            // axios.post(props.server + "/users/register", loginUser)
-            // .then(res => {
-            //     const data = res.data
-            //     props.setUser({
-            //         userID: data._id,
-            //         username: data.username,
-            //         loggedIn: true
-            //     })
-            // })
-            // .catch(error => {
-            //     clearPasswords()
-            //     setErrorMessage(error.response.data.message )
-            // })
+            axios.post(props.server + "/users/register", loginUser)
+            .then(res => {
+                console.log(res) 
+                const data = res.data
+                props.setUser({
+                    userID: data._id,
+                    username: data.username,
+                    loggedIn: true
+                })
+            }) 
+            .catch(error => {
+                // clearPasswords()
+                console.log(error)
+                setErrorMessage(error.response.data.message )
+            })
         }
     }
 
@@ -84,6 +86,7 @@ const LandingPage = (props) =>{
         event.preventDefault();
         axios.post(props.server+"/users/login", loginUser)
         .then(res => {
+            console.log(res.data)
             const data = res.data
             props.setUser({
                 userID: data._id,
