@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Login from "./login/Login";
@@ -10,6 +10,7 @@ import mobilePage from "../../img/MobilePage.png"
 
 
 const LandingPage = (props) =>{
+
     const [loginUser, setLoginUser] = useState({
         username: "",
         password: "",
@@ -51,7 +52,7 @@ const LandingPage = (props) =>{
         // PASSWORD CHECK
         let verifyPasswordMatch = loginUser.password === loginUser.verifyPassword
         let checkSpacePassword = loginUser.password.match(" ") || loginUser.verifyPassword.match(" ")
-        let checkPasswordLength = loginUser.password.length > 5
+        let checkPasswordLength = true
         // console.log(checkPasswordLength)
         if (!checkPasswordLength) {
             clearPasswords()
@@ -63,7 +64,7 @@ const LandingPage = (props) =>{
             clearPasswords()
             setErrorMessage("Password does not match.")
         } else {
-            axios.post(props.server + "/users/register", loginUser)
+            axios.post(props.server + "/users/register", loginUser, {withCredentials: true})
             .then(res => {
                 console.log(res) 
                 const data = res.data
@@ -84,17 +85,25 @@ const LandingPage = (props) =>{
       // Login
     const handleLogin = (event) => {
         event.preventDefault();
-        axios.post(props.server+"/users/login", loginUser)
+        axios({
+            method: 'post',
+            url: props.server+"/users/login",
+            data: loginUser,
+            withCredentials: true
+        })
         .then(res => {
-            console.log(res.data)
-            const data = res.data
+            console.log("Login: ",res)
+            const user = res.data.user
+            localStorage.setItem('sessionID',res.data.sessionID)
+            console.log(localStorage)
             props.setUser({
-                userID: data._id,
-                username: data.username,
+                userID: user._id,
+                username: user.username,
                 loggedIn: true
             })
         })
         .catch(error => {
+            console.log("error", error)
             clearPasswords()
             setErrorMessage(error.response.data.message )
         })

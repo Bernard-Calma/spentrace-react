@@ -1,13 +1,11 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios'
+
 import './App.css';
-import { useState } from 'react';
-import Add from './container/add/Add';
-import Show from './container/show/Show';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
-import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
-import PlanList from './container/plan/PlansList';
 
 const App = () => { 
   // VARIABLES
@@ -20,7 +18,6 @@ const App = () => {
 
   // View
   const [view, setView] = useState("Login")
-  const [loginMessage, setLoginMessage] = useState("")
   
   // User information
   const [user, setUser] = useState({
@@ -35,20 +32,19 @@ const App = () => {
 
   let [openBill, setOpenBill] = useState({})
   // FUNCTIONS
-
-  const handleSignout = () => {
-    console.log("Sign Out Completely")
-    fetch(server+"/users/signout")
-    .then(res => res.json())
-    .then(data => setLoginMessage(data.message))
-    setUser({
-      username: "",
-      password: "",
-      verifyPassword: "",
-      loggedIn: false
+  const checkCookieAuth = () => {
+    axios.get(`${server}/`, {withCredentials: true})
+    .then(res => {
+      if (res.data) {
+        const userData = res.data
+        setUser({
+          id: userData._id,
+          username: userData.username,
+          loggedIn: true
+        })
+      }
     })
   }
-
 
 // View
   // Handle view change while navigating
@@ -87,6 +83,9 @@ const App = () => {
     setPlans([...plans, newplan])
   }
 
+  useEffect(() => {
+    checkCookieAuth()
+  },[])
 
   return (
     <div className="App">

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import CircleGraph from '../../Components/CircleGraph'
 import AddBill from '../add/AddBill'
 import BillsList from '../billsList/BillsList'
 import EdditBill from '../edit/EditBill'
@@ -29,6 +28,10 @@ const Home = (props) => {
     const [nextUnpaidBill , setNextUnpaidBill] = useState({})
 
     // Plan Functions
+    const getPlanList = () => {
+        axios.get(`${props.server}/plans/`, { withCredentials: true })
+        .then(res => console.log("All Plans: ", res))
+    }
     const getBalance = () =>{ 
         let runningBalance = 0
         let totalIncome = 0
@@ -69,7 +72,7 @@ const Home = (props) => {
     // Bills
     const handleGetBills = () => {
         try {
-            axios.get(`${props.server}/bills/${props.user._id}`)
+            axios.get(`${props.server}/bills/${props.user._id}`, { withCredentials: true })
             .then(res => {
                 setBills(res.data)
                 // Get paid and unpaid graph
@@ -99,15 +102,16 @@ const Home = (props) => {
         setNextUnpaidBill(unpaidBill)
     }
 
-    useEffect(()=>{
-        getBalance()
-        getTarget()
-    }, [])
-    useEffect(() => {
-        handleGetBills()
-        getNextUpaidBill()
+    // useEffect(()=>{
+    //     getPlanList()
+    //     getBalance()
+    //     getTarget()
+    // }, [])
+    // useEffect(() => {
+    //     handleGetBills()
+    //     getNextUpaidBill()
 
-    }, [])
+    // }, [])
 
 
     return(
