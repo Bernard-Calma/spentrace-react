@@ -94,8 +94,6 @@ const LandingPage = (props) =>{
         .then(res => {
             console.log("Login: ",res)
             const user = res.data.user
-            localStorage.setItem('sessionID',res.data.sessionID)
-            console.log(localStorage)
             props.setUser({
                 userID: user._id,
                 username: user.username,
