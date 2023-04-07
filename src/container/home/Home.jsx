@@ -8,7 +8,11 @@ import DashBoard from './Dashboard'
 import './home.css'
 
 const Home = (props) => {
+    // VARIABLES
+
+    // Views
     let [homeView, setHomeView] = useState('Home')
+
     // Plans
     const [balance, setBalance] = useState(0)
     const [totalIncome, setTotalIncome] = useState(0)
@@ -18,25 +22,32 @@ const Home = (props) => {
         date: '',
         name: ''
     })
-    const [planList] = useState(props.plans)
+    const [plans, setPlans] = useState([])
 
-    // Bills Information
+    // Bills
     const [bills, setBills] = useState([])
     const [openBill, setOpenBill] = useState()
     const [totalBillsPaid, setTotalBillsPaid] = useState(0)
     const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
     const [nextUnpaidBill , setNextUnpaidBill] = useState({})
 
+    // ------------------------------ END OF VARIABLES ------------------------------
+
     // Plan Functions
     const getPlanList = () => {
-        axios.get(`${props.server}/plans/`, { withCredentials: true })
-        .then(res => console.log("All Plans: ", res))
+        axios({ 
+            method: "GET",
+            url: `${props.server}/plans/${props.user.id}`,
+            withCredentials: true 
+        })
+        .then(res => setPlans(res.data))
     }
+
     const getBalance = () =>{ 
         let runningBalance = 0
         let totalIncome = 0
         let totalExpense = 0
-        for (const plan of planList) {
+        for (const plan of plans) {
             if (plan.expense) {
                 runningBalance -= plan.amount
                 totalExpense += plan.amount
@@ -56,7 +67,7 @@ const Home = (props) => {
             amount: 0,
             date: ""
         }
-        for (const bill of planList) {
+        for (const bill of plans) {
             bill.expense ? balance -= bill.amount :  balance += bill.amount
             if (balance < 0) {
                 nextTarget.amount = balance;
@@ -102,11 +113,11 @@ const Home = (props) => {
         setNextUnpaidBill(unpaidBill)
     }
 
-    // useEffect(()=>{
-    //     getPlanList()
-    //     getBalance()
-    //     getTarget()
-    // }, [])
+    useEffect(()=>{
+        getPlanList()
+        // getBalance()
+        // getTarget()
+    }, [])
     // useEffect(() => {
     //     handleGetBills()
     //     getNextUpaidBill()
