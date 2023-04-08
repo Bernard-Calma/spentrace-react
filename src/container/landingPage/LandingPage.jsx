@@ -93,7 +93,7 @@ const LandingPage = (props) =>{
         }
     }
 
-      // Login
+    // Login
     const handleLogin = (event) => {
         event.preventDefault();
         axios({
