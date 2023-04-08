@@ -6,6 +6,7 @@ import EdditBill from '../edit/EditBill'
 import PlanList from '../plan/PlansList'
 import ShowBill from '../show/ShowBill'
 import DashBoard from './Dashboard'
+import EmptyDashboard from './EmptyDashboard'
 import './home.css'
 
 const Home = (props) => {
@@ -95,53 +96,55 @@ const Home = (props) => {
 
     return(
         <section className="containerHome">
-            <div className='homeNavBar'>
-                <p onClick={() => handleChangeView("Plan")}>Budget Tracker</p>
-                <p onClick={() => handleChangeView("Bills List")}>Bills List</p>
-            </div>
-            {
-                homeView === "Home" ?
-                <DashBoard 
-                    plans = {plans}
-                    totalBillsPaid = {totalBillsPaid}
-                    totalBillsUnpaid = {totalBillsUnpaid}
-                    nextUnpaidBill = {nextUnpaidBill}
-                />
-                : homeView === "Plan" ? 
-                <PlanList 
-                    plans = {plans}
-                />
-                : homeView === "Bills List" ?
-                <BillsList
-                  handleChangeView = {props.handleChangeView}
-                  handleShowPlan = {props.handleShowPlan}
-                  setHomeView = {setHomeView}
-                  setBills = {setBills}
-                  setOpenBill = {setOpenBill}
-                  server = {props.server}
-                  user = {props.user}
-                  bills = {bills}
-                />  
-                : homeView === "Add Bill"
-                ? <AddBill
+            {plans.length === 0 
+                ? <EmptyDashboard />
+                : <>
+                    <div className='homeNavBar'>
+                        <p onClick={() => handleChangeView("Plan")}>Budget Tracker</p>
+                        <p onClick={() => handleChangeView("Bills List")}>Bills List</p>
+                    </div>
+                {homeView === "Home"
+                    ? <DashBoard 
+                        plans = {plans}
+                        totalBillsPaid = {totalBillsPaid}
+                        totalBillsUnpaid = {totalBillsUnpaid}
+                        nextUnpaidBill = {nextUnpaidBill}
+                    />
+                    : homeView === "Plan" 
+                    ? <PlanList 
+                        plans = {plans}
+                    />
+                    : homeView === "Bills List" 
+                    ? <BillsList
                     handleChangeView = {props.handleChangeView}
-                    user = {props.user}
+                    handleShowPlan = {props.handleShowPlan}
+                    setHomeView = {setHomeView}
+                    setBills = {setBills}
+                    setOpenBill = {setOpenBill}
                     server = {props.server}
-                  />
-                : homeView === "Show Bill"
-                ? <ShowBill
-                    setHomeView = {props.handleChangeView}
+                    user = {props.user}
+                    bills = {bills}
+                    />  
+                    : homeView === "Add Bill"
+                    ? <AddBill
+                        handleChangeView = {props.handleChangeView}
+                        user = {props.user}
+                        server = {props.server}
+                    />
+                    : homeView === "Show Bill"
+                    ? <ShowBill
+                        setHomeView = {props.handleChangeView}
+                        openBill = {openBill}
+                    />
+                    : homeView === "Edit Bill" 
+                    ? <EdditBill
                     openBill = {openBill}
-                />
-                : homeView === "Edit Bill" ?
-                <EdditBill
-                  openBill = {openBill}
-                  server = {props.server}
-                  handleChangeView = {props.handleChangeView} 
-                  updateBills = {updateBills}
-                />
-                : <></>
-                
+                    server = {props.server}
+                    handleChangeView = {props.handleChangeView} 
+                    updateBills = {updateBills}
+                    />
+                    : <></>
+                }</> 
             }
 
         </section>
