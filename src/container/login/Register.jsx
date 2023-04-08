@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import BackButton from "../../Components/Buttons/BackButton"
 
@@ -29,21 +30,21 @@ const Register = (props) => {
             setRegisterMessage("Password does not match.")
         } else {
             // console.log("Register Sucessfully")
-            fetch("http://localhost:8000/users/register", {
+            axios({
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(props.user)
-            }).then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                if(data.error){
-                    setRegisterMessage("Username is already taken")
-                    props.clearPasswords()
-                } else {
-                    setRegisterMessage("Registration Complete")
-                }
+                url: `${props.server}/users/register`,
+                data: props.user,
+                withCredentials: true,
+            })
+            .then(res => {
+                setRegisterMessage("Registration Complete")
+                props.setUser({...res.data.user, loggedIn: true})
+                props.handleChangeView("Main")
+                   
+            })
+            .catch(error => {
+                console.log(error)
+                setRegisterMessage(error.response.data.message)
             })
         }
     }
@@ -54,17 +55,21 @@ const Register = (props) => {
                 <h1 className="registerTitle">REGISTER</h1>
             </div>
             <form className="formRegister" onSubmit={handleSubmitRegister}>
+                <label htmlFor="email">
+                    Email: 
+                    <input type="text" name="email" placeholder="username" value={props.user.email} onChange={props.handleChangeUser} required/>
+                </label>
                 <label htmlFor="username">
                     Username: 
-                    <input type="text" name="username" placeholder="username" value={props.user.username} onChange={props.handleChange} required/>
+                    <input type="text" name="username" placeholder="username" value={props.user.username} onChange={props.handleChangeUser} required/>
                 </label>
                 <label htmlFor="password">
                     Password: 
-                    <input type="password" name="password" placeholder="password" value={props.user.password} onChange={props.handleChange} required/>
+                    <input type="password" name="password" placeholder="password" value={props.user.password} onChange={props.handleChangeUser} required/>
                 </label>
                 <label htmlFor="verifyPassword">
                     Verify Password: 
-                    <input type="password" name="verifyPassword" placeholder="verify password" value={props.user.verifyPassword} onChange={props.handleChange} required/>
+                    <input type="password" name="verifyPassword" placeholder="verify password" value={props.user.verifyPassword} onChange={props.handleChangeUser} required/>
                 </label>
                 {
                     registerMessage !== ""? <p className="loginMessage">{registerMessage}</p> : <></>

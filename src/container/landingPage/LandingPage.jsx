@@ -18,6 +18,7 @@ const LandingPage = (props) =>{
             { props.view === "Register"
             ?
             <Register 
+                server = {props.server}
                 setUser = {props.setUser}
                 user = {props.user}
                 handleChangeUser = {props.handleChangeUser}

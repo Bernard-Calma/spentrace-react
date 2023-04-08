@@ -25,6 +25,7 @@ const App = () => {
   
   // User information
   const [user, setUser] = useState({
+    email: "",
     username: "",
     password: "",
     verifyPassword: "",
@@ -76,6 +77,7 @@ const App = () => {
     .then(res => res.json())
     .then(data => setLoginMessage(data.message))
     setUser({
+      email: "",
       username: "",
       password: "",
       verifyPassword: "",
@@ -193,6 +195,7 @@ const App = () => {
           }
         </>
         : <LandingPage 
+          server = {server}
           view = {view}
           user = {user}
           loginMessage = {loginMessage}
