@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import axios from 'axios'
 import BackButton from '../../Components/Buttons/BackButton'
 import './Add.css'
 
 const AddPlan = (props) => {
-    let [newPlan, setNewPlan] = useState({userId:props.user._id})
+    const [newPlan, setNewPlan] = useState({userId: props.user.id})
 
     const handleChange=(e)=>{
         // Handle input changes
@@ -14,16 +15,14 @@ const AddPlan = (props) => {
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
-        fetch(props.server+"/plans/", {
+        axios({
             method: "POST",
-            credentials: "include",
-            headers: {
-            "Content-Type": "application/json",
-        },
-            body: JSON.stringify(newPlan)
-        }).then(res => res.json())
-        .then(data => props.addPlan(data))
-        props.handleChangeView("Main")
+            url: `${props.server}/plans/`,
+            data: newPlan,
+            withCredentials: true
+        })
+        .then(res => props.addPlan(res.data))
+        // props.handleChangeView("Main")
     }
     return (
         <div className="addContainer">

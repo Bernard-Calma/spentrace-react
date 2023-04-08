@@ -101,6 +101,7 @@ const Home = (props) => {
             {plans.length === 0 
                 ? <EmptyDashboard 
                     user = {props.user}
+                    server = {props.server}
                 />
                 : <>
                     <div className='homeNavBar'>

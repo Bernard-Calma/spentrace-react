@@ -80,7 +80,7 @@ const LandingPage = (props) =>{
                 console.log(res) 
                 const data = res.data
                 props.setUser({
-                    userID: data._id,
+                    id: data._id,
                     username: data.username,
                     loggedIn: true
                 })
@@ -105,7 +105,7 @@ const LandingPage = (props) =>{
         .then(res => {
             const user = res.data.user
             props.setUser({
-                userID: user._id,
+                id: user._id,
                 username: user.username,
                 loggedIn: true
             })
