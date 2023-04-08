@@ -64,3 +64,35 @@
     font-size: 3rem;
     margin: 0;
 }
+
+/* EMPTY DASHBOARD */
+.containerEmptyDashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerEmptyPlan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 150px;
+    border: solid gray;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 1px rgb(131, 129, 129);
+    background-color: rgb(75, 71, 71);
+    color: white;
+}
+
+.containerEmptyDashboard h2 {
+    margin: 0;
+}
+
+.addEmptyDashboard {
+    margin: auto;
+}
+
+/* ------ END OF EMPTY DASHBOARD ----- */
