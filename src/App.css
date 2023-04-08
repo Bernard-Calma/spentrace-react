@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Mono&family=Ubuntu&display=swap');
 
 html, body, #root, .App {
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 body {
   /* background-color: #414449; */
-  background: linear-gradient(black, gray);
+  background: linear-gradient(black, gray) no-repeat fixed center;
   color: #B0B7C4;
 }
 
