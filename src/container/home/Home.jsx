@@ -97,7 +97,9 @@ const Home = (props) => {
     return(
         <section className="containerHome">
             {plans.length === 0 
-                ? <EmptyDashboard />
+                ? <EmptyDashboard 
+                    user = {props.user}
+                />
                 : <>
                     <div className='homeNavBar'>
                         <p onClick={() => handleChangeView("Plan")}>Budget Tracker</p>

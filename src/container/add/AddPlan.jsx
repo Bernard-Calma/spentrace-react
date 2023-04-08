@@ -2,7 +2,7 @@ import { useState } from 'react'
 import BackButton from '../../Components/Buttons/BackButton'
 import './Add.css'
 
-const Add = (props) => {
+const AddPlan = (props) => {
     let [newPlan, setNewPlan] = useState({userId:props.user._id})
 
     const handleChange=(e)=>{
@@ -62,4 +62,4 @@ const Add = (props) => {
     )
 }
 
-export default Add
+export default AddPlan
