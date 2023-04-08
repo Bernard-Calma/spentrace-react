@@ -31,6 +31,8 @@ const Home = (props) => {
 
     // Views
     const handleChangeView = (view) => {
+        console.log("Home View: ", homeView)
+        console.log("Clicked: ", view)
         setHomeView(view)
     }
 

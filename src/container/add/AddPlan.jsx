@@ -28,7 +28,9 @@ const AddPlan = (props) => {
     return (
         <div className="addContainer">
             <div className='addHeader'>
-                <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
+                <BackButton 
+                    handleChangeView = {props.handleChangeView}
+                />
                 <h2 className='addTitle'>Add new plan</h2>
             </div>
             
