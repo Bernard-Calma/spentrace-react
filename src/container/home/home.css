@@ -1,5 +1,6 @@
 .containerHome{
     height: 100%;
+    display: flex;
     font-family: 'Space Mono';    
 }
 
