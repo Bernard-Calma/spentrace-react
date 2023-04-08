@@ -6,6 +6,8 @@ const AddPlan = (props) => {
     let [newPlan, setNewPlan] = useState({userId:props.user._id})
 
     const handleChange=(e)=>{
+        // Handle input changes
+        // If expense or income changed return true or false
         if (e.target.name === "expense") setNewPlan({...newPlan, [e.target.name]: e.target.value === "Expense" ? true : false})
         else setNewPlan({...newPlan, [e.target.name]: e.target.value})
     }
@@ -27,7 +29,7 @@ const AddPlan = (props) => {
         <div className="addContainer">
             <div className='addHeader'>
                 <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
-                <h2 className='navTitle'>Add new plan</h2>
+                <h2 className='addTitle'>Add new plan</h2>
             </div>
             
             <form className='addForm' onSubmit={handleSubmitAdd}>

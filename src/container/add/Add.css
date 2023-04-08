@@ -1,31 +1,37 @@
-/* Add */
-.addForm, .addBillForm {
+/* ADD */
+/* Flex Containers */
+.addContainer , .addHeader, .addForm, .addBillForm {
     display: flex;
-    flex-direction: column;
-    text-align: start;
 }
 
-.addBillForm > input {
-    font-size: 1rem;
-}
-
-.addHeader {
-    display: flex;
-    flex: row;
-}
-
-/* Add Plan */
+/* Container */
 .addContainer {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     border: solid #B0B7C4;
     border-radius: 20px;
-    margin-top: 10%;
-    text-align: center;
-    padding: 20px;
+    padding: 10px;
     background-color: rgb(53, 52, 52);
 }
+
+/* Header */
+.addTitle {
+    font-size: 45px;
+}
+
+/* Add Plan Form */
+.addForm, .addBillForm {
+    flex-direction: column;
+}
+
+.addFormInput {
+    font-size: 2rem;
+    font-family: "Space Mono";
+    margin: 0;
+}
+
+/* Add Plan */
+
 
 .navTitle {
     font-family: "Russo One";
@@ -34,15 +40,7 @@
     margin: auto 0 0 30%;
 }
 
-.addForm {
-    width: 500px;
-}
 
-.addFormInput, .addBillFormInput {
-    font-family: "Space Mono";
-    font-size: 2rem;
-    margin: 10px 0;
-}
 
 .addFormInput > input {
     font-size: 1.5rem;
