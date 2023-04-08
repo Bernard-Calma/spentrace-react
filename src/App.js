@@ -30,19 +30,7 @@ const App = () => {
 
   // FUNCTIONS
   // Authenticate app if user session exist in server side
-  const checkCookieAuth = () => {
-    axios.get(`${server}/`, {withCredentials: true})
-    .then(res => {
-      if (res.data._id) {
-        const userData = res.data
-        setUser({
-          id: userData._id,
-          username: userData.username,
-          loggedIn: true
-        })
-      }
-    })
-  }
+
 
   // View
   // Handle view change while navigating
@@ -52,6 +40,19 @@ const App = () => {
   // ------------------------------ END OF FUNCTIONS ------------------------------
 
   useEffect(() => {
+    const checkCookieAuth = () => {
+      axios.get(`${server}/`, {withCredentials: true})
+      .then(res => {
+        if (res.data._id) {
+          const userData = res.data
+          setUser({
+            id: userData._id,
+            username: userData.username,
+            loggedIn: true
+          })
+        }
+      })
+    }
     checkCookieAuth()
   },[])
   return (

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import AddBill from '../add/AddBill'
 import BillsList from '../billsList/BillsList'
 import EdditBill from '../edit/EditBill'
+import PlanList from '../plan/PlansList'
 import ShowBill from '../show/ShowBill'
 import DashBoard from './Dashboard'
 import './home.css'
@@ -33,8 +34,16 @@ const Home = (props) => {
 
     // ------------------------------ END OF VARIABLES ------------------------------
 
-    // Plan Functions
+    // FUNCTIONS
+
+    // Views
+    const handleChangeView = (view) => {
+        setHomeView(view)
+    }
+
+    // Plan
     const getPlanList = () => {
+        // Get all plans from user
         axios({ 
             method: "GET",
             url: `${props.server}/plans/${props.user.id}`,
@@ -113,9 +122,11 @@ const Home = (props) => {
         setNextUnpaidBill(unpaidBill)
     }
 
+    // ------------------------------ END OF FUNCTIONS ------------------------------
+
     useEffect(()=>{
         getPlanList()
-        // getBalance()
+        getBalance()
         // getTarget()
     }, [])
     // useEffect(() => {
@@ -128,8 +139,8 @@ const Home = (props) => {
     return(
         <section className="containerHome">
             <div className='homeNavBar'>
-                <p onClick={() => props.handleChangeView("Main")}>Budget Tracker</p>
-                <p onClick={() => setHomeView("Bills List")}>Bills List</p>
+                <p onClick={() => handleChangeView("Plan")}>Budget Tracker</p>
+                <p onClick={() => handleChangeView("Bills List")}>Bills List</p>
             </div>
             {
                 homeView === "Home" ?
@@ -141,6 +152,10 @@ const Home = (props) => {
                     totalBillsPaid = {totalBillsPaid}
                     totalBillsUnpaid = {totalBillsUnpaid}
                     nextUnpaidBill = {nextUnpaidBill}
+                />
+                : homeView === "Plan" ? 
+                <PlanList 
+                    plans = {plans}
                 />
                 : homeView === "Bills List" ?
                 <BillsList
