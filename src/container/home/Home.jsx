@@ -15,14 +15,6 @@ const Home = (props) => {
     let [homeView, setHomeView] = useState('Home')
 
     // Plans
-    const [balance, setBalance] = useState(0)
-    const [totalIncome, setTotalIncome] = useState(0)
-    const [totalExpense, setTotalExpense] = useState(0)
-    const [nextTarget, setNextTarget] = useState({
-        amount: 0,
-        date: '',
-        name: ''
-    })
     const [plans, setPlans] = useState([])
 
     // Bills
@@ -54,43 +46,6 @@ const Home = (props) => {
         })
         .catch(err => console.log(err))
     }
-
-    const getBalance = () =>{ 
-        let runningBalance = 0
-        let totalIncome = 0
-        let totalExpense = 0
-        for (const plan of plans) {
-            if (plan.expense) {
-                runningBalance -= plan.amount
-                totalExpense += plan.amount
-            } else {
-                runningBalance += plan.amount
-                totalIncome += plan.amount
-            }
-        }
-        setBalance(runningBalance)
-        setTotalIncome(totalIncome)
-        setTotalExpense(totalExpense)
-    }
-
-    const getTarget = () => {
-        let balance = 0
-        let nextTarget = {
-            amount: 0,
-            date: ""
-        }
-        for (const bill of plans) {
-            bill.expense ? balance -= bill.amount :  balance += bill.amount
-            if (balance < 0) {
-                nextTarget.amount = balance;
-                nextTarget.name = bill.name
-                nextTarget.date = bill.date
-                setNextTarget(nextTarget)
-                return
-            }
-        }
-    }
-
         
     // Bills
     const handleGetBills = () => {
@@ -129,7 +84,6 @@ const Home = (props) => {
 
     useEffect(()=>{
         getPlans()
-        getBalance()
         // getTarget()
     }, [])
     // useEffect(() => {
@@ -149,10 +103,6 @@ const Home = (props) => {
                 homeView === "Home" ?
                 <DashBoard 
                     plans = {plans}
-                    totalExpense = {totalExpense}
-                    totalIncome = {totalIncome}
-                    balance = {balance}
-                    nextTarget = {nextTarget}
                     totalBillsPaid = {totalBillsPaid}
                     totalBillsUnpaid = {totalBillsUnpaid}
                     nextUnpaidBill = {nextUnpaidBill}

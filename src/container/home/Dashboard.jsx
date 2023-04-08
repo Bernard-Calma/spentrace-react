@@ -32,16 +32,35 @@ const DashBoard = (props) => {
         setTotalIncome(totalIncome)
         setTotalExpense(totalExpense)
     }
+
+    const getTarget = () => {
+        let balance = 0
+        let nextTarget = {
+            amount: 0,
+            date: ""
+        }
+        for (const plan of props.plans) {
+            plan.expense ? balance -= plan.amount :  balance += plan.amount
+            if (balance < 0) {
+                nextTarget.amount = balance;
+                nextTarget.name = plan.name
+                nextTarget.date = plan.date
+                setNextTarget(nextTarget)
+                return
+            }
+        }
+    }
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(() => {
         getBalance()
+        getTarget()
     },[props.plans])
     return  <div className='dashboard'>
         <div className='containerPlansDashboard'>
             <div className='graphSubTitle'>
                 <h2>Expense</h2>
-                <h2>${props.totalExpense}</h2>
+                <h2>${totalExpense.toFixed(2)}</h2>
             </div>       
             {/* PLAN GRAPH */}
             <CircleGraph
@@ -53,11 +72,11 @@ const DashBoard = (props) => {
             />
             <div className='graphSubTitle'>
                 <h2>Income</h2>
-                <h2>${props.totalIncome}</h2>
+                <h2>${totalIncome.toFixed(2)}</h2>
             </div>
             <div className='containerNextTarget'>
-                <h2 className='nextTarget'>Next Target: ${Math.abs(props.nextTarget.amount).toFixed(2)}</h2>
-                <h2 className='nextTarget'>{props.nextTarget.name} - {new Date(props.nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
+                <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
             </div>
         </div> 
         <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>
