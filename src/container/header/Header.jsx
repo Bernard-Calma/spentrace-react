@@ -6,7 +6,7 @@ const Header = (props) => {
         <div className='header'>
             <h1 
                 className="title" 
-                onClick={() => props.handleChangeView("Home")}
+                // onClick={() => props.handleChangeView("Home")}
             >Spentrace</h1> 
             <NavBar 
                 handleChangeView = {props.handleChangeView}

@@ -8,6 +8,7 @@ import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 import PlanList from './container/plan/PlansList';
+import axios from 'axios';
 
 const App = () => { 
   // VARIABLES
@@ -50,9 +51,9 @@ const App = () => {
     })
     .then(res => res.json())
     .then(data => {
-      if (data.username) {
-        delete user.password
-        setUser({...user, ...data, loggedIn: true})
+      console.log(data)
+      if (data.user.username) {
+        setUser({...user, ...data.user, loggedIn: true})
       } else {
         setLoginMessage(data.message) 
       }
@@ -105,11 +106,13 @@ const App = () => {
 
   // Plans
   const getplans = (id) => {
-    fetch(process.env.REACT_APP_SERVER_URL+"/plans/" + id)
-    .then(res => res.json())
-    .then(data => {
-      setPlans(data)
+    axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_SERVER_URL}/plans/"`,
+      data: id, 
+      withCredentials: true     
     })
+    .then(res => setPlans(res.data))
   }
 
   const updatePlans = (newPlan) => {
