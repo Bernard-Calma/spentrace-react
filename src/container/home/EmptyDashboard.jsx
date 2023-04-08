@@ -21,6 +21,7 @@ const EmptyDashboard = (props) => {
                 user = {props.user}
                 server = {props.server}
                 handleChangeView = {() =>handleChangeView("Empty")}
+                addNewPlan = {props.addNewPlan}
             />
         }
     </div>

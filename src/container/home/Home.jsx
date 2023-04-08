@@ -24,15 +24,12 @@ const Home = (props) => {
     const [totalBillsPaid, setTotalBillsPaid] = useState(0)
     const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
     const [nextUnpaidBill , setNextUnpaidBill] = useState({})
-
     // ------------------------------ END OF VARIABLES ------------------------------
 
     // FUNCTIONS
 
     // Views
     const handleChangeView = (view) => {
-        console.log("Home View: ", homeView)
-        console.log("Clicked: ", view)
         setHomeView(view)
     }
 
@@ -48,6 +45,10 @@ const Home = (props) => {
             setPlans(res.data)
         })
         .catch(err => console.log(err))
+    }
+
+    const addNewPlan = (newPlan) => {
+        setPlans([...plans, newPlan])
     }
         
     // Bills
@@ -82,7 +83,6 @@ const Home = (props) => {
         })
         setNextUnpaidBill(unpaidBill)
     }
-
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(()=>{
@@ -102,6 +102,7 @@ const Home = (props) => {
                 ? <EmptyDashboard 
                     user = {props.user}
                     server = {props.server}
+                    addNewPlan = {addNewPlan}
                 />
                 : <>
                     <div className='homeNavBar'>
@@ -114,6 +115,7 @@ const Home = (props) => {
                         totalBillsPaid = {totalBillsPaid}
                         totalBillsUnpaid = {totalBillsUnpaid}
                         nextUnpaidBill = {nextUnpaidBill}
+                        handleChangeView = {handleChangeView}
                     />
                     : homeView === "Plan" 
                     ? <PlanList 

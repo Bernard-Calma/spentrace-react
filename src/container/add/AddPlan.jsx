@@ -21,8 +21,8 @@ const AddPlan = (props) => {
             data: newPlan,
             withCredentials: true
         })
-        .then(res => props.addPlan(res.data))
-        // props.handleChangeView("Main")
+        .then(res => props.addNewPlan(res.data))
+        props.handleChangeView("Main")
     }
     return (
         <div className="addContainer">

@@ -74,10 +74,18 @@ const DashBoard = (props) => {
                 <h2>Income</h2>
                 <h2>${totalIncome.toFixed(2)}</h2>
             </div>
-            <div className='containerNextTarget'>
-                <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
-                <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-            </div>
+            {
+                nextTarget.amount === 0
+                ?<div className="containerEmptyPlan">
+                    <h2>Add an expense</h2>
+                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Bill")}></i>
+                </div>
+                :<div className='containerNextTarget'>
+                    <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
+                    <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                </div>
+            }
+            
         </div> 
         <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>
         {/* TODO: ADD FUNCTION TO SWITCH MONTHS */}
