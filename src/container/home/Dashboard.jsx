@@ -1,18 +1,55 @@
+import { useEffect, useState } from "react";
+
 import CircleGraph from "../../Components/CircleGraph";
 
 const DashBoard = (props) => {
+    // VARIABLES
+    const [balance, setBalance] = useState(0)
+    const [totalIncome, setTotalIncome] = useState(0)
+    const [totalExpense, setTotalExpense] = useState(0)
+    const [nextTarget, setNextTarget] = useState({
+        amount: 0,
+        date: '',
+        name: ''
+    })
+    // ------------------------------ END OF VARIABLES ------------------------------
+
+    // FUNCTIONS
+    const getBalance = () =>{ 
+        let runningBalance = 0
+        let totalIncome = 0
+        let totalExpense = 0
+        for (const plan of props.plans) {
+            if (plan.expense) {
+                runningBalance -= plan.amount
+                totalExpense += plan.amount
+            } else {
+                runningBalance += plan.amount
+                totalIncome += plan.amount
+            }
+        }
+        setBalance(runningBalance)
+        setTotalIncome(totalIncome)
+        setTotalExpense(totalExpense)
+    }
+    // ------------------------------ END OF FUNCTIONS ------------------------------
+
+    useEffect(() => {
+        getBalance()
+    },[props.plans])
     return  <div className='dashboard'>
         <div className='containerPlansDashboard'>
             <div className='graphSubTitle'>
                 <h2>Expense</h2>
                 <h2>${props.totalExpense}</h2>
             </div>       
+            {/* PLAN GRAPH */}
             <CircleGraph
-                data = {[props.totalExpense, props.totalIncome]}
+                data = {[totalExpense, totalIncome]}
                 colors = {['red', 'green']}
                 width = {250}
                 height = {250}
-                value = {props.balance}
+                value = {balance}
             />
             <div className='graphSubTitle'>
                 <h2>Income</h2>

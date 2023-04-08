@@ -42,14 +42,17 @@ const Home = (props) => {
     }
 
     // Plan
-    const getPlanList = () => {
+    const getPlans = () => {
         // Get all plans from user
         axios({ 
             method: "GET",
-            url: `${props.server}/plans/${props.user.id}`,
+            url: `${props.server}/plans/`,
             withCredentials: true 
         })
-        .then(res => setPlans(res.data))
+        .then(res => {
+            setPlans(res.data)
+        })
+        .catch(err => console.log(err))
     }
 
     const getBalance = () =>{ 
@@ -125,7 +128,7 @@ const Home = (props) => {
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(()=>{
-        getPlanList()
+        getPlans()
         getBalance()
         // getTarget()
     }, [])
@@ -145,6 +148,7 @@ const Home = (props) => {
             {
                 homeView === "Home" ?
                 <DashBoard 
+                    plans = {plans}
                     totalExpense = {totalExpense}
                     totalIncome = {totalIncome}
                     balance = {balance}

@@ -92,7 +92,7 @@ const LandingPage = (props) =>{
             withCredentials: true
         })
         .then(res => {
-            console.log("Login: ",res)
+            // console.log("Login: ",res)
             const user = res.data.user
             props.setUser({
                 userID: user._id,
