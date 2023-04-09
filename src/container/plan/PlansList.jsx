@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Plan from "../../Components/Plan";
 import AddPlan from "../add/AddPlan";
+import ShowPlan from "../show/ShowPlan";
 import Categories from "./Categories";
 import "./PlansList.css"
 
@@ -52,8 +53,7 @@ const PlanList = (props) => {
         getRunningBalanceTarget()
     },[plans])
 
-    return <>
-    {
+    return <> {
         planView === "Plan List"
         ?<div className='containerPlanList'>
             <Categories />
@@ -67,7 +67,7 @@ const PlanList = (props) => {
                         totalIncome = {totalIncome}
                         totalExpense = {totalExpense}
                         handleChangeView = {() => handleChangeView("Plan List")}
-                        handleShowPlan = {props.handleShowPlan}
+                        handleShowPlan = {() => handleChangeView(index)}
                     />)
                 }
                 <div className="containerAdd"style={{
@@ -77,13 +77,19 @@ const PlanList = (props) => {
                 </div>
             </div>
         </div>
-        : <AddPlan
+        : planView === "Plan List"
+        ?<AddPlan
             user = {props.user}
             server = {props.server}
             addNewPlan = {addNewPlan}
             handleChangeView = {() =>handleChangeView("Plan List")}
         />
-    }
-    </>
+        :<>
+            <ShowPlan 
+                plan = {plans[planView]}
+                return = {() => handleChangeView("Plan List")}
+            />
+        </>
+    } </>
 }
 export default PlanList;

@@ -74,12 +74,6 @@ const Home = (props) => {
         getPlans()
         getBills()
     }, [])
-    // useEffect(() => {
-    //     handleGetBills()
-    //     getNextUpaidBill()
-
-    // }, [])
-
 
     return(
         <section className="containerHome">
