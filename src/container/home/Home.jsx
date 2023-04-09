@@ -67,14 +67,6 @@ const Home = (props) => {
         let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
         setBills(newBillsList); 
     }
-
-    const getNextUpaidBill = () => {
-        let unpaidBill = bills[0]
-        bills.forEach(bill => {
-            if(!bill.paid) return unpaidBill = bill
-        })
-        setNextUnpaidBill(unpaidBill)
-    }
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(()=>{

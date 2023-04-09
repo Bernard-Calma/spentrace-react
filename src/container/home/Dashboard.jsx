@@ -16,6 +16,7 @@ const DashBoard = (props) => {
     // Bills
     const [totalBillsPaid, setTotalBillsPaid] = useState(0)
     const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
+    const [nextUnpaidBill , setNextUnpaidBill] = useState({})
     // ------------------------------ END OF VARIABLES ------------------------------
 
     // FUNCTIONS
@@ -66,12 +67,21 @@ const DashBoard = (props) => {
             setTotalBillsUnpaid(totalUnpaid)
         })
     }
+
+    const getNextUpaidBill = () => {
+        let unpaidBill = props.bills[0]
+        props.bills.forEach(bill => {
+            if(!bill.paid) return unpaidBill = bill
+        })
+        setNextUnpaidBill(unpaidBill)
+    }
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(() => {
         getBalance()
         getTarget()
         getBillsPaid()
+        getNextUpaidBill()
     },[props.plans])
     return  <div className='dashboard'>
         <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
@@ -104,7 +114,6 @@ const DashBoard = (props) => {
                     <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
                 </div>
             }
-            
         </div> 
         {
             props.bills.length === 0
@@ -113,7 +122,7 @@ const DashBoard = (props) => {
                     <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Bill")}></i>
             </div>
             :<>
-                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>
+                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Bills</h1>
                 {/* TODO: ADD FUNCTION TO SWITCH MONTHS */}
                 <div className='cotnainerBillsDashboard'>
                     <div className='graphSubTitle'>
@@ -132,8 +141,8 @@ const DashBoard = (props) => {
                         <h2>${totalBillsUnpaid}</h2>
                     </div>
                     <div className='containerNextTarget'>
-                        <h2 className='nextTarget'>Next Bill: ${Math.abs(props.nextUnpaidBill?.amount).toFixed(2)}</h2>
-                        <h2 className='nextTarget'>{props.nextUnpaidBill?.name} - {new Date(props.nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
+                        <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
+                        <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
                     </div>
                 </div>              
             </>
