@@ -1,3 +1,4 @@
+import axios from "axios"
 import "./Show.css"
 
 const ShowPlan = (props) => {
@@ -7,13 +8,23 @@ const ShowPlan = (props) => {
         return dateToday === datePlan ? "Today": datePlan;
     }
 
+    const handleDelete = () => {
+        axios({
+            method: "DELETE",
+            url: `${props.server}/plans/${props.plan._id}`,
+            withCredentials: true,
+        })
+        .then(res => props.deletePlan(res.data))
+        props.return()
+    }
+
     return(
         <div className="containerShow">
             <div className="showHeader">
                 <i className="fi fi-rr-angle-small-left" onClick={props.return}></i>
                 <div>
                     <i className="fi fi-rr-edit" onClick={props.edit}></i>
-                    <i className="fi fi-rr-trash" onClick={() => {console.log("Deleted")}}></i>
+                    <i className="fi fi-rr-trash" onClick={handleDelete}></i>
                 </div>
             </div>
 

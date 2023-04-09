@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState } from 'react'
 import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
@@ -13,15 +14,14 @@ const EditPlan = (props) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        fetch(props.server+"/plans/" + props.plan._id, {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-        },
-            body: JSON.stringify(editPlan)
-        }).then(res => res.json())
-        .then(data => props.updatePlans(data))
-        props.handleChangeView("Main")
+        axios({
+            method: "PUT",
+            url: `${props.server}/plans/${props.plan._id}`,
+            data: editPlan,
+            withCredentials: true,
+        })
+        .then(res => props.updatePlan(res.data))
+        props.return()
     }
 
     return (

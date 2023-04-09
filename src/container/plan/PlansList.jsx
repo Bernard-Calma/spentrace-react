@@ -8,7 +8,7 @@ import Categories from "./Categories";
 import "./PlansList.css"
 
 const PlanList = (props) => {
-    const [plans, setPlans] = useState(props.plans)
+    const [plans, setPlans] = useState([...props.plans])
     const [openPlan, setOpenPlan] = useState({})
     let [planView, setPlanView] = useState("Plan List")
     let [totalIncome, setTotalIncome] = useState(0);
@@ -22,8 +22,8 @@ const PlanList = (props) => {
         // Set variables back to 0 to prevent adding values from previous computation
         let runningTarget = 0;
         let total = 0;
-        let updatePlans = props.plans
-        props.plans.forEach( plan => {
+        let updatePlans = plans
+        plans.forEach( plan => {
           if (plan.expense === true) {
               setTotalExpense(totalExpense += plan.amount)
               runningTarget += plan.amount;
@@ -47,15 +47,12 @@ const PlanList = (props) => {
         setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1))
     }
 
-    const updatePlan = (newPlan) => {
-        let newPlanList = plans.map((plan)=> plan._id === newPlanList._id ? newPlanList : plan)
-        setPlans(newPlanList); 
-    }
+    const updatePlan = updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan))
     
-    const handleChangeView = (view) => {
-        setPlanView(view)
-    }
+    const deletePlan = targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id))
 
+    const handleChangeView = view => setPlanView(view)
+    
     const handleShowPlan = (plan) => {
         setOpenPlan(plan)
         handleChangeView("Show Plan")
@@ -63,7 +60,7 @@ const PlanList = (props) => {
 
     useEffect(()=>{
         getRunningBalanceTarget()
-    },[plans])
+    },[])
 
     return <> {
         planView === "Plan List"
@@ -73,14 +70,14 @@ const PlanList = (props) => {
                 {
                     plans?.map((plan, index) => 
                         <Plan 
-                        key={index}
-                        index={index}
-                        plan={plan}
-                        totalIncome = {totalIncome}
-                        totalExpense = {totalExpense}
-                        handleChangeView = {() => handleChangeView("Plan List")}
-                        handleShowPlan = {() => handleShowPlan(plan)}
-                    />)
+                            key={index}
+                            index={index}
+                            plan={plan}
+                            totalIncome = {totalIncome}
+                            totalExpense = {totalExpense}
+                            handleChangeView = {() => handleChangeView("Plan List")}
+                            handleShowPlan = {() => handleShowPlan(plan)}
+                        />)
                 }
                 <div className="containerAdd"style={{
                     textAlign: "center"
@@ -99,6 +96,8 @@ const PlanList = (props) => {
         : planView === "Show Plan"
         ?<ShowPlan 
             plan = {openPlan}
+            server = {props.server}
+            deletePlan = {deletePlan}
             return = {() => handleChangeView("Plan List")}
             edit = {() => handleChangeView("Edit Plan")}
         />
