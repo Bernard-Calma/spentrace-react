@@ -3,7 +3,7 @@ import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
 
 const EditPlan = (props) => {
-    const [editPlan, setEditPlan] = useState(props.openPlan)
+    const [editPlan, setEditPlan] = useState(props.plan)
 
     const handleChange=(e)=>{
         // e.target.style.backgroundColor = "" // remove color for empty input
@@ -13,7 +13,7 @@ const EditPlan = (props) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        fetch(props.server+"/plans/" + props.openPlan._id, {
+        fetch(props.server+"/plans/" + props.plan._id, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",

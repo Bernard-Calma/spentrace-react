@@ -12,8 +12,8 @@ const ShowPlan = (props) => {
             <div className="showHeader">
                 <i className="fi fi-rr-angle-small-left" onClick={props.return}></i>
                 <div>
-                    <i className="fi fi-rr-edit"></i>
-                    <i className="fi fi-rr-trash" ></i>
+                    <i className="fi fi-rr-edit" onClick={props.edit}></i>
+                    <i className="fi fi-rr-trash" onClick={() => {console.log("Deleted")}}></i>
                 </div>
             </div>
 

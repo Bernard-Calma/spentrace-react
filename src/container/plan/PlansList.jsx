@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 
 import Plan from "../../Components/Plan";
 import AddPlan from "../add/AddPlan";
+import EditPlan from "../edit/EditPlan";
 import ShowPlan from "../show/ShowPlan";
 import Categories from "./Categories";
 import "./PlansList.css"
 
 const PlanList = (props) => {
     const [plans, setPlans] = useState(props.plans)
+    const [openPlan, setOpenPlan] = useState({})
     let [planView, setPlanView] = useState("Plan List")
     let [totalIncome, setTotalIncome] = useState(0);
     let [totalExpense, setTotalExpense] = useState(0);
@@ -41,12 +43,22 @@ const PlanList = (props) => {
         setPlans(updatePlans.sort((a, b) => (a.date > b.date) ? 1 : -1))
       }
 
-      const addNewPlan = (newPlan) => {
+    const addNewPlan = (newPlan) => {
         setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1))
+    }
+
+    const updatePlan = (newPlan) => {
+        let newPlanList = plans.map((plan)=> plan._id === newPlanList._id ? newPlanList : plan)
+        setPlans(newPlanList); 
     }
     
     const handleChangeView = (view) => {
         setPlanView(view)
+    }
+
+    const handleShowPlan = (plan) => {
+        setOpenPlan(plan)
+        handleChangeView("Show Plan")
     }
 
     useEffect(()=>{
@@ -67,7 +79,7 @@ const PlanList = (props) => {
                         totalIncome = {totalIncome}
                         totalExpense = {totalExpense}
                         handleChangeView = {() => handleChangeView("Plan List")}
-                        handleShowPlan = {() => handleChangeView(index)}
+                        handleShowPlan = {() => handleShowPlan(plan)}
                     />)
                 }
                 <div className="containerAdd"style={{
@@ -77,19 +89,27 @@ const PlanList = (props) => {
                 </div>
             </div>
         </div>
-        : planView === "Plan List"
+        : planView === "Add Plan"
         ?<AddPlan
             user = {props.user}
             server = {props.server}
             addNewPlan = {addNewPlan}
             handleChangeView = {() =>handleChangeView("Plan List")}
         />
-        :<>
-            <ShowPlan 
-                plan = {plans[planView]}
-                return = {() => handleChangeView("Plan List")}
-            />
-        </>
+        : planView === "Show Plan"
+        ?<ShowPlan 
+            plan = {openPlan}
+            return = {() => handleChangeView("Plan List")}
+            edit = {() => handleChangeView("Edit Plan")}
+        />
+        : planView === "Edit Plan"
+        ?<EditPlan
+            plan = {openPlan}
+            server = {props.server}
+            updatePlan = {updatePlan}
+            handleChangeView = {() =>handleChangeView("Plan List")}
+        />
+        : <> </>
     } </>
 }
 export default PlanList;
