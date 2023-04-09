@@ -5,12 +5,8 @@ import AddPlan from "../add/AddPlan";
 const EmptyDashboard = (props) => {
     const [emptyView, setEmptyView] = useState("Empty")
 
-    const handleChangeView = (view) => {
-        console.log("Home View: ", emptyView)
-        console.log("Clicked: ", view)
-        setEmptyView(view)
-    }
-
+    const handleChangeView = view => setEmptyView(view)
+    
     return <div className="containerEmptyDashboard">
         {
             emptyView === "Empty"

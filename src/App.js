@@ -34,9 +34,8 @@ const App = () => {
 
   // View
   // Handle view change while navigating
-  const handleChangeView = (view) => {
-    setView(view)
-  }
+  const handleChangeView = view => setView(view)
+  
   // ------------------------------ END OF FUNCTIONS ------------------------------
 
   useEffect(() => {
@@ -54,7 +53,7 @@ const App = () => {
       })
     }
     checkCookieAuth()
-  },[])
+  },[server])
   return (
     <div className="App">
       <Header 

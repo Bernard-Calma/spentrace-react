@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 import AddBill from '../add/AddBill'
-import AddPlan from '../add/AddPlan'
 import BillsList from '../billsList/BillsList'
 import EdditBill from '../edit/EditBill'
 import PlanList from '../plan/PlansList'
@@ -13,26 +12,17 @@ import './home.css'
 
 const Home = (props) => {
     // VARIABLES
-
     // Views
     let [homeView, setHomeView] = useState('Home')
-
     // Plans
     const [plans, setPlans] = useState([])
-
     // Bills
     const [bills, setBills] = useState([])
-    const [openBill, setOpenBill] = useState()
-    const [nextUnpaidBill , setNextUnpaidBill] = useState({})
     // ------------------------------ END OF VARIABLES ------------------------------
 
     // FUNCTIONS
-
     // Views
-    const handleChangeView = (view) => {
-        setHomeView(view)
-    }
-
+    const handleChangeView = view => setHomeView(view)
     // Plan
     const getPlans = () => {
         // Get all plans from user
@@ -45,10 +35,7 @@ const Home = (props) => {
         .catch(err => console.log(err))
     }
 
-    const addNewPlan = (newPlan) => {
-        setPlans([...plans, newPlan])
-    }
-        
+    const addNewPlan = newPlan => setPlans([...plans, newPlan])
     // Bills
     const getBills = () => {
         axios({
@@ -60,14 +47,9 @@ const Home = (props) => {
         .catch(err => console.log(err))
     } 
 
-    const addNewBill = (newBill) => {
-        setPlans([...bills, newBill])
-    }
+    const addNewBill = newBill => setPlans([...bills, newBill])
     
-    const updateBills = (newBill) => {
-        let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
-        setBills(newBillsList); 
-    }
+    const updateBills = newBill => setBills(bills.map((bill)=> bill._id === newBill._id ? newBill : bill)); 
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(()=>{
@@ -93,7 +75,6 @@ const Home = (props) => {
                             ? <DashBoard 
                                 // Plans
                                 plans = {plans}
-                                nextUnpaidBill = {nextUnpaidBill}
                                 handleChangeView = {handleChangeView}
                                 // Bills
                                 bills = {bills}
@@ -114,7 +95,6 @@ const Home = (props) => {
                                 handleShowPlan = {props.handleShowPlan}
                                 setHomeView = {setHomeView}
                                 setBills = {setBills}
-                                setOpenBill = {setOpenBill}
                             />  
                             : homeView === "Add Bill"
                             ? <AddBill
@@ -126,11 +106,9 @@ const Home = (props) => {
                             : homeView === "Show Bill"
                             ? <ShowBill
                                 setHomeView = {props.handleChangeView}
-                                openBill = {openBill}
                             />
                             : homeView === "Edit Bill" 
                             ? <EdditBill
-                                openBill = {openBill}
                                 server = {props.server}
                                 handleChangeView = {props.handleChangeView} 
                                 updateBills = {updateBills}

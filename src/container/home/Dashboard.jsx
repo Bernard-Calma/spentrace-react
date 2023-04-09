@@ -82,6 +82,7 @@ const DashBoard = (props) => {
         getTarget()
         getBillsPaid()
         getNextUpaidBill()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.plans])
     return  <div className='dashboard'>
         <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
