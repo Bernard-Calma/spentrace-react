@@ -22,8 +22,6 @@ const Home = (props) => {
     // Bills
     const [bills, setBills] = useState([])
     const [openBill, setOpenBill] = useState()
-    const [totalBillsPaid, setTotalBillsPaid] = useState(0)
-    const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
     const [nextUnpaidBill , setNextUnpaidBill] = useState({})
     // ------------------------------ END OF VARIABLES ------------------------------
 
@@ -42,9 +40,7 @@ const Home = (props) => {
             url: `${props.server}/plans/`,
             withCredentials: true 
         })
-        .then(res => {
-            setPlans(res.data)
-        })
+        .then(res => setPlans(res.data))
         .catch(err => console.log(err))
     }
 
@@ -59,18 +55,8 @@ const Home = (props) => {
             url: `${props.server}/bills/${props.user._id}`,
             withCredentials: true
         })
-        .then(res => {
-            setBills(res.data)
-            // Get paid and unpaid graph
-            let totalPaid = 0;
-            let totalUnpaid = 0;
-            res.data.forEach(bill => {
-                bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
-                setTotalBillsPaid(totalPaid)
-                setTotalBillsUnpaid(totalUnpaid)
-            })
-        })
-        .catch(err => console.log(err) )
+        .then(res => setBills(res.data))
+        .catch(err => console.log(err))
     } 
 
     const addNewBill = (newBill) => {
@@ -120,8 +106,6 @@ const Home = (props) => {
                             ? <DashBoard 
                                 // Plans
                                 plans = {plans}
-                                totalBillsPaid = {totalBillsPaid}
-                                totalBillsUnpaid = {totalBillsUnpaid}
                                 nextUnpaidBill = {nextUnpaidBill}
                                 handleChangeView = {handleChangeView}
                                 // Bills
@@ -141,14 +125,14 @@ const Home = (props) => {
                             />
                             : homeView === "Bills List" 
                             ? <BillsList
+                            server = {props.server}
+                            user = {props.user}
+                            bills = {bills}
                             handleChangeView = {props.handleChangeView}
                             handleShowPlan = {props.handleShowPlan}
                             setHomeView = {setHomeView}
                             setBills = {setBills}
                             setOpenBill = {setOpenBill}
-                            server = {props.server}
-                            user = {props.user}
-                            bills = {bills}
                             />  
                             : homeView === "Add Bill"
                             ? <AddBill

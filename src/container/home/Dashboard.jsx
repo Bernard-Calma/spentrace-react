@@ -4,6 +4,7 @@ import CircleGraph from "../../Components/CircleGraph";
 
 const DashBoard = (props) => {
     // VARIABLES
+    // Plans
     const [balance, setBalance] = useState(0)
     const [totalIncome, setTotalIncome] = useState(0)
     const [totalExpense, setTotalExpense] = useState(0)
@@ -12,9 +13,13 @@ const DashBoard = (props) => {
         date: '',
         name: ''
     })
+    // Bills
+    const [totalBillsPaid, setTotalBillsPaid] = useState(0)
+    const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
     // ------------------------------ END OF VARIABLES ------------------------------
 
     // FUNCTIONS
+    // Plans
     const getBalance = () =>{ 
         let runningBalance = 0
         let totalIncome = 0
@@ -39,7 +44,7 @@ const DashBoard = (props) => {
             amount: 0,
             date: ""
         }
-        for (const plan of props.plans) {
+        props.plans.forEach( plan => {
             plan.expense ? balance -= plan.amount :  balance += plan.amount
             if (balance < 0) {
                 nextTarget.amount = balance;
@@ -48,13 +53,25 @@ const DashBoard = (props) => {
                 setNextTarget(nextTarget)
                 return
             }
-        }
+        })
+    }
+    // Bills
+    const getBillsPaid = () => {
+        // Get paid and unpaid graph
+        let totalPaid = 0;
+        let totalUnpaid = 0;
+        props.bills.forEach(bill => {
+            bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
+            setTotalBillsPaid(totalPaid)
+            setTotalBillsUnpaid(totalUnpaid)
+        })
     }
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(() => {
         getBalance()
         getTarget()
+        getBillsPaid()
     },[props.plans])
     return  <div className='dashboard'>
         <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
@@ -101,18 +118,18 @@ const DashBoard = (props) => {
                 <div className='cotnainerBillsDashboard'>
                     <div className='graphSubTitle'>
                         <h2>Paid</h2>
-                        <h2>${props.totalBillsPaid}</h2>
+                        <h2>${totalBillsPaid}</h2>
                     </div>    
                     <CircleGraph 
-                        data = {[props.totalBillsUnpaid, props.totalBillsPaid]}
+                        data = {[totalBillsUnpaid, totalBillsPaid]}
                         colors = {['red', 'green']}  
                         width = {250}
                         height = {250}
-                        value = {props.totalBillsUnpaid - props.totalBillsPaid}
+                        value = {totalBillsUnpaid - totalBillsPaid}
                     />
                     <div className='graphSubTitle'>
                         <h2>Unpaid</h2>
-                        <h2>${props.totalBillsUnpaid}</h2>
+                        <h2>${totalBillsUnpaid}</h2>
                     </div>
                     <div className='containerNextTarget'>
                         <h2 className='nextTarget'>Next Bill: ${Math.abs(props.nextUnpaidBill?.amount).toFixed(2)}</h2>

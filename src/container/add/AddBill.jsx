@@ -17,7 +17,6 @@ const AddBill = (props) => {
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
-        console.log(newBill)
         axios({
             method: "POST",
             url: `${props.server}/bills/`,
