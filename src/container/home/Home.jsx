@@ -70,7 +70,7 @@ const Home = (props) => {
                 : <>
                     <div className='homeNavBar'>
                         <p onClick={() => handleChangeView("Plan")}>Budget Tracker</p>
-                        <p onClick={() => handleChangeView("Bills List")}>Bills List</p>
+                        {/* <p onClick={() => handleChangeView("Bills List")}>Bills List</p> */}
                     </div>
                     <div className='containerHomeView'>
                         {homeView === "Home" || props.appView === "Home"
