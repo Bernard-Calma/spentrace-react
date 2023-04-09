@@ -107,7 +107,7 @@ const PlanList = (props) => {
             plan = {openPlan}
             server = {props.server}
             updatePlan = {updatePlan}
-            handleChangeView = {() =>handleChangeView("Plan List")}
+            return = {() => handleChangeView("Plan List")}
         />
         : <> </>
     } </>

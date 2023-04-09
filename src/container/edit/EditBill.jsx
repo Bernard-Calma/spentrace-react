@@ -33,15 +33,15 @@ const EdditBill = (props) => {
             </div>
             
             <form className='editBillForm' onSubmit={handleSubmitEdit}>
-                <label htmlFor="dueDate" className='editFormInput'>
+                <label htmlFor="dueDate" className='formInput'>
                     Date: 
                     <input type="date" name="dueDate" id="editDate" value={new Date(editBill.dueDate).toISOString().slice(0,10)} onChange = {handleChange} required/>
                 </label>
-                <label htmlFor="name" className='editFormInput'>
+                <label htmlFor="name" className='formInput'>
                     Name: 
                     <input type="text" name="name" id="editName" value={editBill.name} onChange = {handleChange} required/>
                 </label>
-                <label htmlFor="amount" className='editFormInput'>
+                <label htmlFor="amount" className='formInput'>
                     Amount: 
                     <input type="number" name="amount" id="editAmount" value={editBill.amount} onChange = {handleChange} required/>
                     Paid: 
@@ -49,18 +49,18 @@ const EdditBill = (props) => {
                     ?   <input type="checkbox" name="paid" id="editBillPaid" onChange={handleChange} checked/>
                     :   <input type="checkbox" name="paid" id="editBillPaid" onChange={handleChange} />}
                 </label>
-                <label htmlFor="category" className='editFormInput'>
+                <label htmlFor="category" className='formInput'>
                     Category: 
                     <input type="test" name="category" id="editCategory" value={editBill.category} onChange = {handleChange}/>
                 </label>
-                <label htmlFor="autoPay" className='editFormInput'>
+                <label htmlFor="autoPay" className='formInput'>
                     Autopay: 
                     {editBill.autoPay 
                     ?   <input type="checkbox" name="autoPay" id="editBillAutoPay" onChange={handleChange} checked/>
                     :   <input type="checkbox" name="autoPay" id="editBillAutoPay" onChange={handleChange} />}
                     
                 </label>
-                <label htmlFor="repeat" className='editFormInput'>
+                <label htmlFor="repeat" className='formInput'>
                     Repeat: 
                     <select name="repeat" id="aeditBillRepeat" size='5' required onChange={handleChange} value={editBill.repeat}>
                         {
@@ -69,7 +69,7 @@ const EdditBill = (props) => {
                         )}
                     </select>
                 </label>
-                <textarea name="notes" id="editNotes" className='editBillFormNotes' placeholder='enter notes here' value={editBill.notes} onChange = {handleChange}></textarea>
+                <textarea name="notes" id="editNotes" className='formNotes' placeholder='enter notes here' value={editBill.notes} onChange = {handleChange}></textarea>
                 <input type="submit" name="submit" id="editFormSubmit" />
             </form>
         </div>

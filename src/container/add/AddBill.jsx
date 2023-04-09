@@ -33,23 +33,23 @@ const AddBill = (props) => {
                 <h2 className='addTitle'>ADD NEW BILL</h2>
             </div>            
             <form className='addForm' onSubmit={handleSubmitAdd}>
-                <label htmlFor="dueDate" className='addFormInput'>
+                <label htmlFor="dueDate" className='formInput'>
                     Due Date: 
                     <input type="date" name="dueDate" id="addBillDate" onChange={handleChange} required/>
                 </label>
-                <label htmlFor="name" className='addFormInput'>
+                <label htmlFor="name" className='formInput'>
                     Name: 
                     <input type="text" name="name" id="addBillName" onChange={handleChange} required/>
                 </label>
-                <label htmlFor="amount" className='addFormInput'>
+                <label htmlFor="amount" className='formInput'>
                     Amount: 
                     <input type="number" name="amount" id="addBillAmount" onChange={handleChange} required/>
                 </label>
-                <label htmlFor="category" className='addFormInput'>
+                <label htmlFor="category" className='formInput'>
                     Category: 
                     <input type="text" name="category" id="addBillAmount" onChange={handleChange} />
                 </label>
-                <label htmlFor="repeat" className='addFormInput'>
+                <label htmlFor="repeat" className='formInput'>
                     Repeat: 
                     <select name="repeat" id="addBillRepeat" size='1' required onChange={handleChange}>
                         <option value='never' className='repeatOption'>Never</option>
@@ -59,13 +59,13 @@ const AddBill = (props) => {
                         <option value='every 2 months' className='repeatOption'>Every 2 Months</option>
                     </select>
                 </label>
-                <label htmlFor="autoPay" className='addFormInput'>
+                <label htmlFor="autoPay" className='formInput'>
                     Autopay: 
                     <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
                 </label>
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>
-                <textarea name="notes" id="addBillNotes" className='addFormNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
-                <input type="submit" name="submit" id="addFormSubmit" />
+                <textarea name="notes" id="addBillNotes" className='formNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
+                <input type="submit" name="submit" id="submit" />
             </form>
         </div>
     )

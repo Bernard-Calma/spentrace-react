@@ -1,6 +1,6 @@
 /* ADD */
 /* Flex Containers */
-.addContainer , .addHeader, .addForm {
+.addContainer , .addHeader, form {
     display: flex;
 }
 
@@ -23,18 +23,18 @@
 }
 
 /* Add Plan Form */
-.addForm {
+form {
     flex-direction: column;
 }
 
-.addFormInput {
+.formInput {
     display: flex;
     font-size: 2rem;
     font-family: "Space Mono";
     margin: 5px 0;    
 }
 
-.addFormInput > input[type=text], input[type=date], input[type=number], #addBillRepeat {
+.formInput > input[type=text], input[type=date], input[type=number], #addBillRepeat {
     font-size: 1.5rem;
     flex: 1;
 }
@@ -44,14 +44,14 @@
     justify-content: space-around;
 }
 
-.addFormNotes {
+.formNotes {
     margin: 10px 0;
     height: 150px;
     font-size: 1.5rem;
     resize: none;
 }
 
-#addFormSubmit {
+#submit {
     position: relative;
     border-radius: 20px;
     font-size: 1.2rem;
@@ -59,13 +59,13 @@
     font-family: "Space Mono", sans-serif;
 }
 
-#addFormSubmit:hover {
+#submit:hover {
     box-shadow: 0 0 5px 1px white;
     cursor: pointer;
 }
 
 /* Button press effect */
-#addFormSubmit:active {
+#submit:active {
     top: 3px;
 }
 
@@ -80,16 +80,16 @@
         padding: 0 5px;
     }
 
-    .addFormNotes {
+    .formNotes {
         height: 150px;
     }
 
-    .addFormInput {
+    .formInput {
         font-size: 25px;
         margin: 0;
     }
 
-    #addFormSubmit {
+    #submit {
         text-align: center;
     }
 }
