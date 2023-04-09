@@ -93,7 +93,7 @@ const DashBoard = (props) => {
             props.bills.length === 0
             ?<div className="containerEmptyPlan">
                     <h2>ADD YOUR FIRST BILL</h2>
-                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add")}></i>
+                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Bill")}></i>
             </div>
             :<>
                 <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>

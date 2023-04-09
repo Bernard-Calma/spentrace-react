@@ -148,9 +148,9 @@ const Home = (props) => {
                             />  
                             : homeView === "Add Bill"
                             ? <AddBill
-                                handleChangeView = {props.handleChangeView}
                                 user = {props.user}
                                 server = {props.server}
+                                handleChangeView = {() =>handleChangeView("Home")}
                             />
                             : homeView === "Show Bill"
                             ? <ShowBill

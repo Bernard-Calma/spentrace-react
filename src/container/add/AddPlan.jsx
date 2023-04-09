@@ -30,7 +30,7 @@ const AddPlan = (props) => {
                 <BackButton 
                     handleChangeView = {props.handleChangeView}
                 />
-                <h2 className='addTitle'>Add new plan</h2>
+                <h2 className='addTitle'>ADD NEW PLAN</h2>
             </div>
             
             <form className='addForm' onSubmit={handleSubmitAdd}>

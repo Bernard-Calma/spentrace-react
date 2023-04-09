@@ -1,27 +1,29 @@
 /* ADD */
 /* Flex Containers */
-.addContainer , .addHeader, .addForm, .addBillForm {
+.addContainer , .addHeader, .addForm {
     display: flex;
 }
 
 /* Container */
 .addContainer {
-    display: flex;
     flex-direction: column;
     border: solid #B0B7C4;
     border-radius: 20px;
     padding: 10px;
     background-color: rgb(53, 52, 52);
-    margin-top: 20px;
+    margin: 20px;
 }
 
 /* Header */
 .addTitle {
+    font-family: "Russo One";
+    font-weight: bold;
     font-size: 45px;
+    margin: auto 0;
 }
 
 /* Add Plan Form */
-.addForm, .addBillForm {
+.addForm {
     flex-direction: column;
 }
 
@@ -32,9 +34,9 @@
     margin: 5px 0;    
 }
 
-.addFormInput > input[type=text], input[type=date], input[type=number] {
+.addFormInput > input[type=text], input[type=date], input[type=number], #addBillRepeat {
     font-size: 1.5rem;
-    width: 100%;
+    flex: 1;
 }
 
 .radio {
@@ -44,7 +46,7 @@
 
 .addFormNotes {
     margin: 10px 0;
-    height: 200px;
+    height: 150px;
     font-size: 1.5rem;
     resize: none;
 }
@@ -67,50 +69,15 @@
     top: 3px;
 }
 
-
-/* Add Plan */
-
-.addTitle {
-    font-family: "Russo One";
-    font-weight: bold;
-    margin: 0;
-}
-
 .expenseMessage {
     font-size: 1rem;
     color: rgb(255, 61, 61);
     font-style: italic;
 }
 
-/* Add Bill Form */
-.addBillFormInput {
-    margin: 5px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.addBillFormInput > input , .repeatOption  {
-    width: 250px;
-    font-size: 1rem;
-}
-
-.addBillFormNotes {
-    margin-top: 10px;
-    height: 100px;
-}
-
 @media screen and (max-width: 900px) {
     .addContainer {
-        width: auto;
-        margin: 70px 30px;
-        text-align: start;
-        justify-content: start;
-        padding: 10px;
-    }
-
-    .addForm {
-        width: auto;
-        margin: 0;
+        padding: 0 5px;
     }
 
     .addFormNotes {
