@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import NavBar from "../../Components/NavBar";
 import Plan from "../../Components/Plan";
 import Categories from "./Categories";
-import "./PlanList.css"
+import "./PlansList.css"
 
 const PlanList = (props) => {
     const [plans, setPlans] = useState(props.plans.sort((a, b) => (a.date > b.date) ? 1 : -1))
@@ -58,6 +59,11 @@ const PlanList = (props) => {
                         handleShowPlan = {props.handleShowPlan}
                     />)
                 }
+                <div className="containerAdd"style={{
+                    textAlign: "center"
+                }}>
+                    <i className="fi fi-rr-add" onClick={props.handleChangeView}></i>
+                </div>
             </div>
         </main>
     )

@@ -16,11 +16,10 @@ const NavBar = (props) => {
         }
     }
 
-
     return(
         <section className="navBarContainer">
             {
-                props.view === "Main" 
+                props.viewFrom === "Plans" 
                 ? <i className="fi fi-rr-add"
                     onClick={()=> props.handleChangeView("Add")}
                 ></i>

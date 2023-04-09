@@ -9,6 +9,7 @@
 .containerHomeView {
     display: flex;
     justify-content: center;
+    flex-grow: 1;
 }
 /* ----- END OF HOME STYLES ----- */
 

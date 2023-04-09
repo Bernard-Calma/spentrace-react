@@ -122,6 +122,7 @@ const Home = (props) => {
                             : homeView === "Plan" 
                             ? <PlanList 
                                 plans = {plans}
+                                handleChangeView = {() =>handleChangeView("Add Plan")}
                             />
                             : homeView === "Add Plan" 
                             ? <AddPlan

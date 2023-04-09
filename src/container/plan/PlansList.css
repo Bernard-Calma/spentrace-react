@@ -3,19 +3,18 @@ li {
     list-style: none;
 }
 
-/* Main Container Styles */
+/* MAIN CONTAINER STYLES */
 .mainContainer {
-    flex: 1;
     border: solid #B0B7C4;
     background-color: rgb(53, 52, 52);
     overflow: scroll;
-    margin: 80px 10px;
-    max-height: 700px;
+    flex-grow: 1;
 }
 
 .mainContainer::-webkit-scrollbar{
     display: none;
 }
+/* ----- END OF MAIN CONTAINER STYLES ----- */
 
 /* CATEGORIES CONTAINER */
 

@@ -66,7 +66,6 @@ const App = () => {
         user.loggedIn 
         ? <Home 
             user = {user}
-            view = {view}
             server = {server}
             handleChangeView = {handleChangeView}
           />

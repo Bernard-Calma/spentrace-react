@@ -1,12 +1,13 @@
+/* NAVBAR CONTAINER STYES */
 .navBarContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    /* border: black solid;  */
-    bottom: 0;
-    /* border-radius: 20px; */
-    /* background-color: rgb(173, 170, 170); */
+    justify-content: center;
+    border: black solid; 
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
 }
+/* ----- END OF NAVBAR CONTAINER STYES ----- */
 
 .navBarItem {
     margin: auto 20px;
@@ -59,9 +60,7 @@
     flex-direction: column;
     justify-content: space-between;
     border: black solid;
-    position: fixed;
-    left: 0;
-    top: 0;
+    position: relative;
     height: 100%;
     width: 5%;
     border-top-right-radius: 20px;
