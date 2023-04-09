@@ -90,11 +90,14 @@
     margin: 0;
 }
 
-
 .balance, .nextTarget {
     font-size: 36px;
     color: white;
     margin: 0;
+}
+
+.allBillsPaid {
+    
 }
 
 /* ----- END OF EMPTY DASHBOARD STYLES ----- */
