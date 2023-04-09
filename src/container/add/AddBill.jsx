@@ -6,7 +6,8 @@ import axios from 'axios'
 const AddBill = (props) => {
     let [newBill, setNewBill] = useState({
         autopay: false,
-        userId: props.user._id
+        repeat: "never",
+        userId: props.user.id
     })
     const handleChange=(e)=>{
         if (e.target.name === "autopay") setNewBill({...newBill, [e.target.name]: e.target.checked})
@@ -16,9 +17,15 @@ const AddBill = (props) => {
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
-        axios.post(`${props.server}/bills`, newBill)
-        .catch(err => console.log(err))
-        props.handleChangeView("Bills List")
+        console.log(newBill)
+        axios({
+            method: "POST",
+            url: `${props.server}/bills/`,
+            data: newBill,
+            withCredentials: true
+        })
+        .then(res => props.addNewBill(res.data))
+        props.handleChangeView("Main")
     }
     return (
         <div className="addContainer">

@@ -72,6 +72,10 @@ const Home = (props) => {
         })
         .catch(err => console.log(err) )
     } 
+
+    const addNewBill = (newBill) => {
+        setPlans([...bills, newBill])
+    }
     
     const updateBills = (newBill) => {
         let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
@@ -132,7 +136,7 @@ const Home = (props) => {
                             ? <AddPlan
                                 user = {props.user}
                                 server = {props.server}
-                                addNewPlan = {props.addNewPlan}
+                                addNewPlan = {addNewPlan}
                                 handleChangeView = {() =>handleChangeView("Home")}
                             />
                             : homeView === "Bills List" 
@@ -150,6 +154,7 @@ const Home = (props) => {
                             ? <AddBill
                                 user = {props.user}
                                 server = {props.server}
+                                addNewBill = {addNewBill}
                                 handleChangeView = {() =>handleChangeView("Home")}
                             />
                             : homeView === "Show Bill"
