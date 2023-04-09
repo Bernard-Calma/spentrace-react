@@ -1,8 +1,19 @@
+/* Border solid #B0B7C4*/
+.containerBillsList, .billsCategory, .billContainer, .billDataContainer, .billAddContainer {
+    border: solid #B0B7C4;
+}
+
+/* Display Flex */
+.billsContainer, .billsCategory, .billContainer, .containerPaid {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+}
+
 /* MAIN CONTAINER STYLES */
 .containerBillsList {
     position: relative;
     padding-top: 50px;
-    border: solid #B0B7C4;
     background-color: rgb(53, 52, 52);
     overflow: scroll;
     flex-grow: 1;
@@ -32,40 +43,48 @@
     margin: 0;
 }
 
-.containerPaid {
-    display: flex;
-}
-
-
-
 .billsContainer::-webkit-scrollbar{
     display: none;
 }
 
-
+.containerPaid > p{
+    margin: 0;
+}
 
 /* ----- BILL STYLES ----- */
 .billsContainer {
-    display: flex;
     flex-direction: column;
     overflow: scroll;
+}
+
+.billsCategory{
+    flex-grow: 1;
+    border-width: 5px;
+    font-size: 20px;
+    text-align: center;
 }
 
 .containerPaid {
     font-size: 30px;
 }
 
-.billContainer {
-    display: flex;
-    justify-content: space-between;
-    border: solid #B0B7C4;
-}
-
 .billDataContainer{
-    flex-grow: 1;
-    border: solid #B0B7C4;
+    flex: 1;
     border-width: 0 2px;
+    text-align: center;
 }
 
+.billAddContainer {
+    position: relative;
+    height: 40px;
+}
+.btnAddBill {
+    position: absolute;
+    left: 49.3%;
+    font-size: 25px;
+}
 
+.btnAddBill:hover {
+    font-size: 26px;
+}
 /* ----- END OF BILL STYLES ----- */

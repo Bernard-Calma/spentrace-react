@@ -23,8 +23,17 @@ const Unpaid = (props) => {
     },[props.bills])
     return  <>
         <div className='containerPaid'>
-                    <p>Paid: </p>
+                    <p>Unpaid: </p>
                     <p>${totalUnpaid.toFixed(2)}</p>
+        </div>
+        <div className="billsCategory">
+            <div className="billDataContainer"><p className="billData date">Date</p></div>
+            <div className="billDataContainer"><p className="billData name">Name</p></div>
+            <div className="billDataContainer"><p className="billData amount">Amount</p></div>
+            <div className="billDataContainer"><p className="billData category">Category</p></div>
+        </div>
+        <div className="billAddContainer">
+                <i className="fi fi-rr-add btnAddBill"></i>
         </div>
         <MonthlyBill
             handleShowBill = {props.handleShowBill}

@@ -117,42 +117,41 @@ const DashBoard = (props) => {
             }
         </div> 
         {
-            // TODO: ENABLE BACK AFTER COMPLETING BILLS
-            // props.bills.length === 0
-            // ?<div className="containerEmptyPlan">
-            //         <h2>ADD YOUR FIRST BILL</h2>
-            //         <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Bill")}></i>
-            // </div>
-            // :<>
-            //     <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Bills</h1>
-            //     <div className='cotnainerBillsDashboard'>
-            //         <div className='graphSubTitle'>
-            //             <h2>Paid</h2>
-            //             <h2>${totalBillsPaid}</h2>
-            //         </div>    
-            //         <CircleGraph 
-            //             data = {[totalBillsUnpaid, totalBillsPaid]}
-            //             colors = {['red', 'green']}  
-            //             width = {250}
-            //             height = {250}
-            //             value = {totalBillsUnpaid - totalBillsPaid}
-            //         />
-            //         <div className='graphSubTitle'>
-            //             <h2>Unpaid</h2>
-            //             <h2>${totalBillsUnpaid}</h2>
-            //         </div>
-            //         {
-            //             totalBillsUnpaid === 0 
-            //             ?<div className='containerNextTarget'>
-            //                 <h2 className='nextTarget'>All Bills are paid this month.</h2>
-            //             </div>
-            //             :<div className='containerNextTarget'>
-            //                 <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
-            //                 <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
-            //             </div>
-            //         }
-            //     </div>              
-            // </>
+            props.bills.length === 0
+            ?<div className="containerEmptyPlan">
+                    <h2>ADD YOUR FIRST BILL</h2>
+                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Bill")}></i>
+            </div>
+            :<>
+                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Bills</h1>
+                <div className='cotnainerBillsDashboard'>
+                    <div className='graphSubTitle'>
+                        <h2>Paid</h2>
+                        <h2>${totalBillsPaid}</h2>
+                    </div>    
+                    <CircleGraph 
+                        data = {[totalBillsUnpaid, totalBillsPaid]}
+                        colors = {['red', 'green']}  
+                        width = {250}
+                        height = {250}
+                        value = {totalBillsUnpaid - totalBillsPaid}
+                    />
+                    <div className='graphSubTitle'>
+                        <h2>Unpaid</h2>
+                        <h2>${totalBillsUnpaid}</h2>
+                    </div>
+                    {
+                        totalBillsUnpaid === 0 
+                        ?<div className='containerNextTarget'>
+                            <h2 className='nextTarget'>All Bills are paid this month.</h2>
+                        </div>
+                        :<div className='containerNextTarget'>
+                            <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
+                            <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
+                        </div>
+                    }
+                </div>              
+            </>
         } 
     </div>
 }
