@@ -9,7 +9,14 @@ const ShowPlan = (props) => {
 
     return(
         <div className="containerShow">
-            <i className="fi fi-rr-angle-small-left" onClick={props.return}></i>
+            <div className="showHeader">
+                <i className="fi fi-rr-angle-small-left" onClick={props.return}></i>
+                <div>
+                    <i className="fi fi-rr-edit"></i>
+                    <i className="fi fi-rr-trash" ></i>
+                </div>
+            </div>
+
             <div className="containerShowInner">
                 <p className='showInfo date'> <span>Date:</span> {getDate()}</p>
                 <p className='showInfo name'> <span>Name:</span> {props.plan.name}</p>
@@ -18,7 +25,7 @@ const ShowPlan = (props) => {
                 <p className="showInfo"><span>Notes:</span> </p>
                 <p className='showInfo notes'> {props.plan.notes}</p>
             </div>
-            
+
         </div>
     )
 }
