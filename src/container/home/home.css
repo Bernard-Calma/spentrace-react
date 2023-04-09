@@ -4,8 +4,26 @@
     flex-direction: column;
     justify-content: center;
     font-family: 'Space Mono'; 
+    flex-grow: 1;
 }
 /* ----- END OF HOME STYLES ----- */
+
+/* NAVBAR */
+.homeNavBar {
+    display: flex;
+    height: 30px;
+}
+
+.homeNavBar p {
+    margin: 0 10px;
+}
+
+.homeNavBar p:hover {
+    cursor: pointer;
+    font-size: 17px;
+    text-shadow: 1px 0 green;
+}
+/* ----- END OF NAVBAR STYLES ----- */
 
 /* EMPTY DASHBOARD STYLES */
 .containerEmptyDashboard {
@@ -39,9 +57,12 @@
 }
 /* ----- END OF EMPTY DASHBOARD STYLES ----- */
 
+/* DASHBOARD STYLES*/
 .dashboard {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .containerPlansDashboard, .cotnainerBillsDashboard {
@@ -64,11 +85,6 @@
     margin: 0;
 }
 
-.dashboard {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
 .balance, .nextTarget {
     font-size: 36px;
@@ -76,23 +92,7 @@
     margin: 0;
 }
 
-/* NavBar */
-.homeNavBar {
-    display: flex;
-    height: 30px;
-    overflow: hidden;
-}
-
-.homeNavBar p {
-    margin: 0 10px;
-}
-
-.homeNavBar p:hover {
-    cursor: pointer;
-    font-size: 17px;
-    text-shadow: 1px 0 green;
-}
-
+/* ----- END OF EMPTY DASHBOARD STYLES ----- */
 
 /* Bills */
 .dashboardBillMonth {
