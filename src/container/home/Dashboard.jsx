@@ -143,7 +143,7 @@ const DashBoard = (props) => {
                     {
                         totalBillsUnpaid === 0 
                         ?<div className='containerNextTarget'>
-                            <h2 className='allBillsPaid'>All Bills are paid this month.</h2>
+                            <h2 className='nextTarget'>All Bills are paid this month.</h2>
                         </div>
                         :<div className='containerNextTarget'>
                             <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>

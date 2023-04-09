@@ -4,14 +4,14 @@ li {
 }
 
 /* MAIN CONTAINER STYLES */
-.mainContainer {
+.containerPlanList {
     border: solid #B0B7C4;
     background-color: rgb(53, 52, 52);
     overflow: scroll;
     flex-grow: 1;
 }
 
-.mainContainer::-webkit-scrollbar{
+.containerPlanList::-webkit-scrollbar{
     display: none;
 }
 /* ----- END OF MAIN CONTAINER STYLES ----- */
@@ -49,7 +49,7 @@ li {
 }
 
 @media screen and (max-width: 900px) {
-    .mainContainer {
+    .containerPlanList {
         position: fixed;
         top: 50px;
         width: 100%;

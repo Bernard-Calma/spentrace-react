@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import NavBar from "../../Components/NavBar";
+
 import Plan from "../../Components/Plan";
+import AddPlan from "../add/AddPlan";
 import Categories from "./Categories";
 import "./PlansList.css"
 
 const PlanList = (props) => {
-    const [plans, setPlans] = useState(props.plans.sort((a, b) => (a.date > b.date) ? 1 : -1))
+    const [plans, setPlans] = useState(props.plans)
+    let [planView, setPlanView] = useState("Plan List")
     let [totalIncome, setTotalIncome] = useState(0);
     let [totalExpense, setTotalExpense] = useState(0);
-    let runningTarget = 0;
-    let total = 0;
 
     const getRunningBalanceTarget = () => {
         /**
@@ -17,10 +17,10 @@ const PlanList = (props) => {
          * from plan parameter from plans array
          */
         // Set variables back to 0 to prevent adding values from previous computation
-        runningTarget = 0;
-        total = 0;
+        let runningTarget = 0;
+        let total = 0;
         let updatePlans = props.plans
-        updatePlans.forEach( plan => {
+        props.plans.forEach( plan => {
           if (plan.expense === true) {
               setTotalExpense(totalExpense += plan.amount)
               runningTarget += plan.amount;
@@ -37,14 +37,25 @@ const PlanList = (props) => {
           }
           plan.runningTotal = total;  
         })
-        setPlans(updatePlans)
+        setPlans(updatePlans.sort((a, b) => (a.date > b.date) ? 1 : -1))
       }
+
+      const addNewPlan = (newPlan) => {
+        setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1))
+    }
+    
+    const handleChangeView = (view) => {
+        setPlanView(view)
+    }
 
     useEffect(()=>{
         getRunningBalanceTarget()
-    },[props.plans])
-    return(
-        <main className='mainContainer'>
+    },[plans])
+
+    return <>
+    {
+        planView === "Plan List"
+        ?<div className='containerPlanList'>
             <Categories />
             <div className="plansContainer">
                 {
@@ -55,18 +66,24 @@ const PlanList = (props) => {
                         plan={plan}
                         totalIncome = {totalIncome}
                         totalExpense = {totalExpense}
-                        handleChangeView = {props.handleChangeView}
+                        handleChangeView = {() => handleChangeView("Plan List")}
                         handleShowPlan = {props.handleShowPlan}
                     />)
                 }
                 <div className="containerAdd"style={{
                     textAlign: "center"
                 }}>
-                    <i className="fi fi-rr-add" onClick={props.handleChangeView}></i>
+                    <i className="fi fi-rr-add" onClick={() =>handleChangeView("Add Plan")}></i>
                 </div>
             </div>
-        </main>
-    )
+        </div>
+        : <AddPlan
+            user = {props.user}
+            server = {props.server}
+            addNewPlan = {addNewPlan}
+            handleChangeView = {() =>handleChangeView("Plan List")}
+        />
+    }
+    </>
 }
-
 export default PlanList;

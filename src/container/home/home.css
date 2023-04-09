@@ -70,6 +70,12 @@
     align-items: center;
 }
 
+/* Bills */
+.dashboardBillMonth {
+    font-size: 3rem;
+    margin: 0;
+}
+
 .containerPlansDashboard, .cotnainerBillsDashboard {
     display: flex;
     flex-direction: row;
@@ -95,15 +101,5 @@
     color: white;
     margin: 0;
 }
-
-.allBillsPaid {
-    
-}
-
 /* ----- END OF EMPTY DASHBOARD STYLES ----- */
 
-/* Bills */
-.dashboardBillMonth {
-    font-size: 3rem;
-    margin: 0;
-}

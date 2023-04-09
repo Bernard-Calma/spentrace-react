@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+
 import AddBill from '../add/AddBill'
 import AddPlan from '../add/AddPlan'
 import BillsList from '../billsList/BillsList'
@@ -105,26 +106,21 @@ const Home = (props) => {
                             />
                             : homeView === "Plan" 
                             ? <PlanList 
+                                user = {props.user}
+                                server = {props.server}
                                 plans = {plans}
                                 handleChangeView = {() =>handleChangeView("Add Plan")}
                             />
-                            : homeView === "Add Plan" 
-                            ? <AddPlan
-                                user = {props.user}
-                                server = {props.server}
-                                addNewPlan = {addNewPlan}
-                                handleChangeView = {() =>handleChangeView("Home")}
-                            />
                             : homeView === "Bills List" 
                             ? <BillsList
-                            server = {props.server}
-                            user = {props.user}
-                            bills = {bills}
-                            handleChangeView = {props.handleChangeView}
-                            handleShowPlan = {props.handleShowPlan}
-                            setHomeView = {setHomeView}
-                            setBills = {setBills}
-                            setOpenBill = {setOpenBill}
+                                server = {props.server}
+                                user = {props.user}
+                                bills = {bills}
+                                handleChangeView = {props.handleChangeView}
+                                handleShowPlan = {props.handleShowPlan}
+                                setHomeView = {setHomeView}
+                                setBills = {setBills}
+                                setOpenBill = {setOpenBill}
                             />  
                             : homeView === "Add Bill"
                             ? <AddBill
@@ -140,10 +136,10 @@ const Home = (props) => {
                             />
                             : homeView === "Edit Bill" 
                             ? <EdditBill
-                            openBill = {openBill}
-                            server = {props.server}
-                            handleChangeView = {props.handleChangeView} 
-                            updateBills = {updateBills}
+                                openBill = {openBill}
+                                server = {props.server}
+                                handleChangeView = {props.handleChangeView} 
+                                updateBills = {updateBills}
                             />
                             : <></>
                         }
