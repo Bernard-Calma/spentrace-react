@@ -57,6 +57,7 @@ const DashBoard = (props) => {
         getTarget()
     },[props.plans])
     return  <div className='dashboard'>
+        <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
         <div className='containerPlansDashboard'>
             <div className='graphSubTitle'>
                 <h2>Expense</h2>
@@ -88,29 +89,38 @@ const DashBoard = (props) => {
             }
             
         </div> 
-        <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>
-        {/* TODO: ADD FUNCTION TO SWITCH MONTHS */}
-        <div className='cotnainerBillsDashboard'>
-            <div className='graphSubTitle'>
-                <h2>Paid</h2>
-                <h2>${props.totalBillsPaid}</h2>
-            </div>    
-            <CircleGraph 
-                data = {[props.totalBillsUnpaid, props.totalBillsPaid]}
-                colors = {['red', 'green']}  
-                width = {250}
-                height = {250}
-                value = {props.totalBillsUnpaid - props.totalBillsPaid}
-            />
-            <div className='graphSubTitle'>
-                <h2>Unpaid</h2>
-                <h2>${props.totalBillsUnpaid}</h2>
+        {
+            props.bills.length === 0
+            ?<div className="containerEmptyPlan">
+                    <h2>ADD YOUR FIRST BILL</h2>
+                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add")}></i>
             </div>
-            <div className='containerNextTarget'>
-                <h2 className='nextTarget'>Next Bill: ${Math.abs(props.nextUnpaidBill?.amount).toFixed(2)}</h2>
-                <h2 className='nextTarget'>{props.nextUnpaidBill?.name} - {new Date(props.nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
-            </div>
-        </div>               
+            :<>
+                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})}</h1>
+                {/* TODO: ADD FUNCTION TO SWITCH MONTHS */}
+                <div className='cotnainerBillsDashboard'>
+                    <div className='graphSubTitle'>
+                        <h2>Paid</h2>
+                        <h2>${props.totalBillsPaid}</h2>
+                    </div>    
+                    <CircleGraph 
+                        data = {[props.totalBillsUnpaid, props.totalBillsPaid]}
+                        colors = {['red', 'green']}  
+                        width = {250}
+                        height = {250}
+                        value = {props.totalBillsUnpaid - props.totalBillsPaid}
+                    />
+                    <div className='graphSubTitle'>
+                        <h2>Unpaid</h2>
+                        <h2>${props.totalBillsUnpaid}</h2>
+                    </div>
+                    <div className='containerNextTarget'>
+                        <h2 className='nextTarget'>Next Bill: ${Math.abs(props.nextUnpaidBill?.amount).toFixed(2)}</h2>
+                        <h2 className='nextTarget'>{props.nextUnpaidBill?.name} - {new Date(props.nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
+                    </div>
+                </div>              
+            </>
+        } 
     </div>
 }
 

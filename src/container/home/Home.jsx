@@ -53,25 +53,26 @@ const Home = (props) => {
     }
         
     // Bills
-    const handleGetBills = () => {
-        try {
-            axios.get(`${props.server}/bills/${props.user._id}`, { withCredentials: true })
-            .then(res => {
-                setBills(res.data)
-                // Get paid and unpaid graph
-                let totalPaid = 0;
-                let totalUnpaid = 0;
-                res.data.forEach(bill => {
-                    bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
-                    setTotalBillsPaid(totalPaid)
-                    setTotalBillsUnpaid(totalUnpaid)
-                })
+    const getBills = () => {
+        axios({
+            method: "GET",
+            url: `${props.server}/bills/${props.user._id}`,
+            withCredentials: true
+        })
+        .then(res => {
+            setBills(res.data)
+            // Get paid and unpaid graph
+            let totalPaid = 0;
+            let totalUnpaid = 0;
+            res.data.forEach(bill => {
+                bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
+                setTotalBillsPaid(totalPaid)
+                setTotalBillsUnpaid(totalUnpaid)
             })
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
+        })
+        .catch(err => console.log(err) )
+    } 
+    
     const updateBills = (newBill) => {
         let newBillsList = bills.map((bill)=> bill._id === newBill._id ? newBill : bill)
         setBills(newBillsList); 
@@ -88,7 +89,7 @@ const Home = (props) => {
 
     useEffect(()=>{
         getPlans()
-        // getTarget()
+        getBills()
     }, [])
     // useEffect(() => {
     //     handleGetBills()
@@ -113,11 +114,14 @@ const Home = (props) => {
                     <div className='containerHomeView'>
                         {homeView === "Home"
                             ? <DashBoard 
+                                // Plans
                                 plans = {plans}
                                 totalBillsPaid = {totalBillsPaid}
                                 totalBillsUnpaid = {totalBillsUnpaid}
                                 nextUnpaidBill = {nextUnpaidBill}
                                 handleChangeView = {handleChangeView}
+                                // Bills
+                                bills = {bills}
                             />
                             : homeView === "Plan" 
                             ? <PlanList 
