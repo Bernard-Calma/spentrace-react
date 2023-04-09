@@ -2,9 +2,13 @@
 .containerHome{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     font-family: 'Space Mono'; 
     flex-grow: 1;
+}
+
+.containerHomeView {
+    display: flex;
+    justify-content: center;
 }
 /* ----- END OF HOME STYLES ----- */
 
@@ -38,7 +42,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 20px;
+    margin: 50px 20px;
     padding: 0 50px;
     height: 150px;
     border: solid gray;

@@ -75,10 +75,11 @@ const DashBoard = (props) => {
                 <h2>${totalIncome.toFixed(2)}</h2>
             </div>
             {
+                // Show add if balance is positive
                 nextTarget.amount === 0
                 ?<div className="containerEmptyPlan">
                     <h2>Add an expense</h2>
-                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Bill")}></i>
+                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Plan")}></i>
                 </div>
                 :<div className='containerNextTarget'>
                     <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>

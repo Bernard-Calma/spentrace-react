@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import AddBill from '../add/AddBill'
+import AddPlan from '../add/AddPlan'
 import BillsList from '../billsList/BillsList'
 import EdditBill from '../edit/EditBill'
 import PlanList from '../plan/PlansList'
@@ -109,49 +110,59 @@ const Home = (props) => {
                         <p onClick={() => handleChangeView("Plan")}>Budget Tracker</p>
                         <p onClick={() => handleChangeView("Bills List")}>Bills List</p>
                     </div>
-                {homeView === "Home"
-                    ? <DashBoard 
-                        plans = {plans}
-                        totalBillsPaid = {totalBillsPaid}
-                        totalBillsUnpaid = {totalBillsUnpaid}
-                        nextUnpaidBill = {nextUnpaidBill}
-                        handleChangeView = {handleChangeView}
-                    />
-                    : homeView === "Plan" 
-                    ? <PlanList 
-                        plans = {plans}
-                    />
-                    : homeView === "Bills List" 
-                    ? <BillsList
-                    handleChangeView = {props.handleChangeView}
-                    handleShowPlan = {props.handleShowPlan}
-                    setHomeView = {setHomeView}
-                    setBills = {setBills}
-                    setOpenBill = {setOpenBill}
-                    server = {props.server}
-                    user = {props.user}
-                    bills = {bills}
-                    />  
-                    : homeView === "Add Bill"
-                    ? <AddBill
-                        handleChangeView = {props.handleChangeView}
-                        user = {props.user}
-                        server = {props.server}
-                    />
-                    : homeView === "Show Bill"
-                    ? <ShowBill
-                        setHomeView = {props.handleChangeView}
-                        openBill = {openBill}
-                    />
-                    : homeView === "Edit Bill" 
-                    ? <EdditBill
-                    openBill = {openBill}
-                    server = {props.server}
-                    handleChangeView = {props.handleChangeView} 
-                    updateBills = {updateBills}
-                    />
-                    : <></>
-                }</> 
+                    <div className='containerHomeView'>
+                        {homeView === "Home"
+                            ? <DashBoard 
+                                plans = {plans}
+                                totalBillsPaid = {totalBillsPaid}
+                                totalBillsUnpaid = {totalBillsUnpaid}
+                                nextUnpaidBill = {nextUnpaidBill}
+                                handleChangeView = {handleChangeView}
+                            />
+                            : homeView === "Plan" 
+                            ? <PlanList 
+                                plans = {plans}
+                            />
+                            : homeView === "Add Plan" 
+                            ? <AddPlan
+                                user = {props.user}
+                                server = {props.server}
+                                addNewPlan = {props.addNewPlan}
+                                handleChangeView = {() =>handleChangeView("Home")}
+                            />
+                            : homeView === "Bills List" 
+                            ? <BillsList
+                            handleChangeView = {props.handleChangeView}
+                            handleShowPlan = {props.handleShowPlan}
+                            setHomeView = {setHomeView}
+                            setBills = {setBills}
+                            setOpenBill = {setOpenBill}
+                            server = {props.server}
+                            user = {props.user}
+                            bills = {bills}
+                            />  
+                            : homeView === "Add Bill"
+                            ? <AddBill
+                                handleChangeView = {props.handleChangeView}
+                                user = {props.user}
+                                server = {props.server}
+                            />
+                            : homeView === "Show Bill"
+                            ? <ShowBill
+                                setHomeView = {props.handleChangeView}
+                                openBill = {openBill}
+                            />
+                            : homeView === "Edit Bill" 
+                            ? <EdditBill
+                            openBill = {openBill}
+                            server = {props.server}
+                            handleChangeView = {props.handleChangeView} 
+                            updateBills = {updateBills}
+                            />
+                            : <></>
+                        }
+                    </div>
+                </> 
             }
 
         </section>
