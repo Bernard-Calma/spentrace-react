@@ -1,17 +1,15 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios'
+
 import './App.css';
-import { useState } from 'react';
-import Add from './container/add/Add';
-import Show from './container/show/Show';
 import Header from './container/header/Header';
 import Footer from './container/footer/Footer';
-import EditPlan from './container/edit/EditPlan';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
-import PlanList from './container/plan/PlansList';
-import axios from 'axios';
 
 const App = () => { 
   // VARIABLES
+
   // Server
   const herokuServer = process.env.REACT_APP_SERVER_URL 
   const [server] = useState(
@@ -21,190 +19,59 @@ const App = () => {
 
   // View
   const [view, setView] = useState("Login")
-  const [loginMessage, setLoginMessage] = useState("")
-  
+
   // User information
   const [user, setUser] = useState({
-    email: "",
+    id: "",
     username: "",
-    password: "",
-    verifyPassword: "",
     loggedIn: false
   })
-  
-  // Plans
-  const [plans, setPlans] = useState([])
-  let [openPlan, setOpenPlan] = useState({});
+  // ------------------------------ END OF VARIABLES ------------------------------
 
-  let [openBill, setOpenBill] = useState({})
   // FUNCTIONS
-  // Login
-  const handleLogin = (event) => {
-    event.preventDefault();
-    fetch(server+"/users/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': "*"
-        },
-        body: JSON.stringify(user)
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if (data.user.username) {
-        setUser({...user, ...data.user, loggedIn: true})
-      } else {
-        setLoginMessage(data.message) 
-      }
-      return data
-    })
-    .catch(err => {
-      console.error("Error : ", err)
-      clearPasswords()
-      setLoginMessage(err.message)
-    })
-    .then(data => {
-      getplans(data._id)
-      setView("Main")
-    })
-  }
+  // Authenticate app if user session exist in server side
 
-  const handleSignout = () => {
-    console.log("Sign Out Completely")
-    fetch(server+"/users/signout")
-    .then(res => res.json())
-    .then(data => setLoginMessage(data.message))
-    setUser({
-      email: "",
-      username: "",
-      password: "",
-      verifyPassword: "",
-      loggedIn: false
-    })
-  }
-
-  const handleChangeUser = (event) => {
-    event.preventDefault()
-    setUser({...user, [event.target.name]: event.target.value})
-  }
-
-  const clearPasswords = () => {
-    setUser({...user, password: "", verifyPassword: ""})
-  }
 
   // View
   // Handle view change while navigating
-  const handleChangeView = (view) => {
-    // console.log("View changed to ", view)
-    setView(view)
-  }
+  const handleChangeView = view => setView(view)
+  
+  // ------------------------------ END OF FUNCTIONS ------------------------------
 
-  const handleShowPlan = (plan) => {
-    setOpenPlan(plan)
-    handleChangeView("Show")
-  }
-
-  // Plans
-  const getplans = (id) => {
-    axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_URL}/plans/"`,
-      data: id, 
-      withCredentials: true     
-    })
-    .then(res => setPlans(res.data))
-  }
-
-  const updatePlans = (newPlan) => {
-    /**
-     * This function udpates state
-     * instead of doing an API call
-     * to provide better performance
-     * 
-     * Return newplan if id matches inside current plans array.
-     */
-    let newPlansList = plans.map((plan)=> plan._id === newPlan._id ? newPlan : plan)
-    setPlans(newPlansList); 
-  }
-
-  const addPlan = (newplan) => {
-    setPlans([...plans, newplan])
-  }
-
-
+  useEffect(() => {
+    const checkCookieAuth = () => {
+      axios.get(`${server}/`, {withCredentials: true})
+      .then(res => {
+        if (res.data._id) {
+          const userData = res.data
+          setUser({
+            id: userData._id,
+            username: userData.username,
+            loggedIn: true
+          })
+        }
+      })
+    }
+    checkCookieAuth()
+  },[server])
   return (
     <div className="App">
       <Header 
         view = {view}
         user = {user}
-        plans = {plans}
-        setPlans = {setPlans}
         handleChangeView = {handleChangeView}
-        openPlan = {openPlan}
-        openBill = {openBill}
       />
       {
-        user.loggedIn ?
-        <>
-        {
-          view === "Main"
-          ?
-          <>
-            <PlanList
-              view={view}
-              user = {user}
-              plans = {plans}
-              server = {server}
-              handleChangeView = {handleChangeView}
-              handleShowPlan = {handleShowPlan}
-              getplans = {getplans}
-            />
-            <i className="fi fi-rr-exit signout" onClick={handleSignout}></i>
-          </>
-          : view === "Add"
-          ? <Add
-              handleChangeView = {handleChangeView}
-              user = {user}
-              server = {server}
-              addPlan = {addPlan}
-            />
-          : view === "Show"
-          ? <Show
-              openPlan = {openPlan}
-              handleChangeView = {handleChangeView}
-            />
-          : view === "Edit" ?
-            <EditPlan
-              openPlan = {openPlan}
-              server = {server}
-              handleChangeView = {handleChangeView} 
-              updatePlans = {updatePlans}
-            />
-          : view === "Home" ?
-            <Home 
-              user = {user}
-              plans = {plans} 
-              view = {view}
-              server = {server}
-              handleChangeView = {handleChangeView}
-              setOpenBill = {setOpenBill}
-            />
-          : <></>
-          }
-        </>
+        user.loggedIn 
+        ? <Home 
+            user = {user}
+            server = {server}
+            handleChangeView = {handleChangeView}
+          />
         : <LandingPage 
-          server = {server}
-          view = {view}
-          user = {user}
-          loginMessage = {loginMessage}
-          setUser = {setUser}
-          handleChangeUser = {handleChangeUser}
-          handleChangeView = {handleChangeView}
-          handleLogin = {handleLogin}
-          clearPasswords = {clearPasswords}
-        /> 
+            setUser = {setUser}
+            server = {server}
+          /> 
       }
       <Footer />
     </div>

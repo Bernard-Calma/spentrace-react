@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Space+Mono&family=Ubuntu&display=swap');
 
-body {
-  width: 100%;
-  height: 100vh;
-  /* background-color: #414449; */
-  background: linear-gradient(black, gray);
-  color: #B0B7C4;
-}
-
-.App {
+html, body, #root, .App {
+  height: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+body {
+  /* background-color: #414449; */
+  background: linear-gradient(black, gray) no-repeat fixed center;
+  color: #B0B7C4;
 }
 
 .signout {

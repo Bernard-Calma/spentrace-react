@@ -1,71 +1,25 @@
-.editContainer {
+.editContainer , .editHeader {
     display: flex;
-    flex: 1;
-    justify-content: space-between;
+}
+
+.editContainer {
     flex-direction: column;
     border: solid #B0B7C4;
     border-radius: 20px;
-    width: 700px;
-    margin: 80px auto;
+    margin: 10px auto;
     text-align: center;
     padding: 20px;
     background-color: rgb(53, 52, 52);
-
-
 }
 
-.navTitle {
+.editTitle {
     font-family: "Russo One";
     font-size: 3rem;
     font-weight: bold;
     margin: 0 10%;
 }
 
-.editForm {
-    display: flex;
-    margin:  50px auto auto;
-    width: 500px;
-    flex-direction: column;
-    text-align: start;
-}
-
-.editFormInput {
-    font-family: "Space Mono";
-    font-size: 2rem;
-    margin: 10px 0;
-}
-
-.editFormInput > input {
-    font-size: 1.5rem;
-}
-
-.editFormNotes {
-    margin: 10px 0;
-    height: 200px;
-    font-size: 1.5rem;
-}
-
-#editFormSubmit {
-    height: 80px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    margin: 10px auto 0;
-    font-family: "Space Mono", sans-serif;
-}
-
-.editHeader {
-    display: flex;
-    flex: row;
-}
-
 /* Edit Bill */
-.editBillForm {
-    display: flex;
-    margin: auto;
-    flex-direction: column;
-    text-align: start;
-}
-
 .editBillForm label, .editBillForm input {
     font-size: 1.5rem;
 }
@@ -85,25 +39,7 @@
         padding: 10px;
     }
 
-    .editForm {
-        width: auto;
-        margin: 0;
-    }
-
-    .editFormNotes {
-        height: 150px;
-    }
-
-    .editFormInput {
-        font-size: 25px;
-        margin: 0;
-    }
-
-    #editFormSubmit {
-        text-align: center;
-    }
-
-    .navTitle {
+    .editTitle {
         font-size: 2rem;
     }
 }

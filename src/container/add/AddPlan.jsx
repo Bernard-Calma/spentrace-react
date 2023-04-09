@@ -1,65 +1,68 @@
 import { useState } from 'react'
+import axios from 'axios'
 import BackButton from '../../Components/Buttons/BackButton'
 import './Add.css'
 
-const Add = (props) => {
-    let [newPlan, setNewPlan] = useState({userId:props.user._id})
+const AddPlan = (props) => {
+    const [newPlan, setNewPlan] = useState({userId: props.user.id})
 
     const handleChange=(e)=>{
+        // Handle input changes
+        // If expense or income changed return true or false
         if (e.target.name === "expense") setNewPlan({...newPlan, [e.target.name]: e.target.value === "Expense" ? true : false})
         else setNewPlan({...newPlan, [e.target.name]: e.target.value})
     }
 
     const handleSubmitAdd = (e) => {
         e.preventDefault();
-        fetch(props.server+"/plans/", {
+        axios({
             method: "POST",
-            credentials: "include",
-            headers: {
-            "Content-Type": "application/json",
-        },
-            body: JSON.stringify(newPlan)
-        }).then(res => res.json())
-        .then(data => props.addPlan(data))
+            url: `${props.server}/plans/`,
+            data: newPlan,
+            withCredentials: true
+        })
+        .then(res => props.addNewPlan(res.data))
         props.handleChangeView("Main")
     }
     return (
         <div className="addContainer">
             <div className='addHeader'>
-                <BackButton handleChangeView = {() => props.handleChangeView("Main")}/>
-                <h2 className='navTitle'>Add new plan</h2>
+                <BackButton 
+                    handleChangeView = {props.handleChangeView}
+                />
+                <h2 className='addTitle'>ADD NEW PLAN</h2>
             </div>
             
             <form className='addForm' onSubmit={handleSubmitAdd}>
-                <label htmlFor="date" className='addFormInput'>
+                <label htmlFor="date" className='formInput'>
                     Date: 
                     <input type="date" name="date" id="addDate" onChange={handleChange} required/>
                 </label>
-                <label htmlFor="name" className='addFormInput'>
+                <label htmlFor="name" className='formInput'>
                     Name: 
                     <input type="text" name="name" id="addName" onChange={handleChange} required/>
                 </label>
-                <label htmlFor="amount" className='addFormInput'>
+                <label htmlFor="amount" className='formInput'>
                     Amount: 
                     <input type="number" name="amount" id="addAmount" onChange={handleChange} />
                 </label>
                 <div className='radio'>
-                    <label htmlFor="type" className='addFormInput'>
+                    <label htmlFor="type" className='formInput'>
                         Income: 
                         <input type="radio" name="expense" id="addTypeIncome" value="Income" onChange={handleChange} required/>
                     </label>
-                        <label htmlFor="type" className='addFormInput'>
+                        <label htmlFor="type" className='formInput'>
                         Expense: 
                         <input type="radio" name="expense" id="addTypeExpense" value="Expense" onChange={handleChange} required/>
                     </label>
                 </div>
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>
 
-                <textarea name="notes" id="addNotes" className='addFormNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
-                <input type="submit" name="submit" id="addFormSubmit" />
+                <textarea name="notes" id="addNotes" className='formNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
+                <input type="submit" name="submit" id="submit" />
             </form>
         </div>
     )
 }
 
-export default Add
+export default AddPlan

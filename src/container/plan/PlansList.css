@@ -3,19 +3,18 @@ li {
     list-style: none;
 }
 
-/* Main Container Styles */
-.mainContainer {
-    flex: 1;
+/* MAIN CONTAINER STYLES */
+.containerPlanList {
     border: solid #B0B7C4;
     background-color: rgb(53, 52, 52);
     overflow: scroll;
-    margin: 80px 10px;
-    max-height: 700px;
+    flex-grow: 1;
 }
 
-.mainContainer::-webkit-scrollbar{
+.containerPlanList::-webkit-scrollbar{
     display: none;
 }
+/* ----- END OF MAIN CONTAINER STYLES ----- */
 
 /* CATEGORIES CONTAINER */
 
@@ -50,7 +49,7 @@ li {
 }
 
 @media screen and (max-width: 900px) {
-    .mainContainer {
+    .containerPlanList {
         position: fixed;
         top: 50px;
         width: 100%;

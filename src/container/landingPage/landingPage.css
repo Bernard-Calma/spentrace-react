@@ -1,26 +1,22 @@
 .containerLandingPage{
     border: solid white;
     border-radius: 50px;
-    margin: 80px auto 0;
-    width: 1000px;
+    margin: 20px 5%;
     display: flex;
     justify-content: center;
-    overflow: hidden;
     background: linear-gradient(rgb(37, 34, 34), rgb(161, 158, 158));
     box-shadow: 1px 1px 5px 2px white;
 }
 
-
 .introduction{
     /* border: solid gray; */
-    padding: 30px;
     font-family: "Space Mono";
     font-size: 25px;
     width: 50%;
 }
 
 .mainPageImage{
-    width: 300px;
+    width: 250px;
     padding-left: 100px;
 }
 

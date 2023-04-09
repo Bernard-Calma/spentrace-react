@@ -1,70 +1,72 @@
-/* Add */
-.addForm, .addBillForm {
+/* ADD */
+/* Flex Containers */
+.addContainer , .addHeader, form {
     display: flex;
-    flex-direction: column;
-    text-align: start;
-    margin:  50px auto auto;
 }
 
-.addBillForm > input {
-    font-size: 1rem;
-}
-
-/* Add Plan */
+/* Container */
 .addContainer {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
     flex-direction: column;
     border: solid #B0B7C4;
     border-radius: 20px;
-    width: 700px;
-    margin: 80px auto;
-    text-align: center;
-    padding: 20px;
+    padding: 10px;
     background-color: rgb(53, 52, 52);
-
-
+    margin: 20px;
 }
 
-.navTitle {
+/* Header */
+.addTitle {
     font-family: "Russo One";
-    font-size: 2rem;
     font-weight: bold;
-    margin: auto 0 0 30%;
+    font-size: 45px;
+    margin: auto 0;
 }
 
-.addForm {
-    width: 500px;
+/* Add Plan Form */
+form {
+    flex-direction: column;
 }
 
-.addFormInput, .addBillFormInput {
-    font-family: "Space Mono";
+.formInput {
+    display: flex;
     font-size: 2rem;
-    margin: 10px 0;
+    font-family: "Space Mono";
+    margin: 5px 0;    
 }
 
-.addFormInput > input {
+.formInput > input[type=text], input[type=date], input[type=number], #addBillRepeat {
     font-size: 1.5rem;
+    flex: 1;
 }
 
-.addFormNotes {
+.radio {
+    display: flex;
+    justify-content: space-around;
+}
+
+.formNotes {
     margin: 10px 0;
-    height: 200px;
+    height: 150px;
     font-size: 1.5rem;
+    resize: none;
 }
 
-#addFormSubmit {
-    height: 80px;
-    border-radius: 50%;
+#submit {
+    position: relative;
+    border-radius: 20px;
     font-size: 1.2rem;
-    margin: 10px auto 0;
+    margin: 10px auto;
     font-family: "Space Mono", sans-serif;
 }
 
-.addHeader {
-    display: flex;
-    flex: row;
+#submit:hover {
+    box-shadow: 0 0 5px 1px white;
+    cursor: pointer;
+}
+
+/* Button press effect */
+#submit:active {
+    top: 3px;
 }
 
 .expenseMessage {
@@ -73,47 +75,21 @@
     font-style: italic;
 }
 
-/* Add Bill Form */
-.addBillFormInput {
-    margin: 5px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.addBillFormInput > input , .repeatOption  {
-    width: 250px;
-    font-size: 1rem;
-}
-
-.addBillFormNotes {
-    margin-top: 10px;
-    height: 100px;
-}
-
 @media screen and (max-width: 900px) {
     .addContainer {
-        width: auto;
-        margin: 70px 30px;
-        text-align: start;
-        justify-content: start;
-        padding: 10px;
+        padding: 0 5px;
     }
 
-    .addForm {
-        width: auto;
-        margin: 0;
-    }
-
-    .addFormNotes {
+    .formNotes {
         height: 150px;
     }
 
-    .addFormInput {
+    .formInput {
         font-size: 25px;
         margin: 0;
     }
 
-    #addFormSubmit {
+    #submit {
         text-align: center;
     }
 }
