@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 import AddBill from '../add/AddBill'
-import BillsList from '../billsList/BillsList'
+import BillsList from '../bills/BillsList'
 import EdditBill from '../edit/EditBill'
 import PlanList from '../plan/PlansList'
 import ShowBill from '../show/ShowBill'

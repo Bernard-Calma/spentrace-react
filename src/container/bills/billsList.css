@@ -1,0 +1,71 @@
+/* MAIN CONTAINER STYLES */
+.containerBillsList {
+    position: relative;
+    padding-top: 50px;
+    border: solid #B0B7C4;
+    background-color: rgb(53, 52, 52);
+    overflow: scroll;
+    flex-grow: 1;
+}
+
+.containerBillsList::-webkit-scrollbar{
+    display: none;
+}
+/* ----- END OF MAIN CONTAINER STYLES ----- */
+
+.billsListHeader{
+    position: absolute;
+    top: 0;
+    left: 40%;
+    display: flex;
+}
+
+.month {
+    text-align: center;
+    font-size: 35px;
+    margin: 0;
+    width: 180px;
+}
+
+.btnPrevious, .btnNext {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.containerPaid {
+    display: flex;
+}
+
+
+
+.billsContainer::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+/* ----- BILL STYLES ----- */
+.billsContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.containerPaid {
+    font-size: 30px;
+}
+
+.billContainer {
+    display: flex;
+    justify-content: space-between;
+    border: solid #B0B7C4;
+}
+
+.billDataContainer{
+    flex-grow: 1;
+    border: solid #B0B7C4;
+    border-width: 0 2px;
+}
+
+
+/* ----- END OF BILL STYLES ----- */
