@@ -35,6 +35,11 @@ const App = () => {
   // View
   // Handle view change while navigating
   const handleChangeView = view => setView(view)
+
+  // Access homeView in Home and pass to Header
+  const [appView, setAppView] = useState("")
+  const handleChangeHomeView = view => setAppView(view)
+  
   
   // ------------------------------ END OF FUNCTIONS ------------------------------
 
@@ -60,13 +65,16 @@ const App = () => {
         view = {view}
         user = {user}
         handleChangeView = {handleChangeView}
+        handleChangeHomeView = {() => handleChangeHomeView("Home")}
       />
       {
         user.loggedIn 
         ? <Home 
             user = {user}
             server = {server}
+            appView = {appView}
             handleChangeView = {handleChangeView}
+            handleChangeHomeView = {() => handleChangeHomeView("")}
           />
         : <LandingPage 
             setUser = {setUser}

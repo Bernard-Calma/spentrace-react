@@ -22,7 +22,10 @@ const Home = (props) => {
 
     // FUNCTIONS
     // Views
-    const handleChangeView = view => setHomeView(view)
+    const handleChangeView = view => {
+        setHomeView(view)
+        props.handleChangeHomeView()
+    }
     // Plan
     const getPlans = () => {
         // Get all plans from user
@@ -51,7 +54,6 @@ const Home = (props) => {
     
     const updateBills = newBill => setBills(bills.map((bill)=> bill._id === newBill._id ? newBill : bill)); 
     // ------------------------------ END OF FUNCTIONS ------------------------------
-
     useEffect(()=>{
         getPlans()
         getBills()
@@ -71,7 +73,7 @@ const Home = (props) => {
                         <p onClick={() => handleChangeView("Bills List")}>Bills List</p>
                     </div>
                     <div className='containerHomeView'>
-                        {homeView === "Home"
+                        {homeView === "Home" || props.appView === "Home"
                             ? <DashBoard 
                                 // Plans
                                 plans = {plans}
