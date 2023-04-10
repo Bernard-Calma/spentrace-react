@@ -35,43 +35,38 @@ const BillsList = (props) => {
         monthBills = props.bills.filter(bill => new Date(bill.dueDate).getMonth() === month)
         return monthBills
     }
-    return(
-        <section className='containerBillsList'>
-            {
-                billsView === "Bills List"
-                ? <>
-                <MonthHeader 
-                    monthText = {monthText}
-                    handlePrevMonth = {handlePrevMonth}
-                    handleNextMonth = {handleNextMonth}
-                />
-                <div className="billsContainer">
-                    <Unpaid 
-                        month = {month}
-                        bills = {getMonthlyBill(month)}
-                        handleShowBill = {handleShowBill}
-                        setHomeView = {props.setHomeView}
-                        changeBillsView = {() => changeBillsView("Add Bill")}
-                    />
-                    <Paid 
-                        month = {month}
-                        bills = {getMonthlyBill(month)}
-                        handleShowBill = {handleShowBill}
-                        setHomeView = {props.setHomeView}
-                    />
-                </div>
-                </>
-                : billsView === "Add Bill"
-                ?<AddBill 
-                    user = {props.user}
-                />
-                : <>
-                    
-                </>
-            }
-            
+    return(<>{
+        billsView === "Bills List"
+        ? <section className='containerBillsList'>
+        <MonthHeader 
+            monthText = {monthText}
+            handlePrevMonth = {handlePrevMonth}
+            handleNextMonth = {handleNextMonth}
+        />
+        <div className="billsContainer">
+            <Unpaid 
+                month = {month}
+                bills = {getMonthlyBill(month)}
+                handleShowBill = {handleShowBill}
+                setHomeView = {props.setHomeView}
+                changeBillsView = {() => changeBillsView("Add Bill")}
+            />
+            <Paid 
+                month = {month}
+                bills = {getMonthlyBill(month)}
+                handleShowBill = {handleShowBill}
+                setHomeView = {props.setHomeView}
+            />
+        </div>
         </section>
-    )
+        : billsView === "Add Bill"
+        ?<AddBill 
+            user = {props.user}
+        />
+        : <>
+            
+        </>
+    }</>)
 }
 
 export default BillsList
