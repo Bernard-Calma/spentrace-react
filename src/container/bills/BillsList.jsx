@@ -1,5 +1,6 @@
 import {  useState } from 'react'
 import AddBill from '../add/AddBill'
+import EdditBill from '../edit/EditBill'
 import ShowBill from '../show/ShowBill'
 import './billsList.css'
 import MonthHeader from './MonthHeader'
@@ -41,10 +42,8 @@ const BillsList = (props) => {
     }
 
     const handleAddBill = newBill => setBills([...bills, newBill])
-    const deleteBill = targetBill => {
-        console.log(targetBill)
-        setBills(bills.filter(bill => bill._id !== targetBill._id))
-    }
+    const deleteBill = targetBill => setBills(bills.filter(bill => bill._id !== targetBill._id))
+    
 
     return(<>{
         billsView === "Bills List"
@@ -79,11 +78,17 @@ const BillsList = (props) => {
             changeBillsView = {() => changeBillsView("Bills List")}
             handleAddBill = {handleAddBill}
         />
+        : billsView === "Edit Bill"
+        ? <EdditBill 
+            openBill = {openBill}
+            return = {() => changeBillsView("Bills List")}
+        />
         : billsView === "Show Bill"
         ? <ShowBill 
             openBill = {openBill}
             server = {props.server}
             deleteBill = {deleteBill}
+            edit = {() => changeBillsView("Edit Bill")}
             return = {() => changeBillsView("Bills List")}
         />
         : <></>

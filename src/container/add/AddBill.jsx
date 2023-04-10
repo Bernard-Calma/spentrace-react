@@ -4,6 +4,7 @@ import './Add.css'
 import axios from 'axios'
 
 const AddBill = (props) => {
+    const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months'])
     let [newBill, setNewBill] = useState({
         autopay: false,
         repeat: "never",
@@ -51,16 +52,15 @@ const AddBill = (props) => {
                 </label>
                 <label htmlFor="category" className='formInput'>
                     Category: 
-                    <input type="text" name="category" id="addBillAmount" onChange={handleChange} />
+                    <input type="text" name="category" id="addBillCatagory" onChange={handleChange} />
                 </label>
                 <label htmlFor="repeat" className='formInput'>
                     Repeat: 
                     <select name="repeat" id="addBillRepeat" size='1' required onChange={handleChange}>
-                        <option value='never' className='repeatOption'>Never</option>
-                        <option value='every week' className='repeatOption'>Every Week</option>
-                        <option value='every 2 weeks' className='repeatOption'>Every 2 Weeks</option>
-                        <option value='every month' className='repeatOption'>Every Month</option>
-                        <option value='every 2 months' className='repeatOption'>Every 2 Months</option>
+                        {
+                            repeatOptions.map((option, index) => 
+                                <option key={index} value={option} className='repeatOption' >{option}</option>
+                        )}
                     </select>
                 </label>
                 <label htmlFor="autoPay" className='formInput'>
