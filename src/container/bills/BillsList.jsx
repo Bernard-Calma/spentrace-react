@@ -62,6 +62,7 @@ const BillsList = (props) => {
         : billsView === "Add Bill"
         ?<AddBill 
             user = {props.user}
+            changeBillsView = {() => changeBillsView("Bills List")}
         />
         : <>
             
