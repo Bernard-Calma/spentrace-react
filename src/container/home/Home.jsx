@@ -32,10 +32,6 @@ const Home = (props) => {
         await axios({ 
             method: "GET",
             url: `${props.server}/plans`,
-            headers: { 
-                'Content-Type': 'application/json' 
-            },
-            responseType: 'json',
             withCredentials: true 
         })
         .then(res => setPlans(res.data))
