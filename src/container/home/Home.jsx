@@ -32,6 +32,9 @@ const Home = (props) => {
         await axios({ 
             method: "GET",
             url: `${props.server}/plans`,
+            headers: { 
+                'content-type': 'application/x-www-form-urlencoded' 
+            },
             withCredentials: true 
         })
         .then(res => setPlans(res.data))
@@ -44,6 +47,9 @@ const Home = (props) => {
         await axios({
             method: "GET",
             url: `${props.server}/bills`,
+            headers: { 
+                'content-type': 'application/x-www-form-urlencoded' 
+            },
             withCredentials: true
         })
         .then(res => setBills(res.data))
