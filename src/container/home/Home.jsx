@@ -43,7 +43,7 @@ const Home = (props) => {
     const getBills = async () => {
         await axios({
             method: "GET",
-            url: `${props.server}/bills${props.user._id}`,
+            url: `${props.server}/bills`,
             withCredentials: true
         })
         .then(res => setBills(res.data))
