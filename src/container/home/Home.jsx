@@ -27,9 +27,9 @@ const Home = (props) => {
         props.handleChangeHomeView()
     }
     // Plan
-    const getPlans = () => {
+    const getPlans = async () => {
         // Get all plans from user
-        axios({ 
+        await axios({ 
             method: "GET",
             url: `${props.server}/plans/`,
             withCredentials: true 
@@ -40,8 +40,8 @@ const Home = (props) => {
 
     const addNewPlan = newPlan => setPlans([...plans, newPlan])
     // Bills
-    const getBills = () => {
-        axios({
+    const getBills = async () => {
+        await axios({
             method: "GET",
             url: `${props.server}/bills/${props.user._id}`,
             withCredentials: true
