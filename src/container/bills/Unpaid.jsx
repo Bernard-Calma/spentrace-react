@@ -5,7 +5,7 @@ const Unpaid = (props) => {
     let [totalUnpaid, setTotalUnpaid] = useState(0);
     const [billsUnpaid, setBillsUnpaid] = useState([])
  
-    const getTotalPaid = () => {
+    const getTotalUnpaid = () => {
         let unpaid = 0;
         let unpaidList = []
         props.bills.forEach(element => {
@@ -19,7 +19,7 @@ const Unpaid = (props) => {
     }
 
     useEffect(()=> {
-        getTotalPaid()
+        getTotalUnpaid()
     },[props.bills])
     return  <>
         <div className='containerPaid'>

@@ -7,15 +7,19 @@ const AddBill = (props) => {
     let [newBill, setNewBill] = useState({
         autopay: false,
         repeat: "never",
+        paid: false,
         userId: props.user.id
     })
+
     const handleChange=(e)=>{
         if (e.target.name === "autopay") setNewBill({...newBill, [e.target.name]: e.target.checked})
+        else if (e.target.name === "paid") setNewBill({...newBill, [e.target.name]: e.target.checked})
         else setNewBill({...newBill, [e.target.name]: e.target.value})
         
     }
 
     const handleSubmitAdd = (e) => {
+        console.log(newBill)
         e.preventDefault();
         axios({
             method: "POST",
@@ -23,8 +27,8 @@ const AddBill = (props) => {
             data: newBill,
             withCredentials: true
         })
-        .then(res => props.addNewBill(res.data))
-        props.handleChangeView("Main")
+        .then(res => props.handleAddBill(res.data))
+        props.changeBillsView()
     }
     return (
         <div className="addContainer">
@@ -62,6 +66,10 @@ const AddBill = (props) => {
                 <label htmlFor="autoPay" className='formInput'>
                     Autopay: 
                     <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
+                </label>
+                <label htmlFor="autoPay" className='formInput'>
+                    Paid: 
+                    <input type="checkbox" name="paid" id="addBillAmount" onChange={handleChange} />
                 </label>
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>
                 <textarea name="notes" id="addBillNotes" className='formNotes' placeholder='enter notes here' onChange={handleChange}></textarea>

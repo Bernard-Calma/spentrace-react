@@ -7,9 +7,12 @@ import Unpaid from './Unpaid'
 
 const BillsList = (props) => {
     const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"])
+    const [bills, setBills] = useState([...props.bills])
     let [month, setMonth] = useState(new Date().getMonth())
     let [monthText, setMonthText] = useState(monthNames[month])
     let [billsView, setBillsView] = useState("Bills List")
+    let [showBill, setShowBill] = useState({})
+
 
     const changeBillsView = view => setBillsView(view);
 
@@ -32,9 +35,13 @@ const BillsList = (props) => {
 
     const getMonthlyBill = (month) => {
         let monthBills = []
-        monthBills = props.bills.filter(bill => new Date(bill.dueDate).getMonth() === month)
+        monthBills = bills.filter(bill => new Date(bill.dueDate).getMonth() === month)
         return monthBills
     }
+
+    const handleAddBill = newBill => setBills([...bills, newBill])
+
+
     return(<>{
         billsView === "Bills List"
         ? <section className='containerBillsList'>
@@ -62,7 +69,10 @@ const BillsList = (props) => {
         : billsView === "Add Bill"
         ?<AddBill 
             user = {props.user}
+            server = {props.server}
+            bills = {props.bills}
             changeBillsView = {() => changeBillsView("Bills List")}
+            handleAddBill = {handleAddBill}
         />
         : <>
             
