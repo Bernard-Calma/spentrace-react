@@ -20,6 +20,7 @@ const Unpaid = (props) => {
 
     useEffect(()=> {
         getTotalUnpaid()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.bills])
     return  <>
         <div className='containerPaid'>

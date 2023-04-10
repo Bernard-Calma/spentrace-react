@@ -57,6 +57,7 @@ const Home = (props) => {
     useEffect(()=>{
         getPlans()
         getBills()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return(
