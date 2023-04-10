@@ -15,6 +15,7 @@ const ShowPlan = (props) => {
             withCredentials: true,
         })
         .then(res => props.deletePlan(res.data))
+        .catch(err => console.log(err));
         props.return()
     }
 
@@ -27,7 +28,6 @@ const ShowPlan = (props) => {
                     <i className="fi fi-rr-trash" onClick={handleDelete}></i>
                 </div>
             </div>
-
             <div className="containerShowInner">
                 <p className='showInfo date'> <span>Date:</span> {getDate()}</p>
                 <p className='showInfo name'> <span>Name:</span> {props.plan.name}</p>

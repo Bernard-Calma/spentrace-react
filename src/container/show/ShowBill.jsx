@@ -1,3 +1,4 @@
+import axios from "axios"
 import "./Show.css"
 
 const ShowBill = (props) => {
@@ -7,10 +8,26 @@ const ShowBill = (props) => {
         return dateToday === dateBill ? "Today": dateBill;
     }
 
+    const handleDelete = () => {
+        axios({
+            method: "DELETE",
+            url: `${props.server}/bills/${props.openBill._id}`,
+            withCredentials: true
+        })
+        .then(res => props.deleteBill(res.data))
+        .catch(err => console.log(err));
+        props.return();
+    }
     return(
         <div className="containerShowBill">
-            <i className="fi fi-rr-angle-small-left" onClick={props.changeBillsView}></i>
-            <div className="containerShowBillInner">
+            <div className="showHeader">
+                <i className="fi fi-rr-angle-small-left" onClick={props.return}></i>
+                <div>
+                    <i className="fi fi-rr-edit" onClick={props.edit}></i>
+                    <i className="fi fi-rr-trash" onClick={handleDelete}></i>
+                </div>
+            </div>
+            <div className="containerShowInner">
                 <p className='showInfo date'> <span>Date:</span> {getDate()}</p>
                 <p className='showInfo name'> <span>Name:</span> {props.openBill.name}</p>
                 <p className='showInfo amount'> <span>Amount:</span> ${props.openBill.amount.toFixed(2)}</p>

@@ -41,7 +41,10 @@ const BillsList = (props) => {
     }
 
     const handleAddBill = newBill => setBills([...bills, newBill])
-
+    const deleteBill = targetBill => {
+        console.log(targetBill)
+        setBills(bills.filter(bill => bill._id !== targetBill._id))
+    }
 
     return(<>{
         billsView === "Bills List"
@@ -56,11 +59,13 @@ const BillsList = (props) => {
                 month = {month}
                 bills = {getMonthlyBill(month)}
                 handleShowBill = {handleShowBill}
+                changeBillsView = {changeBillsView}
                 setHomeView = {props.setHomeView}
             />
             <Paid 
                 month = {month}
                 bills = {getMonthlyBill(month)}
+                changeBillsView = {changeBillsView}
                 handleShowBill = {handleShowBill}
                 setHomeView = {props.setHomeView}
             />
@@ -77,7 +82,9 @@ const BillsList = (props) => {
         : billsView === "Show Bill"
         ? <ShowBill 
             openBill = {openBill}
-            changeBillsView = {() => changeBillsView("Bills List")}
+            server = {props.server}
+            deleteBill = {deleteBill}
+            return = {() => changeBillsView("Bills List")}
         />
         : <></>
     }</>)
