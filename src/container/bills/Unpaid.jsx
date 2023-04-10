@@ -33,12 +33,12 @@ const Unpaid = (props) => {
             <div className="billDataContainer"><p className="billData category">Category</p></div>
         </div>
         <div className="billAddContainer">
-                <i className="fi fi-rr-add btnAddBill" onClick={props.changeBillsView}></i>
+                <i className="fi fi-rr-add btnAddBill" onClick={() => props.changeBillsView("Add Bill")}></i>
         </div>
         <MonthlyBill
-            handleShowBill = {props.handleShowBill}
             month = {props.month}
             bills = {billsUnpaid}
+            handleShowBill = {props.handleShowBill}
         />
     </> 
 

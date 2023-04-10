@@ -12,8 +12,7 @@ const MonthlyBill = (props) => {
                         key={bill._id}
                         index={index}
                         bill={bill}
-                        handleChangeView = {props.handleChangeView}
-                        handleShowBill = {props.handleShowBill}
+                        handleShowBill = {() => props.handleShowBill(bill)}
                         />
                     </>
                     : <></>)

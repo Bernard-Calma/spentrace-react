@@ -33,7 +33,7 @@ const AddBill = (props) => {
     return (
         <div className="addContainer">
             <div className='addHeader'>
-                <BackButton handleChangeView = {props.changeBillsView}/>
+                <BackButton handleChangeView = {() => props.changeBillsView("Bills List")}/>
                 <h2 className='addTitle'>ADD NEW BILL</h2>
             </div>            
             <form className='addForm' onSubmit={handleSubmitAdd}>

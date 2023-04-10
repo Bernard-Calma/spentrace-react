@@ -1,5 +1,6 @@
 import {  useState } from 'react'
 import AddBill from '../add/AddBill'
+import ShowBill from '../show/ShowBill'
 import './billsList.css'
 import MonthHeader from './MonthHeader'
 import Paid from './Paid'
@@ -11,14 +12,14 @@ const BillsList = (props) => {
     let [month, setMonth] = useState(new Date().getMonth())
     let [monthText, setMonthText] = useState(monthNames[month])
     let [billsView, setBillsView] = useState("Bills List")
-    let [showBill, setShowBill] = useState({})
+    let [openBill, setOpenBill] = useState({})
 
 
     const changeBillsView = view => setBillsView(view);
 
     const handleShowBill = (bill) => {
-        props.setOpenBill(bill)
-        props.handleChangeView("Show Bill")
+        setOpenBill(bill)
+        setBillsView("Show Bill")
     }
 
     const handlePrevMonth = () => {
@@ -56,7 +57,6 @@ const BillsList = (props) => {
                 bills = {getMonthlyBill(month)}
                 handleShowBill = {handleShowBill}
                 setHomeView = {props.setHomeView}
-                changeBillsView = {() => changeBillsView("Add Bill")}
             />
             <Paid 
                 month = {month}
@@ -74,9 +74,12 @@ const BillsList = (props) => {
             changeBillsView = {() => changeBillsView("Bills List")}
             handleAddBill = {handleAddBill}
         />
-        : <>
-            
-        </>
+        : billsView === "Show Bill"
+        ? <ShowBill 
+            openBill = {openBill}
+            changeBillsView = {() => changeBillsView("Bills List")}
+        />
+        : <></>
     }</>)
 }
 
