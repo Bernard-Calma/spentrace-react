@@ -31,7 +31,7 @@ const Home = (props) => {
         // Get all plans from user
         await axios({ 
             method: "GET",
-            url: `${props.server}/plans/`,
+            url: `${props.server}/plans`,
             withCredentials: true 
         })
         .then(res => setPlans(res.data))
@@ -43,7 +43,7 @@ const Home = (props) => {
     const getBills = async () => {
         await axios({
             method: "GET",
-            url: `${props.server}/bills/${props.user._id}`,
+            url: `${props.server}/bills${props.user._id}`,
             withCredentials: true
         })
         .then(res => setBills(res.data))
@@ -57,6 +57,7 @@ const Home = (props) => {
     useEffect(()=>{
         getPlans()
         getBills()
+        console.log(props.user) 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

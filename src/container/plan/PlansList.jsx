@@ -58,6 +58,7 @@ const PlanList = (props) => {
 
     useEffect(()=>{
         getRunningBalanceTarget()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return <> {
