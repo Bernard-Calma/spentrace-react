@@ -35,6 +35,7 @@ const Home = (props) => {
             headers: { 
                 'Content-Type': 'application/json' 
             },
+            responseType: 'json',
             withCredentials: true 
         })
         .then(res => setPlans(res.data))

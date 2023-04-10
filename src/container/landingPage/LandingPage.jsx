@@ -74,6 +74,9 @@ const LandingPage = (props) =>{
                 method: "POST",
                 url: `${props.server}/users/register`,
                 body: loginUser,
+                headers: { 
+                    'Content-Type': 'application/json' 
+                },
                 withCredentials: true
             })
             .then(res => {
