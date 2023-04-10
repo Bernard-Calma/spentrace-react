@@ -87,4 +87,8 @@
 .btnAddBill:hover {
     font-size: 26px;
 }
+
+.btnAddBill:active {
+    top: 2px;
+}
 /* ----- END OF BILL STYLES ----- */

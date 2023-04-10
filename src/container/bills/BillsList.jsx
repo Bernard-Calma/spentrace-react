@@ -1,4 +1,5 @@
 import {  useState } from 'react'
+import AddBill from '../add/AddBill'
 import './billsList.css'
 import MonthHeader from './MonthHeader'
 import Paid from './Paid'
@@ -8,6 +9,9 @@ const BillsList = (props) => {
     const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"])
     let [month, setMonth] = useState(new Date().getMonth())
     let [monthText, setMonthText] = useState(monthNames[month])
+    let [billsView, setBillsView] = useState("Bills List")
+
+    const changeBillsView = view => setBillsView(view);
 
     const handleShowBill = (bill) => {
         props.setOpenBill(bill)
@@ -33,25 +37,39 @@ const BillsList = (props) => {
     }
     return(
         <section className='containerBillsList'>
-            <MonthHeader 
-                monthText = {monthText}
-                handlePrevMonth = {handlePrevMonth}
-                handleNextMonth = {handleNextMonth}
-            />
-            <div className="billsContainer">
-                <Unpaid 
-                    month = {month}
-                    bills = {getMonthlyBill(month)}
-                    handleShowBill = {handleShowBill}
-                    setHomeView = {props.setHomeView}
+            {
+                billsView === "Bills List"
+                ? <>
+                <MonthHeader 
+                    monthText = {monthText}
+                    handlePrevMonth = {handlePrevMonth}
+                    handleNextMonth = {handleNextMonth}
                 />
-                <Paid 
-                    month = {month}
-                    bills = {getMonthlyBill(month)}
-                    handleShowBill = {handleShowBill}
-                    setHomeView = {props.setHomeView}
+                <div className="billsContainer">
+                    <Unpaid 
+                        month = {month}
+                        bills = {getMonthlyBill(month)}
+                        handleShowBill = {handleShowBill}
+                        setHomeView = {props.setHomeView}
+                        changeBillsView = {() => changeBillsView("Add Bill")}
+                    />
+                    <Paid 
+                        month = {month}
+                        bills = {getMonthlyBill(month)}
+                        handleShowBill = {handleShowBill}
+                        setHomeView = {props.setHomeView}
+                    />
+                </div>
+                </>
+                : billsView === "Add Bill"
+                ?<AddBill 
+                    user = {props.user}
                 />
-            </div>
+                : <>
+                    
+                </>
+            }
+            
         </section>
     )
 }
