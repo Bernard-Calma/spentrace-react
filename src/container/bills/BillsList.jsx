@@ -43,6 +43,7 @@ const BillsList = (props) => {
 
     const handleAddBill = newBill => setBills([...bills, newBill])
     const deleteBill = targetBill => setBills(bills.filter(bill => bill._id !== targetBill._id))
+    const updateBill = updatedBill => setBills(bills.map(bill => bill._id === updatedBill._id ? updatedBill : bill))
     
 
     return(<>{
@@ -81,6 +82,8 @@ const BillsList = (props) => {
         : billsView === "Edit Bill"
         ? <EdditBill 
             openBill = {openBill}
+            server = {props.server}
+            updateBill = {updateBill}
             return = {() => changeBillsView("Bills List")}
         />
         : billsView === "Show Bill"

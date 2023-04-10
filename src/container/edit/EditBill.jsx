@@ -16,20 +16,21 @@ const EdditBill = (props) => {
 
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        if(editBill !== props.openBill){
-            console.log("Edit Submitted", editBill)
-            axios.patch(`${props.server}/bills/${editBill._id}`, editBill)
-            // .then(res => console.log(res))
-            .catch(err => console.log(err))
-        }
-        props.handleChangeView("Bills List")
+        axios({
+            method: "PUT",
+            url: `${props.server}/bills/${editBill._id}`,
+            data: editBill,
+            withCredentials: true
+        })
+        .then(res => props.updateBill(res.data))
+        props.return()
     }
 
     return (
         <div className="editContainer">
             <div className='editHeader'>
                 <BackButton handleChangeView = {props.return}/>
-                <h2 className='navTitle'>Edit</h2>
+                <h2 className='editTitle'>Edit</h2>
             </div>
             
             <form className='editForm' onSubmit={handleSubmitEdit}>
