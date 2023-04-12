@@ -64,6 +64,8 @@ const App = () => {
       <Header 
         view = {view}
         user = {user}
+        server = {server}
+        setUser = {setUser}
         handleChangeView = {handleChangeView}
         handleChangeHomeView = {() => handleChangeHomeView("Home")}
       />
@@ -73,6 +75,7 @@ const App = () => {
             user = {user}
             server = {server}
             appView = {appView}
+          
             handleChangeView = {handleChangeView}
             handleChangeHomeView = {() => handleChangeHomeView("")}
           />
