@@ -9,7 +9,6 @@ import Unpaid from './Unpaid'
 
 const BillsList = (props) => {
     const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"])
-    const [bills, setBills] = useState([...props.bills])
     let [month, setMonth] = useState(new Date().getMonth())
     let [monthText, setMonthText] = useState(monthNames[month])
     let [billsView, setBillsView] = useState("Bills List")
@@ -37,14 +36,9 @@ const BillsList = (props) => {
 
     const getMonthlyBill = (month) => {
         let monthBills = []
-        monthBills = bills.filter(bill => new Date(bill.dueDate).getMonth() === month)
+        monthBills = props.bills.filter(bill => new Date(bill.dueDate).getMonth() === month)
         return monthBills
-    }
-
-    const handleAddBill = newBill => setBills([...bills, newBill])
-    const deleteBill = targetBill => setBills(bills.filter(bill => bill._id !== targetBill._id))
-    const updateBill = updatedBill => setBills(bills.map(bill => bill._id === updatedBill._id ? updatedBill : bill))
-    
+    } 
 
     return(<>{
         billsView === "Bills List"
@@ -77,20 +71,20 @@ const BillsList = (props) => {
             server = {props.server}
             bills = {props.bills}
             changeBillsView = {() => changeBillsView("Bills List")}
-            handleAddBill = {handleAddBill}
+            handleAddBill = {props.modifyBills.add}
         />
         : billsView === "Edit Bill"
         ? <EdditBill 
             openBill = {openBill}
             server = {props.server}
-            updateBill = {updateBill}
+            updateBill = {props.modifyBills.update}
             return = {() => changeBillsView("Bills List")}
         />
         : billsView === "Show Bill"
         ? <ShowBill 
             openBill = {openBill}
             server = {props.server}
-            deleteBill = {deleteBill}
+            deleteBill = {props.modifyBills.delete}
             edit = {() => changeBillsView("Edit Bill")}
             return = {() => changeBillsView("Bills List")}
         />

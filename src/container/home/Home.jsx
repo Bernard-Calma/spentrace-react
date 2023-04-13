@@ -1,17 +1,14 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-import AddBill from '../add/AddBill'
 import BillsList from '../bills/BillsList'
-import EdditBill from '../edit/EditBill'
 import PlanList from '../plan/PlansList'
-import ShowBill from '../show/ShowBill'
 import DashBoard from './Dashboard'
 import EmptyDashboard from './EmptyDashboard'
 import './home.css'
 
 const Home = (props) => {
-    // VARIABLES
+    // ------------------------------ VARIABLES ------------------------------
     // Views
     let [homeView, setHomeView] = useState('Home')
     // Plans
@@ -19,8 +16,7 @@ const Home = (props) => {
     // Bills
     const [bills, setBills] = useState([])
     // ------------------------------ END OF VARIABLES ------------------------------
-
-    // FUNCTIONS
+    // ------------------------------ FUNCTIONS ------------------------------
     // Views
     const handleChangeView = view => {
         setHomeView(view)
@@ -34,34 +30,31 @@ const Home = (props) => {
             url: `${props.server}/plans`,
             withCredentials: true 
         })
-        .then(res => setPlans(res.data))
+        .then(res => setPlans(res.data.sort((a, b) => (a.date > b.date) ? 1 : -1)))
         .catch(err => console.log(err))
     }
-
-    // Modify Plan Methods
+    // Modify Plans Methods
     const modifyPlans = {
         add: newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
         update: updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan)),
         delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id))
     }
-
     // Bills
     const getBills = async () => {
         await axios({
             method: "GET",
             url: `${props.server}/bills`,
-            headers: { 
-                'Content-Type': 'application/json' 
-            },
             withCredentials: true
         })
-        .then(res => setBills(res.data))
+        .then(res => setBills(res.data.sort((a, b) => (a.date > b.date) ? 1 : -1)))
         .catch(err => console.log(err))
     } 
-
-    const addNewBill = newBill => setPlans([...bills, newBill])
-    
-    const updateBills = newBill => setBills(bills.map((bill)=> bill._id === newBill._id ? newBill : bill)); 
+    // Modify Bills Methods
+    const modifyBills = {
+        add: newBill => setBills([...bills, newBill].sort((a, b) => (a.date > b.date) ? 1 : -1)),
+        update: updatedBill => setBills(bills.map(bill => bill._id === updatedBill._id ? updatedBill : bill)),
+        delete: targetBill => setBills(bills.filter(bill => targetBill._id !== bill._id))
+    }
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
         getPlans()
@@ -107,25 +100,8 @@ const Home = (props) => {
                                 handleChangeView = {props.handleChangeView}
                                 handleShowPlan = {props.handleShowPlan}
                                 setHomeView = {setHomeView}
-                                setBills = {setBills}
+                                modifyBills = {modifyBills}
                             />  
-                            : homeView === "Add Bill"
-                            ? <AddBill
-                                user = {props.user}
-                                server = {props.server}
-                                addNewBill = {addNewBill}
-                                handleChangeView = {() =>handleChangeView("Home")}
-                            />
-                            : homeView === "Show Bill"
-                            ? <ShowBill
-                                setHomeView = {props.handleChangeView}
-                            />
-                            : homeView === "Edit Bill" 
-                            ? <EdditBill
-                                server = {props.server}
-                                handleChangeView = {props.handleChangeView} 
-                                updateBills = {updateBills}
-                            />
                             : <></>
                         }
                     </div>

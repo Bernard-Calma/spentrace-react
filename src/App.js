@@ -8,8 +8,7 @@ import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 
 const App = () => { 
-  // VARIABLES
-
+  // ------------------------------ VARIABLES ------------------------------
   // Server
   const [server] = useState(process.env.REACT_APP_SERVER_URL)
   // View
@@ -22,37 +21,14 @@ const App = () => {
   })
   // ------------------------------ END OF VARIABLES ------------------------------
 
-  // FUNCTIONS
-  // Authenticate app if user session exist in server side
-  const checkCookieAuth = () => {
-    console.log("Auth")
-    axios.get(`${server}/`)
-    .then(res => {
-      if (res.data._id) {
-        const userData = res.data
-        setUser({
-          id: userData._id,
-          username: userData.username,
-          loggedIn: true
-        })
-      }
-    })
-  }
-
+  // ------------------------------ FUNCTIONS ------------------------------
   // View
   // Handle view change while navigating
   const handleChangeView = view => setView(view)
-
   // Access homeView in Home and pass to Header
   const [appView, setAppView] = useState("")
   const handleChangeHomeView = view => setAppView(view)
-  
-  
   // ------------------------------ END OF FUNCTIONS ------------------------------
-
-  useEffect(() => {
-    // checkCookieAuth()
-  },[])
   return (
     <div className="App">
       <Header 

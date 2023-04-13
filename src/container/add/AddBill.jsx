@@ -20,7 +20,7 @@ const AddBill = (props) => {
     }
 
     const handleSubmitAdd = (e) => {
-        console.log(newBill)
+        // console.log(newBill)
         e.preventDefault();
         axios({
             method: "POST",
