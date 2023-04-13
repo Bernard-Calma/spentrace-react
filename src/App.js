@@ -51,7 +51,7 @@ const App = () => {
   // ------------------------------ END OF FUNCTIONS ------------------------------
 
   useEffect(() => {
-    checkCookieAuth()
+    // checkCookieAuth()
   },[])
   return (
     <div className="App">

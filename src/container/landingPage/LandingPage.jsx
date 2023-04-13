@@ -77,7 +77,6 @@ const LandingPage = (props) =>{
                 withCredentials: true
             })
             .then(res => {
-                console.log(res) 
                 const data = res.data
                 props.setUser({
                     id: data._id,
@@ -103,18 +102,15 @@ const LandingPage = (props) =>{
             withCredentials: true
         })
         .then(res => {
-            console.log(res)
-            const user = res.data.user
             props.setUser({
-                id: user._id,
-                username: user.username,
+                username: res.data.user,
                 loggedIn: true
             })
         })
-        .catch(error => {
-            console.log("Login Error: ", error)
+        .catch(err => {
+            console.log("Login Error: ", err)
             clearPasswords()
-            setErrorMessage(error.response.data.message )
+            setErrorMessage("Invalid username or password")
         })
     }
     // ------------------------------ END OF FUNCTIONS ------------------------------
