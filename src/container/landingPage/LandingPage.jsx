@@ -73,10 +73,7 @@ const LandingPage = (props) =>{
             axios({
                 method: "POST",
                 url: `${props.server}/users/register`,
-                body: loginUser,
-                headers: { 
-                    'Content-Type': 'application/json' 
-                },
+                data: loginUser,
                 withCredentials: true
             })
             .then(res => {
@@ -106,6 +103,7 @@ const LandingPage = (props) =>{
             withCredentials: true
         })
         .then(res => {
+            console.log(res)
             const user = res.data.user
             props.setUser({
                 id: user._id,

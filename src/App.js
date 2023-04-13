@@ -11,12 +11,9 @@ const App = () => {
   // VARIABLES
 
   // Server
-  const herokuServer = process.env.REACT_APP_SERVER_URL 
   const [server] = useState(process.env.REACT_APP_SERVER_URL)
-
   // View
   const [view, setView] = useState("Login")
-
   // User information
   const [user, setUser] = useState({
     id: "",
@@ -27,7 +24,20 @@ const App = () => {
 
   // FUNCTIONS
   // Authenticate app if user session exist in server side
-
+  const checkCookieAuth = () => {
+    console.log("Auth")
+    axios.get(`${server}/`)
+    .then(res => {
+      if (res.data._id) {
+        const userData = res.data
+        setUser({
+          id: userData._id,
+          username: userData.username,
+          loggedIn: true
+        })
+      }
+    })
+  }
 
   // View
   // Handle view change while navigating
@@ -41,21 +51,8 @@ const App = () => {
   // ------------------------------ END OF FUNCTIONS ------------------------------
 
   useEffect(() => {
-    const checkCookieAuth = () => {
-      axios.get(`http://192.168.1.80:8000`)
-      .then(res => {
-        if (res.data._id) {
-          const userData = res.data
-          setUser({
-            id: userData._id,
-            username: userData.username,
-            loggedIn: true
-          })
-        }
-      })
-    }
     checkCookieAuth()
-  },[server])
+  },[])
   return (
     <div className="App">
       <Header 
