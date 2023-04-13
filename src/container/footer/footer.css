@@ -18,3 +18,10 @@
 #protfolioLink:hover{
     color: white;
 }
+
+@media screen and (max-width: 900px) { 
+    .footerContainer {
+        margin: 0;
+        /* border: solid violet; */
+    }
+}

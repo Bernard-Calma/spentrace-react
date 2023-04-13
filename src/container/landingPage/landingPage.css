@@ -34,6 +34,10 @@
     .containerLandingPage{
         all: unset;
     }
+    .containerLandingPage {
+        /* border: solid red; */
+        height: 100%;
+      }
 
     .introduction{
         display: none;
