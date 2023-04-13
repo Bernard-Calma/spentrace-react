@@ -12,10 +12,7 @@ const App = () => {
 
   // Server
   const herokuServer = process.env.REACT_APP_SERVER_URL 
-  const [server] = useState(
-    // Set server to be local host if on development else use heroku backend server
-    process.env.REACT_APP_ENVIRONMENT === 'development' ? "http://localhost:8000" : herokuServer
-  )
+  const [server] = useState(process.env.REACT_APP_SERVER_URL)
 
   // View
   const [view, setView] = useState("Login")
@@ -45,7 +42,7 @@ const App = () => {
 
   useEffect(() => {
     const checkCookieAuth = () => {
-      axios.get(`${server}/`, {withCredentials: true})
+      axios.get(`http://192.168.1.80:8000`)
       .then(res => {
         if (res.data._id) {
           const userData = res.data
