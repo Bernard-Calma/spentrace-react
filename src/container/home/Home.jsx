@@ -38,7 +38,13 @@ const Home = (props) => {
         .catch(err => console.log(err))
     }
 
-    const addNewPlan = newPlan => setPlans([...plans, newPlan])
+    // Modify Plan Methods
+    const modifyPlans = {
+        add: newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
+        update: updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan)),
+        delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id))
+    }
+
     // Bills
     const getBills = async () => {
         await axios({
@@ -60,7 +66,6 @@ const Home = (props) => {
     useEffect(()=>{
         getPlans()
         getBills()
-        console.log(props.user) 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -70,7 +75,7 @@ const Home = (props) => {
                 ? <EmptyDashboard 
                     user = {props.user}
                     server = {props.server}
-                    addNewPlan = {addNewPlan}
+                    addNewPlan = {modifyPlans.add}
                 />
                 : <>
                     <div className='homeNavBar'>

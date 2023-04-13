@@ -44,9 +44,7 @@ const PlanList = (props) => {
       }
 
     const addNewPlan = newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1))
-
     const updatePlan = updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan))
-    
     const deletePlan = targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id))
 
     const handleChangeView = view => setPlanView(view)
