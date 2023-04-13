@@ -96,6 +96,7 @@ const Home = (props) => {
                                 user = {props.user}
                                 server = {props.server}
                                 plans = {plans}
+                                modifyPlans = {modifyPlans}
                                 handleChangeView = {() =>handleChangeView("Add Plan")}
                             />
                             : homeView === "Bills List" 
