@@ -99,7 +99,6 @@ const Home = (props) => {
                     </div>
                 </> 
             }
-
         </section>
     )
 }

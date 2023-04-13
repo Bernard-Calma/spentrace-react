@@ -54,7 +54,7 @@ const PlanList = (props) => {
 
     return <> {
         planView === "Plan List"
-        ?<div className='containerPlanList'>
+        ?<section className='containerPlanList'>
             <Categories />
             <div className="plansContainer">
                 {
@@ -75,7 +75,7 @@ const PlanList = (props) => {
                     <i className="fi fi-rr-add" onClick={() =>handleChangeView("Add Plan")}></i>
                 </div>
             </div>
-        </div>
+        </section>
         : planView === "Add Plan"
         ?<AddPlan
             user = {props.user}
