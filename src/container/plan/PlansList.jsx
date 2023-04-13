@@ -8,7 +8,6 @@ import Categories from "./Categories";
 import "./PlansList.css"
 
 const PlanList = (props) => {
-    const [plans, setPlans] = useState([...props.plans])
     const [openPlan, setOpenPlan] = useState({})
     let [planView, setPlanView] = useState("Plan List")
     let [totalIncome, setTotalIncome] = useState(0);
@@ -22,8 +21,7 @@ const PlanList = (props) => {
         // Set variables back to 0 to prevent adding values from previous computation
         let runningTarget = 0;
         let total = 0;
-        let updatePlans = plans
-        plans.forEach( plan => {
+        props.plans.forEach( plan => {
           if (plan.expense === true) {
               setTotalExpense(totalExpense += plan.amount)
               runningTarget += plan.amount;
@@ -40,12 +38,7 @@ const PlanList = (props) => {
           }
           plan.runningTotal = total;  
         })
-        setPlans(updatePlans.sort((a, b) => (a.date > b.date) ? 1 : -1))
       }
-
-    const addNewPlan = newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1))
-    const updatePlan = updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan))
-    const deletePlan = targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id))
 
     const handleChangeView = view => setPlanView(view)
     
@@ -57,7 +50,7 @@ const PlanList = (props) => {
     useEffect(()=>{
         getRunningBalanceTarget()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    },[props.plans])
 
     return <> {
         planView === "Plan List"
@@ -65,7 +58,7 @@ const PlanList = (props) => {
             <Categories />
             <div className="plansContainer">
                 {
-                    plans?.map((plan, index) => 
+                    props.plans?.map((plan, index) => 
                         <Plan 
                             key={index}
                             index={index}
@@ -87,7 +80,7 @@ const PlanList = (props) => {
         ?<AddPlan
             user = {props.user}
             server = {props.server}
-            addNewPlan = {addNewPlan}
+            addNewPlan = {props.modifyPlans.add}
             handleChangeView = {() =>handleChangeView("Plan List")}
         />
         : planView === "Show Plan"
@@ -102,7 +95,7 @@ const PlanList = (props) => {
         ?<EditPlan
             plan = {openPlan}
             server = {props.server}
-            updatePlan = {updatePlan}
+            updatePlan = {props.modifyPlans.update}
             return = {() => handleChangeView("Plan List")}
         />
         : <> </>
