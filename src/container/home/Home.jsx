@@ -18,9 +18,8 @@ const Home = (props) => {
     // ------------------------------ END OF VARIABLES ------------------------------
     // ------------------------------ FUNCTIONS ------------------------------
     // Views
-    const handleChangeView = view => {
+    const changeHomeView = view => {
         setHomeView(view)
-        props.handleChangeHomeView()
     }
     // Plan
     const getPlans = async () => {
@@ -72,16 +71,13 @@ const Home = (props) => {
                 />
                 : <>
                     <div className='homeNavBar'>
-                        <p onClick={() => handleChangeView("Plan")}>Budget Tracker</p>
-                        <p onClick={() => handleChangeView("Bills List")}>Bills List</p>
+                        <p onClick={() => changeHomeView("Plan")}>Budget Tracker</p>
+                        <p onClick={() => changeHomeView("Bills List")}>Bills List</p>
                     </div>
                     <div className='containerHomeView'>
-                        {homeView === "Home" || props.appView === "Home"
+                        {homeView === "Home"
                             ? <DashBoard 
-                                // Plans
                                 plans = {plans}
-                                handleChangeView = {handleChangeView}
-                                // Bills
                                 bills = {bills}
                             />
                             : homeView === "Plan" 
@@ -90,16 +86,12 @@ const Home = (props) => {
                                 server = {props.server}
                                 plans = {plans}
                                 modifyPlans = {modifyPlans}
-                                handleChangeView = {() =>handleChangeView("Add Plan")}
                             />
                             : homeView === "Bills List" 
                             ? <BillsList
-                                server = {props.server}
                                 user = {props.user}
+                                server = {props.server}
                                 bills = {bills}
-                                handleChangeView = {props.handleChangeView}
-                                handleShowPlan = {props.handleShowPlan}
-                                setHomeView = {setHomeView}
                                 modifyBills = {modifyBills}
                             />  
                             : <></>
