@@ -6,6 +6,7 @@ import PlanList from '../plan/PlansList'
 import DashBoard from './Dashboard'
 import EmptyDashboard from './EmptyDashboard'
 import './home.css'
+import '../../Components/NavBar.css'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
@@ -20,6 +21,7 @@ const Home = (props) => {
     // Views
     const changeHomeView = view => {
         setHomeView(view)
+        props.handleChangeHomeView("")
     }
     // Plan
     const getPlans = async () => {
@@ -75,7 +77,7 @@ const Home = (props) => {
                         <p onClick={() => changeHomeView("Bills List")}>Bills List</p>
                     </div>
                     <div className='containerHomeView'>
-                        {homeView === "Home"
+                        {homeView === "Home" || props.appView === "Home"
                             ? <DashBoard 
                                 plans = {plans}
                                 bills = {bills}

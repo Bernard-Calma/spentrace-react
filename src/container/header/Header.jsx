@@ -15,7 +15,6 @@ const Header = (props) => {
             loggedIn: false
         }))
         .catch(error => console.log(error))
-        props.handleChangeHomeView("Login")
     }
     return(
         <section className='header'>
