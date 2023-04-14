@@ -92,3 +92,11 @@
     top: 2px;
 }
 /* ----- END OF BILL STYLES ----- */
+
+/* ----- MOBILE STYLES----- */
+@media screen and (max-width: 900px) {
+    .btnAddBill {
+        
+    }
+}
+/* ----- END OF MOBILE STYLES ----- */
