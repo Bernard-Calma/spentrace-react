@@ -32,7 +32,8 @@
 
 @media screen and (max-width: 900px) {
     .editContainer {
-        width: auto;
+        width: 90%;
+        height: auto;
         margin: 70px 30px;
         text-align: start;
         justify-content: start;
@@ -41,5 +42,9 @@
 
     .editTitle {
         font-size: 2rem;
+    }
+
+    input[type=text],input[type=number] {
+        width: 100%;
     }
 }

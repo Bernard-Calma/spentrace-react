@@ -50,7 +50,6 @@ li {
 
 @media screen and (max-width: 900px) {
     .containerPlanList {
-        position: fixed;
         top: 50px;
         width: 100%;
         padding: 0;
