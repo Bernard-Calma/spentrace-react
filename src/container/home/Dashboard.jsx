@@ -86,22 +86,24 @@ const DashBoard = (props) => {
     },[props.plans])
     return  <div className='dashboard'>
         <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
-        <div className='containerPlansDashboard'>
-            <div className='graphSubTitle'>
-                <h2>Expense</h2>
-                <h2>${totalExpense.toFixed(2)}</h2>
-            </div>       
-            {/* PLAN GRAPH */}
-            <CircleGraph
-                data = {[totalExpense, totalIncome]}
-                colors = {['red', 'green']}
-                width = {250}
-                height = {250}
-                value = {balance}
-            />
-            <div className='graphSubTitle'>
-                <h2>Income</h2>
-                <h2>${totalIncome.toFixed(2)}</h2>
+        <div className='containerDashboard'>
+            <div className="dashboardGraph">
+                <div className='graphSubTitle'>
+                    <h2>Expense</h2>
+                    <h2>${totalExpense.toFixed(2)}</h2>
+                </div>       
+                {/* PLAN GRAPH */}
+                <CircleGraph
+                    data = {[totalExpense, totalIncome]}
+                    colors = {['red', 'green']}
+                    width = {250}
+                    height = {250}
+                    value = {balance}
+                />
+                <div className='graphSubTitle'>
+                    <h2>Income</h2>
+                    <h2>${totalIncome.toFixed(2)}</h2>
+                </div>
             </div>
             {
                 // Show add if balance is positive
@@ -124,22 +126,25 @@ const DashBoard = (props) => {
             </div>
             :<>
                 <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Bills</h1>
-                <div className='cotnainerBillsDashboard'>
-                    <div className='graphSubTitle'>
-                        <h2>Paid</h2>
-                        <h2>${totalBillsPaid}</h2>
-                    </div>    
-                    <CircleGraph 
-                        data = {[totalBillsUnpaid, totalBillsPaid]}
-                        colors = {['red', 'green']}  
-                        width = {250}
-                        height = {250}
-                        value = {totalBillsUnpaid - totalBillsPaid}
-                    />
-                    <div className='graphSubTitle'>
-                        <h2>Unpaid</h2>
-                        <h2>${totalBillsUnpaid}</h2>
+                <div className='containerDashboard'>
+                    <div className="dashboardGraph">
+                        <div className='graphSubTitle'>
+                            <h2>Paid</h2>
+                            <h2>${totalBillsPaid}</h2>
+                        </div>    
+                        <CircleGraph 
+                            data = {[totalBillsUnpaid, totalBillsPaid]}
+                            colors = {['red', 'green']}  
+                            width = {250}
+                            height = {250}
+                            value = {totalBillsUnpaid - totalBillsPaid}
+                        />
+                        <div className='graphSubTitle'>
+                            <h2>Unpaid</h2>
+                            <h2>${totalBillsUnpaid}</h2>
+                        </div>
                     </div>
+
                     {
                         totalBillsUnpaid === 0 
                         ?<div className='containerNextTarget'>

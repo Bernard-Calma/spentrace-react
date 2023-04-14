@@ -70,13 +70,7 @@
     align-items: center;
 }
 
-/* Bills */
-.dashboardBillMonth {
-    font-size: 3rem;
-    margin: 0;
-}
-
-.containerPlansDashboard, .cotnainerBillsDashboard {
+.containerDashboard {
     display: flex;
     flex-direction: row;
     color: white;
@@ -84,8 +78,20 @@
     margin: auto;
 }
 
+/* Bills */
+.dashboardBillMonth {
+    font-size: 3rem;
+    margin: 0;
+}
+
 .containerNextTarget {
     margin: 20px;
+}
+
+.dashboardGraph {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .graphSubTitle {
@@ -104,11 +110,46 @@
 /* ----- END OF EMPTY DASHBOARD STYLES ----- */
 
 @media screen and (max-width: 900px) { 
-    .containerPlansDashboard, .cotnainerBillsDashboard {
-        flex-direction: column;
+    /* MARGIN: 0 */
+    .containerDashboard, .containerNextTarget {
+        margin: 0;
+    }
+    .containerDashboard {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: start;
     }
 
-    .dashboard .containerPlansDashboard {
-        margin: 0;
+    .graphSubTitle {
+        font-size: 12px;
+        width: 80px;
+    }
+
+    .dashboard {
+        justify-content: flex-start;
+    }
+
+    .containerPlansDashboard {
+        height: 100vh;
+        margin: 30px 0;
+    }
+
+    .containerNextTarget > .nextTarget{
+        font-size: 20px;
+        font-family: "Russo One";
+    }
+
+    .containerEmptyPlan {
+        margin: 10px;
+    }
+
+    .nextTarget {
+        text-align: center;
+    }
+
+    canvas {
+        width: 200px;
+        height: 200px;
     }
 }
