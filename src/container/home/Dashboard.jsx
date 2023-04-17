@@ -61,17 +61,26 @@ const DashBoard = (props) => {
         // Get paid and unpaid graph
         let totalPaid = 0;
         let totalUnpaid = 0;
+        const currentMonth = new Date().getMonth()
         props.bills.forEach(bill => {
-            bill.paid ? totalPaid += bill.amount : totalUnpaid += bill.amount
-            setTotalBillsPaid(totalPaid)
-            setTotalBillsUnpaid(totalUnpaid)
+            let billMonth = new Date(bill.dueDate).getMonth()
+            if (billMonth === currentMonth) {
+                bill.paid ? totalPaid += bill.amount   : totalUnpaid += bill.amount
+                setTotalBillsPaid(totalPaid)
+                setTotalBillsUnpaid(totalUnpaid)
+            }
+
         })
     }
 
     const getNextUpaidBill = () => {
         let unpaidBill = props.bills[0]
+        const currentMonth = new Date().getMonth()
         props.bills.forEach(bill => {
-            if(!bill.paid) return unpaidBill = bill
+            let billMonth = new Date(bill.dueDate).getMonth()
+            if (billMonth === currentMonth) {
+                if(!bill.paid && billMonth === currentMonth) return unpaidBill = bill
+            }
         })
         setNextUnpaidBill(unpaidBill)
     }
@@ -122,7 +131,7 @@ const DashBoard = (props) => {
             props.bills.length === 0
             ?<div className="containerEmptyPlan">
                     <h2>ADD YOUR FIRST BILL</h2>
-                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Bill")}></i>
+                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.changeHomeView("Bills List")}></i>
             </div>
             :<>
                 <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Bills</h1>

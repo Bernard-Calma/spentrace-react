@@ -81,6 +81,7 @@ const Home = (props) => {
                             ? <DashBoard 
                                 plans = {plans}
                                 bills = {bills}
+                                changeHomeView = {changeHomeView}
                             />
                             : homeView === "Plan" 
                             ? <PlanList 
