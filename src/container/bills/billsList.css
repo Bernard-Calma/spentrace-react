@@ -95,8 +95,19 @@
 
 /* ----- MOBILE STYLES----- */
 @media screen and (max-width: 900px) {
-    .btnAddBill {
-        
+    .containerBillsList {
+        padding: 0;
+    }
+    
+    .billsListHeader{
+        position: relative;
+        left: 0;
+        justify-content: center;
+    }
+
+    .month {
+        text-align: center;
+        font-size: 35px;
     }
 }
 /* ----- END OF MOBILE STYLES ----- */
