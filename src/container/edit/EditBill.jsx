@@ -50,6 +50,22 @@ const EdditBill = (props) => {
                     Category: 
                     <input type="text" name="category" id="editCategory" value={editBill.category} onChange = {handleChange}/>
                 </label>
+                <label htmlFor="repeat" className='formInput'>
+                    Repeat: 
+                    <select name="repeat" id="addBillRepeat" size='1' required onChange={handleChange} value={editBill.repeat}>
+                        {
+                            repeatOptions.map((option, index) => 
+                                <option key={index} value={option} className='repeatOption' >{option}</option>
+                        )}
+                    </select>
+                </label>
+                {
+                    !(editBill.repeat === "never") && 
+                    <label htmlFor="endRepeat" className='formInput'>
+                    Repeat Until: 
+                        <input type="date" name="endRepeat" id="addBillEndRepeat" onChange={handleChange} required/>
+                    </label>
+                }
                 <label htmlFor="autoPay" className='formInput'>
                     Autopay: 
                     {editBill.autoPay 
@@ -63,15 +79,6 @@ const EdditBill = (props) => {
                         ? <input type="checkbox" name="paid" id="editBillPaid" onChange={handleChange} checked/>
                         : <input type="checkbox" name="paid" id="editBillPaid" onChange={handleChange} />
                     }
-                </label>
-                <label htmlFor="repeat" className='formInput'>
-                    Repeat: 
-                    <select name="repeat" id="addBillRepeat" size='1' required onChange={handleChange} value={editBill.repeat}>
-                        {
-                            repeatOptions.map((option, index) => 
-                                <option key={index} value={option} className='repeatOption' >{option}</option>
-                        )}
-                    </select>
                 </label>
                 <textarea name="notes" id="editNotes" className='formNotes' placeholder='enter notes here' value={editBill.notes} onChange = {handleChange}></textarea>
                 <input type="submit" name="submit" id="submit" />

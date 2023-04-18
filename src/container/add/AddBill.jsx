@@ -63,6 +63,13 @@ const AddBill = (props) => {
                         )}
                     </select>
                 </label>
+                {
+                    !(newBill.repeat === "never") && 
+                    <label htmlFor="endRepeat" className='formInput'>
+                    Repeat Until: 
+                        <input type="date" name="endRepeat" id="addBillEndRepeat" onChange={handleChange} required/>
+                    </label>
+                }
                 <label htmlFor="autoPay" className='formInput'>
                     Autopay: 
                     <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
