@@ -70,14 +70,17 @@ const AddBill = (props) => {
                         <input type="date" name="endRepeat" id="addBillEndRepeat" onChange={handleChange} required/>
                     </label>
                 }
-                <label htmlFor="autoPay" className='formInput'>
-                    Autopay: 
-                    <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
-                </label>
-                <label htmlFor="autoPay" className='formInput'>
-                    Paid: 
-                    <input type="checkbox" name="paid" id="addBillAmount" onChange={handleChange} />
-                </label>
+                <div className='billCheckBoxes'>
+                    <label htmlFor="autoPay" className='formInput'>
+                        Autopay: 
+                        <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
+                    </label>
+                    <label htmlFor="autoPay" className='formInput'>
+                        Paid: 
+                        <input type="checkbox" name="paid" id="addBillAmount" onChange={handleChange} />
+                    </label>
+                </div>
+
                 <span className = "expenseMessage" hidden>Select a transaction type above.</span>
                 <textarea name="notes" id="addBillNotes" className='formNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
                 <input type="submit" name="submit" id="submit" />

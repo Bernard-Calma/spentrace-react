@@ -92,4 +92,13 @@ form {
     #submit {
         text-align: center;
     }
+
+    .billCheckBoxes {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .billCheckBoxes input {
+        margin: auto 0;
+    }
 }
