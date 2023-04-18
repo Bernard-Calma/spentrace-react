@@ -105,6 +105,10 @@
         justify-content: center;
     }
 
+    .fi, .fi:hover {
+        font-size: 30px;
+    }
+    
     .month {
         text-align: center;
         font-size: 35px;
