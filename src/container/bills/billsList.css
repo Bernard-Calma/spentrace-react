@@ -76,13 +76,11 @@
 
 .billAddContainer {
     position: relative;
+    display: flex;
+    justify-content: center;
     height: 40px;
 }
-.btnAddBill {
-    position: absolute;
-    left: 49.3%;
-    font-size: 25px;
-}
+
 
 .btnAddBill:hover {
     font-size: 26px;
@@ -108,10 +106,21 @@
     .fi, .fi:hover {
         font-size: 30px;
     }
-    
+
     .month {
         text-align: center;
         font-size: 35px;
+    }
+
+    .billAddContainer {
+        display: flex;
+        justify-content: center;
+    }
+    
+
+    .btnAddBill {
+        position: relative;
+        left: 0;
     }
 }
 /* ----- END OF MOBILE STYLES ----- */

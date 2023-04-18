@@ -28,8 +28,11 @@ const AddBill = (props) => {
             data: newBill,
             withCredentials: true
         })
-        .then(res => props.handleAddBill(res.data))
-        props.changeBillsView()
+        .then(res => {
+            console.log(res.data)
+            // props.handleAddBill(res.data)
+        })
+        // props.changeBillsView()
     }
     return (
         <div className="addContainer">
@@ -74,10 +77,6 @@ const AddBill = (props) => {
                     <label htmlFor="autoPay" className='formInput'>
                         Autopay: 
                         <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
-                    </label>
-                    <label htmlFor="autoPay" className='formInput'>
-                        Paid: 
-                        <input type="checkbox" name="paid" id="addBillAmount" onChange={handleChange} />
                     </label>
                 </div>
 
