@@ -36,7 +36,16 @@ const BillsList = (props) => {
 
     const getMonthlyBill = (month) => {
         let monthBills = []
-        monthBills = props.bills.filter(bill => new Date(bill.dueDate).getMonth() === month)
+        // Add filter if month is included on due date array
+        // console.log(month)
+        // Iterate each bill
+        props.bills.forEach(bill => {
+            // Iterate each due date
+            bill.dueDate.forEach(dueDate => {
+                // add a single bill with specific due date
+                if(dueDate.month === month) monthBills.push({...bill, dueDate: dueDate})
+            })
+        })         
         return monthBills
     } 
 
