@@ -6,13 +6,13 @@ const MonthlyBill = (props) => {
         <>
             {
                 props.bills?.map((bill, index) => 
-                    new Date(bill.dueDate).getMonth() === props.month ?
+                    bill.dueDate.month === props.month ?
                     <>
                         <Bill
-                        key={bill._id}
-                        index={index}
-                        bill={bill}
-                        handleShowBill = {() => props.handleShowBill(bill)}
+                            key={`${bill._id}-${index}`}
+                            index={index}
+                            bill={bill}
+                            handleShowBill = {() => props.handleShowBill(bill)}
                         />
                     </>
                     : <></>)
