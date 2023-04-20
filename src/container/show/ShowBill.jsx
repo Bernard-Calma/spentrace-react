@@ -1,14 +1,17 @@
 import axios from "axios"
 import "./Show.css"
+import { useState } from "react"
 
 const ShowBill = (props) => {
+    const dueDate = props.openBill.dueDate
+    console.log(new Date(dueDate.year, dueDate.month, dueDate.day))
     const getDate = () => {
         let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate()
-        let dateBill = new Date(props.openBill.dueDate).toDateString().slice(4,7) + " " + (new Date(props.openBill.dueDate).getDate() + 1) // Add 1 to provide accurate day
+        let dateBill = new Date(dueDate.year, dueDate.month + 1, dueDate.day)
         return dateToday === dateBill ? "Today": dateBill;
     }
 
-    const handleDelete = () => {
+    const handleDelete = () => { 
         axios({
             method: "DELETE",
             url: `${props.server}/bills/${props.openBill._id}`,
@@ -28,7 +31,7 @@ const ShowBill = (props) => {
                 </div>
             </div>
             <div className="containerShowInner">
-                <p className='showInfo date'> <span>Date:</span> {getDate()}</p>
+                <p className='showInfo date'> <span>Date:</span> {getDate().toDateString()}</p>
                 <p className='showInfo name'> <span>Name:</span> {props.openBill.name}</p>
                 <p className='showInfo amount'> <span>Amount:</span> ${props.openBill.amount.toFixed(2)}</p>
                 <p className='showInfo amount'> <span>Caregory:</span> ${props.openBill.category? props.openBill.category : "None"}</p>

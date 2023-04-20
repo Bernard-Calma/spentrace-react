@@ -18,9 +18,9 @@
 
 /* Plan */
 .containerShowInner {
-    width: 400px;
     margin: 50px auto ;
     text-align: start;
+    padding-left: 50px;
 }
 
 .closeBtn {

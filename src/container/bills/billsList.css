@@ -99,15 +99,12 @@
     .containerBillsList {
         padding: 0;
     }
-    
-    .billsListHeader{
+
+    .month, .btnPrevious, .btnNext {
         position: relative;
         left: 0;
-        justify-content: center;
-    }
-
-    .fi, .fi:hover {
-        font-size: 30px;
+        right: 0;
+        font-size: 24px;
     }
 
     .month {
