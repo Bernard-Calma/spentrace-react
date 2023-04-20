@@ -4,7 +4,9 @@ import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
 
 const EdditBill = (props) => {
-    const [editBill, setEditBill] = useState(props.openBill)
+    const [editBill, setEditBill] = useState({...props.openBill, 
+        dueDate: new Date(props.openBill.dueDate.year, props.openBill.dueDate.month, props.openBill.dueDate.day)
+    })
     const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months'])
 
     const handleChange=(e)=>{
@@ -33,10 +35,10 @@ const EdditBill = (props) => {
                 <h2 className='editTitle'>Edit</h2>
             </div>
             
-            <form className='editForm' onSubmit={handleSubmitEdit}>
+            <form className='editForm' onSubmit={handleSubmitEdit}> 
                 <label htmlFor="dueDate" className='formInput'>
                     Date: 
-                    <input type="date" name="dueDate" id="editDate" value={new Date(`${editBill.dueDate.month + 1}-${editBill.dueDate.day}-${editBill.dueDate.year}`).toISOString().slice(0,10)} onChange = {handleChange} required/>
+                    <input type="date" name="dueDate" id="editDate" value={new Date(editBill.dueDate).toISOString().slice(0,10)} onChange = {handleChange} required/>
                 </label>
                 <label htmlFor="name" className='formInput'>
                     Name: 
@@ -72,14 +74,6 @@ const EdditBill = (props) => {
                         {editBill.autoPay 
                         ?   <input type="checkbox" name="autoPay" id="editBillAutoPay" onChange={handleChange} checked/>
                         :   <input type="checkbox" name="autoPay" id="editBillAutoPay" onChange={handleChange} />}
-                    </label>
-                    <label htmlFor="autoPay" className='formInput'>
-                        Paid: 
-                        {
-                            editBill.paid 
-                            ? <input type="checkbox" name="paid" id="editBillPaid" onChange={handleChange} checked/>
-                            : <input type="checkbox" name="paid" id="editBillPaid" onChange={handleChange} />
-                        }
                     </label>
                 </div>
 
