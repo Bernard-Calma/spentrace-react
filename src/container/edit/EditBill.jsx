@@ -24,8 +24,11 @@ const EdditBill = (props) => {
             data: editBill,
             withCredentials: true
         })
-        .then(res => props.updateBill(res.data))
-        props.return()
+        .then(res => {
+            console.log(res.data)
+            // props.updateBill(res.data)
+        })
+        // props.return()
     }
 
     return (
