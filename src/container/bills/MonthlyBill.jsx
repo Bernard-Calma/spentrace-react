@@ -6,7 +6,7 @@ const MonthlyBill = (props) => {
         <>
             {
                 props.bills?.map((bill, index) => 
-                    bill.dueDate.month === props.month ?
+                    new Date(bill.dueDate).getMonth() === props.month ?
                     <>
                         <Bill
                             key={`${bill._id}-${index}`}
