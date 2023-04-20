@@ -36,7 +36,7 @@ const EdditBill = (props) => {
             <form className='editForm' onSubmit={handleSubmitEdit}>
                 <label htmlFor="dueDate" className='formInput'>
                     Date: 
-                    <input type="date" name="dueDate" id="editDate" value={new Date(`${editBill.dueDate[0].month}-${editBill.dueDate[0].day}-${editBill.dueDate[0].year}`).toISOString().slice(0,10)} onChange = {handleChange} required/>
+                    <input type="date" name="dueDate" id="editDate" value={new Date(`${editBill.dueDate.month + 1}-${editBill.dueDate.day}-${editBill.dueDate.year}`).toISOString().slice(0,10)} onChange = {handleChange} required/>
                 </label>
                 <label htmlFor="name" className='formInput'>
                     Name: 

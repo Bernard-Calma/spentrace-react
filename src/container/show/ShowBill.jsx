@@ -1,13 +1,11 @@
 import axios from "axios"
 import "./Show.css"
-import { useState } from "react"
 
 const ShowBill = (props) => {
-    const dueDate = props.openBill.dueDate
-    console.log(new Date(dueDate.year, dueDate.month, dueDate.day))
+    const {year, month, day} = props.openBill.dueDate
     const getDate = () => {
         let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate()
-        let dateBill = new Date(dueDate.year, dueDate.month + 1, dueDate.day)
+        let dateBill = new Date(year, month, day)
         return dateToday === dateBill ? "Today": dateBill;
     }
 
