@@ -30,9 +30,9 @@ const AddBill = (props) => {
         })
         .then(res => {
             console.log(res.data)
-            // props.handleAddBill(res.data)
+            props.handleAddBill(res.data)
         })
-        // props.changeBillsView()
+        props.changeBillsView()
     }
     return (
         <div className="addContainer">

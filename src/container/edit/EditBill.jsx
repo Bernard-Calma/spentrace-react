@@ -65,7 +65,7 @@ const EdditBill = (props) => {
                     !(editBill.repeat === "never") && 
                     <label htmlFor="endRepeat" className='formInput'>
                     Repeat Until: 
-                        <input type="date" name="endRepeat" id="addBillEndRepeat" onChange={handleChange} required/>
+                        <input type="date" name="endRepeat" id="addBillEndRepeat" value={new Date(editBill.endRepeat).toISOString().slice(0,10)} onChange={handleChange} required/>
                     </label>
                 }
                 <div className='billCheckBoxes'>
