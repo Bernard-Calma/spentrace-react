@@ -23,10 +23,10 @@ const EdditBill = (props) => {
             withCredentials: true
         })
         .then(res => {
-            console.log(res.data)
-            // props.updateBill(res.data)
+            // console.log(res.data)
+            props.updateBill(res.data)
         })
-        // props.return()
+        props.return()
     }
 
     return (
