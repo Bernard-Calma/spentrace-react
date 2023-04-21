@@ -47,7 +47,7 @@ const DashBoard = (props) => {
         }
         props.plans.forEach( plan => {
             plan.expense ? balance -= plan.amount :  balance += plan.amount
-            console.log(balance)
+            // console.log(balance)
             if (balance <= 0 && nextTarget.amount === 0) {
                 nextTarget.amount = balance;
                 nextTarget.name = plan.name
@@ -63,13 +63,14 @@ const DashBoard = (props) => {
         let totalUnpaid = 0;
         const currentMonth = new Date().getMonth()
         props.bills.forEach(bill => {
-            let billMonth = new Date(bill.dueDate).getMonth()
-            if (billMonth === currentMonth) {
-                bill.paid ? totalPaid += bill.amount   : totalUnpaid += bill.amount
-                setTotalBillsPaid(totalPaid)
-                setTotalBillsUnpaid(totalUnpaid)
-            }
-
+            bill.dueDate.forEach((dueDate, index) => {
+                let billMonth = new Date(dueDate).getMonth()
+                if (billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
+                    bill.paid[index] ? totalPaid += bill.amount : totalUnpaid += bill.amount
+                    setTotalBillsPaid(totalPaid)
+                    setTotalBillsUnpaid(totalUnpaid)
+                }
+            })
         })
     }
 
@@ -77,10 +78,19 @@ const DashBoard = (props) => {
         let unpaidBill = props.bills[0]
         const currentMonth = new Date().getMonth()
         props.bills.forEach(bill => {
-            let billMonth = new Date(bill.dueDate).getMonth()
-            if (billMonth === currentMonth) {
-                if(!bill.paid && billMonth === currentMonth) return unpaidBill = bill
-            }
+            bill.dueDate.forEach( (dueDate, index) => {
+                let billMonth = new Date(dueDate).getMonth()
+                if (billMonth === currentMonth) {
+                    if(!bill.paid[index] && billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
+                        // console.log(dueDate)
+                        return unpaidBill = {
+                            ...bill,
+                            dueDate: dueDate,
+                            paid: bill.paid[index]
+                        }
+                    }
+                }
+            })
         })
         setNextUnpaidBill(unpaidBill)
     }
@@ -164,6 +174,7 @@ const DashBoard = (props) => {
                         :<div className='containerNextTarget'>
                             <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
                             <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
+                            <h2 className="nextTarget"> Days Remaining: {new Date(nextUnpaidBill.date).getDate() - new Date().getDate() > 0 ? new Date(nextUnpaidBill.date).getDate() - new Date().getDate() : "Overdue"}</h2>
                         </div>
                     }
                 </div>              
