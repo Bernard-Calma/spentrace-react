@@ -92,6 +92,11 @@
 .btnAddBill:hover {
     font-size: 26px;
 }
+
+.income > .date > .date{
+    text-align: start;
+    padding-left: 20px;
+}
 /* ----- END OF BILL STYLES ----- */
 
 /* ----- MOBILE STYLES----- */
