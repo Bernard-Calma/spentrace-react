@@ -43,7 +43,8 @@ const BillsList = (props) => {
             // Iterate each due date
             bill.dueDate.forEach((dueDate, index) => {
                 // add a single bill with specific due date
-                if(new Date(dueDate).getMonth() === month) monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index]})
+                // NOTE TO DO: CHANGE CURRENT YEAR FOR USER TO SELECT ANY YEAR AND SHOW BILLS ACCORDING TO YEAR
+                if(new Date(dueDate).getMonth() === month && new Date(dueDate).getFullYear() === new Date().getFullYear()) monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index]})
             })
         })         
         return monthBills

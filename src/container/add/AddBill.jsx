@@ -34,9 +34,9 @@ const AddBill = (props) => {
             }
         }
         else setNewBill({...newBill, [e.target.name]: e.target.value})
-        console.log(newBill.repeat)
-        console.log(newBill.dueDate)
-        console.log(newBill.endRepeat)
+        // console.log(newBill.repeat)
+        // console.log(newBill.dueDate)
+        // console.log(newBill.endRepeat)
     }
 
     const handleSubmitAdd = (e) => {
