@@ -124,6 +124,7 @@ const DashBoard = (props) => {
                 :<div className='containerNextTarget'>
                     <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
                     <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                    <h2 className="nextTarget"> Days Remaining: {new Date(nextTarget.date).getDate() - new Date().getDate()}</h2>
                 </div>
             }
         </div> 
