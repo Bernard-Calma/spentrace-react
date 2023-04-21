@@ -47,12 +47,12 @@ const DashBoard = (props) => {
         }
         props.plans.forEach( plan => {
             plan.expense ? balance -= plan.amount :  balance += plan.amount
-            if (balance < 0) {
+            console.log(balance)
+            if (balance <= 0 && nextTarget.amount === 0) {
                 nextTarget.amount = balance;
                 nextTarget.name = plan.name
                 nextTarget.date = plan.date
-                setNextTarget(nextTarget)
-                return
+                return setNextTarget(nextTarget)
             }
         })
     }
@@ -124,7 +124,8 @@ const DashBoard = (props) => {
                 :<div className='containerNextTarget'>
                     <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
                     <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                    <h2 className="nextTarget"> Days Remaining: {new Date(nextTarget.date).getDate() - new Date().getDate()}</h2>
+                    {/* Shorten the if statement */}
+                    <h2 className="nextTarget"> Days Remaining: {new Date(nextTarget.date).getDate() - new Date().getDate() > 0 ? new Date(nextTarget.date).getDate() - new Date().getDate() : "Overdue"}</h2>
                 </div>
             }
         </div> 
