@@ -47,7 +47,7 @@ const BillsList = (props) => {
                 if(new Date(dueDate).getMonth() === month && new Date(dueDate).getFullYear() === new Date().getFullYear()) monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index]})
             })
         })         
-        return monthBills
+        return monthBills.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1)
     } 
 
     return(<>{
