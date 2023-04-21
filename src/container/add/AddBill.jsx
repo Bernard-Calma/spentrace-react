@@ -10,49 +10,40 @@ const AddBill = (props) => {
         repeat: "never",
         paid: false,
         userId: props.user.id,
-        endRepeat: ""
+        endRepeat: "yyyy-MM-dd"
     })
 
     const handleChange=(e)=>{
-        e.preventDefault()
         if (e.target.name === "autopay") setNewBill({...newBill, [e.target.name]: e.target.checked})
         else if (e.target.name === "paid") setNewBill({...newBill, [e.target.name]: e.target.checked})
-        // If repeat until is lesser that due date, alert that repeat should be further than due date
-        else if(newBill.repeat !== "never") {
-            // Change back repeat to never
-            if(e.target.name === "repeat") setNewBill({...newBill, [e.target.name]: e.target.value})
-            else {
-                if (e.target.name === "endRepeat") {
-                    let parseDueDate = Date.parse(newBill.dueDate)
-                    let parseEndDate = Date.parse(e.target.value)
-                    if(parseDueDate >= parseEndDate) {
-                        alert("End date should be further than due date")
-                        setNewBill({...newBill, endRepeat: ""})
-                    }
-                    else setNewBill({...newBill, [e.target.name]: e.target.value})
-                }
-            }
-        }
         else setNewBill({...newBill, [e.target.name]: e.target.value})
-        // console.log(newBill.repeat)
-        // console.log(newBill.dueDate)
-        // console.log(newBill.endRepeat)
     }
 
     const handleSubmitAdd = (e) => {
         // console.log(newBill)
         e.preventDefault();
-        axios({
-            method: "POST",
-            url: `${props.server}/bills/`,
-            data: newBill,
-            withCredentials: true
-        })
-        .then(res => {
-            // console.log(res.data)
-            props.handleAddBill(res.data)
-        })
-        props.changeBillsView()
+        let parseDueDate = Date.parse(newBill.dueDate)
+        let parseEndDate = Date.parse(newBill.endRepeat)
+        // console.log(parseDueDate)
+        // console.log(parseEndDate)
+        // If repeat until is lesser that due date, alert that repeat should be further than due date
+        if(parseDueDate >= parseEndDate) {
+            alert("End date should be further than due date")
+            setNewBill({...newBill, endRepeat: ""})
+        } else {
+            axios({
+                method: "POST",
+                url: `${props.server}/bills/`,
+                data: newBill,
+                withCredentials: true
+            })
+            .then(res => {
+                // console.log(res.data)
+                props.handleAddBill(res.data)
+            })
+            props.changeBillsView()
+        }
+
     }
     return (
         <div className="addContainer">
