@@ -9,14 +9,34 @@ const AddBill = (props) => {
         autopay: false,
         repeat: "never",
         paid: false,
-        userId: props.user.id
+        userId: props.user.id,
+        endRepeat: ""
     })
 
     const handleChange=(e)=>{
+        e.preventDefault()
         if (e.target.name === "autopay") setNewBill({...newBill, [e.target.name]: e.target.checked})
         else if (e.target.name === "paid") setNewBill({...newBill, [e.target.name]: e.target.checked})
+        // If repeat until is lesser that due date, alert that repeat should be further than due date
+        else if(newBill.repeat !== "never") {
+            // Change back repeat to never
+            if(e.target.name === "repeat") setNewBill({...newBill, [e.target.name]: e.target.value})
+            else {
+                if (e.target.name === "endRepeat") {
+                    let parseDueDate = Date.parse(newBill.dueDate)
+                    let parseEndDate = Date.parse(e.target.value)
+                    if(parseDueDate >= parseEndDate) {
+                        alert("End date should be further than due date")
+                        setNewBill({...newBill, endRepeat: ""})
+                    }
+                    else setNewBill({...newBill, [e.target.name]: e.target.value})
+                }
+            }
+        }
         else setNewBill({...newBill, [e.target.name]: e.target.value})
-        
+        console.log(newBill.repeat)
+        console.log(newBill.dueDate)
+        console.log(newBill.endRepeat)
     }
 
     const handleSubmitAdd = (e) => {
@@ -43,7 +63,7 @@ const AddBill = (props) => {
             <form className='addForm' onSubmit={handleSubmitAdd}>
                 <label htmlFor="dueDate" className='formInput'>
                     Due Date: 
-                    <input type="date" name="dueDate" id="addBillDate" onChange={handleChange} required/>
+                    <input type="date" name="dueDate" id="addBillDate" value={newBill.dueDate} onChange={handleChange} required/>
                 </label>
                 <label htmlFor="name" className='formInput'>
                     Name: 
@@ -70,7 +90,7 @@ const AddBill = (props) => {
                     !(newBill.repeat === "never") && 
                     <label htmlFor="endRepeat" className='formInput'>
                     Repeat Until: 
-                        <input type="date" name="endRepeat" id="addBillEndRepeat" onChange={handleChange} required/>
+                        <input type="date" name="endRepeat" id="addBillEndRepeat" value={newBill.endRepeat} onChange={handleChange}  required/>
                     </label>
                 }
                 <div className='billCheckBoxes'>
