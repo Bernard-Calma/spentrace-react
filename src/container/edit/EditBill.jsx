@@ -4,9 +4,7 @@ import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
 
 const EdditBill = (props) => {
-    const [editBill, setEditBill] = useState({...props.openBill, 
-        dueDate: new Date(props.openBill.dueDate.year, props.openBill.dueDate.month, props.openBill.dueDate.day)
-    })
+    const [editBill, setEditBill] = useState({...props.openBill})
     const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months'])
 
     const handleChange=(e)=>{

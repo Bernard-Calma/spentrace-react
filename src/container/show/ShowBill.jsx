@@ -2,14 +2,17 @@ import axios from "axios"
 import "./Show.css"
 
 const ShowBill = (props) => {
-    const {year, month, day} = props.openBill.dueDate
     const getDate = () => {
-        let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate()
-        let dateBill = new Date(year, month, day)
-        return dateToday === dateBill ? "Today": dateBill;
+        let dateToday = new Date()
+        dateToday = `${dateToday.getFullYear()} ${dateToday.getMonth()} ${dateToday.getDate()}`
+        let dueDate = new Date(props.openBill.dueDate)
+        dueDate = `${dueDate.getFullYear()} ${dueDate.getMonth()} ${dueDate.getDate()}`
+        // console.log("Date Today: ", dateToday)
+        // console.log("Due Date: ", dueDate)
+        return dateToday === dueDate ? "Today": new Date(props.openBill.dueDate).toDateString();
     }
 
-    const handleDelete = () => { 
+    const handleDelete = () => {
         axios({
             method: "DELETE",
             url: `${props.server}/bills/${props.openBill._id}`,
@@ -29,7 +32,7 @@ const ShowBill = (props) => {
                 </div>
             </div>
             <div className="containerShowInner">
-                <p className='showInfo date'> <span>Date:</span> {getDate().toDateString()}</p>
+                <p className='showInfo date'> <span>Date:</span> {getDate()}</p>
                 <p className='showInfo name'> <span>Name:</span> {props.openBill.name}</p>
                 <p className='showInfo amount'> <span>Amount:</span> ${props.openBill.amount.toFixed(2)}</p>
                 <p className='showInfo amount'> <span>Caregory:</span> ${props.openBill.category? props.openBill.category : "None"}</p>
