@@ -83,7 +83,7 @@ li {
        text-align: start;
     }
 
-    .name {
+    .listContainer.name, .planData.name, .dataContainer.name {
         flex: 3;
     }
 

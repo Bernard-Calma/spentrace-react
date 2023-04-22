@@ -97,6 +97,11 @@
     text-align: start;
     padding-left: 20px;
 }
+
+.day {
+    display: none;
+}
+
 /* ----- END OF BILL STYLES ----- */
 
 /* ----- MOBILE STYLES----- */
