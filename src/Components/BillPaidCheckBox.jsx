@@ -1,10 +1,15 @@
+import axios from "axios";
 import { useState } from "react";
 
 const BillPaidCheckBox = (props) => {
-    const [paidStatus, setPaidStatus] = useState(props.paid)
+    const [paidStatus, setPaidStatus] = useState(props.bill.paid)
 
     const handleChangePaidStatus = () => {
         setPaidStatus(!paidStatus)
+        axios({
+            method: "PATCH",
+            
+        })
     }
     return <>{
         !paidStatus ?

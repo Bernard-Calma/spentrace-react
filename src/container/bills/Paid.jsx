@@ -3,7 +3,7 @@ import MonthlyBill from "./MonthlyBill";
 
 const Paid = (props) => {
     let [totalPaid, setTotalPaid] = useState(0);
-    let [billsPaid, setBillsPaid] = useState([])
+    const [billsPaid, setBillsPaid] = useState([])
  
     const getTotalPaid = () => {
         let paid = 0;
@@ -28,9 +28,12 @@ const Paid = (props) => {
                     <p>${totalPaid.toFixed(2)}</p>
         </div>
         <MonthlyBill 
-            handleShowBill = {props.handleShowBill}
-            month = {props.month}
             bills = {billsPaid}
+            month = {props.month}
+            server = {props.server}
+            handleShowBill = {props.handleShowBill}
+            
+            
         />
     </> 
 

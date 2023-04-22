@@ -37,8 +37,9 @@ const Unpaid = (props) => {
                 <i className="fi fi-rr-add btnAddBill" onClick={() => props.changeBillsView("Add Bill")}></i>
         </div>
         <MonthlyBill
-            month = {props.month}
             bills = {billsUnpaid}
+            month = {props.month}
+            server = {props.server}
             handleShowBill = {props.handleShowBill}
         />
     </> 

@@ -44,7 +44,7 @@ const BillsList = (props) => {
             bill.dueDate.forEach((dueDate, index) => {
                 // add a single bill with specific due date
                 // NOTE TO DO: CHANGE CURRENT YEAR FOR USER TO SELECT ANY YEAR AND SHOW BILLS ACCORDING TO YEAR
-                if(new Date(dueDate).getMonth() === month && new Date(dueDate).getFullYear() === new Date().getFullYear()) monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index]})
+                if(new Date(dueDate).getMonth() === month && new Date(dueDate).getFullYear() === new Date().getFullYear()) monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index], dueDateIndex: index})
             })
         })         
         return monthBills.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1)
@@ -61,17 +61,20 @@ const BillsList = (props) => {
         <div className="billsContainer">
             <Unpaid 
                 month = {month}
-                bills = {getMonthlyBill(month)}
+                setHomeView = {props.setHomeView}
+                server = {props.server}
                 handleShowBill = {handleShowBill}
                 changeBillsView = {changeBillsView}
-                setHomeView = {props.setHomeView}
+                bills = {getMonthlyBill(month)}
+                
             />
             <Paid 
                 month = {month}
-                bills = {getMonthlyBill(month)}
+                setHomeView = {props.setHomeView}
+                server = {props.server}
                 changeBillsView = {changeBillsView}
                 handleShowBill = {handleShowBill}
-                setHomeView = {props.setHomeView}
+                bills = {getMonthlyBill(month)}
             />
         </div>
         </section>

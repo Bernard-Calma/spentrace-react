@@ -12,6 +12,7 @@ const MonthlyBill = (props) => {
                             key={`${bill._id}-${index}`}
                             index={index}
                             bill={bill}
+                            server = {props.server}
                             handleShowBill = {() => props.handleShowBill(bill)}
                         />
                     </>

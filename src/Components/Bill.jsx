@@ -9,7 +9,8 @@ const Bill = (props) => {
             <div className="billDataContainer date">  
                 {
                     <BillPaidCheckBox 
-                        paid = {props.bill.paid}
+                        server = {props.server}
+                        bill = {props.bill}
                     />
                 }
                 <p className="billData date">
