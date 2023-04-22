@@ -107,6 +107,13 @@
     color: white;
     margin: 0;
 }
+
+/* Loading */
+.containerLoading {
+    display: flex;
+    justify-content: center;
+}
+
 /* ----- END OF EMPTY DASHBOARD STYLES ----- */
 
 @media screen and (max-width: 900px) { 

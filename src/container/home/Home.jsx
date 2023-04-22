@@ -7,6 +7,7 @@ import DashBoard from './Dashboard'
 import EmptyDashboard from './EmptyDashboard'
 import './home.css'
 import '../../Components/NavBar.css'
+import Loading from '../../Components/Loading'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
@@ -16,6 +17,8 @@ const Home = (props) => {
     const [plans, setPlans] = useState([])
     // Bills
     const [bills, setBills] = useState([])
+    // Loading
+    const [loading, setLoading] = useState(true)
     // ------------------------------ END OF VARIABLES ------------------------------
     // ------------------------------ FUNCTIONS ------------------------------
     // Views
@@ -47,7 +50,13 @@ const Home = (props) => {
             url: `${props.server}/bills`,
             withCredentials: true
         })
-        .then(res => setBills(res.data.sort((a, b) => (a.date > b.date) ? 1 : -1)))
+        .then(res => {
+            setBills(res.data.sort((a, b) => (a.date > b.date) ? 1 : -1))
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000);
+            
+        })
         .catch(err => console.log(err))
     } 
     // Modify Bills Methods
@@ -64,45 +73,53 @@ const Home = (props) => {
     }, [])
 
     return(
-        <section className="containerHome">
-            {plans.length === 0 
-                ? <EmptyDashboard 
-                    user = {props.user}
-                    server = {props.server}
-                    addNewPlan = {modifyPlans.add}
-                />
-                : <>
-                    <div className='homeNavBar'>
-                        <p onClick={() => changeHomeView("Plan")}>Budget Tracker</p>
-                        <p onClick={() => changeHomeView("Bills List")}>Bills List</p>
-                    </div>
-                    <div className='containerHomeView'>
-                        {homeView === "Home" || props.appView === "Home"
-                            ? <DashBoard 
-                                plans = {plans}
-                                bills = {bills}
-                                changeHomeView = {changeHomeView}
-                            />
-                            : homeView === "Plan" 
-                            ? <PlanList 
-                                user = {props.user}
-                                server = {props.server}
-                                plans = {plans}
-                                modifyPlans = {modifyPlans}
-                            />
-                            : homeView === "Bills List" 
-                            ? <BillsList
-                                user = {props.user}
-                                server = {props.server}
-                                bills = {bills}
-                                modifyBills = {modifyBills}
-                            />  
-                            : <></>
-                        }
-                    </div>
-                </> 
+        <>
+            {
+                loading
+                ? <div className='containerLoading'>
+                    <Loading />
+                </div>
+                :         <section className="containerHome">
+                {plans.length === 0 
+                    ? <EmptyDashboard 
+                        user = {props.user}
+                        server = {props.server}
+                        addNewPlan = {modifyPlans.add}
+                    />
+                    : <>
+                        <div className='homeNavBar'>
+                            <p onClick={() => changeHomeView("Plan")}>Budget Tracker</p>
+                            <p onClick={() => changeHomeView("Bills List")}>Bills List</p>
+                        </div>
+                        <div className='containerHomeView'>
+                            {homeView === "Home" || props.appView === "Home"
+                                ? <DashBoard 
+                                    plans = {plans}
+                                    bills = {bills}
+                                    changeHomeView = {changeHomeView}
+                                />
+                                : homeView === "Plan" 
+                                ? <PlanList 
+                                    user = {props.user}
+                                    server = {props.server}
+                                    plans = {plans}
+                                    modifyPlans = {modifyPlans}
+                                />
+                                : homeView === "Bills List" 
+                                ? <BillsList
+                                    user = {props.user}
+                                    server = {props.server}
+                                    bills = {bills}
+                                    modifyBills = {modifyBills}
+                                />  
+                                : <></>
+                            }
+                        </div>
+                    </> 
+                }
+            </section>
             }
-        </section>
+        </>
     )
 }
 
