@@ -102,6 +102,7 @@ const LandingPage = (props) =>{
             withCredentials: true
         })
         .then(res => {
+            // console.log(res)
             props.setUser({
                 username: res.data.user,
                 loggedIn: true

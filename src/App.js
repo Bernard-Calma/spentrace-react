@@ -15,7 +15,6 @@ const App = () => {
   const [view, setView] = useState("Login")
   // User information
   const [user, setUser] = useState({
-    id: "",
     username: "",
     loggedIn: false
   })
@@ -37,8 +36,9 @@ const App = () => {
     })
     .then(res => { 
       if(res.data.passport.user) {
-        const user = res.data.passport.user
-        setUser({...user, username: user.username, loggedIn: true})
+        const userData = res.data.passport.user
+        console.log(user)
+        setUser({...user, username: userData, loggedIn: true})
       } else {
         console.log(res.response.message)
       }
