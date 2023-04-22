@@ -95,7 +95,12 @@
 
 .income > .date > .date{
     text-align: start;
-    padding-left: 20px;
+    padding-left: 80px;
+}
+
+.iconCheckBox {
+    position: absolute;
+    left: 50px;
 }
 
 /* ----- END OF BILL STYLES ----- */
@@ -124,7 +129,7 @@
     }
     
 
-    .btnAddBill {
+    .btnAddBill, .iconCheckBox {
         position: relative;
         left: 0;
     }
@@ -136,6 +141,10 @@
 
     .day {
         display: none;
+    }
+
+    .billContainer.income > .billDataContainer.date {
+        display: flex;
     }
 }
 /* ----- END OF MOBILE STYLES ----- */
