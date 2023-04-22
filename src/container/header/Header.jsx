@@ -10,7 +10,6 @@ const Header = (props) => {
             withCredentials: true
         })
         .then(res => props.setUser({
-            id: "",
             username: "",
             loggedIn: false
         }))
@@ -22,7 +21,11 @@ const Header = (props) => {
                 className="title" 
                 onClick={props.handleChangeHomeView}
             >Spentrace</h1> 
-            <i className="fi fi-rr-sign-out-alt" onClick={handleSignOut}></i>
+            {
+                props.user.loggedIn && 
+                <i className="fi fi-rr-sign-out-alt" onClick={handleSignOut}></i>
+            }
+            
         </section>
     )
 }
