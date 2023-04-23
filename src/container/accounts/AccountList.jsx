@@ -23,12 +23,33 @@ const accountList = [
         minimumPayment: 0,
         availableCredit: 0,
     },
+    {
+        bank: "Bank of America",
+        accountNumber: 1354,
+        balance: 50,
+        type: "Savings",
+        interestRate: 0,
+        dueDate: "na",
+        minimumPayment: 0,
+        availableCredit: 0,
+    },
+    {
+        bank: "Capital One",
+        accountNumber: 681,
+        balance: 100,
+        type: "Savings",
+        interestRate: 0,
+        dueDate: "na",
+        minimumPayment: 0,
+        availableCredit: 0,
+    },
 ]
 
 const AccountList = () => {
     // Variables
     const [accounts, setAccounts] = useState(accountList)
     const [checkingAccounts, setCheckingAccounts] = useState([]);
+    const [savingsAccounts, setSavingsAccounts] = useState([])
 
     // Functions
     const handleGetCheckingAccounts =  () => {
@@ -40,9 +61,19 @@ const AccountList = () => {
         })
         setCheckingAccounts(accountsToPush)
     }
+    const handleGetSavingsAccounts =  () => {
+        const accountsToPush = []
+         accounts.forEach(account => {
+            if(account.type === "Savings") {
+                accountsToPush.push(account)
+            }
+        })
+        setSavingsAccounts(accountsToPush)
+    }
 
     useEffect(()=>{
         handleGetCheckingAccounts()
+        handleGetSavingsAccounts()
     }, [])
     return <div className="sectionAccountList">
         <section className='sectionChecking'>
@@ -64,11 +95,21 @@ const AccountList = () => {
             </div>
         </section>
         <section className='sectionSavings'>
-            <div className='categoriesContainer'>
-                <div className='listContainer bank'><h2>Bank</h2></div>
-                <div className='listContainer accountNumber'><h2>Account Number</h2></div>
-                <div className='listContainer accountBalance'><h2>Balance</h2></div>
-                <div className='listContainer type'><h2>Type</h2></div>
+            <h1>Savings Accounts</h1>
+            <div className='categoriesContainer checking'>
+                <div className='listContainer checking bank'><h2>Bank</h2></div>
+                <div className='listContainer checking accountNumber'><h2>Account Number</h2></div>
+                <div className='listContainer checking accountBalance'><h2>Balance</h2></div>
+            </div>
+            <div className='checkingContainer'>
+                {
+                    savingsAccounts.map((account, index) => 
+                        <CheckingAccount 
+                            key = {index}
+                            account = {account}
+                        />
+                    )
+                }
             </div>
         </section>
         <section className='sectionCredit'>

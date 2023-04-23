@@ -1,3 +1,14 @@
+.sectionAccountList {
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 .containerAccount{
     border: solid #B0B7C4;
     background-color: rgb(53, 52, 52);
@@ -30,4 +41,10 @@
 
 .accountContainer {
     display: flex;
+}
+
+/* SAVINGS */
+.sectionSavings {
+    display: flex;
+    flex-direction: column;
 }
