@@ -67,11 +67,11 @@ const DashBoard = (props) => {
                 let billMonth = new Date(dueDate).getMonth()
                 if (billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
                     bill.paid[index] ? totalPaid += bill.amount : totalUnpaid += bill.amount
-                    setTotalBillsPaid(totalPaid)
-                    setTotalBillsUnpaid(totalUnpaid)
                 }
             })
         })
+        setTotalBillsPaid(totalPaid)
+        setTotalBillsUnpaid(totalUnpaid)
     }
 
     const getNextUpaidBill = () => {
