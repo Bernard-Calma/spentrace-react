@@ -158,7 +158,7 @@ const DashBoard = (props) => {
                             colors = {['red', 'green']}  
                             width = {250}
                             height = {250}
-                            value = {totalBillsUnpaid - totalBillsPaid}
+                            value = {totalBillsUnpaid + totalBillsPaid}
                         />
                         <div className='graphSubTitle'>
                             <h2>Unpaid</h2>
