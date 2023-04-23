@@ -5,13 +5,27 @@
     flex-grow: 1;
 }
 
-/* CHECKING */
+.categoriesContainer.checking {
+    width: 100%;
+}
 
+/* CHECKING */
 .sectionChecking {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.checkingContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.listContainer.checking {
+    width: 33%;
+    display: flex;
 }
 
 .accountContainer {

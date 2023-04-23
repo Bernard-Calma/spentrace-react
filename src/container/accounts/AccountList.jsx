@@ -6,7 +6,7 @@ const accountList = [
     {
         bank: "Bank of America",
         accountNumber: 123456,
-        balance: 0,
+        balance: -256.23,
         type: "Checking",
         interestRate: 0,
         dueDate: "na",
@@ -47,11 +47,10 @@ const AccountList = () => {
     return <div className="sectionAccountList">
         <section className='sectionChecking'>
             <h1>Checking Accounts</h1>
-            <div className='categoriesContainer'>
-                <div className='listContainer bank'><h2>Bank</h2></div>
-                <div className='listContainer accountNumber'><h2>Account Number</h2></div>
-                <div className='listContainer accountBalance'><h2>Balance</h2></div>
-                <div className='listContainer type'><h2>Type</h2></div>
+            <div className='categoriesContainer checking'>
+                <div className='listContainer checking bank'><h2>Bank</h2></div>
+                <div className='listContainer checking accountNumber'><h2>Account Number</h2></div>
+                <div className='listContainer checking accountBalance'><h2>Balance</h2></div>
             </div>
             <div className='checkingContainer'>
                 {
@@ -65,7 +64,12 @@ const AccountList = () => {
             </div>
         </section>
         <section className='sectionSavings'>
-
+            <div className='categoriesContainer'>
+                <div className='listContainer bank'><h2>Bank</h2></div>
+                <div className='listContainer accountNumber'><h2>Account Number</h2></div>
+                <div className='listContainer accountBalance'><h2>Balance</h2></div>
+                <div className='listContainer type'><h2>Type</h2></div>
+            </div>
         </section>
         <section className='sectionCredit'>
 
