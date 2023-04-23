@@ -5,11 +5,18 @@ const BillPaidCheckBox = (props) => {
     const [paidStatus, setPaidStatus] = useState(props.bill.paid)
 
     const handleChangePaidStatus = () => {
-        setPaidStatus(!paidStatus)
         axios({
             method: "PATCH",
-            
+            url: `${props.server}/bills/${props.bill._id}`,
+            data: {
+                paidIndex: props.bill.dueDateIndex
+            },
+            withCredentials: true
         })
+        .then(res => {
+            props.updateBill(res.data)
+        })
+        .catch(err => console.log(err))
     }
     return <>{
         !paidStatus ?

@@ -66,6 +66,7 @@ const BillsList = (props) => {
                 handleShowBill = {handleShowBill}
                 changeBillsView = {changeBillsView}
                 bills = {getMonthlyBill(month)}
+                modifyBills = {props.modifyBills}
                 
             />
             <Paid 
@@ -75,6 +76,7 @@ const BillsList = (props) => {
                 changeBillsView = {changeBillsView}
                 handleShowBill = {handleShowBill}
                 bills = {getMonthlyBill(month)}
+                modifyBills = {props.modifyBills}
             />
         </div>
         </section>

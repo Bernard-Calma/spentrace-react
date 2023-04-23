@@ -32,8 +32,7 @@ const Paid = (props) => {
             month = {props.month}
             server = {props.server}
             handleShowBill = {props.handleShowBill}
-            
-            
+            modifyBills = {props.modifyBills}
         />
     </> 
 

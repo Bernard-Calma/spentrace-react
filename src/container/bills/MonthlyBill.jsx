@@ -14,6 +14,7 @@ const MonthlyBill = (props) => {
                             bill={bill}
                             server = {props.server}
                             handleShowBill = {() => props.handleShowBill(bill)}
+                            modifyBills = {props.modifyBills}
                         />
                     </>
                     : <></>)

@@ -11,6 +11,7 @@ const Bill = (props) => {
                     <BillPaidCheckBox 
                         server = {props.server}
                         bill = {props.bill}
+                        updateBill = {props.modifyBills.update}
                     />
                 }
                 <p className="billData date">
