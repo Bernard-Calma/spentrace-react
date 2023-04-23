@@ -8,6 +8,7 @@ import EmptyDashboard from './EmptyDashboard'
 import './home.css'
 import '../../Components/NavBar.css'
 import Loading from '../../Components/Loading'
+import AccountList from '../accounts/AccountList'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
@@ -90,6 +91,7 @@ const Home = (props) => {
                         <div className='homeNavBar'>
                             <p onClick={() => changeHomeView("Plan")}>Budget Tracker</p>
                             <p onClick={() => changeHomeView("Bills List")}>Bills List</p>
+                            <p onClick={() => changeHomeView("Account List")}>Account List</p>
                         </div>
                         <div className='containerHomeView'>
                             {homeView === "Home" || props.appView === "Home"
@@ -111,6 +113,11 @@ const Home = (props) => {
                                     server = {props.server}
                                     bills = {bills}
                                     modifyBills = {modifyBills}
+                                />  
+                                : homeView === "Account List" 
+                                ? < AccountList
+                                    user = {props.user}
+                                    server = {props.server}
                                 />  
                                 : <></>
                             }

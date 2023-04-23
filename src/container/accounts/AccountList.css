@@ -1,0 +1,19 @@
+.containerAccount{
+    border: solid #B0B7C4;
+    background-color: rgb(53, 52, 52);
+    overflow: scroll;
+    flex-grow: 1;
+}
+
+/* CHECKING */
+
+.sectionChecking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.accountContainer {
+    display: flex;
+}

@@ -1,6 +1,78 @@
+import { useEffect, useState } from 'react'
+import './AccountList.css'
+import CheckingAccount from './CheckingAccount';
+
+const accountList = [
+    {
+        bank: "Bank of America",
+        accountNumber: 123456,
+        balance: 0,
+        type: "Checking",
+        interestRate: 0,
+        dueDate: "na",
+        minimumPayment: 0,
+        availableCredit: 0,
+    },
+    {
+        bank: "Capital One",
+        accountNumber: 1234567,
+        balance: 200,
+        type: "Checking",
+        interestRate: 0,
+        dueDate: "na",
+        minimumPayment: 0,
+        availableCredit: 0,
+    },
+]
+
 const AccountList = () => {
+    // Variables
+    const [accounts, setAccounts] = useState(accountList)
+    const [checkingAccounts, setCheckingAccounts] = useState([]);
+
+    // Functions
+    const handleGetCheckingAccounts =  () => {
+        const accountsToPush = []
+         accounts.forEach(account => {
+            if(account.type === "Checking") {
+                accountsToPush.push(account)
+            }
+        })
+        setCheckingAccounts(accountsToPush)
+    }
+
+    useEffect(()=>{
+        handleGetCheckingAccounts()
+    }, [])
     return <div className="sectionAccountList">
-        <h1>Account List</h1>
+        <section className='sectionChecking'>
+            <h1>Checking Accounts</h1>
+            <div className='categoriesContainer'>
+                <div className='listContainer bank'><h2>Bank</h2></div>
+                <div className='listContainer accountNumber'><h2>Account Number</h2></div>
+                <div className='listContainer accountBalance'><h2>Balance</h2></div>
+                <div className='listContainer type'><h2>Type</h2></div>
+            </div>
+            <div className='checkingContainer'>
+                {
+                    checkingAccounts.map((account, index) => 
+                        <CheckingAccount 
+                            key = {index}
+                            account = {account}
+                        />
+                    )
+                }
+            </div>
+        </section>
+        <section className='sectionSavings'>
+
+        </section>
+        <section className='sectionCredit'>
+
+        </section>
+        <section className='sectionLoan'>
+
+        </section>
     </div>
 }
 
