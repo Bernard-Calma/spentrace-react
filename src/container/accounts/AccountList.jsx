@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './AccountList.css'
-import CheckingAccount from './CheckingAccount';
+import Account from './Account';
 
 const accountList = [
     {
@@ -76,17 +76,17 @@ const AccountList = () => {
         handleGetSavingsAccounts()
     }, [])
     return <div className="sectionAccountList">
-        <section className='sectionChecking'>
+        <section className='sectionChecking account'>
             <h1>Checking Accounts</h1>
-            <div className='categoriesContainer checking'>
-                <div className='listContainer checking bank'><h2>Bank</h2></div>
-                <div className='listContainer checking accountNumber'><h2>Account Number</h2></div>
-                <div className='listContainer checking accountBalance'><h2>Balance</h2></div>
+            <div className='categoriesContainer account'>
+                <div className='listContainer account bank'><h2>Bank</h2></div>
+                <div className='listContainer account accountNumber'><h2>Account Number</h2></div>
+                <div className='listContainer account accountBalance'><h2>Balance</h2></div>
             </div>
-            <div className='checkingContainer'>
+            <div className='accountContainer'>
                 {
                     checkingAccounts.map((account, index) => 
-                        <CheckingAccount 
+                        <Account 
                             key = {index}
                             account = {account}
                         />
@@ -94,17 +94,17 @@ const AccountList = () => {
                 }
             </div>
         </section>
-        <section className='sectionSavings'>
+        <section className='sectionSavings account'>
             <h1>Savings Accounts</h1>
-            <div className='categoriesContainer checking'>
-                <div className='listContainer checking bank'><h2>Bank</h2></div>
-                <div className='listContainer checking accountNumber'><h2>Account Number</h2></div>
-                <div className='listContainer checking accountBalance'><h2>Balance</h2></div>
+            <div className='categoriesContainer account'>
+                <div className='listContainer account bank'><h2>Bank</h2></div>
+                <div className='listContainer account accountNumber'><h2>Account Number</h2></div>
+                <div className='listContainer account accountBalance'><h2>Balance</h2></div>
             </div>
-            <div className='checkingContainer'>
+            <div className='accountContainer'>
                 {
                     savingsAccounts.map((account, index) => 
-                        <CheckingAccount 
+                        <Account 
                             key = {index}
                             account = {account}
                         />

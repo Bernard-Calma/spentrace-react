@@ -9,6 +9,20 @@
     
 }
 
+/* CHECKING, SAVINGS */
+section.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.categoriesContainer.account {
+    width: 100%;
+}
+
+/* CHECKING, SAVINGS */
+
 .containerAccount{
     border: solid #B0B7C4;
     background-color: rgb(53, 52, 52);
@@ -16,35 +30,17 @@
     flex-grow: 1;
 }
 
-.categoriesContainer.checking {
+.categoriesContainer.checking, .accountContainer {
     width: 100%;
 }
 
-/* CHECKING */
-.sectionChecking {
+.bankContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
-.checkingContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.listContainer.checking {
+.listContainer.account {
     width: 33%;
     display: flex;
 }
 
-.accountContainer {
-    display: flex;
-}
-
-/* SAVINGS */
-.sectionSavings {
-    display: flex;
-    flex-direction: column;
-}
+/* CHECKING, SAVINGS */
