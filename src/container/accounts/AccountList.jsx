@@ -62,7 +62,7 @@ const accountList = [
         type: "Loan",
         accountOpened: "",
         loanAmount: 6000,
-        balance: 4000,
+        balance: 4000.50,
         minimumPayment: 275,
         interest: 4.99,
         dueDate: "26"
@@ -72,7 +72,7 @@ const accountList = [
         type: "Loan",
         accountOpened: "",
         loanAmount: 12000,
-        balance: 11000,
+        balance: 11000.39,
         minimumPayment: 300,
         interest: 4.99,
         dueDate: "30"
@@ -201,7 +201,7 @@ const AccountList = () => {
         }
         {
             loanAccounts.length > 0 &&
-            <section className='sectionLoan'>
+            <section className='sectionLoan account'>
                 <h1>Credit Card Accounts</h1>
                 <div className='categoriesContainer loan'>
                     <div className='listContainer loan bank'><h2>Bank</h2></div>
