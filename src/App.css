@@ -20,11 +20,11 @@ body {
 }
 
 .negative {
-  color: rgba(225, 0, 0);
+  color: rgba(255, 180, 0);
 }
 
 .positive {
-  color: rgb(0, 225, 0);
+  color: rgb(0, 200, 0);
 }
 
 @media only screen and (max-width: 900px) {

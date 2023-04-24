@@ -36,6 +36,14 @@ const CreditCard = (props) => {
         </div>
         <div className='listContainer credit minimumPayment'><h2>${account.minimumPayment.toFixed(2)}</h2></div>
         <div className='listContainer credit dueDate'><h2>{account.dueDate}</h2></div>
+        <div className='listContainer credit interest'><h2>{account.interest}%</h2></div>
+        <div className='listContainer credit usage'>
+            {
+                account.balance / account.creditLimit * 100 <= 30
+                ? <h2 className="positive">{account.balance / account.creditLimit * 100}%</h2>
+                : <h2 className="negative">{account.balance / account.creditLimit * 100}%</h2>
+            }
+            </div>
     </div>
 }
 

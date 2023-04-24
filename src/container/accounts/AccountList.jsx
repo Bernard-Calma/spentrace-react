@@ -154,6 +154,8 @@ const AccountList = () => {
                     <div className='listContainer credit creditBalance'><h2>Balance</h2></div>
                     <div className='listContainer credit minimumPayment'><h2>Minimum Payment</h2></div>
                     <div className='listContainer credit dueDate'><h2>Due Date</h2></div>
+                    <div className='listContainer credit interest'><h2>Interest</h2></div>
+                    <div className='listContainer credit usage'><h2>Usage</h2></div>
                 </div>
                 {
                     creditCardAccounts.map((account, index) => 
