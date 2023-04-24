@@ -17,7 +17,7 @@ section.account {
     justify-content: center;
 }
 
-.categoriesContainer.account {
+.categoriesContainer, .accountContainer, .bankContainer {
     width: 100%;
 }
 
@@ -30,17 +30,18 @@ section.account {
     flex-grow: 1;
 }
 
-.categoriesContainer.checking, .accountContainer {
-    width: 100%;
-}
-
-.bankContainer {
+.bankContainer, .listContainer {
     display: flex;
 }
 
 .listContainer.account {
     width: 33%;
-    display: flex;
 }
 
 /* CHECKING, SAVINGS */
+
+/* CREDIT */
+.categoriesContainer.credit > .listContainer.credit {
+    width: 16%;
+}
+/* CREDIT */
