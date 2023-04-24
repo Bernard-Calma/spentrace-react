@@ -9,6 +9,10 @@
     
 }
 
+.sectionAccountList > section {
+    width: 100%;
+}
+
 /* CHECKING, SAVINGS */
 section.account {
     display: flex;
@@ -41,7 +45,11 @@ section.account {
 /* CHECKING, SAVINGS */
 
 /* CREDIT */
-.categoriesContainer.credit > .listContainer.credit {
-    width: 16%;
-}
+
 /* CREDIT */
+
+/* LOAN */
+.listContainer.loan {
+    width: 14%;
+}
+/* LOAN */
