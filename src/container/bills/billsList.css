@@ -93,11 +93,6 @@
     font-size: 26px;
 }
 
-.income > .date > .date{
-    text-align: start;
-    padding-left: 80px;
-}
-
 .iconCheckBox {
     position: absolute;
     left: 50px;
