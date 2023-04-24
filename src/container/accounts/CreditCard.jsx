@@ -1,20 +1,5 @@
 import { useState } from "react";
 
-
-// {
-//     bank: "Bank of America",
-//     accountNumber: 6,
-//     balance: 100,
-//     type: "Credit Card",
-//     accountOpened: "",
-//     creditLimit: 500,
-//     balance: 300,
-//     availableCredit: 200,
-//     minimumPayment: 30,
-//     interest: 4.99,
-//     dueDate: ""
-// },
-
 const CreditCard = (props) => {
     const [account] = useState(props.account)
     return <div className='bankContainer'>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './AccountList.css'
 import Account from './Account';
 import CreditCard from './CreditCard';
+import Loan from './Loan';
 
 const accountList = [
     {
@@ -56,6 +57,26 @@ const accountList = [
         interest: 4.99,
         dueDate: "9"
     },
+    {
+        bank: "Upstart",
+        type: "Loan",
+        accountOpened: "",
+        loanAmount: 6000,
+        balance: 4000,
+        minimumPayment: 275,
+        interest: 4.99,
+        dueDate: "26"
+    },
+    {
+        bank: "Meritize",
+        type: "Loan",
+        accountOpened: "",
+        loanAmount: 12000,
+        balance: 11000,
+        minimumPayment: 300,
+        interest: 4.99,
+        dueDate: "30"
+    },
 ]
 
 const AccountList = () => {
@@ -95,10 +116,21 @@ const AccountList = () => {
         setCreditCardAccounts(accountsToPush)
     }
 
+    const handleGetLoanAccounts =  () => {
+        const accountsToPush = []
+         accounts.forEach(account => {
+            if(account.type === "Loan") {
+                accountsToPush.push(account)
+            }
+        })
+        setLoanAccounts(accountsToPush)
+    }
+
     useEffect(()=>{
         handleGetCheckingAccounts()
         handleGetSavingsAccounts()
         handleGetCreditCardAccounts()
+        handleGetLoanAccounts()
     }, [])
     return <div className="sectionAccountList">
         {
@@ -170,7 +202,24 @@ const AccountList = () => {
         {
             loanAccounts.length > 0 &&
             <section className='sectionLoan'>
-
+                <h1>Credit Card Accounts</h1>
+                <div className='categoriesContainer loan'>
+                    <div className='listContainer loan bank'><h2>Bank</h2></div>
+                    <div className='listContainer loan availableCredit'><h2>Loan Amount</h2></div>
+                    <div className='listContainer loan creditBalance'><h2>Balance</h2></div>
+                    <div className='listContainer loan minimumPayment'><h2>Minimum Payment</h2></div>
+                    <div className='listContainer loan dueDate'><h2>Due Date</h2></div>
+                    <div className='listContainer loan interest'><h2>Interest</h2></div>
+                    <div className='listContainer loan paid'><h2>Paid</h2></div>
+                </div>
+                {
+                    loanAccounts.map((account, index) => 
+                        <Loan 
+                            key = {index}
+                            account = {account} 
+                        />
+                    )
+                }
             </section>
         }
     </div>
