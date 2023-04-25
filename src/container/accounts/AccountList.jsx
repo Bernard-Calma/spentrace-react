@@ -3,6 +3,7 @@ import './AccountList.css'
 import Account from './Account';
 import CreditCard from './CreditCard';
 import Loan from './Loan';
+import AddAccount from './AddAccount';
 
 const accountList = [
     {
@@ -86,6 +87,7 @@ const AccountList = () => {
     const [savingsAccounts, setSavingsAccounts] = useState([])
     const [creditCardAccounts, setCreditCardAccounts] = useState([]);
     const [loanAccounts, setLoanAccounts] = useState([])
+    const [view, setView] = useState("Account List")
 
     // Functions
     const handleGetCheckingAccounts =  () => {
@@ -126,6 +128,10 @@ const AccountList = () => {
         setLoanAccounts(accountsToPush)
     }
 
+    const handleChangeView = (view) => {
+        setView(view)
+    }
+
     useEffect(()=>{
         handleGetCheckingAccounts()
         handleGetSavingsAccounts()
@@ -133,95 +139,107 @@ const AccountList = () => {
         handleGetLoanAccounts()
     }, [])
     return <div className="sectionAccountList">
+        <i className="fi fi-rr-add account" onClick={() => handleChangeView("Add")}></i>
         {
-            checkingAccounts.length > 0 &&
-            <section className='sectionChecking account'>
-                <h1>Checking Accounts</h1>
-                <div className='categoriesContainer account'>
-                    <div className='listContainer account bank'><h2>Bank</h2></div>
-                    <div className='listContainer account accountNumber'><h2>Account Number</h2></div>
-                    <div className='listContainer account accountBalance'><h2>Balance</h2></div>
-                </div>
-                <div className='accountContainer'>
+            view === "Account List"?
+            <>
+                {
+                checkingAccounts.length > 0 &&
+                <section className='sectionChecking account'>
+                    <h1>Checking Accounts</h1>
+                    <div className='categoriesContainer account'>
+                        <div className='listContainer account bank'><h2>Bank</h2></div>
+                        <div className='listContainer account accountNumber'><h2>Account Number</h2></div>
+                        <div className='listContainer account accountBalance'><h2>Balance</h2></div>
+                    </div>
+                    <div className='accountContainer'>
+                        {
+                            checkingAccounts.map((account, index) => 
+                                <Account 
+                                    key = {index}
+                                    account = {account}
+                                />
+                            )
+                        }
+                    </div>
+                </section>
+            }
+            {
+                savingsAccounts.length > 0 &&
+                <section className='sectionSavings account'>
+                    <h1>Savings Accounts</h1>
+                    <div className='categoriesContainer account'>
+                        <div className='listContainer account bank'><h2>Bank</h2></div>
+                        <div className='listContainer account accountNumber'><h2>Account Number</h2></div>
+                        <div className='listContainer account accountBalance'><h2>Balance</h2></div>
+                    </div>
+                    <div className='accountContainer'>
+                        {
+                            savingsAccounts.map((account, index) => 
+                                <Account 
+                                    key = {index}
+                                    account = {account}
+                                />
+                            )
+                        }
+                    </div>
+                </section>
+            }
+            {
+                creditCardAccounts.length > 0 &&
+                <section className='sectionCredit account'>
+                    <h1>Credit Card Accounts</h1>
+                    <div className='categoriesContainer credit'>
+                        <div className='listContainer credit bank'><h2>Bank</h2></div>
+                        <div className='listContainer credit accountNumber'><h2>Account Number</h2></div>
+                        <div className='listContainer credit availableCredit'><h2>Available Credit</h2></div>
+                        <div className='listContainer credit creditBalance'><h2>Balance</h2></div>
+                        <div className='listContainer credit minimumPayment'><h2>Minimum Payment</h2></div>
+                        <div className='listContainer credit dueDate'><h2>Due Date</h2></div>
+                        <div className='listContainer credit interest'><h2>Interest</h2></div>
+                        <div className='listContainer credit usage'><h2>Usage</h2></div>
+                    </div>
                     {
-                        checkingAccounts.map((account, index) => 
-                            <Account 
+                        creditCardAccounts.map((account, index) => 
+                            <CreditCard 
                                 key = {index}
                                 account = {account}
                             />
                         )
                     }
-                </div>
-            </section>
-        }
-        {
-            savingsAccounts.length > 0 &&
-            <section className='sectionSavings account'>
-                <h1>Savings Accounts</h1>
-                <div className='categoriesContainer account'>
-                    <div className='listContainer account bank'><h2>Bank</h2></div>
-                    <div className='listContainer account accountNumber'><h2>Account Number</h2></div>
-                    <div className='listContainer account accountBalance'><h2>Balance</h2></div>
-                </div>
-                <div className='accountContainer'>
+                </section>
+            }
+            {
+                loanAccounts.length > 0 &&
+                <section className='sectionLoan account'>
+                    <h1>Credit Card Accounts</h1>
+                    <div className='categoriesContainer loan'>
+                        <div className='listContainer loan bank'><h2>Bank</h2></div>
+                        <div className='listContainer loan availableCredit'><h2>Loan Amount</h2></div>
+                        <div className='listContainer loan creditBalance'><h2>Balance</h2></div>
+                        <div className='listContainer loan minimumPayment'><h2>Minimum Payment</h2></div>
+                        <div className='listContainer loan dueDate'><h2>Due Date</h2></div>
+                        <div className='listContainer loan interest'><h2>Interest</h2></div>
+                        <div className='listContainer loan paid'><h2>Paid</h2></div>
+                    </div>
                     {
-                        savingsAccounts.map((account, index) => 
-                            <Account 
+                        loanAccounts.map((account, index) => 
+                            <Loan 
                                 key = {index}
-                                account = {account}
+                                account = {account} 
                             />
                         )
                     }
-                </div>
-            </section>
+                </section>
+            }
+            </>
+            : view === "Add"?
+            <AddAccount 
+                back = {() => handleChangeView("Account List")}
+            />
+            : <></>
         }
-        {
-            creditCardAccounts.length > 0 &&
-            <section className='sectionCredit account'>
-                <h1>Credit Card Accounts</h1>
-                <div className='categoriesContainer credit'>
-                    <div className='listContainer credit bank'><h2>Bank</h2></div>
-                    <div className='listContainer credit accountNumber'><h2>Account Number</h2></div>
-                    <div className='listContainer credit availableCredit'><h2>Available Credit</h2></div>
-                    <div className='listContainer credit creditBalance'><h2>Balance</h2></div>
-                    <div className='listContainer credit minimumPayment'><h2>Minimum Payment</h2></div>
-                    <div className='listContainer credit dueDate'><h2>Due Date</h2></div>
-                    <div className='listContainer credit interest'><h2>Interest</h2></div>
-                    <div className='listContainer credit usage'><h2>Usage</h2></div>
-                </div>
-                {
-                    creditCardAccounts.map((account, index) => 
-                        <CreditCard 
-                            key = {index}
-                            account = {account}
-                        />
-                    )
-                }
-            </section>
-        }
-        {
-            loanAccounts.length > 0 &&
-            <section className='sectionLoan account'>
-                <h1>Credit Card Accounts</h1>
-                <div className='categoriesContainer loan'>
-                    <div className='listContainer loan bank'><h2>Bank</h2></div>
-                    <div className='listContainer loan availableCredit'><h2>Loan Amount</h2></div>
-                    <div className='listContainer loan creditBalance'><h2>Balance</h2></div>
-                    <div className='listContainer loan minimumPayment'><h2>Minimum Payment</h2></div>
-                    <div className='listContainer loan dueDate'><h2>Due Date</h2></div>
-                    <div className='listContainer loan interest'><h2>Interest</h2></div>
-                    <div className='listContainer loan paid'><h2>Paid</h2></div>
-                </div>
-                {
-                    loanAccounts.map((account, index) => 
-                        <Loan 
-                            key = {index}
-                            account = {account} 
-                        />
-                    )
-                }
-            </section>
-        }
+        
     </div>
 }
 
