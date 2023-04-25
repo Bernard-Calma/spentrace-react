@@ -14,6 +14,8 @@ const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
     // Views
     let [homeView, setHomeView] = useState('Home')
+    // Accounts
+    const [accounts, setAccounts] = useState([])
     // Plans
     const [plans, setPlans] = useState([])
     // Bills
@@ -26,6 +28,17 @@ const Home = (props) => {
     const changeHomeView = view => {
         setHomeView(view)
         props.handleChangeHomeView("")
+    }
+    // Accounts
+    const getAccounts = async () => {
+        // Get all accounts from user
+        await axios({ 
+            method: "GET",
+            url: `${props.server}/accounts`,
+            withCredentials: true 
+        })
+        .then(res => setAccounts(res.data))
+        .catch(err => console.log(err))
     }
     // Plan
     const getPlans = async () => {
@@ -68,6 +81,7 @@ const Home = (props) => {
     }
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
+        getAccounts()
         getPlans()
         getBills()
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,6 +132,7 @@ const Home = (props) => {
                                 ? < AccountList
                                     user = {props.user}
                                     server = {props.server}
+                                    accounts = {accounts}
                                 />  
                                 : <></>
                             }

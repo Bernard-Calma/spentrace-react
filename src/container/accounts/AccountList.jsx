@@ -82,7 +82,7 @@ const accountList = [
 
 const AccountList = (props) => {
     // Variables
-    const [accounts, setAccounts] = useState([])
+    const [accounts, setAccounts] = useState(props.accounts)
     const [checkingAccounts, setCheckingAccounts] = useState([]);
     const [savingsAccounts, setSavingsAccounts] = useState([])
     const [creditCardAccounts, setCreditCardAccounts] = useState([]);
