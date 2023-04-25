@@ -7,6 +7,13 @@ const AddAccount = (props) => {
 
     const handleChange = (e) => {
         e.preventDefault()
+        if (accountType !== "Credit Card" || accountType !== "Loan") {
+            delete newAccount.creditLimit
+            delete newAccount.availableCredit
+            delete newAccount.dueDate
+            delete newAccount.minPayment
+            delete newAccount.interest
+        }
         setNewAccount({...newAccount, [e.target.name]: e.target.value})
     }
     return <div className="addContainer">
@@ -51,36 +58,36 @@ const AddAccount = (props) => {
                     ? <>
                         <label htmlFor="creditLimit" className='formInput acc'>
                             Credit Limit: 
-                            <input type="number" name="creditLimit" id="addAccountCreditLimit" value={newAccount.balance} onChange={handleChange} requiired/>
+                            <input type="number" name="creditLimit" id="addAccountCreditLimit" value={newAccount.creditLimit} onChange={handleChange} requiired/>
                         </label>
                         <label htmlFor="availableCredit" className='formInput acc'>
                             Available Credit: 
-                            <input type="number" name="availableCredit" id="addAvailableCredit" value={newAccount.balance} onChange={handleChange} requiired/>
+                            <input type="number" name="availableCredit" id="addAvailableCredit" value={newAccount.availableCredit} onChange={handleChange} requiired/>
                         </label> 
                     </>
                     : newAccount.accountType === "Loan"
                     ? <> 
                         <label htmlFor="loanAmount" className='formInput acc'>
                             Loan Amount: 
-                            <input type="number" name="loanAmount" id="addLoanAmount" value={newAccount.balance} onChange={handleChange} requiired/>
+                            <input type="number" name="loanAmount" id="addLoanAmount" value={newAccount.loanAmount} onChange={handleChange} requiired/>
                         </label>
                     </>
                     : <> </>
                     }
                     {
-                        newAccount.accountType === "Credit Card" || newAccount.accountType === "Loan" &&
+                        (newAccount.accountType === "Credit Card" || newAccount.accountType === "Loan") &&
                         <>
                         <label htmlFor="dueDate" className='formInput acc'>
                             Due Date: 
-                            <input type="date" name="dueDate" id="addAccDueDate" value={newAccount.accOpen} onChange={handleChange}/>
+                            <input type="date" name="dueDate" id="addAccDueDate" value={newAccount.dueDate} onChange={handleChange}/>
                         </label>
-                        <label htmlFor="minimumPayment" className='formInput acc'>
+                        <label htmlFor="minPayment" className='formInput acc'>
                             Minimum Payment: 
-                            <input type="number" name="minimumPayment" id="addAccountMinPayment" value={newAccount.balance} onChange={handleChange} requiired/>
+                            <input type="number" name="minPayment" id="addAccountMinPayment" value={newAccount.minPayment} onChange={handleChange} requiired/>
                         </label>
                         <label htmlFor="interest" className='formInput acc'>
                             Interest: 
-                            <input type="number" name="interest" id="addAccInterest" value={newAccount.balance} onChange={handleChange} requiired/>
+                            <input type="number" name="interest" id="addAccInterest" value={newAccount.interest} onChange={handleChange} requiired/>
                         </label>
                         </>
                     }
