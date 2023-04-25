@@ -83,10 +83,12 @@ const accountList = [
 const AccountList = (props) => {
     // Variables
     const [accounts, setAccounts] = useState(props.accounts)
-    const [checkingAccounts, setCheckingAccounts] = useState([]);
-    const [savingsAccounts, setSavingsAccounts] = useState([])
-    const [creditCardAccounts, setCreditCardAccounts] = useState([]);
-    const [loanAccounts, setLoanAccounts] = useState([])
+    const [accountCategory, setAccountCategory] = useState({
+        checking: [],
+        savings: [],
+        creditCard: [],
+        loan: []
+    })
     const [view, setView] = useState("Account List")
 
     // Functions
@@ -95,42 +97,36 @@ const AccountList = (props) => {
         setAccounts([...accounts, newAccount])
     }
     // GET
-    const handleGetCheckingAccounts =  () => {
-        const accountsToPush = []
-         accounts.forEach(account => {
-            if(account.accType === "Checking") {
-                accountsToPush.push(account)
+    const handleAccountCategory = () => {
+        const accsCheckings = []
+        const accsSavings = []
+        const accsCreditCard = []
+        const accsLoan = []
+        accounts.forEach(account => {
+            switch(account.accType) {
+                case 'Checking': 
+                    accsCheckings.push(account)
+                    break;
+                case 'Savings':
+                    accsSavings.push(account)
+                    break;
+                case 'Credit Card':
+                    accsCreditCard.push(account)
+                    break;
+                case 'Loan':
+                    accsLoan.push(account)
+                    break;
+                default:
+                    break;
             }
         })
-        setCheckingAccounts(accountsToPush)
-    }
-    const handleGetSavingsAccounts =  () => {
-        const accountsToPush = []
-         accounts.forEach(account => {
-            if(account.accType === "Savings") {
-                accountsToPush.push(account)
-            }
+        
+        setAccountCategory({
+            checking: accsCheckings,
+            savings: accsSavings,
+            creditCard: accsCreditCard,
+            loan: accsLoan
         })
-        setSavingsAccounts(accountsToPush)
-    }
-    const handleGetCreditCardAccounts =  () => {
-        const accountsToPush = []
-         accounts.forEach(account => {
-            if(account.accType === "Credit Card") {
-                accountsToPush.push(account)
-            }
-        })
-        setCreditCardAccounts(accountsToPush)
-    }
-
-    const handleGetLoanAccounts =  () => {
-        const accountsToPush = []
-         accounts.forEach(account => {
-            if(account.accType === "Loan") {
-                accountsToPush.push(account)
-            }
-        })
-        setLoanAccounts(accountsToPush)
     }
 
     const handleChangeView = (view) => {
@@ -148,10 +144,7 @@ const AccountList = (props) => {
     }
 
     useEffect(()=>{
-        handleGetCheckingAccounts()
-        handleGetSavingsAccounts()
-        handleGetCreditCardAccounts()
-        handleGetLoanAccounts()
+        handleAccountCategory()
     }, [accounts])
     return <div className="sectionAccountList">
         <i className="fi fi-rr-add account" onClick={() => handleChangeView("Add")}></i>
@@ -159,7 +152,7 @@ const AccountList = (props) => {
             view === "Account List"?
             <>
                 {
-                checkingAccounts.length > 0 &&
+                accountCategory.checking.length > 0 &&
                 <section className='sectionChecking account'>
                     <h1>Checking Accounts</h1>
                     <div className='categoriesContainer account'>
@@ -169,7 +162,7 @@ const AccountList = (props) => {
                     </div>
                     <div className='accountContainer'>
                         {
-                            checkingAccounts.map((account, index) => 
+                            accountCategory.checking.map((account, index) => 
                                 <Account 
                                     key = {index}
                                     account = {account}
@@ -180,7 +173,7 @@ const AccountList = (props) => {
                 </section>
             }
             {
-                savingsAccounts.length > 0 &&
+                accountCategory.savings.length > 0 &&
                 <section className='sectionSavings account'>
                     <h1>Savings Accounts</h1>
                     <div className='categoriesContainer account'>
@@ -190,7 +183,7 @@ const AccountList = (props) => {
                     </div>
                     <div className='accountContainer'>
                         {
-                            savingsAccounts.map((account, index) => 
+                            accountCategory.savings.map((account, index) => 
                                 <Account 
                                     key = {index}
                                     account = {account}
@@ -201,7 +194,7 @@ const AccountList = (props) => {
                 </section>
             }
             {
-                creditCardAccounts.length > 0 &&
+                accountCategory.creditCard.length > 0 &&
                 <section className='sectionCredit account'>
                     <h1>Credit Card Accounts</h1>
                     <div className='categoriesContainer credit'>
@@ -215,7 +208,7 @@ const AccountList = (props) => {
                         <div className='listContainer credit usage'><h2>Usage</h2></div>
                     </div>
                     {
-                        creditCardAccounts.map((account, index) => 
+                        accountCategory.creditCard.map((account, index) => 
                             <CreditCard 
                                 key = {index}
                                 account = {account}
@@ -226,7 +219,7 @@ const AccountList = (props) => {
                 </section>
             }
             {
-                loanAccounts.length > 0 &&
+                accountCategory.loan.length > 0 &&
                 <section className='sectionLoan account'>
                     <h1>Credit Card Accounts</h1>
                     <div className='categoriesContainer loan'>
@@ -239,7 +232,7 @@ const AccountList = (props) => {
                         <div className='listContainer loan paid'><h2>Paid</h2></div>
                     </div>
                     {
-                        loanAccounts.map((account, index) => 
+                        accountCategory.loan.map((account, index) => 
                             <Loan 
                                 key = {index}
                                 account = {account} 
