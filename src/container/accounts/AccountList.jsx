@@ -3,82 +3,8 @@ import './AccountList.css'
 import Account from './Account';
 import CreditCard from './CreditCard';
 import Loan from './Loan';
-import AddAccount from './AddAccount';
-
-const accountList = [
-    {
-        bank: "Bank of America",
-        accountNumber: 1,
-        balance: -256.23,
-        type: "Checking",
-        accountOpened: "",
-    },
-    {
-        bank: "Capital One",
-        accountNumber: 2,
-        balance: 200,
-        type: "Checking",
-        accountOpened: "",
-    },
-    {
-        bank: "Bank of America",
-        accountNumber: 3,
-        balance: 50,
-        type: "Savings",
-        accountOpened: "",
-    },
-    {
-        bank: "Capital One",
-        accountNumber: 4,
-        balance: 100,
-        type: "Savings",
-        accountOpened: "",
-    },
-    {
-        bank: "Capital One",
-        accountNumber: 5,
-        type: "Credit Card",
-        accountOpened: "",
-        creditLimit: 1000,
-        balance: 500,
-        availableCredit: 500,
-        minimumPayment: 50,
-        interest: 4.99,
-        dueDate: "8"
-    },
-    {
-        bank: "Bank of America",
-        accountNumber: 6,
-        type: "Credit Card",
-        accountOpened: "",
-        creditLimit: 500,
-        balance: 300,
-        availableCredit: 200,
-        minimumPayment: 30,
-        interest: 4.99,
-        dueDate: "9"
-    },
-    {
-        bank: "Upstart",
-        type: "Loan",
-        accountOpened: "",
-        loanAmount: 6000,
-        balance: 4000.50,
-        minimumPayment: 275,
-        interest: 4.99,
-        dueDate: "26"
-    },
-    {
-        bank: "Meritize",
-        type: "Loan",
-        accountOpened: "",
-        loanAmount: 12000,
-        balance: 11000.39,
-        minimumPayment: 300,
-        interest: 4.99,
-        dueDate: "30"
-    },
-]
+import AddAccount from '../add/AddAccount';
+import ShowAccount from '../show/ShowAccount';
 
 const AccountList = (props) => {
     // Variables
@@ -89,6 +15,7 @@ const AccountList = (props) => {
         creditCard: [],
         loan: []
     })
+    const [openAcc, setOpenAcc] = useState({})
     const [view, setView] = useState("Account List")
 
     // Functions
@@ -120,7 +47,7 @@ const AccountList = (props) => {
                     break;
             }
         })
-        
+
         setAccountCategory({
             checking: accsCheckings,
             savings: accsSavings,
@@ -129,8 +56,14 @@ const AccountList = (props) => {
         })
     }
 
+    // View
     const handleChangeView = (view) => {
         setView(view)
+    }
+
+    const handleShowAcc = (account) => {
+        setOpenAcc(account)
+        setView("Show")
     }
 
     // Number modifiers
@@ -166,6 +99,7 @@ const AccountList = (props) => {
                                 <Account 
                                     key = {index}
                                     account = {account}
+                                    handleShowAcc = {() => handleShowAcc(account)}
                                 />
                             )
                         }
@@ -187,6 +121,7 @@ const AccountList = (props) => {
                                 <Account 
                                     key = {index}
                                     account = {account}
+                                    handleShowAcc = {() => handleShowAcc(account)}
                                 />
                             )
                         }
@@ -213,6 +148,7 @@ const AccountList = (props) => {
                                 key = {index}
                                 account = {account}
                                 addComma = {addComma}
+                                handleShowAcc = {() => handleShowAcc(account)}
                             />
                         )
                     }
@@ -236,6 +172,8 @@ const AccountList = (props) => {
                             <Loan 
                                 key = {index}
                                 account = {account} 
+                                addComma = {addComma}
+                                handleShowAcc = {handleShowAcc(account)}
                             />
                         )
                     }
@@ -246,7 +184,14 @@ const AccountList = (props) => {
             <AddAccount 
                 server = {props.server}
                 handleAddAccount = {handleAddAccount}
-                back = {() => handleChangeView("Account List")}
+                return = {() => handleChangeView("Account List")}
+            />
+            : view === "Show"?
+            <ShowAccount 
+                openAcc = {openAcc}
+                server = {props.server}
+                addComma = {addComma}
+                return = {() => handleChangeView("Account List")}
             />
             : <></>
         }

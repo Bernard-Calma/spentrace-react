@@ -41,7 +41,7 @@ const AddAccount = (props) => {
     }
     return <div className="addContainer">
         <div className='addHeader'>
-            <BackButton handleChangeView = {props.back}/>
+            <BackButton handleChangeView = {props.return}/>
             <h2 className='addTitle'>ADD NEW ACCOUNT</h2>
         </div>  
         <form className='addForm' onSubmit={handleSubmit}>
