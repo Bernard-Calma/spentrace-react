@@ -12,7 +12,7 @@ const Loan = (props) => {
         return numToString
     }
     return <div className='bankContainer'>
-        <div className='listContainer loan bank'><h2>{account.bank}</h2></div>
+        <div className='listContainer loan bank'><h2 onClick={props.handleShowAcc}>{account.bank}</h2></div>
         <div className='listContainer loan loanAmount'><h2>${addComma(account.loanAmount)}</h2></div>
         <div className='listContainer loan creditBalance'><h2>${addComma(account.balance)}</h2></div>
         <div className='listContainer loan minimumPayment'><h2>${account.minPayment.toFixed(2)}</h2></div>

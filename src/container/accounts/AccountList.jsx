@@ -175,7 +175,7 @@ const AccountList = (props) => {
                                 key = {index}
                                 account = {account} 
                                 addComma = {addComma}
-                                handleShowAcc = {handleShowAcc(account)}
+                                handleShowAcc = {() => handleShowAcc(account)}
                             />
                         )
                     }

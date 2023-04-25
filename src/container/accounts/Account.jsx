@@ -3,7 +3,7 @@ import { useState } from "react";
 const Account = (props) => {
     const [account] = useState(props.account)
     return <div className='bankContainer'>
-        <div className='listContainer account bank'><h2>{account.bank}</h2></div>
+        <div className='listContainer account bank'><h2 onClick={props.handleShowAcc}>{account.bank}</h2></div>
         <div className='listContainer account accountNumber'><h2>{account.accNumber}</h2></div>
         <div className='listContainer account accountBalance'>
             {

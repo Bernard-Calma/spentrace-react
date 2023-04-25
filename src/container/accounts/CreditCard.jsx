@@ -4,7 +4,7 @@ const CreditCard = (props) => {
     const [account] = useState(props.account)
     const [balance] = useState(account.creditLimit - account.availableCredit)
     return <div className='bankContainer'>
-        <div className='listContainer credit bank'><h2>{account.bank}</h2></div>
+        <div className='listContainer credit bank'><h2 onClick={props.handleShowAcc}>{account.bank}</h2></div>
         <div className='listContainer credit accountNumber'><h2>{account.accountNumber}</h2></div>
         <div className='listContainer credit availableCredit'><h2>${props.addComma(account.availableCredit)}</h2></div>
         <div className='listContainer credit creditBalance'><h2>${props.addComma(balance)}</h2></div>
