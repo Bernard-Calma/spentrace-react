@@ -80,9 +80,9 @@ const accountList = [
     },
 ]
 
-const AccountList = () => {
+const AccountList = (props) => {
     // Variables
-    const [accounts, setAccounts] = useState(accountList)
+    const [accounts, setAccounts] = useState([])
     const [checkingAccounts, setCheckingAccounts] = useState([]);
     const [savingsAccounts, setSavingsAccounts] = useState([])
     const [creditCardAccounts, setCreditCardAccounts] = useState([]);
@@ -90,10 +90,15 @@ const AccountList = () => {
     const [view, setView] = useState("Account List")
 
     // Functions
+    // ADD
+    const handleAddAccount = (newAccount) => {
+        setAccounts([...accounts, newAccount])
+    }
+    // GET
     const handleGetCheckingAccounts =  () => {
         const accountsToPush = []
          accounts.forEach(account => {
-            if(account.type === "Checking") {
+            if(account.accType === "Checking") {
                 accountsToPush.push(account)
             }
         })
@@ -102,7 +107,7 @@ const AccountList = () => {
     const handleGetSavingsAccounts =  () => {
         const accountsToPush = []
          accounts.forEach(account => {
-            if(account.type === "Savings") {
+            if(account.accType === "Savings") {
                 accountsToPush.push(account)
             }
         })
@@ -111,7 +116,7 @@ const AccountList = () => {
     const handleGetCreditCardAccounts =  () => {
         const accountsToPush = []
          accounts.forEach(account => {
-            if(account.type === "Credit Card") {
+            if(account.accType === "Credit Card") {
                 accountsToPush.push(account)
             }
         })
@@ -121,7 +126,7 @@ const AccountList = () => {
     const handleGetLoanAccounts =  () => {
         const accountsToPush = []
          accounts.forEach(account => {
-            if(account.type === "Loan") {
+            if(account.accType === "Loan") {
                 accountsToPush.push(account)
             }
         })
@@ -137,7 +142,7 @@ const AccountList = () => {
         handleGetSavingsAccounts()
         handleGetCreditCardAccounts()
         handleGetLoanAccounts()
-    }, [])
+    }, [accounts])
     return <div className="sectionAccountList">
         <i className="fi fi-rr-add account" onClick={() => handleChangeView("Add")}></i>
         {
@@ -235,6 +240,8 @@ const AccountList = () => {
             </>
             : view === "Add"?
             <AddAccount 
+                server = {props.server}
+                handleAddAccount = {handleAddAccount}
                 back = {() => handleChangeView("Account List")}
             />
             : <></>

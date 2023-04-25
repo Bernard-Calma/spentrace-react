@@ -1,10 +1,11 @@
 import { useState } from "react";
 import BackButton from "../../Components/Buttons/BackButton";
+import axios from "axios";
 
 const AddAccount = (props) => {
     const accountType = ['','Checking', 'Savings', 'Credit Card', 'Loan']
     const [newAccount, setNewAccount] = useState({
-        accountType: '',
+        accType: '',
         bank: '',
         accNumber: '',
         accOpen: '',
@@ -25,6 +26,18 @@ const AddAccount = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        axios({
+            method: "POST",
+            url: `${props.server}/accounts`,
+            data: newAccount,
+            withCredentials: true
+        })
+        .then(res => {
+            console.log(res.data)
+            props.handleAddAccount(res.data)
+            props.back()
+        })
+        .catch(err => console.log(err))
     }
     return <div className="addContainer">
         <div className='addHeader'>
@@ -34,13 +47,13 @@ const AddAccount = (props) => {
         <form className='addForm' onSubmit={handleSubmit}>
             <label htmlFor="repeat" className='formInput acc'>
                 Account Type: 
-                <select name="accountType" id="accountType" size='1' value={newAccount.accountType} required onChange={handleChange}>
+                <select name="accType" id="accountType" size='1' value={newAccount.accountType} required onChange={handleChange}>
                     { accountType.map((option, index) => 
-                        <option key={index} value={option} className='accountType' >{option}</option>
+                        <option key={index} value={option} className='accType' >{option}</option>
                     )}
                 </select>
             </label>
-            {newAccount.accountType &&
+            {newAccount.accType &&
             <>
                 <label htmlFor="bank" className='formInput acc'>
                     Bank: 
@@ -50,17 +63,17 @@ const AddAccount = (props) => {
                     Account Number: 
                     <input type="text" name="accNumber" id="addAccountAccNumber" value={newAccount.accNumber} onChange={handleChange}/>
                 </label>
-                <label htmlFor="accOpened" className='formInput acc'>
+                <label htmlFor="accOpen" className='formInput acc'>
                     Account Opened: 
-                    <input type="date" name="accOpened" id="addAccountAccOpened" value={newAccount.accOpen} onChange={handleChange}/>
+                    <input type="date" name="accOpen" id="addAccountAccOpen" value={newAccount.accOpen} onChange={handleChange}/>
                 </label>
-                {newAccount.accountType !== "Credit Card" &&
+                {newAccount.accType !== "Credit Card" &&
                     <label htmlFor="balance" className='formInput acc'>
                         Balance: 
                         <input type="number" name="balance" id="addAccountBalance" value={newAccount.balance} onChange={handleChange} required/>
                     </label>
                 }
-                {newAccount.accountType === "Credit Card"
+                {newAccount.accType === "Credit Card"
                 ? <>
                     <label htmlFor="creditLimit" className='formInput acc'>
                         Credit Limit: 
@@ -71,7 +84,7 @@ const AddAccount = (props) => {
                         <input type="number" name="availableCredit" id="addAvailableCredit" value={newAccount.availableCredit} onChange={handleChange}/>
                     </label> 
                 </>
-                : newAccount.accountType === "Loan"
+                : newAccount.accType === "Loan"
                 ? <> 
                     <label htmlFor="loanAmount" className='formInput acc'>
                         Loan Amount: 
@@ -80,7 +93,7 @@ const AddAccount = (props) => {
                 </>
                 : <> </>
                 }
-                {(newAccount.accountType === "Credit Card" || newAccount.accountType === "Loan") &&
+                {(newAccount.accType === "Credit Card" || newAccount.accType === "Loan") &&
                 <>
                     <label htmlFor="dueDate" className='formInput acc'>
                         Due Date: 
