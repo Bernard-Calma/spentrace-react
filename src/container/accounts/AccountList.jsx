@@ -5,6 +5,7 @@ import CreditCard from './CreditCard';
 import Loan from './Loan';
 import AddAccount from '../add/AddAccount';
 import ShowAccount from '../show/ShowAccount';
+import EditAccount from '../edit/EditAccount';
 
 const AccountList = (props) => {
     // Variables
@@ -190,6 +191,14 @@ const AccountList = (props) => {
             />
             : view === "Show"?
             <ShowAccount 
+                openAcc = {openAcc}
+                server = {props.server}
+                addComma = {addComma}
+                return = {() => handleChangeView("Account List")}
+                edit = {() => handleChangeView("Edit")}
+            />
+            : view === "Edit"?
+            <EditAccount 
                 openAcc = {openAcc}
                 server = {props.server}
                 addComma = {addComma}
