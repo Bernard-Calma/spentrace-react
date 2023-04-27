@@ -96,6 +96,8 @@ const AccountList = (props) => {
                                 <Account 
                                     key = {index}
                                     account = {account}
+                                    server = {props.server}
+                                    update = {props.modifyAccounts.update}
                                     handleShowAcc = {() => handleShowAcc(account)}
                                 />
                             )
@@ -118,6 +120,7 @@ const AccountList = (props) => {
                                 <Account 
                                     key = {index}
                                     account = {account}
+                                    update = {props.modifyAccounts.update}
                                     handleShowAcc = {() => handleShowAcc(account)}
                                 />
                             )

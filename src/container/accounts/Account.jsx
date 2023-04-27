@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Account = (props) => {
@@ -14,17 +15,37 @@ const Account = (props) => {
         setBalanceText(e.target.value)
     }
 
+    const handleUpdateBalance = (e) => {
+        axios({
+            method: "PATCH",
+            url: `${props.server}/accounts/${props.account._id}`,
+            data: {newBalance: e.target.value},
+            withCredentials: true
+        })
+        .then(res => {
+            console.log(res.data)
+            props.update(res.data)
+        })
+        .catch(err => console.log(err))
+    }
+
     const updateBalance = (e) => {
         e.preventDefault()
-        // console.log(e.target.value)
+        console.log(e.target.value)
         if(e.target.value == 0) {
             setBalance(0)
             setBalanceText(getBalanceText(0))
+            handleUpdateBalance(e)
         }
-        else if(!Number(e.target.value)) setBalanceText(getBalanceText(balance))
+        else if(!Number(e.target.value)) {
+            console.log("Number Check")
+            setBalanceText(getBalanceText(balance))
+        }
         else {
+            console.log("update")
             setBalance(Number(e.target.value))
             setBalanceText(getBalanceText(e.target.value))
+            handleUpdateBalance(e)
         }
     }
     useEffect(() => {
@@ -37,6 +58,8 @@ const Account = (props) => {
             <input type="text" 
                 className={balance > 0 ? "positive" : "negative"}
                 onChange={handleChange}
+                // Remove $ when clicked
+                onFocus={(e) => setBalanceText(e.target.value.slice(1))}
                 onBlur={updateBalance}  
                 value = {balanceText}
                 style={style}

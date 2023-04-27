@@ -38,7 +38,7 @@ const ShowAccount = (props) => {
                 <p className='showInfo accNumber'> <span>Account Number:</span> {props.openAcc.accNumber}</p>
                 <p className='showInfo accOpen'> <span>Account Opened:</span> {getDate('07/01/2019')}</p>
                 {props.openAcc.accType !== 'Credit Card' &&
-                    <p className='showInfo balance'> <span>Balance:</span> {props.openAcc.balance >= 0 ? `$${props.openAcc.balance}` : `-$${Math.abs(props.openAcc.balance).toFixed(2)}`}</p>
+                    <p className='showInfo balance'> <span>Balance:</span> {props.openAcc.balance >= 0 ? `$${props.openAcc.balance.toFixed(2)}` : `-$${Math.abs(props.openAcc.balance).toFixed(2)}`}</p>
                 }
                 {props.openAcc.accType === 'Credit Card'
                     ? <>
