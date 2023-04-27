@@ -40,6 +40,11 @@ const Home = (props) => {
         .then(res => setAccounts(res.data))
         .catch(err => console.log(err))
     }
+    // Moidfy Accounts Methods
+    const modifyAccounts =  {
+        add: newAccount => setAccounts([...accounts, newAccount]),
+        update: updatedAccount=> setAccounts(accounts.map(account => account._id === updatedAccount._id ? updatedAccount : account)),
+    }
     // Plan
     const getPlans = async () => {
         // Get all plans from user
@@ -133,6 +138,7 @@ const Home = (props) => {
                                     user = {props.user}
                                     server = {props.server}
                                     accounts = {accounts}
+                                    modifyAccounts = {modifyAccounts}
                                 />  
                                 : <></>
                             }

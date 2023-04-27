@@ -34,7 +34,7 @@ const AddAccount = (props) => {
         })
         .then(res => {
             console.log(res.data)
-            props.handleAddAccount(res.data)
+            props.add(res.data)
             props.back()
         })
         .catch(err => console.log(err))

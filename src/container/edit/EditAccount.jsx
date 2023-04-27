@@ -22,10 +22,10 @@ const EditAccount = (props) => {
             withCredentials: true,
         })
         .then(res => {
-            console.log(res)
-            // props.updatePlan(res.data)
+            // console.log(res)
+            props.update(res.data)
         })
-        // props.return()
+        props.return()
     }
 
     return (

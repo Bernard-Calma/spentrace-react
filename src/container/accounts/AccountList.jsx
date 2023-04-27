@@ -9,7 +9,6 @@ import EditAccount from '../edit/EditAccount';
 
 const AccountList = (props) => {
     // Variables
-    const [accounts, setAccounts] = useState(props.accounts)
     const [accountCategory, setAccountCategory] = useState({
         checking: [],
         savings: [],
@@ -18,19 +17,14 @@ const AccountList = (props) => {
     })
     const [openAcc, setOpenAcc] = useState({})
     const [view, setView] = useState("Account List")
-
-    // Functions
-    // ADD
-    const handleAddAccount = (newAccount) => {
-        setAccounts([...accounts, newAccount])
-    }
+    
     // GET
     const handleAccountCategory = () => {
         const accsCheckings = []
         const accsSavings = []
         const accsCreditCard = []
         const accsLoan = []
-        accounts.forEach(account => {
+        props.accounts.forEach(account => {
             switch(account.accType) {
                 case 'Checking': 
                     accsCheckings.push(account)
@@ -81,7 +75,7 @@ const AccountList = (props) => {
 
     useEffect(()=>{
         handleAccountCategory()
-    }, [accounts])
+    }, [props.accounts])
     return <div className="sectionAccountList">
         <i className="fi fi-rr-add account" onClick={() => handleChangeView("Add")}></i>
         {
@@ -186,7 +180,7 @@ const AccountList = (props) => {
             : view === "Add"?
             <AddAccount 
                 server = {props.server}
-                handleAddAccount = {handleAddAccount}
+                add = {props.modifyAccounts.add}
                 return = {() => handleChangeView("Account List")}
             />
             : view === "Show"?
@@ -202,6 +196,7 @@ const AccountList = (props) => {
                 openAcc = {openAcc}
                 server = {props.server}
                 addComma = {addComma}
+                update = {props.modifyAccounts.update}
                 return = {() => handleChangeView("Account List")}
             />
             : <></>

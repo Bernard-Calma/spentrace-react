@@ -1,11 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Account = (props) => {
     const getBalanceText = (balance) => {
         return balance >= 0 ? `$${Number(balance).toFixed(2)}` : `-$${Math.abs(balance).toFixed(2)}`
     } 
-
-    const [account] = useState(props.account)
     const [balance, setBalance] = useState(props.account.balance)
     const [balanceText, setBalanceText] = useState(getBalanceText(props.account.balance))
     
@@ -29,14 +27,17 @@ const Account = (props) => {
             setBalanceText(getBalanceText(e.target.value))
         }
     }
+    useEffect(() => {
+        setBalanceText(getBalanceText(props.account.balance))
+    },[props.account.balance])
     return <div className='bankContainer'>
-        <div className='listContainer account bank'><h2 onClick={props.handleShowAcc}>{account.bank}</h2></div>
-        <div className='listContainer account accountNumber'><h2>{account.accNumber}</h2></div>
+        <div className='listContainer account bank'><h2 onClick={props.handleShowAcc}>{props.account.bank}</h2></div>
+        <div className='listContainer account accountNumber'><h2>{props.account.accNumber}</h2></div>
         <div className='listContainer account accountBalance'>
             <input type="text" 
                 className={balance > 0 ? "positive" : "negative"}
                 onChange={handleChange}
-                 onBlur={updateBalance}  
+                onBlur={updateBalance}  
                 value = {balanceText}
                 style={style}
             />
