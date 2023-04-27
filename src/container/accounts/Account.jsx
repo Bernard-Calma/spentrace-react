@@ -19,7 +19,7 @@ const Account = (props) => {
         axios({
             method: "PATCH",
             url: `${props.server}/accounts/${props.account._id}`,
-            data: {newBalance: e.target.value},
+            data: {balance: e.target.value},
             withCredentials: true
         })
         .then(res => {
