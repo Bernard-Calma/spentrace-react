@@ -64,11 +64,6 @@ const Account = (props) => {
                 value = {balanceText}
                 style={style}
             />
-            {/* {
-                account.balance >= 0
-                ? <h2 className="positive">${account.balance.toFixed(2)}</h2>
-                : <h2 className="negative">-${Math.abs(account.balance).toFixed(2)}</h2>
-            } */}
         </div>
     </div>
 }

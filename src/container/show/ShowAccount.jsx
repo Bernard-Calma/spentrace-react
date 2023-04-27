@@ -14,14 +14,17 @@ const ShowAccount = (props) => {
 
     const handleDelete = () => {
         console.log("Delete")
-        // axios({
-        //     method: "DELETE",
-        //     url: `${props.server}/accounts/${props.openAcc._id}`,
-        //     withCredentials: true
-        // })
-        // .then(res => props.deleteBill(res.data))
-        // .catch(err => console.log(err));
-        // props.return();
+        axios({
+            method: "DELETE",
+            url: `${props.server}/accounts/${props.openAcc._id}`,
+            withCredentials: true
+        })
+        .then(res => {
+            console.log(res)
+            props.delete(res.data)
+        })
+        .catch(err => console.log(err));
+        props.return();
     }
     return(
         <div className="containerShowBill">

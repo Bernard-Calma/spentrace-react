@@ -191,6 +191,7 @@ const AccountList = (props) => {
                 openAcc = {openAcc}
                 server = {props.server}
                 addComma = {addComma}
+                delete = {props.modifyAccounts.delete}
                 return = {() => handleChangeView("Account List")}
                 edit = {() => handleChangeView("Edit")}
             />
