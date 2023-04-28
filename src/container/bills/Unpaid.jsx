@@ -28,10 +28,10 @@ const Unpaid = (props) => {
                     <p>${totalUnpaid.toFixed(2)}</p>
         </div>
         <div className="categoriesContainer billsCategory">
-            <div className="billDataContainer"><p className="billData date">Date</p></div>
-            <div className="billDataContainer"><p className="billData name">Name</p></div>
-            <div className="billDataContainer"><p className="billData amount">Amount</p></div>
-            <div className="billDataContainer"><p className="billData category">Category</p></div>
+            <div className="listContainer billDataContainer"><h2 className="billData date">Date</h2></div>
+            <div className="listContainer billDataContainer"><h2 className="billData name">Name</h2></div>
+            <div className="listContainer billDataContainer"><h2 className="billData amount">Amount</h2></div>
+            <div className="listContainer billDataContainer"><h2 className="billData category">Category</h2></div>
         </div>
         <div className="billAddContainer">
                 <i className="fi fi-rr-add btnAddBill" onClick={() => props.changeBillsView("Add Bill")}></i>
