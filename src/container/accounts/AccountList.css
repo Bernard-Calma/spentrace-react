@@ -31,7 +31,8 @@
 
 .accountListHeader.categories {
     width: auto;
-    margin: auto 10px;
+    margin: auto 5px;
+    text-align: center;
 }
 
 .accountListHeader.categories:hover {

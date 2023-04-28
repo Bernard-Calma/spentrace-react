@@ -116,18 +116,18 @@ const AccountList = (props) => {
         handleAccountCategory()
     }, [props.accounts])
     return <div className="sectionAccountList">
-        <div className='accountListHeader'>
-            <i className="fi fi-rr-add account" onClick={() => handleChangeView("Add")}></i>
-            <div className='accountListCategories'>
-                <p className='accountListHeader categories checking' onClick={handleShowCategory}>Checking</p>
-                <p className='accountListHeader categories savings' onClick={handleShowCategory}>Savings</p>
-                <p className='accountListHeader categories creditCard' onClick={handleShowCategory}>Credit Card</p>
-                <p className='accountListHeader categories loan' onClick={handleShowCategory}>Loan</p>
-            </div>
-        </div>
         {
             view === "Account List"?
             <>
+                <div className='accountListHeader'>
+                    <i className="fi fi-rr-add account" onClick={() => handleChangeView("Add")}></i>
+                    <div className='accountListCategories'>
+                        <p className={`accountListHeader categories checking ${accountCategory.checking.show && 'selected'}`} onClick={handleShowCategory}>Checking</p>
+                        <p className={`accountListHeader categories savings ${accountCategory.savings.show && 'selected'}`} onClick={handleShowCategory}>Savings</p>
+                        <p className={`accountListHeader categories creditCard ${accountCategory.creditCard.show && 'selected'}`} onClick={handleShowCategory}>Credit Card</p>
+                        <p className={`accountListHeader categories loan ${accountCategory.loan.show && 'selected'}`} onClick={handleShowCategory}>Loan</p>
+                    </div>
+                </div>
                 {
                 (accountCategory.checking.list.length > 0 && accountCategory.checking.show) &&
                 <section className='sectionChecking account'>
@@ -204,7 +204,7 @@ const AccountList = (props) => {
             {
                 (accountCategory.loan.list.length > 0 && accountCategory.loan.show) &&
                 <section className='sectionLoan account'>
-                    <h1>Credit Card Accounts</h1>
+                    <h1>Loans</h1>
                     <div className='categoriesContainer loan'>
                         <div className='listContainer loan bank'><h2>Bank</h2></div>
                         <div className='listContainer loan availableCredit'><h2>Loan Amount</h2></div>

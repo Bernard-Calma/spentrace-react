@@ -27,6 +27,10 @@ body {
   color: rgb(0, 200, 0);
 }
 
+.selected {
+  text-shadow: 1px 0 #B0B7C4;
+}
+
 @media only screen and (max-width: 900px) {
   .signout {
     position: fixed;
