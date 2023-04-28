@@ -6,7 +6,6 @@ import Loan from './Loan';
 import AddAccount from '../add/AddAccount';
 import ShowAccount from '../show/ShowAccount';
 import EditAccount from '../edit/EditAccount';
-import { object } from 'prop-types';
 
 const AccountList = (props) => {
     // Variables
@@ -92,10 +91,11 @@ const AccountList = (props) => {
         for (const [key, value] of Object.entries(accountCategory)) {
             if(key === e.target.classList[2]) {
                 // console.log(accountCategory[key])
-                setAccountCategory({...accountCategory, [key]: {
-                    list: accountCategory[key].list,
-                    show: !accountCategory[key].show
-                }})
+                setAccountCategory({...accountCategory, [key]: 
+                    {...value,
+                        show: !value.show
+                    }
+                })
             }
         }
     }

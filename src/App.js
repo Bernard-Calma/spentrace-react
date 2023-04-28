@@ -27,27 +27,25 @@ const App = () => {
   // Access homeView in Home and pass to Header
   const [appView, setAppView] = useState("")
   const handleChangeHomeView = view => setAppView(view)
-  // Check if current session has user
-  const checkUser = () => {
-    axios({
-      method: "GET",
-      withCredentials: true,
-      url: server
-    })
-    .then(res => { 
-      if(res.data.passport.user) {
-        const userData = res.data.passport.user
-        console.log(user)
-        setUser({...user, username: userData, loggedIn: true})
-      } else {
-        console.log(res.response.message)
-      }
-    }).catch(err => console.log("Login"))
-  }
   // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
+    // Check if current session has user
+    const checkUser = () => {
+      axios({
+        method: "GET",
+        withCredentials: true,
+        url: process.env.REACT_APP_SERVER_URL
+      })
+      .then(res => { 
+        if(res.data.passport.user) {
+          setUser({username: res.data.passport.user, loggedIn: true})
+        } else {
+          console.log(res.response.message)
+        }
+      }).catch(err => console.log(err))
+    }
     checkUser()
-  },[])
+  },[user.loggedIn])
   return (
     <div className="App">
       <Header 

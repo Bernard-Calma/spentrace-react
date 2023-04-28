@@ -10,7 +10,6 @@ const Account = (props) => {
     
     const handleChange = (e) => {
         // console.log(typeof(e.target.value))
-        let value = e.target.value
         // setBalance(Number(value.replace('$','')))
         setBalanceText(e.target.value)
     }
@@ -32,7 +31,7 @@ const Account = (props) => {
     const updateBalance = (e) => {
         e.preventDefault()
         console.log(e.target.value)
-        if(e.target.value == 0) {
+        if(e.target.value === '0') {
             setBalance(0)
             setBalanceText(getBalanceText(0))
             handleUpdateBalance(e)

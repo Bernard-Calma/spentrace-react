@@ -20,7 +20,7 @@ const ShowAccount = (props) => {
             withCredentials: true
         })
         .then(res => {
-            console.log(res)
+            // console.log(res)
             props.delete(res.data)
         })
         .catch(err => console.log(err));
