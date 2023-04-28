@@ -20,15 +20,15 @@ body {
 }
 
 .negative {
-  color: rgb(255, 0, 0);
+  color: rgb(255, 0, 0) !important;
 }
 
 .positive {
-  color: rgb(0, 200, 0);
+  color: rgb(0, 200, 0) !important;
 }
 
 .selected {
-  text-shadow: 1px 0 #B0B7C4;
+  text-shadow: 1px 0 #B0B7C4 !important;
 }
 
 @media only screen and (max-width: 900px) {
