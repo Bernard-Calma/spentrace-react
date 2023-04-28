@@ -107,10 +107,10 @@ const DashBoard = (props) => {
         <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
         <div className='containerDashboard'>
             <div className="dashboardGraph">
-                <div className='graphSubTitle'>
-                    <h2>Expense</h2>
-                    <h2>${totalExpense}</h2>
-                </div>       
+            <div className='graphSubTitle'>
+                <h2>Income</h2>
+                    <h2>${totalIncome}</h2>
+                </div>
                 {/* PLAN GRAPH */}
                 <CircleGraph
                     data = {[totalExpense, totalIncome]}
@@ -119,10 +119,11 @@ const DashBoard = (props) => {
                     height = {250}
                     value = {balance}
                 />
+                
                 <div className='graphSubTitle'>
-                    <h2>Income</h2>
-                    <h2>${totalIncome}</h2>
-                </div>
+                    <h2>Expense</h2>
+                    <h2>${totalExpense}</h2>
+                </div>    
             </div>
             {
                 // Show add if balance is positive
@@ -135,7 +136,7 @@ const DashBoard = (props) => {
                     <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
                     <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
                     {/* Shorten the if statement */}
-                    <h2 className={`nextTarget ${new Date(nextTarget.date).getDate() - new Date().getDate() > 0 ? "positive" : "negative"}`}> Days Remaining: {new Date(nextTarget.date).getDate() - new Date().getDate() > 0 ? new Date(nextTarget.date).getDate() - new Date().getDate() : "Overdue"}</h2>
+                    <h2 className={`nextTarget ${(Date.parse(nextTarget.date) - Date.parse(new Date)) / 24 / 60 / 60 / 1000 > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date)) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date)) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
                 </div>
             }
         </div> 
@@ -174,7 +175,7 @@ const DashBoard = (props) => {
                         :<div className='containerNextTarget'>
                             <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
                             <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
-                            <h2 className={`nextTarget ${new Date(nextUnpaidBill.dueDate).getDate() - new Date().getDate() > 0 ? "positive" : "negative"}`}> Days Remaining: {new Date(nextUnpaidBill.dueDate).getDate() - new Date().getDate() > 0 ? new Date(nextUnpaidBill.dueDate).getUTCDate() - new Date().getUTCDate() : "Overdue"}</h2>
+                            <h2 className={`nextTarget ${(Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date)) / 24 / 60 / 60 / 1000 > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date)) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextUnpaidBill.dueDate.date) - Date.parse(new Date)) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
                         </div>
                     }
                 </div>              

@@ -22,6 +22,7 @@
 @media screen and (max-width: 900px) { 
     .footerContainer {
         margin: 0;
+        font-size: 8px;
         /* border: solid violet; */
     }
 }
