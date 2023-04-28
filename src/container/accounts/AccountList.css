@@ -45,6 +45,15 @@ section.account {
     width: 33%;
 }
 
+.accountBalance {
+    background-color: unset;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-family: "Russo One";
+    font-size: 25px;
+}
+
 /* CHECKING, SAVINGS */
 
 /* CREDIT */
@@ -56,3 +65,28 @@ section.account {
     width: 14%;
 }
 /* LOAN */
+
+@media screen and (max-width: 900px) {
+    .sectionAccountList {
+        margin: 0;
+    }
+    .accountContainer .listContainer > h2, .accountBalance{
+        font-size: 14px;
+    }
+
+    .categoriesContainer.credit {
+        padding: 0
+    }
+
+    .listContainer.credit {
+        margin: 0 5px;
+    }
+
+    /* Cheking, Savings, Credit Card, Loan hide other categories */
+    .credit.accountNumber, .credit.credit.creditBalance, .credit.interest,
+    .account.accountNumber > h2, .credit.accountNumber > h2, .credit.creditBalance > h2, .credit.interest > h2,
+    .loan.loanAmount, .loan.loanAmount > h2, .loan.availableCredit, .loan.availableCredit > h2, .loan.interest, .loan.interest > h2
+    {
+        display: none;
+    }
+}

@@ -9,7 +9,7 @@ const CreditCard = (props) => {
         <div className='listContainer credit availableCredit'><h2>${props.addComma(account.availableCredit)}</h2></div>
         <div className='listContainer credit creditBalance'><h2>${props.addComma(balance)}</h2></div>
         <div className='listContainer credit minimumPayment'><h2>${account.minPayment.toFixed(2)}</h2></div>
-        <div className='listContainer credit dueDate'><h2>{account.dueDate}</h2></div>
+        <div className='listContainer credit dueDate'><h2>{new Date(account.dueDate).getUTCDate()}</h2></div>
         <div className='listContainer credit interest'><h2>{account.interest}%</h2></div>
         <div className='listContainer credit usage'>
             {

@@ -16,7 +16,7 @@ const Loan = (props) => {
         <div className='listContainer loan loanAmount'><h2>${addComma(account.loanAmount)}</h2></div>
         <div className='listContainer loan creditBalance'><h2>${addComma(account.balance)}</h2></div>
         <div className='listContainer loan minimumPayment'><h2>${account.minPayment.toFixed(2)}</h2></div>
-        <div className='listContainer loan dueDate'><h2>{account.dueDate}</h2></div>
+        <div className='listContainer loan dueDate'><h2>{new Date(account.dueDate).getUTCDate()}</h2></div>
         <div className='listContainer loan interest'><h2>{account.interest}%</h2></div>
         <div className='listContainer loan paid'><h2>{loanAmount.toFixed(2)}%</h2></div>
     </div>

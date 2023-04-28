@@ -56,25 +56,15 @@ const Account = (props) => {
         <div className='listContainer account accountNumber'><h2>{props.account.accNumber}</h2></div>
         <div className='listContainer account accountBalance'>
             <input type="text" 
-                className={balance > 0 ? "positive" : "negative"}
+                className={balance > 0 ? "accountBalance positive" : "accountBalance negative"}
                 onChange={handleChange}
                 // Remove $ when clicked
                 onFocus={(e) => setBalanceText(e.target.value.slice(1))}
                 onBlur={updateBalance}  
                 value = {balanceText}
-                style={style}
             />
         </div>
     </div>
 }
 
 export default Account;
-
-const style = {
-    backgroundColor: "unset",
-    border: "none",
-    width: "100%",
-    textAlign: "center",
-    fontFamily: "Russo One",
-    fontSize: 25,
-}
