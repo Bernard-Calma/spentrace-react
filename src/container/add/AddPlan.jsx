@@ -44,7 +44,7 @@ const AddPlan = (props) => {
                 </label>
                 <label htmlFor="amount" className='formInput'>
                     Amount: 
-                    <input type="number" name="amount" id="addAmount" onChange={handleChange} />
+                    <input type="number" name="amount" id="addAmount" onChange={handleChange} required/>
                 </label>
                 <div className='radio'>
                     <label htmlFor="type" className='formInput'>
