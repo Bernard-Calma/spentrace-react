@@ -10,7 +10,6 @@ const AddBill = (props) => {
         repeat: "never",
         paid: false,
         userId: props.user.id,
-        endRepeat: "yyyy-MM-dd"
     })
 
     const handleChange=(e)=>{
