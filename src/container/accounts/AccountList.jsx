@@ -30,51 +30,6 @@ const AccountList = (props) => {
 
     const [openAcc, setOpenAcc] = useState({})
     const [view, setView] = useState("Account List")
-    
-    // GET
-    const handleAccountCategory = () => {
-        const accsCheckings = []
-        const accsSavings = []
-        const accsCreditCard = []
-        const accsLoan = []
-        props.accounts.forEach(account => {
-            switch(account.accType) {
-                case 'Checking': 
-                    accsCheckings.push(account)
-                    break;
-                case 'Savings':
-                    accsSavings.push(account)
-                    break;
-                case 'Credit Card':
-                    accsCreditCard.push(account)
-                    break;
-                case 'Loan':
-                    accsLoan.push(account)
-                    break;
-                default:
-                    break;
-            }
-        })
-
-        setAccountCategory({
-            checking: {
-                list: accsCheckings,
-                show: true
-            },
-            savings:  {
-                list: accsSavings,
-                show: true
-            },
-            creditCard:  {
-                list: accsCreditCard,
-                show: true
-            },
-            loan:  {
-                list: accsLoan,
-                show: true
-            }
-        })
-    }
 
     // View
     const handleChangeView = (view) => {
@@ -87,7 +42,6 @@ const AccountList = (props) => {
     }
 
     const handleShowCategory = (e) => {
-
         for (const [key, value] of Object.entries(accountCategory)) {
             if(key === e.target.classList[2]) {
                 // console.log(accountCategory[key])
@@ -113,6 +67,50 @@ const AccountList = (props) => {
     }
 
     useEffect(()=>{
+        // GET
+        const handleAccountCategory = () => {
+            const accsCheckings = []
+            const accsSavings = []
+            const accsCreditCard = []
+            const accsLoan = []
+            props.accounts.forEach(account => {
+                switch(account.accType) {
+                    case 'Checking': 
+                        accsCheckings.push(account)
+                        break;
+                    case 'Savings':
+                        accsSavings.push(account)
+                        break;
+                    case 'Credit Card':
+                        accsCreditCard.push(account)
+                        break;
+                    case 'Loan':
+                        accsLoan.push(account)
+                        break;
+                    default:
+                        break;
+                }
+            })
+
+            setAccountCategory({
+                checking: {
+                    list: accsCheckings,
+                    show: true
+                },
+                savings:  {
+                    list: accsSavings,
+                    show: true
+                },
+                creditCard:  {
+                    list: accsCreditCard,
+                    show: true
+                },
+                loan:  {
+                    list: accsLoan,
+                    show: true
+                }
+            })
+        }
         handleAccountCategory()
     }, [props.accounts])
     return <div className="sectionAccountList">
