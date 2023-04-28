@@ -65,7 +65,7 @@ li {
         justify-content: space-between;
         box-shadow: 1px 1px 5px 1px white;
         margin-bottom: 5px;
-        padding: 0 5px;
+        /* padding: 0 5px; */
     }
 
     .listContainer {
@@ -79,7 +79,7 @@ li {
         font-size: 15px;
     }
 
-    .name h2 {
+    .name h2, .runningTotal > h2 {
        text-align: start;
     }
 
@@ -89,6 +89,14 @@ li {
 
     .date {
         flex: 1
+    }
+
+    .listContainer.type  {
+        display: none;
+    }
+
+    h2.amount {
+        margin: auto 0;
     }
 
 }
