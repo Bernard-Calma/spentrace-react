@@ -25,7 +25,7 @@ const Unpaid = (props) => {
     return  <>
         <div className='containerPaid'>
                     <p>Unpaid: </p>
-                    <p>${totalUnpaid.toFixed(2)}</p>
+                    <p className="negative">${totalUnpaid.toFixed(2)}</p>
         </div>
         <div className="categoriesContainer billsCategory">
             <div className="listContainer billDataContainer"><h2 className="billData date">Date</h2></div>

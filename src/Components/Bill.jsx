@@ -6,7 +6,7 @@ const Bill = (props) => {
     const [dueDate] = useState(new Date(props.bill.dueDate))
     return(
         <div className = {props.bill.expense ? "billContainer expense" : "billContainer income"}>
-            <div className="billDataContainer date">  
+            <div className={`billDataContainer date`}>  
                 {
                     <BillPaidCheckBox 
                         server = {props.server}
@@ -14,7 +14,7 @@ const Bill = (props) => {
                         updateBill = {props.modifyBills.update}
                     />
                 }
-                <p className="billData date">
+                <p className={`billData date ${(Date.parse(new Date(props.bill.dueDate)) - Date.parse(new Date()) < 0 && !props.bill.paid) && 'negative'}`}>
                     {`${dueDate.getUTCDate()}`}
                     <span className="billData day">
                         {` - ${days[dueDate.getDay()]}`}

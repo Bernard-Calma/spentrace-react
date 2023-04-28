@@ -25,7 +25,7 @@ const Paid = (props) => {
     return <>
         <div className='containerPaid'>
                     <p>Paid: </p>
-                    <p>${totalPaid.toFixed(2)}</p>
+                    <p className="positive">${totalPaid.toFixed(2)}</p>
         </div>
         <MonthlyBill 
             bills = {billsPaid}
