@@ -39,14 +39,14 @@ const ShowAccount = (props) => {
                 <p className='showInfo accType'> <span>Account Type:</span> {props.openAcc.accType}</p>
                 <p className='showInfo bank'> <span>Bank:</span> {props.openAcc.bank}</p>
                 <p className='showInfo accNumber'> <span>Account Number:</span> {props.openAcc.accNumber}</p>
-                <p className='showInfo accOpen'> <span>Account Opened:</span> {getDate('07/01/2019')}</p>
+                <p className='showInfo accOpen'> <span>Account Opened:</span> {props.openAcc.accOpen ? new Date(props.openAcc.accOpen).toISOString().slice(0,10) : ''}</p>
                 {props.openAcc.accType !== 'Credit Card' &&
                     <p className='showInfo balance'> <span>Balance:</span> {props.openAcc.balance >= 0 ? `$${props.openAcc.balance.toFixed(2)}` : `-$${Math.abs(props.openAcc.balance).toFixed(2)}`}</p>
                 }
                 {props.openAcc.accType === 'Credit Card'
                     ? <>
                         <p className='showInfo creditLimit'> <span>Credit Limit:</span> ${props.addComma(props.openAcc.creditLimit)}</p>
-                        <p className="showInfo availableCredit"><span>Available Credit:</span> ${props.addComma(props.openAcc.availableCredit)} </p>
+                        <p className="showInfo availableCredit"><span>Available Credit:</span> {props.openAcc.availableCredit >= 0 ? `$${props.addComma(props.openAcc.availableCredit)}` : `-$${Math.abs(props.openAcc.availableCredit).toFixed(2)}`} </p>
                         
                     </>
                     : props.openAcc.accType === 'Loan'
@@ -56,9 +56,9 @@ const ShowAccount = (props) => {
                 {
                     (props.openAcc.accType === 'Credit Card' || props.openAcc.accType === 'Loan') &&
                     <>
-                        <p className='showInfo dueDate'> <span>Due Date:</span> {props.openAcc.dueDate ? getDate(props.openAcc.dueDate) : '-'}</p>
-                        <p className='showInfo minPayment'>  <span>Minimum Payment:</span> {props.openAcc.minPayment ? `$${props.addComma(props.openAcc.minPayment.toFixed(2))}` : '-'}</p>
-                        <p className='showInfo interest'> <span>Interest:</span>{props.openAcc.interest ? props.openAcc.interes : '-'}</p>
+                        <p className='showInfo dueDate'> <span>Due Date: </span>{props.openAcc.dueDate ? getDate(props.openAcc.dueDate) : '-'}</p>
+                        <p className='showInfo minPayment'>  <span>Minimum Payment: </span>{props.openAcc.minPayment ? `$${props.addComma(props.openAcc.minPayment.toFixed(2))}` : '-'}</p>
+                        <p className='showInfo interest'> <span>Interest: </span>{props.openAcc.interest ? `${props.openAcc.interest}%` : '-'}</p>
                     </>
                 }
                 

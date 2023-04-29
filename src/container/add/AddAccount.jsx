@@ -70,25 +70,25 @@ const AddAccount = (props) => {
                 {newAccount.accType !== "Credit Card" &&
                     <label htmlFor="balance" className='formInput acc'>
                         Balance: 
-                        <input type="number" name="balance" id="addAccountBalance" value={newAccount.balance} onChange={handleChange} required/>
+                        <input type="number" step="0.01" name="balance" id="addAccountBalance" value={newAccount.balance} onChange={handleChange} required/>
                     </label>
                 }
                 {newAccount.accType === "Credit Card"
                 ? <>
                     <label htmlFor="creditLimit" className='formInput acc'>
                         Credit Limit: 
-                        <input type="number" name="creditLimit" id="addAccountCreditLimit" value={newAccount.creditLimit} onChange={handleChange} required/>
+                        <input type="number" step="0.01" name="creditLimit" id="addAccountCreditLimit" value={newAccount.creditLimit} onChange={handleChange} required/>
                     </label>
                     <label htmlFor="availableCredit" className='formInput acc'>
                         Available Credit: 
-                        <input type="number" name="availableCredit" id="addAvailableCredit" value={newAccount.availableCredit} onChange={handleChange}/>
+                        <input type="number" step="0.01" name="availableCredit" id="addAvailableCredit" value={newAccount.availableCredit} onChange={handleChange}/>
                     </label> 
                 </>
                 : newAccount.accType === "Loan"
                 ? <> 
                     <label htmlFor="loanAmount" className='formInput acc'>
                         Loan Amount: 
-                        <input type="number" name="loanAmount" id="addLoanAmount" value={newAccount.loanAmount} onChange={handleChange} required/>
+                        <input type="number" step="0.01" name="loanAmount" id="addLoanAmount" value={newAccount.loanAmount} onChange={handleChange} required/>
                     </label>
                 </>
                 : <> </>
@@ -101,11 +101,11 @@ const AddAccount = (props) => {
                     </label>
                     <label htmlFor="minPayment" className='formInput acc'>
                         Minimum Payment: 
-                        <input type="number" name="minPayment" id="addAccountMinPayment" value={newAccount.minPayment} onChange={handleChange}/>
+                        <input type="number" step="0.01" name="minPayment" id="addAccountMinPayment" value={newAccount.minPayment} onChange={handleChange}/>
                     </label>
                     <label htmlFor="interest" className='formInput acc'>
                         Interest: 
-                        <input type="number" name="interest" id="addAccInterest" value={newAccount.interest} onChange={handleChange}/>
+                        <input type="number" step="0.01" name="interest" id="addAccInterest" value={newAccount.interest} onChange={handleChange}/>
                     </label>
                 </>
                 }

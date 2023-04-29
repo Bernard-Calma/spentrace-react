@@ -48,12 +48,12 @@ const EditAccount = (props) => {
                 </label>
                 <label htmlFor="accOpen" className='formInput acc'>
                     Account Opened: 
-                    <input type="date" name="accOpen" id="addAccountAccOpen" value={new Date(editAccount.accOpen).toISOString().slice(0,10)} onChange={handleChange}/>
+                    <input type="date" name="accOpen" id="addAccountAccOpen" value={editAccount.accOpen ? new Date(editAccount.accOpen).toISOString().slice(0,10) : ''} onChange={handleChange}/>
                 </label>
                 {editAccount.accType !== "Credit Card" &&
                     <label htmlFor="balance" className='formInput acc'>
                         Balance: 
-                        <input type="number" name="balance" id="addAccountBalance" value={editAccount.balance} onChange={handleChange} required/>
+                        <input type="number" name="balance" step="0.01" id="addAccountBalance" value={editAccount.balance} onChange={handleChange} required/>
                     </label>
                 }
                 {editAccount.accType === "Credit Card"
@@ -64,7 +64,7 @@ const EditAccount = (props) => {
                     </label>
                     <label htmlFor="availableCredit" className='formInput acc'>
                         Available Credit: 
-                        <input type="number" name="availableCredit" id="addAvailableCredit" value={editAccount.availableCredit} onChange={handleChange}/>
+                        <input type="number" name="availableCredit" step="0.01" id="addAvailableCredit" value={editAccount.availableCredit} onChange={handleChange}/>
                     </label> 
                 </>
                 : editAccount.accType === "Loan"
@@ -84,11 +84,11 @@ const EditAccount = (props) => {
                     </label>
                     <label htmlFor="minPayment" className='formInput acc'>
                         Minimum Payment: 
-                        <input type="number" name="minPayment" id="addAccountMinPayment" value={editAccount.minPayment} onChange={handleChange}/>
+                        <input type="number" name="minPayment" step="0.01" id="addAccountMinPayment" value={editAccount.minPayment} onChange={handleChange}/>
                     </label>
                     <label htmlFor="interest" className='formInput acc'>
                         Interest: 
-                        <input type="number" name="interest" id="addAccInterest" value={editAccount.interest} onChange={handleChange}/>
+                        <input type="number" name="interest" step="0.01" id="addAccInterest" value={editAccount.interest} onChange={handleChange}/>
                     </label>
                 </>
                 }
