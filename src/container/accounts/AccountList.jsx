@@ -102,7 +102,7 @@ const AccountList = (props) => {
                     show: true
                 },
                 creditCard:  {
-                    list: accsCreditCard,
+                    list: accsCreditCard.sort((a,b) => b.availableCredit - a.availableCredit),
                     show: true
                 },
                 loan:  {
