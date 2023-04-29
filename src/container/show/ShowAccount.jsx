@@ -57,7 +57,7 @@ const ShowAccount = (props) => {
                     (props.openAcc.accType === 'Credit Card' || props.openAcc.accType === 'Loan') &&
                     <>
                         <p className='showInfo dueDate'> <span>Due Date:</span> {props.openAcc.dueDate ? getDate(props.openAcc.dueDate) : '-'}</p>
-                        <p className='showInfo minPayment'>  <span>Minimum Payment:</span> ${props.addComma(props.openAcc.minPayment.toFixed(2))}</p>
+                        <p className='showInfo minPayment'>  <span>Minimum Payment:</span> {props.openAcc.minPayment ? `$${props.addComma(props.openAcc.minPayment.toFixed(2))}` : '-'}</p>
                         <p className='showInfo interest'> <span>Interest:</span>{props.openAcc.interest ? props.openAcc.interes : '-'}</p>
                     </>
                 }
