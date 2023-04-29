@@ -136,7 +136,7 @@ const DashBoard = (props) => {
                     <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
                     <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
                     {/* Shorten the if statement */}
-                    <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {((Date.parse(nextTarget.date) - (Date.parse(new Date())) / 24 / 60 / 60 / 1000)) > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
+                    <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
                 </div>
             }
         </div> 
