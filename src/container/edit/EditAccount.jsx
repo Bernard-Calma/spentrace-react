@@ -80,7 +80,7 @@ const EditAccount = (props) => {
                 <>
                     <label htmlFor="dueDate" className='formInput acc'>
                         Due Date: 
-                        <input type="date" name="dueDate" id="addAccDueDate" value={editAccount.dueDate} onChange={handleChange}/>
+                        <input type="date" name="dueDate" id="addAccDueDate" value={editAccount.dueDate ? new Date(editAccount.dueDate).toISOString().slice(0,10) : ''} onChange={handleChange}/>
                     </label>
                     <label htmlFor="minPayment" className='formInput acc'>
                         Minimum Payment: 
