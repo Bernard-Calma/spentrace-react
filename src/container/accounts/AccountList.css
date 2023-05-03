@@ -93,16 +93,38 @@ section.account {
     .sectionAccountList {
         margin: 0;
     }
-    .accountContainer .listContainer > h2, .accountBalance{
-        font-size: 14px;
+
+    .bankContainer .bank > h2 {
+        text-align: start;
+        margin: auto;
+        margin-left: 5px;
+    }
+
+    .listContainer > h2, .accountBalance{
+        font-size: 15px;
+    }
+
+    .accountBalance > input.accountBalance{
+        text-align: end;
+        padding-right: 30px;
     }
 
     .categoriesContainer.credit {
         padding: 0
     }
 
+    .bankContainer > .listContainer.availableCredit > h2 {
+        margin: auto 0;
+        margin-left: auto;
+    }
+
     .listContainer.credit {
         margin: 0 5px;
+    }
+
+    .bankContainer > .listContainer.creditBalance > h2, .minimumPayment > h2{
+        margin: 0;
+        margin-left: auto;
     }
 
     /* Cheking, Savings, Credit Card, Loan hide other categories */
