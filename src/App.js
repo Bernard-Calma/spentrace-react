@@ -10,23 +10,23 @@ import axios from 'axios';
 const App = () => { 
   // ------------------------------ VARIABLES ------------------------------
   // Server
-  const [server] = useState(process.env.REACT_APP_SERVER_URL)
+  const [server] = useState(process.env.REACT_APP_SERVER_URL);
   // View
-  const [view, setView] = useState("Login")
+  const [view, setView] = useState("Login");
+  const [appView, setAppView] = useState("");
   // User information
   const [user, setUser] = useState({
     username: "",
     loggedIn: false
-  })
+  });
   // ------------------------------ END OF VARIABLES ------------------------------
 
   // ------------------------------ FUNCTIONS ------------------------------
   // View
   // Handle view change while navigating
-  const handleChangeView = view => setView(view)
+  const handleChangeView = view => setView(view);
   // Access homeView in Home and pass to Header
-  const [appView, setAppView] = useState("")
-  const handleChangeHomeView = view => setAppView(view)
+  const handleChangeHomeView = view => setAppView(view);
   // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
     // Check if current session has user
@@ -38,14 +38,19 @@ const App = () => {
       })
       .then(res => { 
         if(res.data.passport.user) {
-          setUser({username: res.data.passport.user, loggedIn: true})
+          setUser({
+            username: res.data.passport.user, 
+            loggedIn: true
+          })
         } else {
           console.log(res.response.message)
         }
-      }).catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
     }
     checkUser()
-  },[user.loggedIn])
+  },[user.loggedIn]);
+
   return (
     <div className="App">
       <Header 
@@ -56,13 +61,11 @@ const App = () => {
         handleChangeView = {handleChangeView}
         handleChangeHomeView = {() => handleChangeHomeView("Home")}
       />
-      {
-        user.loggedIn 
+      {user.loggedIn 
         ? <Home 
             user = {user}
             server = {server}
             appView = {appView}
-          
             handleChangeView = {handleChangeView}
             handleChangeHomeView = {() => handleChangeHomeView("")}
           />
