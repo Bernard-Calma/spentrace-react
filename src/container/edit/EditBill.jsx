@@ -4,19 +4,19 @@ import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
 
 const EdditBill = (props) => {
-    const [editBill, setEditBill] = useState({...props.openBill})
-    const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months'])
+    const [editBill, setEditBill] = useState({...props.openBill});
+    const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months']);
 
-    const handleChange=(e)=>{
+    const handleChange = e => {
         // e.target.style.backgroundColor = "" // remove color for empty input
-        if (e.target.name === "autoPay") setEditBill({...editBill, [e.target.name]: !editBill.autoPay})
-        if (e.target.name === "paid") setEditBill({...editBill, [e.target.name]: !editBill.paid})
-        else setEditBill({...editBill, [e.target.name]: e.target.value})
+        if (e.target.name === "autoPay") setEditBill({...editBill, [e.target.name]: !editBill.autoPay});
+        if (e.target.name === "paid") setEditBill({...editBill, [e.target.name]: !editBill.paid});
+        else setEditBill({...editBill, [e.target.name]: e.target.value});
     }
 
-    const handleSubmitEdit = (e) => {
+    const handleSubmitEdit = async e => {
         e.preventDefault();
-        axios({
+        await axios({
             method: "PUT",
             url: `${props.server}/bills/${editBill._id}`,
             data: editBill,
@@ -24,10 +24,10 @@ const EdditBill = (props) => {
         })
         .then(res => {
             // console.log(res.data)
-            props.updateBill(res.data)
+            props.updateBill(res.data);
         })
-        props.return()
-    }
+        props.return();
+    };
 
     return (
         <div className="editContainer">
@@ -36,53 +36,147 @@ const EdditBill = (props) => {
                 <h2 className='editTitle'>Edit</h2>
             </div>
             
-            <form className='editForm' onSubmit={handleSubmitEdit}> 
-                <label htmlFor="dueDate" className='formInput'>
+            <form 
+                className='editForm' 
+                onSubmit={handleSubmitEdit}
+            > 
+                <label 
+                    htmlFor="dueDate" 
+                    className='formInput'
+                >
                     Date: 
-                    <input type="date" name="dueDate" id="editDate" value={new Date(editBill.dueDate).toISOString().slice(0,10)} onChange = {handleChange} required/>
+                    <input 
+                        type="date" 
+                        name="dueDate" 
+                        id="editDate" 
+                        value={new Date(editBill.dueDate).toISOString().slice(0,10)} 
+                        onChange = {handleChange} 
+                        required
+                    />
                 </label>
-                <label htmlFor="name" className='formInput'>
+
+                <label 
+                    htmlFor="name" 
+                    className='formInput'
+                >
                     Name: 
-                    <input type="text" name="name" id="editName" value={editBill.name} onChange = {handleChange} required/>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        id="editName" 
+                        value={editBill.name} 
+                        onChange = {handleChange}
+                        required
+                    />
                 </label>
-                <label htmlFor="amount" className='formInput'>
+
+                <label 
+                    htmlFor="amount" 
+                    className='formInput'
+                >
                     Amount: 
-                    <input type="number" name="amount" id="editAmount" value={editBill.amount} onChange = {handleChange} required/>
+                    <input 
+                        type="number" 
+                        name="amount" 
+                        id="editAmount" 
+                        value={editBill.amount} 
+                        onChange = {handleChange}
+                        required
+                    />
                 </label>
-                <label htmlFor="category" className='formInput'>
+
+                <label 
+                    htmlFor="category" 
+                    className='formInput'
+                >
                     Category: 
-                    <input type="text" name="category" id="editCategory" value={editBill.category} onChange = {handleChange}/>
+                    <input 
+                        type="text" 
+                        name="category" 
+                        id="editCategory" 
+                        value={editBill.category} 
+                        onChange = {handleChange}
+                    />
                 </label>
-                <label htmlFor="repeat" className='formInput'>
+                <label 
+                    htmlFor="repeat" 
+                    className='formInput'
+                >
                     Repeat: 
-                    <select name="repeat" id="addBillRepeat" size='1' required onChange={handleChange} value={editBill.repeat}>
-                        {
-                            repeatOptions.map((option, index) => 
-                                <option key={index} value={option} className='repeatOption' >{option}</option>
+                    <select 
+                        name="repeat" 
+                        id="addBillRepeat" 
+                        size='1' 
+                        required 
+                        onChange={handleChange} 
+                        value={editBill.repeat}
+                    >
+                        {repeatOptions.map((option, index) => 
+                            <option 
+                                key={index} 
+                                value={option} 
+                                className='repeatOption' 
+                            >{option}</option>
                         )}
                     </select>
                 </label>
                 {
                     !(editBill.repeat === "never") && 
-                    <label htmlFor="endRepeat" className='formInput'>
-                    Repeat Until: 
-                        <input type="date" name="endRepeat" id="addBillEndRepeat" value={new Date(editBill.endRepeat).toISOString().slice(0,10)} onChange={handleChange} required/>
-                    </label>
+                        <label 
+                            htmlFor="endRepeat" 
+                            className='formInput'
+                        >
+                            Repeat Until: 
+                            <input 
+                                type="date" 
+                                name="endRepeat" 
+                                id="addBillEndRepeat" 
+                                value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
+                                onChange={handleChange} 
+                                required
+                            />
+                        </label>
                 }
                 <div className='billCheckBoxes'>
-                    <label htmlFor="autoPay" className='formInput'>
+                    <label 
+                        htmlFor="autoPay" 
+                        className='formInput'
+                    >
                         Autopay: 
                         {editBill.autoPay 
-                        ?   <input type="checkbox" name="autoPay" id="editBillAutoPay" onChange={handleChange} checked/>
-                        :   <input type="checkbox" name="autoPay" id="editBillAutoPay" onChange={handleChange} />}
+                            ? <input 
+                                type="checkbox" 
+                                name="autoPay" 
+                                id="editBillAutoPay" 
+                                onChange={handleChange} 
+                                checked
+                            />
+                            : <input 
+                                type="checkbox" 
+                                name="autoPay" 
+                                id="editBillAutoPay" 
+                                onChange={handleChange} 
+                            />
+                        }
                     </label>
                 </div>
 
-                <textarea name="notes" id="editNotes" className='formNotes' placeholder='enter notes here' value={editBill.notes} onChange = {handleChange}></textarea>
-                <input type="submit" name="submit" id="submit" />
+                <textarea 
+                    name="notes" 
+                    id="editNotes" 
+                    className='formNotes' 
+                    placeholder='enter notes here' 
+                    value={editBill.notes} 
+                    onChange = {handleChange}
+                />
+                <input 
+                    type="submit" 
+                    name="submit" 
+                    id="submit" 
+                />
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default EdditBill
+export default EdditBill;
