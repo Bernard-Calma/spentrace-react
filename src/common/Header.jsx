@@ -1,5 +1,7 @@
+import React from 'react';
 import axios from "axios";
 import "./Header.css"
+import Icon from "./Icon";
 
 const Header = (props) => {
     const handleSignOut = async () => {
@@ -15,20 +17,11 @@ const Header = (props) => {
         }))
         .catch(error => console.log(error));
     };
+    
     return(
         <section className='header'>
-            <h1 
-                className="title" 
-                onClick={props.handleChangeHomeView}
-            >Spentrace</h1> 
-            {
-                props.user.loggedIn && 
-                <i 
-                    className="fi fi-rr-sign-out-alt" 
-                    onClick={handleSignOut}
-                />
-            }
-            
+            <h1 className="title" onClick={props.handleChangeHomeView}>Spentrace</h1> 
+            {props.user.loggedIn && <Icon className="fi fi-rr-sign-out-alt" onClick={handleSignOut} />}
         </section>
     );
 };
