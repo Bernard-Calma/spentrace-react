@@ -14,7 +14,7 @@ const Login = (props) => {
                     placeholder="username" 
                     value={props.loginUser.username} 
                     onChange={props.handleChangeUser} 
-                    required={true}
+                    required
                 />
                 <LabelInput 
                     type="password" 
