@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import BackButton from '../../Components/Buttons/BackButton'
-import './Add.css'
-import axios from 'axios'
+import { useState } from 'react';
+import BackButton from '../../Components/Buttons/BackButton';
+import './Add.css';
+import axios from 'axios';
 
 const AddBill = (props) => {
-    const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months'])
+    const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months']);
     let [newBill, setNewBill] = useState({
         autopay: false,
         repeat: "never",
@@ -12,90 +12,167 @@ const AddBill = (props) => {
         userId: props.user.id,
     })
 
-    const handleChange=(e)=>{
-        if (e.target.name === "autopay") setNewBill({...newBill, [e.target.name]: e.target.checked})
-        else if (e.target.name === "paid") setNewBill({...newBill, [e.target.name]: e.target.checked})
-        else setNewBill({...newBill, [e.target.name]: e.target.value})
-    }
+    const handleChange= e =>{
+        if (e.target.name === "autopay") setNewBill({...newBill, [e.target.name]: e.target.checked});
+        else if (e.target.name === "paid") setNewBill({...newBill, [e.target.name]: e.target.checked});
+        else setNewBill({...newBill, [e.target.name]: e.target.value});
+    };
 
-    const handleSubmitAdd = (e) => {
-        // console.log(newBill)
+    const handleSubmitAdd = async e => {
+        // console.log(newBill);
         e.preventDefault();
-        let parseDueDate = Date.parse(newBill.dueDate)
-        let parseEndDate = Date.parse(newBill.endRepeat)
-        // console.log(parseDueDate)
-        // console.log(parseEndDate)
+        let parseDueDate = Date.parse(newBill.dueDate);
+        let parseEndDate = Date.parse(newBill.endRepeat);
+        // console.log(parseDueDate);
+        // console.log(parseEndDate);
         // If repeat until is lesser that due date, alert that repeat should be further than due date
         if(parseDueDate >= parseEndDate) {
-            alert("End date should be further than due date")
-            setNewBill({...newBill, endRepeat: ""})
+            alert("End date should be further than due date");
+            setNewBill({...newBill, endRepeat: ""});
         } else {
-            axios({
+            await axios({
                 method: "POST",
                 url: `${props.server}/bills/`,
                 data: newBill,
                 withCredentials: true
             })
             .then(res => {
-                // console.log(res.data)
-                props.handleAddBill(res.data)
+                // console.log(res.data);
+                props.handleAddBill(res.data);
             })
-            props.changeBillsView()
-        }
+            props.changeBillsView();
+        };
+    };
 
-    }
     return (
         <div className="addContainer">
             <div className='addHeader'>
                 <BackButton handleChangeView = {() => props.changeBillsView("Bills List")}/>
                 <h2 className='addTitle'>ADD NEW BILL</h2>
             </div>            
-            <form className='addForm' onSubmit={handleSubmitAdd}>
-                <label htmlFor="dueDate" className='formInput'>
-                    Due Date: 
-                    <input type="date" name="dueDate" id="addBillDate" value={newBill.dueDate} onChange={handleChange} required/>
+            <form 
+                className='addForm' 
+                onSubmit={handleSubmitAdd}
+            >
+                <label 
+                    htmlFor="dueDate" 
+                    className='formInput'
+                > Due Date: 
+                    <input 
+                        type="date" 
+                        name="dueDate" 
+                        id="addBillDate" 
+                        value={newBill.dueDate}
+                         onChange={handleChange} 
+                        required
+                    />
                 </label>
-                <label htmlFor="name" className='formInput'>
-                    Name: 
-                    <input type="text" name="name" id="addBillName" onChange={handleChange} required/>
+
+                <label 
+                    htmlFor="name" 
+                    className='formInput'
+                > Name: 
+                    <input 
+                        type="text" 
+                        name="name" 
+                        id="addBillName" 
+                        onChange={handleChange} 
+                        required
+                    />
                 </label>
-                <label htmlFor="amount" className='formInput'>
-                    Amount: 
-                    <input type="number" name="amount" id="addBillAmount" onChange={handleChange} required/>
+
+                <label 
+                    htmlFor="amount" 
+                    className='formInput'
+                > Amount: 
+                    <input 
+                        type="number" 
+                        name="amount" 
+                        id="addBillAmount" 
+                        onChange={handleChange} 
+                        required
+                    />
                 </label>
-                <label htmlFor="category" className='formInput'>
-                    Category: 
-                    <input type="text" name="category" id="addBillCatagory" onChange={handleChange} />
+
+                <label 
+                    htmlFor="category" 
+                    className='formInput'
+                > Category: 
+                    <input 
+                        type="text" 
+                        name="category" 
+                        id="addBillCatagory" 
+                        onChange={handleChange} 
+                    />
                 </label>
-                <label htmlFor="repeat" className='formInput'>
-                    Repeat: 
-                    <select name="repeat" id="addBillRepeat" size='1' required onChange={handleChange}>
-                        {
-                            repeatOptions.map((option, index) => 
-                                <option key={index} value={option} className='repeatOption' >{option}</option>
+
+                <label 
+                    htmlFor="repeat" 
+                    className='formInput'
+                > Repeat: 
+                    <select 
+                        name="repeat" 
+                        id="addBillRepeat" 
+                        size='1' 
+                        required 
+                        onChange={handleChange}
+                    >
+                        {repeatOptions.map((option, index) => 
+                            <option 
+                                key={index} 
+                                value={option} 
+                                className='repeatOption' 
+                            >{option}</option>
                         )}
                     </select>
                 </label>
-                {
-                    !(newBill.repeat === "never") && 
-                    <label htmlFor="endRepeat" className='formInput'>
-                    Repeat Until: 
-                        <input type="date" name="endRepeat" id="addBillEndRepeat" value={newBill.endRepeat} onChange={handleChange}  required/>
+                {!(newBill.repeat === "never") && 
+                    <label 
+                        htmlFor="endRepeat" 
+                        className='formInput'
+                    > Repeat Until: 
+                        <input 
+                            type="date" 
+                            name="endRepeat" 
+                            id="addBillEndRepeat" 
+                            value={newBill?.endRepeat} 
+                            onChange={handleChange}  
+                            required
+                        />
                     </label>
                 }
                 <div className='billCheckBoxes'>
-                    <label htmlFor="autoPay" className='formInput'>
-                        Autopay: 
-                        <input type="checkbox" name="autopay" id="addBillAmount" onChange={handleChange} />
+                    <label 
+                        htmlFor="autoPay" 
+                        className='formInput'
+                    > Autopay: 
+                        <input 
+                            type="checkbox" 
+                            name="autopay" 
+                            id="addBillAmount" 
+                            onChange={handleChange} 
+                        />
                     </label>
                 </div>
-
-                <span className = "expenseMessage" hidden>Select a transaction type above.</span>
-                <textarea name="notes" id="addBillNotes" className='formNotes' placeholder='enter notes here' onChange={handleChange}></textarea>
-                <input type="submit" name="submit" id="submit" />
+                <span 
+                    className = "expenseMessage" 
+                    hidden
+                >Select a transaction type above.</span>
+                <textarea 
+                    name="notes" 
+                    id="addBillNotes" 
+                    className='formNotes' 
+                    placeholder='enter notes here' 
+                    onChange={handleChange}
+                />
+                <input 
+                    type="submit" 
+                    name="submit" 
+                    id="submit" 
+                />
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default AddBill
+export default AddBill;
