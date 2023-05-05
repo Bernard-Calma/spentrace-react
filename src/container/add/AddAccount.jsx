@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BackButton from "../../Components/Buttons/BackButton";
 import axios from "axios";
+import LabelInput from "../../common/LabelInput";
 
 const AddAccount = (props) => {
     const accountType = ['','Checking', 'Savings', 'Credit Card', 'Loan'];
@@ -43,10 +44,7 @@ const AddAccount = (props) => {
                 <BackButton handleChangeView = {props.return}/>
                 <h2 className='addTitle'>ADD NEW ACCOUNT</h2>
             </div>  
-            <form 
-                className='addForm' 
-                onSubmit={handleSubmit}
-            >
+            <form className='addForm'onSubmit={handleSubmit}>
                 <label 
                     htmlFor="repeat" 
                     className='formInput acc'
@@ -59,173 +57,144 @@ const AddAccount = (props) => {
                         onChange={handleChange}
                         required
                     >
-                        {accountType.map((option, index) => 
-                            <option 
-                                key={index} 
-                                value={option} 
-                                className='accType' 
-                            >{option}</option>
-                        )}
+                        {accountType.map((option, index) => <option key={index} value={option} className='accType'>{option}</option>)}
                     </select>
                 </label>
                 {newAccount.accType &&
                     <>
-                        <label 
+                        <LabelInput 
                             htmlFor="bank" 
                             className='formInput acc'
-                        > Bank: 
-                            <input 
-                                type="text" 
-                                name="bank" 
-                                id="addAccountBank" 
-                                value={newAccount.bank} 
+                            text="Bank: "
+                            type="text" 
+                            name="bank" 
+                            id="addAccountBank" 
+                            value={newAccount.bank} 
+                            onChange={handleChange} 
+                            required
+                        />
+
+                        <LabelInput 
+                            htmlFor="accNumber" 
+                            className='formInput acc'
+                            text="Account Number: "
+                            type="text" 
+                            name="accNumber" 
+                            id="addAccountAccNumber" 
+                            value={newAccount.accNumber} 
+                            onChange={handleChange}
+                        />
+
+                        <LabelInput 
+                            htmlFor="accOpen" 
+                            className='formInput acc'
+                            text="Account Opened: "
+                            type="date" 
+                            name="accOpen" 
+                            id="addAccountAccOpen" 
+                            value={newAccount.accOpen} 
+                            onChange={handleChange}
+                        />
+
+                        {newAccount.accType !== "Credit Card" &&
+                            <LabelInput 
+                                htmlFor="balance" 
+                                className='formInput acc'
+                                text="Balance: "
+                                type="number" 
+                                step="0.01" 
+                                name="balance" 
+                                id="addAccountBalance" 
+                                value={newAccount.balance} 
                                 onChange={handleChange} 
                                 required
                             />
-                        </label>
-
-                        <label 
-                            htmlFor="accNumber" 
-                            className='formInput acc'
-                        > Account Number: 
-                            <input 
-                                type="text" 
-                                name="accNumber" 
-                                id="addAccountAccNumber" 
-                                value={newAccount.accNumber} 
-                                onChange={handleChange}
-                            />
-                        </label>
-
-                        <label 
-                            htmlFor="accOpen" 
-                            className='formInput acc'
-                        > Account Opened: 
-                            <input 
-                                type="date" 
-                                name="accOpen" 
-                                id="addAccountAccOpen" 
-                                value={newAccount.accOpen} 
-                                onChange={handleChange}
-                            />
-                        </label>
-                        {newAccount.accType !== "Credit Card" &&
-                            <label 
-                                htmlFor="balance" 
-                                className='formInput acc'
-                            > Balance: 
-                                <input 
-                                    type="number" 
-                                    step="0.01" 
-                                    name="balance" 
-                                    id="addAccountBalance" 
-                                    value={newAccount.balance} 
-                                    onChange={handleChange} 
-                                    required
-                                />
-                            </label>
                         }
 
                         {newAccount.accType === "Credit Card"
                             ? <>
-                                <label 
+                                <LabelInput 
                                     htmlFor="creditLimit" 
                                     className='formInput acc'
-                                > Credit Limit: 
-                                    <input 
-                                        type="number" 
-                                        step="0.01" 
-                                        name="creditLimit" 
-                                        id="addAccountCreditLimit" 
-                                        value={newAccount.creditLimit} 
-                                        onChange={handleChange} 
-                                        required
-                                    />
-                                </label>
-                                <label 
+                                    text="Credit Limit: "
+                                    type="number" 
+                                    step="0.01" 
+                                    name="creditLimit" 
+                                    id="addAccountCreditLimit" 
+                                    value={newAccount.creditLimit} 
+                                    onChange={handleChange} 
+                                    required
+                                />
+                                
+                                <LabelInput 
                                     htmlFor="availableCredit" 
                                     className='formInput acc'
-                                > Available Credit: 
-                                    <input 
-                                        type="number" 
-                                        step="0.01" 
-                                        name="availableCredit" 
-                                        id="addAvailableCredit" 
-                                        value={newAccount.availableCredit} 
-                                        onChange={handleChange}
-                                    />
-                                </label> 
+                                    text="Available Credit: "
+                                    type="number" 
+                                    step="0.01" 
+                                    name="availableCredit" 
+                                    id="addAvailableCredit" 
+                                    value={newAccount.availableCredit} 
+                                    onChange={handleChange}
+                                />
                             </>
                             : newAccount.accType === "Loan"
-                            ? <> 
-                                <label 
-                                    htmlFor="loanAmount" 
-                                    className='formInput acc'
-                                > Loan Amount: 
-                                    <input 
-                                        type="number" 
-                                        step="0.01" 
-                                        name="loanAmount" 
-                                        id="addLoanAmount" 
-                                        value={newAccount.loanAmount} 
-                                        onChange={handleChange} 
-                                        required
-                                    />
-                                </label>
-                            </>
+                            ?<LabelInput 
+                                htmlFor="loanAmount" 
+                                className='formInput acc'
+                                text="Loan Amount: "
+                                type="number" 
+                                step="0.01" 
+                                name="loanAmount" 
+                                id="addLoanAmount" 
+                                value={newAccount.loanAmount} 
+                                onChange={handleChange} 
+                                required
+                            />
+ 
                             : <> </>
                         }
                         {(newAccount.accType === "Credit Card" || newAccount.accType === "Loan") &&
                             <>
-                                <label 
+                                <LabelInput 
                                     htmlFor="dueDate" 
                                     className='formInput acc'
-                                > Due Date: 
-                                    <input 
-                                        type="date" 
-                                        name="dueDate" 
-                                        id="addAccDueDate" 
-                                        value={newAccount.dueDate} 
-                                        onChange={handleChange}
-                                    />
-                                </label>
-
-                                <label 
+                                    text="Due Date: "
+                                    type="date" 
+                                    name="dueDate" 
+                                    id="addAccDueDate" 
+                                    value={newAccount.dueDate} 
+                                    onChange={handleChange}
+                                />
+                                
+                                <LabelInput 
                                     htmlFor="minPayment" 
                                     className='formInput acc'
-                                > Minimum Payment: 
-                                    <input 
-                                        type="number" 
-                                        step="0.01" 
-                                        name="minPayment" 
-                                        id="addAccountMinPayment" 
-                                        value={newAccount.minPayment} 
-                                        onChange={handleChange}
-                                    />
-                                </label>
-
-                                <label 
+                                    text="Minimum Payment: "
+                                    type="number" 
+                                    step="0.01" 
+                                    name="minPayment" 
+                                    id="addAccountMinPayment" 
+                                    value={newAccount.minPayment} 
+                                    onChange={handleChange}
+                                />
+                                
+                                <LabelInput 
                                     htmlFor="interest" 
                                     className='formInput acc'
-                                > Interest: 
-                                    <input 
-                                        type="number" 
-                                        step="0.01" 
-                                        name="interest" 
-                                        id="addAccInterest" 
-                                        value={newAccount.interest} 
-                                        onChange={handleChange}
-                                    />
-                                </label>
+                                    text="Interest: "
+                                    type="number" 
+                                    step="0.01" 
+                                    name="interest" 
+                                    id="addAccInterest" 
+                                    value={newAccount.interest} 
+                                    onChange={handleChange}
+                                />
                             </>
                         }
                     </> 
                 }   
-                <input 
-                    type="submit" 
-                    name="submit" 
-                    id="submit"
-                />
+                <LabelInput type="submit" name="submit" id="submit"/>
             </form>
         </div>
     );

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import BackButton from '../../Components/Buttons/BackButton';
 import './Add.css';
 import axios from 'axios';
+import LabelInput from '../../common/LabelInput';
 
 const AddBill = (props) => {
     const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months']);
@@ -50,114 +51,92 @@ const AddBill = (props) => {
                 <BackButton handleChangeView = {() => props.changeBillsView("Bills List")}/>
                 <h2 className='addTitle'>ADD NEW BILL</h2>
             </div>            
-            <form 
-                className='addForm' 
-                onSubmit={handleSubmitAdd}
-            >
-                <label 
+            <form className='addForm'onSubmit={handleSubmitAdd}>
+                <LabelInput 
                     htmlFor="dueDate" 
                     className='formInput'
-                > Due Date: 
-                    <input 
-                        type="date" 
-                        name="dueDate" 
-                        id="addBillDate" 
-                        value={newBill.dueDate}
-                         onChange={handleChange} 
-                        required
-                    />
-                </label>
-
-                <label 
+                    text="Due Date: "
+                    type="date" 
+                    name="dueDate" 
+                    id="addBillDate" 
+                    value={newBill.dueDate}
+                    onChange={handleChange} 
+                    required
+                />
+                
+                <LabelInput 
                     htmlFor="name" 
                     className='formInput'
-                > Name: 
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="addBillName" 
-                        onChange={handleChange} 
-                        required
-                    />
-                </label>
+                    text="Name: "
+                    type="text" 
+                    name="name" 
+                    id="addBillName" 
+                    onChange={handleChange} 
+                    required
+                />
 
-                <label 
+                <LabelInput 
                     htmlFor="amount" 
                     className='formInput'
-                > Amount: 
-                    <input 
-                        type="number" 
-                        name="amount" 
-                        id="addBillAmount" 
-                        onChange={handleChange} 
-                        required
-                    />
-                </label>
+                    text="Amount: "
+                    type="number" 
+                    name="amount" 
+                    id="addBillAmount" 
+                    onChange={handleChange} 
+                    required
+                />
 
-                <label 
+                <LabelInput 
                     htmlFor="category" 
                     className='formInput'
-                > Category: 
-                    <input 
-                        type="text" 
-                        name="category" 
-                        id="addBillCatagory" 
-                        onChange={handleChange} 
-                    />
-                </label>
+                    text="Category: "
+                    type="text" 
+                    name="category" 
+                    id="addBillCatagory" 
+                    onChange={handleChange} 
+                    required
+                />
 
-                <label 
-                    htmlFor="repeat" 
-                    className='formInput'
-                > Repeat: 
+                <label htmlFor="repeat" className='formInput'> 
+                    Repeat: 
                     <select 
                         name="repeat" 
                         id="addBillRepeat" 
                         size='1' 
-                        required 
                         onChange={handleChange}
+                        required 
                     >
-                        {repeatOptions.map((option, index) => 
-                            <option 
-                                key={index} 
-                                value={option} 
-                                className='repeatOption' 
-                            >{option}</option>
-                        )}
+                        {repeatOptions.map((option, index) => <option key={index} value={option} className='repeatOption'>{option}</option>)}
                     </select>
                 </label>
+
                 {!(newBill.repeat === "never") && 
-                    <label 
+                    <LabelInput 
                         htmlFor="endRepeat" 
                         className='formInput'
-                    > Repeat Until: 
-                        <input 
-                            type="date" 
-                            name="endRepeat" 
-                            id="addBillEndRepeat" 
-                            value={newBill?.endRepeat} 
-                            onChange={handleChange}  
-                            required
-                        />
-                    </label>
+                        text="Repeat Until: "
+                        type="date" 
+                        name="endRepeat" 
+                        id="addBillEndRepeat" 
+                        value={newBill?.endRepeat} 
+                        onChange={handleChange} 
+                        required
+                    />
                 }
+
                 <div className='billCheckBoxes'>
-                    <label 
+                    <LabelInput
                         htmlFor="autoPay" 
-                        className='formInput'
-                    > Autopay: 
-                        <input 
-                            type="checkbox" 
-                            name="autopay" 
-                            id="addBillAmount" 
-                            onChange={handleChange} 
-                        />
-                    </label>
+                        className="formInput"
+                        text="Autopay: "
+                        type="checkbox" 
+                        name="autopay" 
+                        id="addBillAmount" 
+                        onChange={handleChange} 
+                    />
                 </div>
-                <span 
-                    className = "expenseMessage" 
-                    hidden
-                >Select a transaction type above.</span>
+
+                <span className = "expenseMessage" hidden>Select a transaction type above.</span>
                 <textarea 
                     name="notes" 
                     id="addBillNotes" 
@@ -165,11 +144,7 @@ const AddBill = (props) => {
                     placeholder='enter notes here' 
                     onChange={handleChange}
                 />
-                <input 
-                    type="submit" 
-                    name="submit" 
-                    id="submit" 
-                />
+                <LabelInput type="submit" name="submit" id="submit"/>
             </form>
         </div>
     );

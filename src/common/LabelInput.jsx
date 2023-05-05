@@ -5,16 +5,19 @@ const LabelInput = props => <>
             htmlFor={props.htmlFor}
         > {props.text}
             <input 
-                type={props.text}
+                id = {props.id}
+                type={props.type}
                 name={props.name}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={props.onChange}
                 required = {props.required ? true : false}
+                step = {props.step}
             />
             </label>
         : <input 
-            type={props.text}
+            id = {props.id}
+            type={props.type}
             name={props.name}
             placeholder={props.placeholder}
             value={props.value}

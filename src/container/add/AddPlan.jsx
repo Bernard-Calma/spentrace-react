@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import './Add.css';
 import BackButton from '../../Components/Buttons/BackButton';
+import LabelInput from '../../common/LabelInput';
 
 const AddPlan = (props) => {
     const [newPlan, setNewPlan] = useState({userId: props.user.id});
@@ -34,81 +35,66 @@ const AddPlan = (props) => {
                 <h2 className='addTitle'>ADD NEW PLAN</h2>
             </div>
             
-            <form 
-                className='addForm' 
-                onSubmit={handleSubmitAdd}
-            >
-                <label 
+            <form className='addForm' onSubmit={handleSubmitAdd}>
+                <LabelInput 
                     htmlFor="date" 
                     className='formInput'
-                > Date: 
-                    <input 
-                        type="date" 
-                        name="date" 
-                        id="addDate" 
-                        onChange={handleChange} 
-                        required
-                    />
-                </label>
-
-                <label 
+                    text="Date: "
+                    type="date" 
+                    name="date" 
+                    id="addDate" 
+                    onChange={handleChange} 
+                    required
+                />
+                
+                <LabelInput 
                     htmlFor="name" 
                     className='formInput'
-                > Name: 
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="addName" 
-                        onChange={handleChange} 
-                        required
-                    />
-                </label>
+                    text="Name: "
+                    type="text" 
+                    name="name" 
+                    id="addName" 
+                    onChange={handleChange} 
+                    required
+                />
 
-                <label 
+                <LabelInput 
                     htmlFor="amount" 
                     className='formInput'
-                > Amount: 
-                    <input 
-                        type="number" 
-                        name="amount" 
-                        id="addAmount" 
+                    text="Amount: "
+                    type="number" 
+                    name="amount" 
+                    id="addAmount" 
+                    onChange={handleChange} 
+                    required
+                />
+                
+                <div className='radio'>
+                    <LabelInput 
+                        htmlFor="type" 
+                        className='formInput'
+                        text="Income: "
+                        type="radio" 
+                        name="expense" 
+                        id="addTypeIncome" 
+                        value="Income" 
                         onChange={handleChange} 
                         required
                     />
-                </label>
 
-                <div className='radio'>
-                    <label 
+                    <LabelInput 
                         htmlFor="type" 
                         className='formInput'
-                    > Income: 
-                        <input 
-                            type="radio" 
-                            name="expense" 
-                            id="addTypeIncome" 
-                            value="Income" onChange={handleChange} 
-                            required
-                        />
-                    </label>
-
-                    <label 
-                        htmlFor="type" 
-                        className='formInput'
-                    > Expense: 
-                        <input 
-                            type="radio" 
-                            name="expense" 
-                            id="addTypeExpense" 
-                            value="Expense" onChange={handleChange} 
-                            required
-                        />
-                    </label>
+                        text="Expense: "
+                        type="radio" 
+                        name="expense" 
+                        id="addTypeExpense" 
+                        value="Expense" 
+                        onChange={handleChange} 
+                        required
+                    />
                 </div>
-                <span 
-                    className = "expenseMessage" 
-                    hidden
-                >Select a transaction type above.</span>
-
+                <span className = "expenseMessage" hidden>Select a transaction type above.</span>
                 <textarea 
                     name="notes" 
                     id="addNotes" 
@@ -116,11 +102,7 @@ const AddPlan = (props) => {
                     placeholder='enter notes here' 
                     onChange={handleChange}
                 />
-                <input 
-                    type="submit" 
-                    name="submit" 
-                    id="submit" 
-                />
+                <LabelInput type="submit" name="submit" id="submit" />
             </form>
         </div>
     );
