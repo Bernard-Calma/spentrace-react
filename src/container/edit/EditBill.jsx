@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
+import LabelInput from '../../common/LabelInput';
 
 const EdditBill = (props) => {
     const [editBill, setEditBill] = useState({...props.openBill});
@@ -9,8 +10,8 @@ const EdditBill = (props) => {
 
     const handleChange = e => {
         // e.target.style.backgroundColor = "" // remove color for empty input
-        if (e.target.name === "autoPay") setEditBill({...editBill, [e.target.name]: !editBill.autoPay});
-        if (e.target.name === "paid") setEditBill({...editBill, [e.target.name]: !editBill.paid});
+        if (e.target.name === "autoPay") setEditBill({...editBill, [e.target.name]: !editBill.autoPay})
+        else if (e.target.name === "paid") setEditBill({...editBill, [e.target.name]: !editBill.paid})
         else setEditBill({...editBill, [e.target.name]: e.target.value});
     }
 
@@ -23,7 +24,7 @@ const EdditBill = (props) => {
             withCredentials: true
         })
         .then(res => {
-            // console.log(res.data)
+            console.log(res.data)
             props.updateBill(res.data);
         })
         props.return();
@@ -36,72 +37,55 @@ const EdditBill = (props) => {
                 <h2 className='editTitle'>Edit</h2>
             </div>
             
-            <form 
-                className='editForm' 
-                onSubmit={handleSubmitEdit}
-            > 
-                <label 
+            <form className='editForm' onSubmit={handleSubmitEdit}> 
+                <LabelInput 
                     htmlFor="dueDate" 
                     className='formInput'
-                >
-                    Date: 
-                    <input 
-                        type="date" 
-                        name="dueDate" 
-                        id="editDate" 
-                        value={new Date(editBill.dueDate).toISOString().slice(0,10)} 
-                        onChange = {handleChange} 
-                        required
-                    />
-                </label>
+                    text="Date: "
+                    type="date" 
+                    name="dueDate" 
+                    id="editDate" 
+                    value={new Date(editBill.dueDate).toISOString().slice(0,10)} 
+                    onChange = {handleChange} 
+                    required
+                />
 
-                <label 
+                <LabelInput 
                     htmlFor="name" 
                     className='formInput'
-                >
-                    Name: 
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="editName" 
-                        value={editBill.name} 
-                        onChange = {handleChange}
-                        required
-                    />
-                </label>
+                    text="Name: "
+                    type="text" 
+                    name="name" 
+                    id="editName" 
+                    value={editBill.name} 
+                    onChange = {handleChange}
+                    required
+                />
 
-                <label 
+                <LabelInput 
                     htmlFor="amount" 
                     className='formInput'
-                >
-                    Amount: 
-                    <input 
-                        type="number" 
-                        name="amount" 
-                        id="editAmount" 
-                        value={editBill.amount} 
-                        onChange = {handleChange}
-                        required
-                    />
-                </label>
+                    text="Amount: "
+                    type="number" 
+                    name="amount" 
+                    id="editAmount" 
+                    value={editBill.amount} 
+                    onChange = {handleChange}
+                    required
+                />
 
-                <label 
+                <LabelInput 
                     htmlFor="category" 
                     className='formInput'
-                >
-                    Category: 
-                    <input 
-                        type="text" 
-                        name="category" 
-                        id="editCategory" 
-                        value={editBill.category} 
-                        onChange = {handleChange}
-                    />
-                </label>
-                <label 
-                    htmlFor="repeat" 
-                    className='formInput'
-                >
+                    text="Category: "
+                    type="text" 
+                    name="category" 
+                    id="editCategory" 
+                    value={editBill.category} 
+                    onChange = {handleChange}
+                />
+                    
+                <label htmlFor="repeat" className='formInput'>
                     Repeat: 
                     <select 
                         name="repeat" 
@@ -111,31 +95,22 @@ const EdditBill = (props) => {
                         onChange={handleChange} 
                         value={editBill.repeat}
                     >
-                        {repeatOptions.map((option, index) => 
-                            <option 
-                                key={index} 
-                                value={option} 
-                                className='repeatOption' 
-                            >{option}</option>
-                        )}
+                        {repeatOptions.map((option, index) => <option key={index} value={option} className='repeatOption'>{option}</option>)}
                     </select>
                 </label>
                 {
                     !(editBill.repeat === "never") && 
-                        <label 
+                        <LabelInput 
                             htmlFor="endRepeat" 
                             className='formInput'
-                        >
-                            Repeat Until: 
-                            <input 
-                                type="date" 
-                                name="endRepeat" 
-                                id="addBillEndRepeat" 
-                                value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
-                                onChange={handleChange} 
-                                required
-                            />
-                        </label>
+                            text="Repeat Until: "
+                            type="date" 
+                            name="endRepeat" 
+                            id="addBillEndRepeat" 
+                            value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
+                            onChange={handleChange} 
+                            required
+                        />
                 }
                 <div className='billCheckBoxes'>
                     <label 
