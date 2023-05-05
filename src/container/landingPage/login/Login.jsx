@@ -1,3 +1,4 @@
+import LabelInput from "../../../common/LabelInput";
 import "./Login.css"
 const Login = (props) => {
     return(
@@ -7,15 +8,15 @@ const Login = (props) => {
                 className="formLogin" 
                 onSubmit={props.handleLogin}
             >
-                <input 
-                    type="text" 
-                    name="username" 
+                <LabelInput 
+                    type="text"
+                    name="username"
                     placeholder="username" 
                     value={props.loginUser.username} 
                     onChange={props.handleChangeUser} 
-                    required
+                    required={true}
                 />
-                <input 
+                <LabelInput 
                     type="password" 
                     name="password" 
                     placeholder="password" 
