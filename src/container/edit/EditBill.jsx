@@ -113,27 +113,16 @@ const EdditBill = (props) => {
                         />
                 }
                 <div className='billCheckBoxes'>
-                    <label 
+                    <LabelInput 
                         htmlFor="autoPay" 
                         className='formInput'
-                    >
-                        Autopay: 
-                        {editBill.autoPay 
-                            ? <input 
-                                type="checkbox" 
-                                name="autoPay" 
-                                id="editBillAutoPay" 
-                                onChange={handleChange} 
-                                checked
-                            />
-                            : <input 
-                                type="checkbox" 
-                                name="autoPay" 
-                                id="editBillAutoPay" 
-                                onChange={handleChange} 
-                            />
-                        }
-                    </label>
+                        text="Autopay: "
+                        type="checkbox"
+                        name="autoPay"
+                        id="editBillAutoPay"
+                        onChange={handleChange}
+                        checked = {editBill.autoPay ? "checked" : ''}
+                    />
                 </div>
 
                 <textarea 

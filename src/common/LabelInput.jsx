@@ -13,6 +13,7 @@ const LabelInput = props => <>
                 onChange={props.onChange}
                 required = {props.required ? true : false}
                 step = {props.step}
+                checked = {props.checked}
             />
             </label>
         : <input 
