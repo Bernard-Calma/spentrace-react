@@ -8,8 +8,8 @@ import Categories from "./Categories";
 import "./PlansList.css"
 
 const PlanList = (props) => {
-    const [openPlan, setOpenPlan] = useState({})
-    let [planView, setPlanView] = useState("Plan List")
+    const [openPlan, setOpenPlan] = useState({});
+    let [planView, setPlanView] = useState("Plan List");
     let [totalIncome, setTotalIncome] = useState(0);
     let [totalExpense, setTotalExpense] = useState(0);
 
@@ -23,82 +23,88 @@ const PlanList = (props) => {
         let total = 0;
         props.plans.forEach( plan => {
           if (plan.expense === true) {
-              setTotalExpense(totalExpense += plan.amount)
+              setTotalExpense(totalExpense += plan.amount);
               runningTarget += plan.amount;
               total -= plan.amount;
           } else if (plan.expense === false) {
-              setTotalIncome(totalIncome += plan.amount)
+              setTotalIncome(totalIncome += plan.amount);
               runningTarget -= plan.amount;
               total += plan.amount;
-          } 
+          };
           if (runningTarget < 0) {
               plan.target = 0;
           } else {
               plan.target = runningTarget;
           }
           plan.runningTotal = total;  
-        })
-      }
+        });
+      };
 
-    const handleChangeView = view => setPlanView(view)
+    const handleChangeView = view => setPlanView(view);
     
-    const handleShowPlan = (plan) => {
-        setOpenPlan(plan)
-        handleChangeView("Show Plan")
+    const handleShowPlan = plan => {
+        setOpenPlan(plan);
+        handleChangeView("Show Plan");
     }
 
     useEffect(()=>{
-        getRunningBalanceTarget()
+        getRunningBalanceTarget();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.plans])
+    },[props.plans]);
 
-    return <> {
-        planView === "Plan List"
-        ?<section className='containerPlanList'>
-            <Categories />
-            <div className="plansContainer">
-                {
-                    props.plans?.map((plan, index) => 
-                        <Plan 
-                            key={index}
-                            index={index}
-                            plan={plan}
-                            totalIncome = {totalIncome}
-                            totalExpense = {totalExpense}
-                            handleChangeView = {() => handleChangeView("Plan List")}
-                            handleShowPlan = {() => handleShowPlan(plan)}
-                        />)
-                }
-                <div className="containerAdd"style={{
-                    textAlign: "center"
-                }}>
-                    <i className="fi fi-rr-add" onClick={() =>handleChangeView("Add Plan")}></i>
-                </div>
-            </div>
-        </section>
-        : planView === "Add Plan"
-        ?<AddPlan
-            user = {props.user}
-            server = {props.server}
-            addNewPlan = {props.modifyPlans.add}
-            handleChangeView = {() =>handleChangeView("Plan List")}
-        />
-        : planView === "Show Plan"
-        ?<ShowPlan 
-            plan = {openPlan}
-            server = {props.server}
-            deletePlan = {props.modifyPlans.delete}
-            return = {() => handleChangeView("Plan List")}
-            edit = {() => handleChangeView("Edit Plan")}
-        />
-        : planView === "Edit Plan"
-        ?<EditPlan
-            plan = {openPlan}
-            server = {props.server}
-            updatePlan = {props.modifyPlans.update}
-            return = {() => handleChangeView("Plan List")}
-        />
-        : <> </>
-    } </>
-}
+    return (
+        <> 
+            {planView === "Plan List"
+                ?<section className='containerPlanList'>
+                    <Categories />
+                    <div className="plansContainer">
+                        {props.plans?.map((plan, index) => 
+                            <Plan 
+                                key={index}
+                                index={index}
+                                plan={plan}
+                                totalIncome = {totalIncome}
+                                totalExpense = {totalExpense}
+                                handleChangeView = {() => handleChangeView("Plan List")}
+                                handleShowPlan = {() => handleShowPlan(plan)}
+                            />
+                        )}
+                        <div 
+                            className="containerAdd"
+                            style={{textAlign: "center"}}
+                        >
+                            <i 
+                                className="fi fi-rr-add" 
+                                onClick={() =>handleChangeView("Add Plan")}
+                            />
+                        </div>
+                    </div>
+                </section>
+            : planView === "Add Plan"
+                ? <AddPlan
+                    user = {props.user}
+                    server = {props.server}
+                    addNewPlan = {props.modifyPlans.add}
+                    handleChangeView = {() =>handleChangeView("Plan List")}
+                />
+            : planView === "Show Plan"
+                ? <ShowPlan 
+                    plan = {openPlan}
+                    server = {props.server}
+                    deletePlan = {props.modifyPlans.delete}
+                    return = {() => handleChangeView("Plan List")}
+                    edit = {() => handleChangeView("Edit Plan")}
+                />
+            : planView === "Edit Plan"
+                ? <EditPlan
+                    plan = {openPlan}
+                    server = {props.server}
+                    updatePlan = {props.modifyPlans.update}
+                    return = {() => handleChangeView("Plan List")}
+                />
+            : <></>
+            } 
+        </>
+    );
+};
 export default PlanList;
