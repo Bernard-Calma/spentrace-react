@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import './App.css';
-import Header from './container/header/Header';
+import Header from './common/Header';
 import Footer from './container/footer/Footer';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
