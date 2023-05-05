@@ -5,6 +5,7 @@ import axios from "axios";
 import mainPageImage from "../../img/MainPage.png"
 import mobilePage from "../../img/MobilePage.png"
 
+// Conponents
 import Login from "./login/Login";
 import Register from "./login/Register";
 import "./landingPage.css"

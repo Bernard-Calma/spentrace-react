@@ -1,30 +1,29 @@
 import { useEffect, useState } from "react";
-
 import CircleGraph from "../../Components/CircleGraph";
 
 const DashBoard = (props) => {
     // VARIABLES
     // Plans
-    const [balance, setBalance] = useState(0)
-    const [totalIncome, setTotalIncome] = useState(0)
-    const [totalExpense, setTotalExpense] = useState(0)
+    const [balance, setBalance] = useState(0);
+    const [totalIncome, setTotalIncome] = useState(0);
+    const [totalExpense, setTotalExpense] = useState(0);
     const [nextTarget, setNextTarget] = useState({
         amount: 0,
         date: '',
         name: ''
-    })
+    });
     // Bills
-    const [totalBillsPaid, setTotalBillsPaid] = useState(0)
-    const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0)
-    const [nextUnpaidBill , setNextUnpaidBill] = useState({})
+    const [totalBillsPaid, setTotalBillsPaid] = useState(0);
+    const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0);
+    const [nextUnpaidBill , setNextUnpaidBill] = useState({});
     // ------------------------------ END OF VARIABLES ------------------------------
 
     // FUNCTIONS
     // Plans
     const getBalance = () =>{ 
-        let runningBalance = 0
-        let totalIncome = 0
-        let totalExpense = 0
+        let runningBalance = 0;
+        let totalIncome = 0;
+        let totalExpense = 0;
         for (const plan of props.plans) {
             if (plan.expense) {
                 runningBalance -= plan.amount
@@ -32,85 +31,91 @@ const DashBoard = (props) => {
             } else {
                 runningBalance += plan.amount
                 totalIncome += plan.amount
-            }
-        }
-        setBalance(runningBalance)
-        setTotalIncome(totalIncome)
-        setTotalExpense(totalExpense)
+            };
+        };
+        setBalance(runningBalance);
+        setTotalIncome(totalIncome);
+        setTotalExpense(totalExpense);
     }
 
     const getTarget = () => {
-        let balance = 0
+        let balance = 0;
         let nextTarget = {
             amount: 0,
             date: ""
-        }
+        };
         props.plans.forEach( plan => {
             plan.expense ? balance -= plan.amount :  balance += plan.amount
             // console.log(balance)
             if (balance <= 0 && nextTarget.amount === 0) {
                 nextTarget.amount = balance;
-                nextTarget.name = plan.name
-                nextTarget.date = plan.date
-                return setNextTarget(nextTarget)
-            }
-        })
+                nextTarget.name = plan.name;
+                nextTarget.date = plan.date;
+                return setNextTarget(nextTarget);
+            };
+        });
     }
     // Bills
     const getBillsPaid = () => {
         // Get paid and unpaid graph
         let totalPaid = 0;
         let totalUnpaid = 0;
-        const currentMonth = new Date().getMonth()
+        const currentMonth = new Date().getMonth();
         props.bills.forEach(bill => {
             bill.dueDate.forEach((dueDate, index) => {
                 let billMonth = new Date(dueDate).getMonth()
+                // If month and year is current
                 if (billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
-                    bill.paid[index] ? totalPaid += bill.amount : totalUnpaid += bill.amount
-                }
-            })
+                    bill.paid[index] ? totalPaid += bill.amount : totalUnpaid += bill.amount;
+                };
+            });
         })
-        setTotalBillsPaid(totalPaid)
-        setTotalBillsUnpaid(totalUnpaid)
+        setTotalBillsPaid(totalPaid);
+        setTotalBillsUnpaid(totalUnpaid);
     }
 
     const getNextUpaidBill = () => {
-        let unpaidBill = props.bills[0]
-        const currentMonth = new Date().getMonth()
+        let unpaidBill = props.bills[0];
+        const currentMonth = new Date().getMonth();
+        // Get the first bill that has a due date for the current year and month that is not paid
         props.bills.forEach(bill => {
             bill.dueDate.forEach( (dueDate, index) => {
                 let billMonth = new Date(dueDate).getMonth()
                 if (billMonth === currentMonth) {
                     if(!bill.paid[index] && billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
                         // console.log(dueDate)
-                        return unpaidBill = {
+                        const unpaidBill = {
                             ...bill,
                             dueDate: dueDate,
                             paid: bill.paid[index]
-                        }
-                    }
-                }
-            })
-        })
-        setNextUnpaidBill(unpaidBill)
+                        };
+                        return unpaidBill;
+                    };
+                };
+            });
+        });
+        setNextUnpaidBill(unpaidBill);
     }
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(() => {
-        getBalance()
-        getTarget()
-        getBillsPaid()
-        getNextUpaidBill()
+        getBalance();
+        getTarget();
+        getBillsPaid();
+        getNextUpaidBill();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.plans])
-    return  <div className='dashboard'>
-        <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
-        <div className='containerDashboard'>
-            <div className="dashboardGraph">
-            <div className='graphSubTitle'>
-                <h2>Income</h2>
+    },[props.plans]);
+    
+    return (
+        <div className='dashboard'>
+            <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
+            <div className='containerDashboard'>
+                <div className="dashboardGraph">
+                <div className='graphSubTitle'>
+                    <h2>Income</h2>
                     <h2>${totalIncome}</h2>
                 </div>
+
                 {/* PLAN GRAPH */}
                 <CircleGraph
                     data = {[totalExpense, totalIncome]}
@@ -119,69 +124,72 @@ const DashBoard = (props) => {
                     height = {250}
                     value = {balance}
                 />
-                
                 <div className='graphSubTitle'>
                     <h2>Expense</h2>
                     <h2>${totalExpense}</h2>
                 </div>    
-            </div>
-            {
-                // Show add if balance is positive
-                nextTarget.amount === 0
-                ?<div className="containerEmptyPlan">
-                    <h2>Add an expense</h2>
-                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.handleChangeView("Add Plan")}></i>
                 </div>
-                :<div className='containerNextTarget'>
-                    <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
-                    <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                    {/* Shorten the if statement */}
-                    <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
-                </div>
-            }
-        </div> 
-        {
-            props.bills.length === 0
-            ?<div className="containerEmptyPlan">
-                    <h2>ADD YOUR FIRST BILL</h2>
-                    <i className="fi fi-rr-add addEmptyDashboard" onClick={() => props.changeHomeView("Bills List")}></i>
-            </div>
-            :<>
-                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Bills</h1>
-                <div className='containerDashboard'>
-                    <div className="dashboardGraph">
-                        <div className='graphSubTitle'>
-                            <h2>Paid</h2>
-                            <h2>${totalBillsPaid}</h2>
-                        </div>    
-                        <CircleGraph 
-                            data = {[totalBillsUnpaid, totalBillsPaid]}
-                            colors = {['red', 'green']}  
-                            width = {250}
-                            height = {250}
-                            value = {totalBillsUnpaid + totalBillsPaid}
+                {/* Show add if balance is positive */}
+                {nextTarget.amount === 0
+                    ? <div className="containerEmptyPlan">
+                        <h2>Add an expense</h2>
+                        <i 
+                            className="fi fi-rr-add addEmptyDashboard" 
+                            onClick={() => props.handleChangeView("Add Plan")}
                         />
-                        <div className='graphSubTitle'>
-                            <h2>Unpaid</h2>
-                            <h2>${totalBillsUnpaid}</h2>
-                        </div>
                     </div>
-
-                    {
-                        totalBillsUnpaid === 0 
-                        ?<div className='containerNextTarget'>
-                            <h2 className='nextTarget'>All Bills are paid this month.</h2>
+                    : <div className='containerNextTarget'>
+                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
+                        <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                        {/* Shorten the if statement */}
+                        <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
+                    </div>
+                }
+            </div> 
+            {props.bills.length === 0
+                ? <div className="containerEmptyPlan">
+                    <h2>ADD YOUR FIRST BILL</h2>
+                    <i 
+                        className="fi fi-rr-add addEmptyDashboard" 
+                        onClick={() => props.changeHomeView("Bills List")}
+                    />
+                </div>
+                : <>
+                    <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Bills</h1>
+                    <div className='containerDashboard'>
+                        <div className="dashboardGraph">
+                            <div className='graphSubTitle'>
+                                <h2>Paid</h2>
+                                <h2>${totalBillsPaid}</h2>
+                            </div>    
+                            {/* BILLS GRAPH */}
+                            <CircleGraph 
+                                data = {[totalBillsUnpaid, totalBillsPaid]}
+                                colors = {['red', 'green']}  
+                                width = {250}
+                                height = {250}
+                                value = {totalBillsUnpaid + totalBillsPaid}
+                            />
+                            <div className='graphSubTitle'>
+                                <h2>Unpaid</h2>
+                                <h2>${totalBillsUnpaid}</h2>
+                            </div>
                         </div>
-                        :<div className='containerNextTarget'>
-                            <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
-                            <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
-                            <h2 className={`nextTarget ${(Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
-                        </div>
-                    }
-                </div>              
-            </>
-        } 
-    </div>
-}
+                        {totalBillsUnpaid === 0 
+                            ? <div className='containerNextTarget'>
+                                <h2 className='nextTarget'>All Bills are paid this month.</h2>
+                            </div>
+                            : <div className='containerNextTarget'>
+                                <h2 className='nextTarget'>Next Bill: ${Math.abs(nextUnpaidBill?.amount).toFixed(2)}</h2>
+                                <h2 className='nextTarget'>{nextUnpaidBill?.name} - {new Date(nextUnpaidBill?.dueDate).toUTCString().slice(0, 11)}</h2>
+                                <h2 className={`nextTarget ${(Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextUnpaidBill.dueDate) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
+                            </div>
+                        }
+                    </div>              
+                </>
+            } 
+        </div>
+    );
+};
 
 export default DashBoard;

@@ -13,22 +13,22 @@ import AccountList from '../accounts/AccountList'
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
     // Views
-    let [homeView, setHomeView] = useState('Home')
+    let [homeView, setHomeView] = useState('Home');
     // Accounts
-    const [accounts, setAccounts] = useState([])
+    const [accounts, setAccounts] = useState([]);
     // Plans
-    const [plans, setPlans] = useState([])
+    const [plans, setPlans] = useState([]);
     // Bills
-    const [bills, setBills] = useState([])
+    const [bills, setBills] = useState([]);
     // Loading
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     // ------------------------------ END OF VARIABLES ------------------------------
     // ------------------------------ FUNCTIONS ------------------------------
     // Views
     const changeHomeView = view => {
-        setHomeView(view)
-        props.handleChangeHomeView("")
-    }
+        setHomeView(view);
+        props.handleChangeHomeView("");
+    };
     // Accounts
     const getAccounts = async () => {
         // Get all accounts from user
@@ -38,7 +38,7 @@ const Home = (props) => {
             withCredentials: true 
         })
         .then(res => setAccounts(res.data))
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     }
     // Moidfy Accounts Methods
     const modifyAccounts =  {

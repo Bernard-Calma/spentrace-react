@@ -30,8 +30,8 @@ const App = () => {
   // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
     // Check if current session has user
-    const checkUser = () => {
-      axios({
+    const checkUser = async () => {
+      await axios({
         method: "GET",
         withCredentials: true,
         url: process.env.REACT_APP_SERVER_URL
@@ -41,14 +41,14 @@ const App = () => {
           setUser({
             username: res.data.passport.user, 
             loggedIn: true
-          })
+          });
         } else {
-          console.log(res.response.message)
+          console.log(res.response.message);
         }
       })
       .catch(err => console.log(err))
     }
-    checkUser()
+    checkUser();
   },[user.loggedIn]);
 
   return (
