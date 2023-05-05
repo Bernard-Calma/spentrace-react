@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 
 // Landing Page Images
-import mainPageImage from "../../img/MainPage.png"
-import mobilePage from "../../img/MobilePage.png"
+import mainPageImage from "../../assets/img/MainPage.png"
+import mobilePage from "../../assets/img/MobilePage.png"
 
 // Conponents
 import Login from "./login/Login";
