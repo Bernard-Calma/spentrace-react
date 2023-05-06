@@ -1,5 +1,8 @@
 import axios from "axios"
 import "./Show.css"
+import Edit from "../../common/Icon";
+import Delete from "../../common/Icon";
+import BackButton from "../../Components/Buttons/BackButton";
 
 const ShowBill = (props) => {
     const getDate = () => {
@@ -25,19 +28,10 @@ const ShowBill = (props) => {
     return(
         <div className="containerShowBill">
             <div className="showHeader">
-                <i 
-                    className="fi fi-rr-angle-small-left" 
-                    onClick={props.return}
-                />
+                <BackButton className="fi fi-rr-angle-small-left" onClick={props.return}/>
                 <div>
-                    <i 
-                        className="fi fi-rr-edit" 
-                        onClick={props.edit}
-                    />
-                    <i 
-                        className="fi fi-rr-trash" 
-                        onClick={handleDelete}
-                    />
+                    <Edit className="fi fi-rr-edit" onClick={props.edit}/>
+                    <Delete className="fi fi-rr-trash" onClick={handleDelete}/>
                 </div>
             </div>
 

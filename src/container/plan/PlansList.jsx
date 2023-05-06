@@ -6,6 +6,7 @@ import EditPlan from "../edit/EditPlan";
 import ShowPlan from "../show/ShowPlan";
 import Categories from "./Categories";
 import "./PlansList.css"
+import Icon from "../../common/Icon";
 
 const PlanList = (props) => {
     const [openPlan, setOpenPlan] = useState({});
@@ -69,14 +70,8 @@ const PlanList = (props) => {
                                 handleShowPlan = {() => handleShowPlan(plan)}
                             />
                         )}
-                        <div 
-                            className="containerAdd"
-                            style={{textAlign: "center"}}
-                        >
-                            <i 
-                                className="fi fi-rr-add" 
-                                onClick={() =>handleChangeView("Add Plan")}
-                            />
+                        <div className="containerAdd" style={{textAlign: "center"}}>
+                            <Icon className="fi fi-rr-add" onClick={() =>handleChangeView("Add Plan")}/>
                         </div>
                     </div>
                 </section>

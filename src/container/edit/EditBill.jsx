@@ -109,7 +109,7 @@ const EdditBill = (props) => {
                         value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
                         onChange={handleChange} 
                         required
-                    ffffffffffffcvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv/>
+                    />
                 }
                 <div className='billCheckBoxes'>
                     <LabelInput 
