@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import BackButton from '../../Components/Buttons/BackButton'
 import './EditPlan.css'
+import LabelInput from '../../common/LabelInput';
 
 const EditPlan = (props) => {
     const [editPlan, setEditPlan] = useState(props.plan);
@@ -35,114 +36,94 @@ const EditPlan = (props) => {
                 className='editForm' 
                 onSubmit={handleSubmitEdit}
             >
-                <label 
+                <LabelInput 
                     htmlFor="date" 
                     className='formInput'
-                >
-                    Date: 
-                    <input 
-                        type="date" 
-                        name="date" 
-                        id="editDate" 
-                        value={new Date(editPlan.date).toISOString().slice(0,10)} 
-                        onChange = {handleChange} 
-                        required
-                    />
-                </label>
+                    text="Date:  "
+                    type="date" 
+                    name="date" 
+                    id="editDate" 
+                    value={new Date(editPlan.date).toISOString().slice(0,10)} 
+                    onChange = {handleChange} 
+                    required
+                />
 
-                <label 
+                <LabelInput 
                     htmlFor="name" 
                     className='formInput'
-                >
-                    Name: 
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="editName" 
-                        value={editPlan.name} 
-                        onChange = {handleChange} 
-                        required
-                    />
-                </label>
+                    text="Name: "
+                    type="text" 
+                    name="name" 
+                    id="editName" 
+                    value={editPlan.name} 
+                    onChange = {handleChange} 
+                    required
+                />
 
-                <label 
+
+                <LabelInput 
                     htmlFor="amount" 
                     className='formInput'
-                >
-                    Amount: 
-                    <input 
-                        type="number" 
-                        name="amount" 
-                        id="editAmount" 
-                        value={editPlan.amount} 
-                        onChange = {handleChange} 
-                        required
-                    />
-                </label>
-                <div 
-                    className='radio'>
+                    text="Amount: "
+                    type="number" 
+                    name="amount" 
+                    id="editAmount" 
+                    value={editPlan.amount} 
+                    onChange = {handleChange} 
+                    required
+                />
+                <div className='radio'>
                     {editPlan.expense
                         ? <>
-                            <label 
+                            <LabelInput 
                                 htmlFor="type" 
                                 className='formInput'
-                            >
-                                Income: 
-                                <input 
-                                    type="radio" 
-                                    name="expense" 
-                                    id="addTypeIncome" 
-                                    value="Income" 
-                                    onChange={handleChange} 
-                                    required
-                                />
-                            </label>
+                                text="Income: "
+                                type="radio" 
+                                name="expense" 
+                                id="addTypeIncome" 
+                                value="Income" 
+                                onChange={handleChange} 
+                                required
+                            />
 
-                            <label 
+                            <LabelInput 
                                 htmlFor="type" 
                                 className='formInput'
-                            >
-                                Expense: 
-                                <input 
-                                    type="radio" 
-                                    name="expense" 
-                                    id="addTypeExpense" 
-                                    value="Expense" 
-                                    checked 
-                                    onChange={handleChange} 
-                                    required
-                                />
-                            </label>
+                                text="Expense:"
+                                type="radio" 
+                                name="expense" 
+                                id="addTypeExpense" 
+                                value="Expense" 
+                                checked 
+                                onChange={handleChange} 
+                                required
+                            />
                         </>
                         : <>
-                            <label 
+                            <LabelInput 
+                                htmlFor="type" 
+                                className="formInput"
+                                text="Income: "
+                                type="radio" 
+                                name="expense" 
+                                id="addTypeIncome" 
+                                value="Income" 
+                                checked 
+                                onChange={handleChange} 
+                            />
+
+                            <LabelInput 
                                 htmlFor="type" 
                                 className='formInput'
-                            >
-                                Income: 
-                                <input 
-                                    type="radio" 
-                                    name="expense" 
-                                    id="addTypeIncome" 
-                                    value="Income" 
-                                    checked 
-                                    onChange={handleChange} 
-                                />
-                            </label>
-                                <label 
-                                    htmlFor="type" 
-                                    className='formInput'
-                                >
-                                Expense: 
-                                <input 
-                                    type="radio" 
-                                    name="expense" 
-                                    id="addTypeExpense" 
-                                    value="Expense" 
-                                    onChange={handleChange} 
-                                    required
-                                />
-                            </label>
+                                text="Expense: "
+                                type="radio" 
+                                name="expense" 
+                                id="addTypeExpense" 
+                                value="Expense" 
+                                onChange={handleChange} 
+                                required
+                            />
                         </>
                     }
                 </div>
@@ -154,11 +135,7 @@ const EditPlan = (props) => {
                     value={editPlan.notes} 
                     onChange = {handleChange}
                 />
-                <input 
-                    type="submit" 
-                    name="submit" 
-                    id="submit"
-                />
+                <LabelInput type="submit" name="submit" id="submit"/>
             </form>
         </div>
     );

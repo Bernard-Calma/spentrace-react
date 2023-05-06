@@ -24,7 +24,7 @@ const EdditBill = (props) => {
             withCredentials: true
         })
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             props.updateBill(res.data);
         })
         props.return();
@@ -98,19 +98,18 @@ const EdditBill = (props) => {
                         {repeatOptions.map((option, index) => <option key={index} value={option} className='repeatOption'>{option}</option>)}
                     </select>
                 </label>
-                {
-                    !(editBill.repeat === "never") && 
-                        <LabelInput 
-                            htmlFor="endRepeat" 
-                            className='formInput'
-                            text="Repeat Until: "
-                            type="date" 
-                            name="endRepeat" 
-                            id="addBillEndRepeat" 
-                            value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
-                            onChange={handleChange} 
-                            required
-                        />
+                {!(editBill.repeat === "never") && 
+                    <LabelInput 
+                        htmlFor="endRepeat" 
+                        className='formInput'
+                        text="Repeat Until: "
+                        type="date" 
+                        name="endRepeat" 
+                        id="addBillEndRepeat" 
+                        value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
+                        onChange={handleChange} 
+                        required
+                    ffffffffffffcvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv/>
                 }
                 <div className='billCheckBoxes'>
                     <LabelInput 
@@ -133,11 +132,7 @@ const EdditBill = (props) => {
                     value={editBill.notes} 
                     onChange = {handleChange}
                 />
-                <input 
-                    type="submit" 
-                    name="submit" 
-                    id="submit" 
-                />
+                <LabelInput type="submit" name="submit" id="submit"/>
             </form>
         </div>
     );
