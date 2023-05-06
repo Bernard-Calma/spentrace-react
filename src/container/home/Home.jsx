@@ -60,8 +60,8 @@ const Home = (props) => {
     // Modify Plans Methods
     const modifyPlans = {
         add: newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
-        update: updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan)),
-        delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id))
+        update: updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan).sort((a, b) => (a.date > b.date) ? 1 : -1)),
+        delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
     }
     // Bills
     const getBills = async () => {
