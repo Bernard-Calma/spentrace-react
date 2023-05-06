@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import MonthlyBill from "./MonthlyBill";
+import Categories from "../../common/Categories";
+import Add from "../../common/Icon";
 
 const Unpaid = (props) => {
     let [totalUnpaid, setTotalUnpaid] = useState(0);
@@ -25,32 +27,14 @@ const Unpaid = (props) => {
     return (
         <>
             <div className='containerPaid'>
-                        <p>Unpaid: </p>
-                        <p className="negative">${totalUnpaid.toFixed(2)}</p>
+                    <p>Unpaid: </p>
+                    <p className="negative">${totalUnpaid.toFixed(2)}</p>
             </div>
-            <div className="categoriesContainer billsCategory">
-                <div className="listContainer billDataContainer">
-                    <h2 className="billData date">Date</h2>
-                </div>
-
-                <div className="listContainer billDataContainer">
-                    <h2 className="billData name">Name</h2>
-                </div>
-
-                <div className="listContainer billDataContainer">
-                    <h2 className="billData amount">Amount</h2>
-                </div>
-
-                <div className="listContainer billDataContainer">
-                    <h2 className="billData category">Category</h2>
-                </div>
-            </div>
-
+            <Categories 
+                mobileCategories = {["date", "name", "amount", "category"]}
+            />
             <div className="billAddContainer">
-                    <i 
-                        className="fi fi-rr-add btnAddBill" 
-                        onClick={() => props.changeBillsView("Add Bill")}
-                    />
+                    <Add className="fi fi-rr-add btnAddBill" onClick={() => props.changeBillsView("Add Bill")}/>
             </div>
             <MonthlyBill
                 bills = {billsUnpaid}

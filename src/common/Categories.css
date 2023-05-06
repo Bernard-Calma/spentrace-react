@@ -19,7 +19,7 @@
     text-transform: capitalize;
 }
 
-.category.date, .category.amount, .category.running.total{
+.category.amount, .category.available.credit, .category.date, .category.interest, .category.running.total,  .category.minimum.payment, .category.paid, .category.usage{
     flex: 1
 }
 

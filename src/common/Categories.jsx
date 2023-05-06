@@ -6,12 +6,12 @@ const Categories = (props) => {
     const [fullCategories] = useState(props.fullCategories)
     return (
         <section className='categoriesContainer'>
-                {mobileCategories.map((category, index) => 
+                {mobileCategories?.map((category, index) => 
                     <h2 key={index} className={`category mobile ${category}`}>
                         {category}
                     </h2>
                 )}
-                {fullCategories.map((category, index) => 
+                {fullCategories?.map((category, index) => 
                     <h2
                         key={index}
                         className={`category full ${category}`}

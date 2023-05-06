@@ -6,6 +6,7 @@ import Loan from './Loan';
 import AddAccount from '../add/AddAccount';
 import ShowAccount from '../show/ShowAccount';
 import EditAccount from '../edit/EditAccount';
+import Categories from '../../common/Categories';
 
 const AccountList = props => {
     // Variables
@@ -149,20 +150,9 @@ const AccountList = props => {
                     {(accountCategory.checking.list.length > 0 && accountCategory.checking.show) &&
                         <section className='sectionChecking account'>
                             <h1>Checking Accounts</h1>
-                            <div className='categoriesContainer account'>
-                                <div className='listContainer account bank'>
-                                    <h2>Bank</h2>
-                                </div>
-
-                                <div className='listContainer account accountNumber'>
-                                    <h2>Account Number</h2>
-                                </div>
-
-                                <div className='listContainer account accountBalance'>
-                                    <h2>Balance</h2>
-                                </div>
-                            </div>
-
+                            <Categories 
+                                mobileCategories = {["bank", "account number", "balance"]}
+                            />
                             <div className='accountContainer'>
                                 {accountCategory.checking.list.map((account, index) => 
                                     <Account 
@@ -181,19 +171,9 @@ const AccountList = props => {
                     {(accountCategory.savings.list.length > 0 && accountCategory.savings.show) &&
                         <section className='sectionSavings account'>
                             <h1>Savings Accounts</h1>
-                            <div className='categoriesContainer account'>
-                                <div className='listContainer account bank'>
-                                    <h2>Bank</h2>
-                                </div>
-
-                                <div className='listContainer account accountNumber'>
-                                    <h2>Account Number</h2>
-                                </div>
-
-                                <div className='listContainer account accountBalance'>
-                                    <h2>Balance</h2>
-                                </div>
-                            </div>
+                            <Categories 
+                                mobileCategories = {["bank", "account number", "balance"]}
+                            />
                             <div className='accountContainer'>
                                 {accountCategory.savings.list.map((account, index) => 
                                     <Account 
@@ -211,39 +191,20 @@ const AccountList = props => {
                     {(accountCategory.creditCard.list.length > 0 && accountCategory.creditCard.show) &&
                         <section className='sectionCredit account'>
                             <h1>Credit Card Accounts</h1>
-                            <div className='categoriesContainer credit'>
-                                <div className='listContainer credit bank'>
-                                    <h2>Bank</h2>
-                                </div>
-
-                                <div className='listContainer credit accountNumber'>
-                                    <h2>Account Number</h2>
-                                </div>
-
-                                <div className='listContainer credit availableCredit'>
-                                    <h2>Available Credit</h2>
-                                </div>
-
-                                <div className='listContainer credit creditBalance'>
-                                    <h2>Balance</h2>
-                                </div>
-
-                                <div className='listContainer credit minimumPayment'>
-                                    <h2>Minimum Payment</h2>
-                                </div>
-
-                                <div className='listContainer credit dueDate'>
-                                    <h2>Due Date</h2>
-                                </div>
-
-                                <div className='listContainer credit interest'>
-                                    <h2>Interest</h2>
-                                </div>
-
-                                <div className='listContainer credit usage'>
-                                    <h2>Usage</h2>
-                                </div>
-                            </div>
+                            <Categories 
+                                mobileCategories = {[
+                                    "bank", 
+                                    "available credit",
+                                    "minimum payment",
+                                    "usage"
+                                ]}
+                                fullCategories = {[
+                                    "account number", 
+                                    "balance", 
+                                    "due date", 
+                                    "interest"
+                                ]}
+                            />
                             {accountCategory.creditCard.list.map((account, index) => 
                                 <CreditCard 
                                     key = {index}
@@ -259,35 +220,16 @@ const AccountList = props => {
                     {(accountCategory.loan.list.length > 0 && accountCategory.loan.show) &&
                         <section className='sectionLoan account'>
                             <h1>Loans</h1>
-                            <div className='categoriesContainer loan'>
-                                <div className='listContainer loan bank'>
-                                    <h2>Bank</h2>
-                                </div>
-
-                                <div className='listContainer loan availableCredit'>
-                                    <h2>Loan Amount</h2>
-                                </div>
-
-                                <div className='listContainer loan creditBalance'>
-                                    <h2>Balance</h2>
-                                </div>
-
-                                <div className='listContainer loan minimumPayment'>
-                                    <h2>Minimum Payment</h2>
-                                </div>
-
-                                <div className='listContainer loan dueDate'>
-                                    <h2>Due Date</h2>
-                                </div>
-
-                                <div className='listContainer loan interest'>
-                                    <h2>Interest</h2>
-                                </div>
-
-                                <div className='listContainer loan paid'>
-                                    <h2>Paid</h2>
-                                </div>
-                            </div>
+                            <Categories 
+                                mobileCategories = {[
+                                    "bank", 
+                                    "balance",
+                                    "minimum payment",
+                                    "due date",
+                                    "paid"
+                                ]}
+                                fullCategories = {["loan amount", "interest",]}
+                            />
                             {accountCategory.loan.list.map((account, index) => 
                                 <Loan 
                                     key = {index}

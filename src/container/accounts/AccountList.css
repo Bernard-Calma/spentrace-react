@@ -39,7 +39,6 @@
     cursor: pointer;
 }
 
-/* CHECKING, SAVINGS */
 section.account {
     display: flex;
     flex-direction: column;
@@ -51,43 +50,28 @@ section.account {
     width: 100%;
 }
 
-/* CHECKING, SAVINGS */
-
-.containerAccount{
-    border: solid #B0B7C4;
-    background-color: rgb(53, 52, 52);
-    overflow: scroll;
-    flex-grow: 1;
-}
-
-.bankContainer, .listContainer {
+.bankContainer{
     display: flex;
+    justify-content: space-between;
+    align-items: center;  
 }
 
-.listContainer.account {
-    width: 33%;
+.bankContainer > input {
+    all: unset;
+    padding: 0;
 }
 
-.accountBalance > .accountBalance{
-    background-color: unset;
-    border: none;
-    width: 100%;
+.bankContainer > h2, .bankContainer > input {
+    flex: 2;
+    margin: 0;
+    border: #B0B7C4 solid 1px;
     text-align: center;
-    font-family: "Russo One";
-    font-size: 25px;
+    font-size: 24px;
 }
 
-/* CHECKING, SAVINGS */
-
-/* CREDIT */
-
-/* CREDIT */
-
-/* LOAN */
-.listContainer.loan {
-    width: 14%;
+.bank.due.date, .bank.available.credit, .bank.interest, .bank.loan.amount, .bank.min.payment, .bank.paid, .bank.usage {
+    flex: 1
 }
-/* LOAN */
 
 @media screen and (max-width: 900px) {
     .sectionAccountList {
