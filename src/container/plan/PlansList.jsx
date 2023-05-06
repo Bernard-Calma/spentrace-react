@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Plan from "../../Components/Plan";
+import Plan from "./Plan";
 import AddPlan from "../add/AddPlan";
 import EditPlan from "../edit/EditPlan";
 import ShowPlan from "../show/ShowPlan";
@@ -57,7 +57,10 @@ const PlanList = (props) => {
         <> 
             {planView === "Plan List"
                 ?<section className='containerPlanList'>
-                    <Categories />
+                    <Categories 
+                        mobileCategories={["date", "name", "amount", "running total"]}
+                        fullCategories={["type"]}
+                    />
                     <div className="plansContainer">
                         {props.plans?.map((plan, index) => 
                             <Plan 
@@ -70,9 +73,9 @@ const PlanList = (props) => {
                                 handleShowPlan = {() => handleShowPlan(plan)}
                             />
                         )}
-                        <div className="containerAdd" style={{textAlign: "center"}}>
-                            <Icon className="fi fi-rr-add" onClick={() =>handleChangeView("Add Plan")}/>
-                        </div>
+                    </div>
+                    <div className="containerAdd" style={{textAlign: "center"}}>
+                        <Icon className="fi fi-rr-add" onClick={() =>handleChangeView("Add Plan")}/>
                     </div>
                 </section>
             : planView === "Add Plan"

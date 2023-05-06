@@ -1,22 +1,28 @@
-const Categories = () => {
+import { useState } from "react";
+
+const Categories = (props) => {
+    const [mobileCategories] = useState(props.mobileCategories)
+    const [fullCategories] = useState(props.fullCategories)
     return (
         <section className='categoriesContainer'>
-                <div className='listContainer date'>
-                    <h2>Date</h2>
-                </div>
-                <div className='listContainer name'>
-                    <h2>Name</h2>
-                </div>
-                <div className='listContainer amount'>
-                    <h2 className="amount">Amount</h2>
-                </div>
-                <div className='listContainer type'>
-                    <h2>Type</h2>
-                </div>
-                <div className='listContainer runningTotal'>
-                    <h2>Running Total</h2>
-                </div>
-                {/* <div className='listContainer'><h2>Target</h2></div> */}
+                {mobileCategories.map((category, index) => 
+                    <h2 key={index} className={`category mobile ${category}`}>
+                        {category}
+                    </h2>
+                )}
+                {fullCategories.map((category, index) => 
+                    <h2
+                        key={index}
+                        className={`category full ${category}`}
+                    >
+                        {category}
+                    </h2>
+                )}
+                {/* <h2 className="category date">Date</h2>
+                <h2 className="category name">Name</h2>
+                <h2 className="category amount">Amount</h2>
+                <h2 className="category type">Type</h2>
+                <h2 className="category runningTotal">Running Total</h2> */}
         </section>
     );
 };

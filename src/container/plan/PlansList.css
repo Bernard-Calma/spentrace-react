@@ -1,8 +1,3 @@
-/* Tag Styles */
-li {
-    list-style: none;
-}
-
 /* MAIN CONTAINER STYLES */
 .containerPlanList {
     border: solid #B0B7C4;
@@ -17,86 +12,91 @@ li {
 /* ----- END OF MAIN CONTAINER STYLES ----- */
 
 /* CATEGORIES CONTAINER */
+.categoriesContainer, .planContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid #B0B7C4 5px;
+}
 
 .categoriesContainer {
-    display: flex;
-    background-color: rgb(43, 43, 43);
-}
-
-.listContainer{
-    width: 25%;
-    border: solid #B0B7C4;
-    padding: 10px
-}
-
-.listContainer > h2 {
-    margin: auto;
-    overflow-wrap: break-word;
-    font-weight: bolder;
     font-family: "Russo One";
-    font-size: 25px;
-    text-align: center;
-    font-weight: bold;
+    background-color: rgb(19, 19, 19);
 }
-/* BILLS CONTAINER */
-.plansContainer{
+
+.categoriesContainer > h2, .planContainer > p {
+    flex: 2;
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+.category.date, .category.amount, .category.running.total, .plan.date, .plan.amount, .plan.running.total {
+    flex: 1
+}
+/* ------ END OF CATEGORIES CONTAINER ----- */
+
+/* PLANS CONTAINER (PAGE) */
+.plansContainer {
     overflow: scroll;
-    height: 80%;
 }
 
 .plansContainer::-webkit-scrollbar{
     display: none;
 }
 
+/* PLAN CONTAINER (SINGLE) */
+.planContainer {
+    background-color: rgb(43, 43, 43);
+    border-width: 1px;
+}
+
+.planContainer > p {
+    font-size: 24px;
+    text-transform: none;
+    border: solid #B0B7C4 1px;
+}
+
+
+.plan.name {
+    text-align: start;
+    padding-left: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media screen and (max-width: 900px) {
     .containerPlanList {
-        top: 50px;
-        width: 100%;
-        padding: 0;
-        overflow: scroll;
         border: none;
-        margin: 0;
         max-height: 700px;
     }
 
     .categoriesContainer {
         border: none;
         background-color: #50555f;
-        justify-content: space-between;
         box-shadow: 1px 1px 5px 1px white;
         margin-bottom: 5px;
-        /* padding: 0 5px; */
     }
 
-    .listContainer {
-        border: none;
-        padding: 0;
-        width: 60px;
-        flex: 1
-    }
-
-    .listContainer > h2 {
-        font-size: 15px;
-    }
-
-    .name h2, .runningTotal > h2 {
-       text-align: start;
-    }
-
-    .listContainer.name, .planData.name, .dataContainer.name {
-        flex: 3;
-    }
-
-    .date {
-        flex: 1
-    }
-
-    .listContainer.type  {
+    .full {
         display: none;
     }
 
-    h2.amount {
-        margin: auto 0;
+    .categoriesContainer > h2 {
+        font-size: 20px;
     }
 
+    .planContainer {
+        border: none;
+    }
+
+    .planContainer > p {
+        font-size: 18px;
+        border: none;
+    }
+
+    .plan.amount, .plan.running.total {
+        text-align: end;
+    }
 }
