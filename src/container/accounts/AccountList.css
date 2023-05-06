@@ -5,11 +5,6 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    
-}
-
-.sectionAccountList > .account {
-    align-self: baseline;
 }
 
 .sectionAccountList > section {
@@ -53,7 +48,7 @@ section.account {
 .bankContainer{
     display: flex;
     justify-content: space-between;
-    align-items: center;  
+    align-items: stretch ;  
 }
 
 .bankContainer > input {
@@ -73,49 +68,20 @@ section.account {
     flex: 1
 }
 
-@media screen and (max-width: 900px) {
-    .sectionAccountList {
+.bank.name {
+    overflow: scroll;
+}
+
+.bank.name::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .sectionAccountList, .sectionAccountList > section {
         margin: 0;
     }
 
-    .bankContainer .bank > h2 {
-        text-align: start;
-        margin: auto;
-        margin-left: 5px;
-    }
-
-    .listContainer > h2, .accountBalance{
-        font-size: 15px;
-    }
-
-    .accountBalance > input.accountBalance{
-        text-align: end;
-        padding-right: 30px;
-    }
-
-    .categoriesContainer.credit {
-        padding: 0
-    }
-
-    .bankContainer > .listContainer.availableCredit > h2 {
-        margin: auto 0;
-        margin-left: auto;
-    }
-
-    .listContainer.credit {
-        margin: 0 5px;
-    }
-
-    .bankContainer > .listContainer.creditBalance > h2, .minimumPayment > h2{
-        margin: 0;
-        margin-left: auto;
-    }
-
-    /* Cheking, Savings, Credit Card, Loan hide other categories */
-    .credit.accountNumber, .credit.credit.creditBalance, .credit.interest,
-    .account.accountNumber > h2, .credit.accountNumber > h2, .credit.creditBalance > h2, .credit.interest > h2,
-    .loan.loanAmount, .loan.loanAmount > h2, .loan.availableCredit, .loan.availableCredit > h2, .loan.interest, .loan.interest > h2
-    {
-        display: none;
+    .bankContainer > h2, .bankContainer > input {
+        font-size: 16px;
     }
 }

@@ -49,11 +49,11 @@ const Account = (props) => {
 
     return (
         <div className='bankContainer'>
-            <h2 className="account bank" onClick={props.handleShowAcc}>{props.account.bank}</h2>
-            <h2 className="account account number">{props.account.accNumber ? `...${props.account.accNumber.slice(-4)}` : '-'}</h2>
+            <h2 className="bank name" onClick={props.handleShowAcc}>{props.account.bank}</h2>
+            <h2 className="bank account number">{props.account.accNumber ? `...${props.account.accNumber.slice(-4)}` : '-'}</h2>
             <input 
                 type="text" 
-                className={`account balance ${balance > 0 ? "positive" : "negative"}`}
+                className={`bank balance ${balance > 0 ? "positive" : "negative"}`}
                 onChange={handleChange}
                 // Remove $ when clicked
                 onFocus={(e) => setBalanceText(e.target.value.slice(1))}

@@ -5,7 +5,7 @@ const CreditCard = (props) => {
     const [balance] = useState(account.creditLimit - account.availableCredit);
     return (
         <div className='bankContainer'>
-            <h2 className="bank bank" onClick={props.handleShowAcc}>{account.bank}</h2>
+            <h2 className="bank name" onClick={props.handleShowAcc}>{account.bank}</h2>
             <h2 className="bank available credit">{account.availableCredit >= 0 ? `$${props.addComma(account.availableCredit.toFixed(2))}` : `-$${Math.abs(props.addComma(account.availableCredit)).toFixed(2)}`}</h2>
             <h2 className="bank min payment">{account.minPayment ? `$${account.minPayment.toFixed(2)}` : '-'}</h2>
             {(balance / account.creditLimit * 100) <= 30
