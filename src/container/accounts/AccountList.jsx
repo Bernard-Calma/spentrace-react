@@ -222,13 +222,12 @@ const AccountList = props => {
                             <h1>Loans</h1>
                             <Categories 
                                 mobileCategories = {[
-                                    "bank", 
-                                    "balance",
+                                    "bank",
                                     "minimum payment",
                                     "due date",
                                     "paid"
                                 ]}
-                                fullCategories = {["loan amount", "interest",]}
+                                fullCategories = {["balance",, "loan amount", "interest"]}
                             />
                             {accountCategory.loan.list.map((account, index) => 
                                 <Loan 
