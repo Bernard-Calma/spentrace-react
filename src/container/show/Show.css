@@ -4,7 +4,6 @@
     border-radius: 20px;
     background-color: rgb(53, 52, 52);
     margin: 80px auto auto;
-    width: 600px;
     box-shadow: 1px 1px 5px 1px white;
 
 }
@@ -17,11 +16,6 @@
 }
 
 /* Plan */
-.containerShowInner {
-    margin: 50px auto ;
-    text-align: start;
-    padding-left: 50px;
-}
 
 .closeBtn {
     width: 20px;
@@ -46,7 +40,7 @@
     font-weight: bolder;
     font-size: 35px;
     padding-left: 10px;
-    color: #e0e7f3;
+    color: #e2edff;
 }
 
 .notes {
@@ -57,10 +51,65 @@
 
 /* Bill */
 
+/* New Style */
+.containerShowInner {
+    margin-top: 60px;
+    text-align: start;
+    padding: 10px 50px;
+    background-color: rgb(24, 22, 22);
+    border-radius: 0 0 20px 20px;
+}
+
+.containerShowInner.plans {
+    border-top: solid rgb(208, 255, 0) 5px;
+}
+
+.show.label {
+    margin: 30px 0;
+    font-family: "Calibri";
+    font-size: 30px;
+    color: #c9c9c9;
+    display: flex;
+    justify-content: space-between;
+    text-align: end;
+}
+
+.show.label > span {
+    padding: 0 5px;
+    font-family: "Russo One";
+    font-size: 34px;
+    color: white;
+    background-color: #141414;
+    border-radius: 5px;
+    box-shadow: white 0 0 5px 1px;
+}
+
+.show.label.notes {
+    text-align: start;
+    white-space:pre-wrap;
+    max-height: 200px;
+    overflow: scroll;
+    background-color: rgb(66, 61, 61);
+    color: rgb(255, 255, 255);
+    border: black solid;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 1px rgb(252, 252, 252);
+    padding-left: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+.show.label.notes::-webkit-scrollbar {
+    display: none;
+}
 
 @media screen and (max-width: 900px) {
     .containerShow, .containerShowBill {
         margin-top: 10px;
         width: 95%;
+    }
+
+    .show.label {
+        margin: 0;
     }
 }

@@ -3,6 +3,7 @@ import "./Show.css"
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
 import BackButton from "../../Components/Buttons/BackButton";
+import ParagraphSpan from "../../common/ParagraphSpan";
 
 const ShowPlan = (props) => {
     const getDate = () => {
@@ -32,33 +33,14 @@ const ShowPlan = (props) => {
                 </div>
             </div>
 
-            <div className="containerShowInner">
-                <p className='showInfo date'>
-                    <span>Date: </span>
-                    {getDate()}
-                </p>
-                <p className='showInfo name'>
-                    <span>Name: </span>
-                    {props.plan.name}
-                </p>
-                <p className='showInfo amount'>
-                    <span>Amount: </span>
-                    ${props.plan.amount.toFixed(2)}
-                </p>
-                <p className='showInfo type'>
-                    <span>Type: </span>
-                    {props.plan.expense ? "Expense" : "Income"}
-                </p>
-                <p className="showInfo">
-                    <span>Notes: </span>
-                    {props.plan.notes
-                        ? ''
-                        : '-'
-                    }
-                </p>
-                <p className='showInfo notes'> {props.plan.notes}</p>
+            <div className="containerShowInner plans">
+                <ParagraphSpan className="show label date" label="Date" value={getDate()}/>
+                <ParagraphSpan className="show label name" label="Name" value={props.plan.name}/>
+                <ParagraphSpan className="show label amount" label="Amount" value={`$${props.plan.amount.toFixed(2)}`}/>
+                <ParagraphSpan className="show label type" label="Type" value={props.plan.expense ? "Expense" : "Income"}/>
+                <ParagraphSpan className="show label" label="Notes" value={props.plan.notes ? '': '-'}/>
+                <p className='show label notes'>{props.plan.notes}</p>
             </div>
-
         </div>
     );
 };
