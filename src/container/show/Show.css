@@ -64,6 +64,15 @@
     border-top: solid rgb(208, 255, 0) 5px;
 }
 
+.containerShowInner.bills {
+    border-top: solid rgb(255, 0, 34) 5px;
+}
+
+.containerShowInner.accounts {
+    border-top: solid rgb(0, 153, 255) 5px;
+}
+
+
 .show.label {
     margin: 30px 0;
     font-family: "Calibri";
@@ -76,6 +85,7 @@
 
 .show.label > span {
     padding: 0 5px;
+    margin-right: 20px;
     font-family: "Russo One";
     font-size: 34px;
     color: white;

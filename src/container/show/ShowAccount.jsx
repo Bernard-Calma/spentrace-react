@@ -2,7 +2,7 @@ import axios from "axios"
 import "./Show.css"
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
-import BackButton from "../../Components/Buttons/BackButton";
+import ParagraphSpan from "../../common/ParagraphSpan";
 
 const ShowAccount = (props) => {
     const getDate = date => {
@@ -38,63 +38,26 @@ const ShowAccount = (props) => {
                     <Delete className="fi fi-rr-trash" onClick={handleDelete}/>
                 </div>
             </div>
-            <div className="containerShowInner">
-                <p className='showInfo accType'>
-                    <span>Account Type: </span>
-                    {props.openAcc.accType}
-                </p>
-                <p className='showInfo bank'>
-                    <span>Bank: </span>
-                    {props.openAcc.bank}
-                </p>
-                <p className='showInfo accNumber'>
-                    <span>Account Number: </span>
-                    {props.openAcc.accNumber ? props.openAcc.accNumber : '-'}
-                </p>
-                <p className='showInfo accOpen'>
-                    <span>Account Opened: </span>
-                    {props.openAcc.accOpen ? new Date(props.openAcc.accOpen).toISOString().slice(0,10) : '-'}
-                </p>
-                
-                {props.openAcc.accType !== 'Credit Card' &&
-                    <p className='showInfo balance'>
-                        <span>Balance: </span> 
-                        {props.openAcc.balance >= 0 ? `$${props.openAcc.balance.toFixed(2)}` : `-$${Math.abs(props.openAcc.balance).toFixed(2)}`}
-                    </p>
-                }
-
+            <div className="containerShowInner accounts">
+                <ParagraphSpan className="show label accType" label="Account Type" value={props.openAcc.accType}/>
+                <ParagraphSpan className="show label bank" label="Bank" value={props.openAcc.bank}/>
+                <ParagraphSpan className="show label accNumber" label="Account Number" value={props.openAcc.accNumber ? props.openAcc.accNumber : '-'}/>
+                <ParagraphSpan className="show label accOpen" label="Account Opened" value={props.openAcc.accOpen ? new Date(props.openAcc.accOpen).toISOString().slice(0,10) : '-'}/>
+                {props.openAcc.accType !== 'Credit Card' && <ParagraphSpan className="show label balance" label="Balance" value= {props.openAcc.balance >= 0 ? `$${props.addComma(props.openAcc.balance)}` : `-$${props.addComma(Math.abs(props.openAcc.balance))}`}/>}
                 {props.openAcc.accType === 'Credit Card'
                     ? <>
-                        <p className='showInfo creditLimit'> 
-                            <span>Credit Limit: </span>
-                            ${props.addComma(props.openAcc.creditLimit)}
-                        </p>
-                        <p className="showInfo availableCredit">
-                            <span>Available Credit: </span>
-                            {props.openAcc.availableCredit >= 0 ? `$${props.addComma(props.openAcc.availableCredit)}` : `-$${Math.abs(props.openAcc.availableCredit).toFixed(2)}`} 
-                        </p>
+                        <ParagraphSpan className="show label creditLimit" label="Credit Limit" value={`$${props.addComma(props.openAcc.creditLimit)}`}/>
+                        <ParagraphSpan className="show label availableCredit" label="Available Credit" value={props.openAcc.availableCredit >= 0 ? `$${props.addComma(props.openAcc.availableCredit)}` : `-$${Math.abs(props.openAcc.availableCredit).toFixed(2)}`} />
                     </>
                 : props.openAcc.accType === 'Loan'
-                    ? <p className='showInfo loanAmount'>
-                        <span>Loan Amount: </span>
-                        ${props.addComma(props.openAcc.loanAmount)}
-                    </p>
+                    ? <ParagraphSpan className="show label loanAmount" label="Loan Amount" value={`$${props.addComma(props.openAcc.loanAmount)}`}/>
                     : <></>
                 }
                 {(props.openAcc.accType === 'Credit Card' || props.openAcc.accType === 'Loan') &&
                     <>
-                        <p className='showInfo dueDate'>
-                            <span>Due Date: </span>
-                            {props.openAcc.dueDate ? getDate(props.openAcc.dueDate) : '-'}
-                        </p>
-                        <p className='showInfo minPayment'>
-                            <span>Minimum Payment: </span>
-                            {props.openAcc.minPayment ? `$${props.addComma(props.openAcc.minPayment.toFixed(2))}` : '-'}
-                        </p>
-                        <p className='showInfo interest'>
-                            <span>Interest: </span>
-                            {props.openAcc.interest ? `${props.openAcc.interest}%` : '-'}
-                        </p>
+                        <ParagraphSpan className="show label dueDate" label="Due Date" value={props.openAcc.dueDate ? getDate(props.openAcc.dueDate) : '-'}/>
+                        <ParagraphSpan className="show label minPayment" label="Minimum Payment" value={props.openAcc.minPayment ? `$${props.addComma(props.openAcc.minPayment.toFixed(2))}` : '-'}/>
+                        <ParagraphSpan className="show label interest" label="Interest" value={props.openAcc.interest ? `${props.openAcc.interest}%` : '-'}/>
                     </>
                 }
             </div>        

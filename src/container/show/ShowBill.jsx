@@ -3,6 +3,7 @@ import "./Show.css"
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
 import BackButton from "../../Components/Buttons/BackButton";
+import ParagraphSpan from "../../common/ParagraphSpan";
 
 const ShowBill = (props) => {
     const getDate = () => {
@@ -35,38 +36,15 @@ const ShowBill = (props) => {
                 </div>
             </div>
 
-            <div className="containerShowInner">
-                <p className='showInfo date'>
-                    <span>Date: </span>
-                    {getDate()}
-                </p>
-                <p className='showInfo name'>
-                    <span>Name: </span>
-                    {props.openBill.name}
-                </p>
-                <p className='showInfo amount'>
-                    <span>Amount:</span>
-                    ${props.openBill.amount.toFixed(2)}
-                </p>
-                <p className='showInfo amount'>
-                    <span>Caregory:</span>
-                    ${props.openBill.category? props.openBill.category : "None"}
-                </p>
-                <p className='showInfo type'>
-                    <span>Autopay:</span>
-                    {props.openBill.autoPay ? "Yes" : "No"}
-                </p>
-                <p className='showInfo type'>
-                    <span>Repeat:</span>
-                    {props.openBill.repeat}
-                </p>
-                <p className="showInfo">
-                    <span>Notes: </span>
-                    {props.openBill.notes
-                        ? "" 
-                        : "-"}
-                </p>
-                <p className='showInfo notes'>{props.openBill.notes}</p>
+            <div className="containerShowInner bills">
+                <ParagraphSpan className="show label date" label="Date" value={getDate()}/>
+                <ParagraphSpan className="show label name" label="Name" value={props.openBill.name}/>
+                <ParagraphSpan className="show label amount" label="Amount" value={`$${props.openBill.amount.toFixed(2)}`}/>
+                <ParagraphSpan className="show label category" label="Caregory" value={props.openBill.category? props.openBill.category : "None"}/>
+                <ParagraphSpan className="show label autopay" label="Autopay" value={props.openBill.autoPay ? "Yes" : "No"}/>
+                <ParagraphSpan className="show label Repeat" label="Repeat" value={props.openBill.repeat}/>
+                <ParagraphSpan className="show label" label="Notes" value={props.openBill.notes ? "" : "-"}/>
+                <p className={`${props.openBill.notes ? 'show label notes': 'show label'}`}>{props.openBill.notes}</p>
             </div>
         </div>
     );

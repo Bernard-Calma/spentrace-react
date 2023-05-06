@@ -39,7 +39,7 @@ const ShowPlan = (props) => {
                 <ParagraphSpan className="show label amount" label="Amount" value={`$${props.plan.amount.toFixed(2)}`}/>
                 <ParagraphSpan className="show label type" label="Type" value={props.plan.expense ? "Expense" : "Income"}/>
                 <ParagraphSpan className="show label" label="Notes" value={props.plan.notes ? '': '-'}/>
-                <p className='show label notes'>{props.plan.notes}</p>
+                <p className={`${props.plan.notes ? 'show label notes': 'show label'}`}>{props.plan.notes}</p>
             </div>
         </div>
     );
