@@ -1,0 +1,37 @@
+/* CATEGORIES CONTAINER */
+.categoriesContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid #B0B7C4 5px;
+}
+
+.categoriesContainer {
+    font-family: "Russo One";
+    background-color: rgb(19, 19, 19);
+}
+
+.categoriesContainer > h2 {
+    flex: 2;
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+.category.date, .category.amount, .category.running.total{
+    flex: 1
+}
+
+@media screen and (max-width: 900px) { 
+    .categoriesContainer {
+        border: none;
+        background-color: #50555f;
+        box-shadow: 1px 1px 5px 1px white;
+        margin-bottom: 5px;
+    }
+
+    .categoriesContainer > h2 {
+        font-size: 20px;
+    }
+}

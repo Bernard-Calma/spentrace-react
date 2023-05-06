@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Categories.css"
 
 const Categories = (props) => {
     const [mobileCategories] = useState(props.mobileCategories)

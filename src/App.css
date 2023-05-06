@@ -32,6 +32,10 @@ body {
 }
 
 @media only screen and (max-width: 900px) {
+  .full {
+    display: none;
+  }
+
   .signout {
     position: fixed;
     bottom: 30px;

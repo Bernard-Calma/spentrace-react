@@ -9,33 +9,6 @@
 .containerPlanList::-webkit-scrollbar{
     display: none;
 }
-/* ----- END OF MAIN CONTAINER STYLES ----- */
-
-/* CATEGORIES CONTAINER */
-.categoriesContainer, .planContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: solid #B0B7C4 5px;
-}
-
-.categoriesContainer {
-    font-family: "Russo One";
-    background-color: rgb(19, 19, 19);
-}
-
-.categoriesContainer > h2, .planContainer > p {
-    flex: 2;
-    text-align: center;
-    margin: 0;
-    font-size: 30px;
-    text-transform: capitalize;
-}
-
-.category.date, .category.amount, .category.running.total, .plan.date, .plan.amount, .plan.running.total {
-    flex: 1
-}
-/* ------ END OF CATEGORIES CONTAINER ----- */
 
 /* PLANS CONTAINER (PAGE) */
 .plansContainer {
@@ -48,14 +21,22 @@
 
 /* PLAN CONTAINER (SINGLE) */
 .planContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgb(43, 43, 43);
-    border-width: 1px;
 }
 
 .planContainer > p {
+    flex: 2;
+    text-align: center;
+    margin: 0;
     font-size: 24px;
-    text-transform: none;
     border: solid #B0B7C4 1px;
+}
+
+.plan.date, .plan.amount, .plan.running.total {
+    flex: 1
 }
 
 
@@ -72,31 +53,25 @@
         max-height: 700px;
     }
 
-    .categoriesContainer {
-        border: none;
-        background-color: #50555f;
-        box-shadow: 1px 1px 5px 1px white;
-        margin-bottom: 5px;
-    }
-
-    .full {
-        display: none;
-    }
-
-    .categoriesContainer > h2 {
-        font-size: 20px;
-    }
-
     .planContainer {
         border: none;
     }
 
     .planContainer > p {
-        font-size: 18px;
+        font-size: 17px;
         border: none;
+    }
+
+    .plan.name {
+        padding: 0
     }
 
     .plan.amount, .plan.running.total {
         text-align: end;
+        overflow: scroll;
+    }
+
+    .plan.amount::-webkit-scrollbar, .plan.running.total::-webkit-scrollbar{
+        display: none;
     }
 }

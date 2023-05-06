@@ -4,7 +4,7 @@ import Plan from "./Plan";
 import AddPlan from "../add/AddPlan";
 import EditPlan from "../edit/EditPlan";
 import ShowPlan from "../show/ShowPlan";
-import Categories from "./Categories";
+import Categories from "../../common/Categories";
 import "./PlansList.css"
 import Icon from "../../common/Icon";
 
