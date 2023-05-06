@@ -28,7 +28,7 @@ const ShowBill = (props) => {
     return(
         <div className="containerShowBill">
             <div className="showHeader">
-                <BackButton className="fi fi-rr-angle-small-left" onClick={props.return}/>
+                <i className="fi fi-rr-angle-small-left" onClick={props.return}/>
                 <div>
                     <Edit className="fi fi-rr-edit" onClick={props.edit}/>
                     <Delete className="fi fi-rr-trash" onClick={handleDelete}/>
