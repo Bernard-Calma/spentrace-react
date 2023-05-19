@@ -65,6 +65,7 @@ const AddPlan = (props) => {
                     type="number" 
                     name="amount" 
                     id="addAmount" 
+                    step={0.01}
                     onChange={handleChange} 
                     required
                 />
