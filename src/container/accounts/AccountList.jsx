@@ -227,7 +227,7 @@ const AccountList = props => {
                                     "due date",
                                     "paid"
                                 ]}
-                                fullCategories = {["balance",, "loan amount", "interest"]}
+                                fullCategories = {["balance", "loan amount", "interest"]}
                             />
                             {accountCategory.loan.list.map((account, index) => 
                                 <Loan 

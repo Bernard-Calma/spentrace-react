@@ -2,7 +2,6 @@ import axios from "axios"
 import "./Show.css"
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
-import BackButton from "../../Components/Buttons/BackButton";
 import ParagraphSpan from "../../common/ParagraphSpan";
 
 const ShowBill = (props) => {
