@@ -4,6 +4,18 @@ import './CircleGraph.css'
 const CircleGraph = ({ data, colors, width, height, value }) => {
   const canvasRef = useRef(null);
 
+  // Number modifiers
+  const addComma = numToString => {
+    if (numToString > 999) {
+        numToString = numToString.toFixed(2).toString();
+        for (let i = numToString.length - 6; i >= 0; i -= 3  ) {
+            numToString = numToString.slice(0,i) + ',' + numToString.slice(i);
+            
+        };
+    };
+    return numToString;
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -41,8 +53,8 @@ const CircleGraph = ({ data, colors, width, height, value }) => {
     ctx.fillStyle = '#000000';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = '28px Russo One';
-    ctx.fillText(value >= 0?"$"+value: "-$"+value.toString().slice(1), centerX, centerY);
+    ctx.font = 'italic 36px Russo One';
+    ctx.fillText(value >= 0? "$"+ addComma(Math.ceil(value)).toString().slice(0,-3) : "-$"+ addComma(Math.ceil(value)).toString().slice(1), centerX - 5, centerY);
   }, [data, colors, value]);
 
   return (
