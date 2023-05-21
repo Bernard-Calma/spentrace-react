@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import './CircleGraph.css'
+import './circleGraph.css'
 
 const CircleGraph = ({ data, colors, width, height, value }) => {
   const canvasRef = useRef(null);
