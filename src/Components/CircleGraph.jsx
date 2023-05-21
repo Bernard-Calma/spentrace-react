@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import './CircleGraph.css'
 
 const CircleGraph = ({ data, colors, width, height, value }) => {
   const canvasRef = useRef(null);
@@ -40,12 +41,12 @@ const CircleGraph = ({ data, colors, width, height, value }) => {
     ctx.fillStyle = '#000000';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = 'bold 36px sans-serif';
+    ctx.font = '28px Russo One';
     ctx.fillText(value >= 0?"$"+value: "-$"+value.toString().slice(1), centerX, centerY);
   }, [data, colors, value]);
 
   return (
-      <canvas ref={canvasRef} width={width} height={height} />
+      <canvas ref={canvasRef} width={width} height={height} className='dashboardCircle'/>
   );
 };
 
