@@ -32,3 +32,6 @@ This app can be used for simple budgeting tool, you can enter your earnings and 
 * CSS - Styling
 * Font Awesome - Additional styling
 * Heroku - Deployment
+
+## Future Features
+* Goals
