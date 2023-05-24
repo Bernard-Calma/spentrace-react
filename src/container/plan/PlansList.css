@@ -71,6 +71,11 @@
         overflow: scroll;
     }
 
+    .plan.running.total {
+        margin-left: 5px;
+        text-overflow: clip;
+    }
+
     .plan.amount::-webkit-scrollbar, .plan.running.total::-webkit-scrollbar{
         display: none;
     }
