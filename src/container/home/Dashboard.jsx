@@ -84,12 +84,11 @@ const DashBoard = (props) => {
                 if (billMonth === currentMonth) {
                     if(!bill.paid[index] && billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
                         // console.log(dueDate)
-                        const unpaidBill = {
+                        unpaidBill = {
                             ...bill,
                             dueDate: dueDate,
                             paid: bill.paid[index]
                         };
-                        return unpaidBill;
                     };
                 };
             });
