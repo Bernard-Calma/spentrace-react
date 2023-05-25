@@ -6,7 +6,7 @@ const CircleGraph = ({ data, colors, width, height, value }) => {
 
   // Number modifiers
   const addComma = numToString => {
-    if (numToString > 999) {
+    if (Math.abs(numToString) > 999) {
         numToString = numToString.toFixed(2).toString();
         for (let i = numToString.length - 6; i >= 0; i -= 3  ) {
             numToString = numToString.slice(0,i) + ',' + numToString.slice(i);
@@ -53,8 +53,8 @@ const CircleGraph = ({ data, colors, width, height, value }) => {
     ctx.fillStyle = '#000000';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = 'italic 36px Russo One';
-    ctx.fillText(value >= 0? "$"+ addComma(Math.ceil(value)).toString().slice(0,-3) : "-$"+ addComma(Math.ceil(value)).toString().slice(1), centerX - 5, centerY);
+    ctx.font = 'italic 28px Russo One';
+    ctx.fillText(value >= 0? "$"+ addComma(Math.ceil(value)).toString().slice(0,-3) : "-$"+ addComma(Math.ceil(Math.abs(value))).toString().slice(0,-3), centerX - 5, centerY);
   }, [data, colors, value]);
 
   return (
