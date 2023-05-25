@@ -6,8 +6,8 @@ const CircleGraph = ({ data, colors, width, height, value }) => {
 
   // Number modifiers
   const addComma = numToString => {
+    numToString = numToString.toFixed(2).toString();
     if (Math.abs(numToString) > 999) {
-        numToString = numToString.toFixed(2).toString();
         for (let i = numToString.length - 6; i >= 0; i -= 3  ) {
             numToString = numToString.slice(0,i) + ',' + numToString.slice(i);
             
