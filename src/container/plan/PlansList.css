@@ -35,8 +35,11 @@
     border: solid #B0B7C4 1px;
 }
 
-.plan.date, .plan.amount, .plan.running.total {
+.plan.date, .plan.amount {
     flex: 1
+}
+.plan.running.total {
+    flex: 1.5
 }
 
 
@@ -69,11 +72,6 @@
     .plan.amount, .plan.running.total {
         text-align: end;
         overflow: scroll;
-    }
-
-    .plan.running.total {
-        margin-left: 5px;
-        text-overflow: clip;
     }
 
     .plan.amount::-webkit-scrollbar, .plan.running.total::-webkit-scrollbar{

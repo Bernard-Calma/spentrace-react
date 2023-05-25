@@ -19,8 +19,12 @@
     text-transform: capitalize;
 }
 
-.category.amount, .category.available.credit, .category.date, .category.interest, .category.running.total,  .category.minimum.payment, .category.paid, .category.usage{
-    flex: 1
+.category.amount, .category.available.credit, .category.date, .category.interest,  .category.minimum.payment, .category.paid, .category.usage{
+    flex: 1;
+}
+
+.category.running.total {
+    flex: 1.5
 }
 
 @media screen and (max-width: 900px) { 
@@ -33,6 +37,7 @@
 
     .categoriesContainer > h2 {
         font-size: 20px;
+        margin: 0 5px;
     }
 
 }
