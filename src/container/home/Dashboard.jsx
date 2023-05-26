@@ -74,21 +74,32 @@ const DashBoard = (props) => {
         setTotalBillsUnpaid(totalUnpaid);
     }
 
-    const getNextUpaidBill = () => {
-        let unpaidBill = props.bills[0];
+    const getNextUnpaidBill = () => {
+        // set a temp unpaid bill
+        const firstBill = props.bills[0]
+        let firstFalseIndex = firstBill.paid.indexOf(false)
+        let unpaidBill = {
+            name: firstBill.name,
+            amount: firstBill.amount,
+            dueDate: firstBill.dueDate[firstFalseIndex],
+            paid: firstBill.paid[firstFalseIndex]
+        }
+        // console.log(unpaidBill)
         const currentMonth = new Date().getMonth();
         // Get the first bill that has a due date for the current year and month that is not paid
         props.bills.forEach(bill => {
-            bill.dueDate.forEach( (dueDate, index) => {
+            bill.dueDate.forEach((dueDate, index) => {
                 let billMonth = new Date(dueDate).getMonth()
                 if (billMonth === currentMonth) {
                     if(!bill.paid[index] && billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
-                        // console.log(dueDate)
-                        unpaidBill = {
-                            ...bill,
-                            dueDate: dueDate,
-                            paid: bill.paid[index]
-                        };
+                        if(dueDate < unpaidBill.dueDate) {
+                            unpaidBill = {
+                                name: bill.name,
+                                amount: bill.amount,
+                                dueDate: dueDate,
+                                paid: bill.paid[index]
+                            };
+                        }
                     };
                 };
             });
@@ -101,7 +112,7 @@ const DashBoard = (props) => {
         getBalance();
         getTarget();
         getBillsPaid();
-        getNextUpaidBill();
+        getNextUnpaidBill();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.plans]);
     
