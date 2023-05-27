@@ -77,7 +77,10 @@ const DashBoard = (props) => {
     const getNextUnpaidBill = () => {
         // set a temp unpaid bill
         const firstBill = props.bills[0]
+        // console.log(firstBill.paid.indexOf(false))
         let firstFalseIndex = firstBill.paid.indexOf(false)
+        // If firstfalseindex is negative (bill is not on repeat)
+        firstFalseIndex = firstFalseIndex === -1 ? 0 : firstFalseIndex
         let unpaidBill = {
             name: firstBill.name,
             amount: firstBill.amount,
@@ -93,6 +96,7 @@ const DashBoard = (props) => {
                 if (billMonth === currentMonth) {
                     if(!bill.paid[index] && billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
                         if(dueDate < unpaidBill.dueDate) {
+                            // console.log(bill)
                             unpaidBill = {
                                 name: bill.name,
                                 amount: bill.amount,
