@@ -123,7 +123,7 @@ const DashBoard = (props) => {
                 <div className="dashboardGraph">
                 <div className='graphSubTitle'>
                     <h2>Income</h2>
-                    <h2>${totalIncome}</h2>
+                    <h2>${Math.ceil(totalIncome)}</h2>
                 </div>
 
                 {/* PLAN GRAPH */}
@@ -136,7 +136,7 @@ const DashBoard = (props) => {
                 />
                 <div className='graphSubTitle'>
                     <h2>Expense</h2>
-                    <h2>${totalExpense}</h2>
+                    <h2>${Math.ceil(totalExpense)}</h2>
                 </div>    
                 </div>
                 {/* Show add if balance is positive */}
