@@ -80,7 +80,7 @@ const EditAccount = (props) => {
                             text="Balance: "
                             type="number" 
                             name="balance" 
-                            step="0.01" 
+                            step={0.01}
                             id="addAccountBalance" 
                             value={editAccount.balance} 
                             onChange={handleChange} 

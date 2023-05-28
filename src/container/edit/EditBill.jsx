@@ -69,6 +69,7 @@ const EdditBill = (props) => {
                     type="number" 
                     name="amount" 
                     id="editAmount" 
+                    step={0.01}
                     value={editBill.amount} 
                     onChange = {handleChange}
                     required

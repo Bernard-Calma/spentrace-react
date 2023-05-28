@@ -69,6 +69,7 @@ const EditPlan = (props) => {
                     name="amount" 
                     id="editAmount" 
                     value={editPlan.amount} 
+                    step={0.01}
                     onChange = {handleChange} 
                     required
                 />

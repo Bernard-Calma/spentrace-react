@@ -81,7 +81,8 @@ const AddBill = (props) => {
                     text="Amount: "
                     type="number" 
                     name="amount" 
-                    id="addBillAmount" 
+                    id="addBillAmount"
+                    step={0.01} 
                     onChange={handleChange} 
                     required
                 />
