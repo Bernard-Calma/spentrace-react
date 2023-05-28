@@ -94,11 +94,11 @@ const AccountList = props => {
 
             setAccountCategory({
                 checking: {
-                    list: accsCheckings,
+                    list: accsCheckings.sort((a,b) => b.balance - a.balance),
                     show: true
                 },
                 savings:  {
-                    list: accsSavings,
+                    list: accsSavings.sort((a,b) => b.balance - a.balance),
                     show: true
                 },
                 creditCard:  {
@@ -106,7 +106,7 @@ const AccountList = props => {
                     show: true
                 },
                 loan:  {
-                    list: accsLoan,
+                    list: accsLoan.sort((a,b) => ((a.loanAmount - a.balance) / a.loanAmount) - ((b.loanAmount - b.balance) / b.loanAmount)),
                     show: true
                 }
             })
