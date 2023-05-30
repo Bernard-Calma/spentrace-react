@@ -5,7 +5,7 @@ import BackButton from '../../Components/Buttons/BackButton';
 import LabelInput from '../../common/LabelInput';
 
 const AddPlan = (props) => {
-    const [newPlan, setNewPlan] = useState({userId: props.user.id});
+    const [newPlan, setNewPlan] = useState({userId: props.user.username});
 
     const handleChange = e => {
         // Handle input changes
@@ -13,6 +13,11 @@ const AddPlan = (props) => {
         if (e.target.name === "expense") setNewPlan({...newPlan, [e.target.name]: e.target.value === "Expense" ? true : false});
         else setNewPlan({...newPlan, [e.target.name]: e.target.value});
     };
+
+    const handleChangeAmount = e => {
+        if (parseInt(e.target.value) <= 9999 && e.target.value.length <= 7)
+            setNewPlan({...newPlan, [e.target.name]: e.target.value});
+    }
 
     const handleSubmitAdd = async e => {
         e.preventDefault();
@@ -36,6 +41,21 @@ const AddPlan = (props) => {
             </div>
             
             <form className='addForm' onSubmit={handleSubmitAdd}>
+                
+                <input 
+                    type="number" 
+                    className='amount' 
+                    name="amount" 
+                    id="addAmount" 
+                    placeholder='0.00' 
+                    min="-5000" 
+                    max="5000" 
+                    value={newPlan.amount}
+                    onChange={handleChangeAmount}
+                    step={0.01}
+                    required
+                    />
+
                 <LabelInput 
                     htmlFor="date" 
                     className='formInput'
@@ -58,17 +78,7 @@ const AddPlan = (props) => {
                     required
                 />
 
-                <LabelInput 
-                    htmlFor="amount" 
-                    className='formInput'
-                    text="Amount: "
-                    type="number" 
-                    name="amount" 
-                    id="addAmount" 
-                    step={0.01}
-                    onChange={handleChange} 
-                    required
-                />
+                
                 
                 <div className='radio'>
                     <LabelInput 

@@ -12,9 +12,16 @@
     padding: 10px;
     background-color: rgb(53, 52, 52);
     margin: 20px;
+    height: fit-content;
+    margin: 80px 20px;
 }
 
 /* Header */
+.addHeader > h2 {
+    flex: 1;
+    text-align: center;
+}
+
 .addTitle {
     font-family: "Russo One";
     font-weight: bold;
@@ -75,9 +82,43 @@ form {
     font-style: italic;
 }
 
+/* new Amount Style */
+.addForm > .amount {
+    font-size: 8em;
+    display: inline-block;
+    border: none;
+    background-color: unset;
+    text-align: center;
+    outline: none;
+    color: rgb(245, 255, 160);
+}
+
+/* Others */
+.addForm > .amount::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.addForm > .amount {
+  -moz-appearance: textfield;
+}
+
 @media screen and (max-width: 900px) {
     .addContainer {
         padding: 0 5px;
+        margin: 10px;
+    }
+
+    .addHeader > h2 {
+        font-size: 2em;
+    }
+
+    .addForm > .amount {
+        font-size: 6em;
+        width: 95%;
+        margin: 20px auto;
     }
 
     .formNotes {
@@ -87,6 +128,7 @@ form {
     .formInput {
         font-size: 25px;
         margin: 0;
+        margin: 5px ;
     }
 
     #submit {
