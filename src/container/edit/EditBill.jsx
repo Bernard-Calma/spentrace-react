@@ -24,7 +24,7 @@ const EdditBill = (props) => {
             withCredentials: true
         })
         .then(res => {
-            // console.log(res.data)
+            console.log(res.data)
             props.updateBill(res.data);
         })
         props.return();
