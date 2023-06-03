@@ -16,6 +16,7 @@ const EdditBill = (props) => {
     }
 
     const handleSubmitEdit = async e => {
+        // console.log("Edit", editBill)
         e.preventDefault();
         await axios({
             method: "PUT",
@@ -24,7 +25,7 @@ const EdditBill = (props) => {
             withCredentials: true
         })
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             props.updateBill(res.data);
         })
         props.return();
