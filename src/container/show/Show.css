@@ -100,12 +100,12 @@
     max-height: 200px;
     overflow: scroll;
     background-color: rgb(66, 61, 61);
-    color: rgb(255, 255, 255);
+    color: #c9c9c9;
     border: black solid;
     border-radius: 20px;
     box-shadow: 0 0 5px 1px rgb(252, 252, 252);
     padding-left: 5px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Calibri";
     font-size: 20px;
 }
 
@@ -132,5 +132,11 @@
         margin: 0;
         text-align: start;
         font-size: 28px;
+    }
+
+    
+    .show.label.notes {
+        width: auto;
+        min-height: 70px;
     }
 }
