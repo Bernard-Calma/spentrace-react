@@ -17,12 +17,14 @@ const LabelInput = props => <>
             />
             </label>
         : <input 
+            className={props.className}
             id = {props.id}
             type={props.type}
             name={props.name}
             placeholder={props.placeholder}
             value={props.value}
             onChange={props.onChange}
+            disabled={props.disabled}
             required = {props.required ? true : false}
         />
     }

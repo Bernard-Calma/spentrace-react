@@ -6,7 +6,7 @@ import LabelInput from '../../common/LabelInput';
 
 const AddPlan = (props) => {
     const [newPlan, setNewPlan] = useState({userId: props.user.username});
-
+    const [submitStatus, setSubmitStatus] = useState(false)
     const handleChange = e => {
         // Handle input changes
         // If expense or income changed return true or false
@@ -27,7 +27,11 @@ const AddPlan = (props) => {
             data: newPlan,
             withCredentials: true
         })
-        .then(res => props.addNewPlan(res.data));
+        .then(res => {
+                setSubmitStatus(true)
+                props.addNewPlan(res.data)
+            }
+             );
         props.handleChangeView("Main");
     };
 
@@ -113,7 +117,12 @@ const AddPlan = (props) => {
                     placeholder='enter notes here' 
                     onChange={handleChange}
                 />
-                <LabelInput type="submit" name="submit" id="submit" />
+                <LabelInput 
+                    className = {submitStatus && "disabled"}
+                    disabled = {submitStatus}
+                    type="submit" 
+                    name="submit" 
+                    id="submit" />
             </form>
         </div>
     );

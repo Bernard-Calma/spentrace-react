@@ -76,6 +76,10 @@ form {
     top: 3px;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .expenseMessage {
     font-size: 1rem;
     color: rgb(255, 61, 61);
