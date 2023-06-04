@@ -34,8 +34,7 @@ const Login = (props) => {
                 <span 
                     onClick={() => props.handleChangeView("Register")} 
                     className="registerText registerLink"
-                >
-                    Register Here
+                > Register Here
                 </span>
             </p>
         </div>

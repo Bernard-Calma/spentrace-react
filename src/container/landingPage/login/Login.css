@@ -91,7 +91,12 @@
 }
 
 .registerText {
-    font-size: 16px;
+    font-size: 1rem;
+}
+
+.registerText > span {
+    color: white;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 900px) {
