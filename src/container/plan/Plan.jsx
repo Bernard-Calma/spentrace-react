@@ -3,8 +3,8 @@
 const Plan = props => {
     const getDate = () => {
         // Get today and plan's month and date and compare
-        let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getDate();
-        let datePlan = new Date(props.plan.date).toDateString().slice(4,7) + " " + (new Date(props.plan.date).getDate() + 1); // Add 1 to provide accurate day
+        let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getUTCDate();
+        let datePlan = new Date(props.plan.date).toDateString().slice(4,7) + " " + (new Date(props.plan.date).getUTCDate());
         return dateToday === datePlan ? "Today": datePlan;
     }
 
