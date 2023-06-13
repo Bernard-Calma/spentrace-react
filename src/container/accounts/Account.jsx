@@ -45,6 +45,7 @@ const Account = (props) => {
     };
     useEffect(() => {
         setBalanceText(getBalanceText(props.account.balance));
+        setBalance(props.account.balance)
     },[props.account.balance]);
 
     return (

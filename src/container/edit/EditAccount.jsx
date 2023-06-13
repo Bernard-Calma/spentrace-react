@@ -23,7 +23,7 @@ const EditAccount = (props) => {
             withCredentials: true,
         })
         .then(res => {
-            console.log(res)
+            // console.log(res)
             props.update(res.data);
         });
         props.return();
