@@ -12,7 +12,7 @@ const Plan = props => {
         <div className = "planContainer">
             <p className={`plan date ${Date.parse(new Date(props.plan.date)) - Date.parse(new Date()) < 0 && 'negative'}`}>{getDate()}</p>
             <p className="plan name" onClick={() => props.handleShowPlan(props.plan)}>{props.plan.name}</p>
-            <p className="plan amount">${props.plan.amount.toFixed(2)}</p>
+            <p className={`plan amount ${props.plan.expense ? 'negativeMobileOnly' : 'positiveMobileOnly'}`}>${props.plan.amount.toFixed(2)}</p>
             <p className={`plan running total ${props.plan.runningTotal > 0 ? "positive" : "negative"}`}>{props.plan.runningTotal < 0 ? "-$"+Math.abs(props.plan.runningTotal).toFixed(2) : `$${props.plan.runningTotal?.toFixed(2)}`}</p>
             <p className="plan full type">{props.plan.expense ? "Expense" : "Income"}</p>   
         </div>

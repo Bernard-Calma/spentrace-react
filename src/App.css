@@ -41,5 +41,13 @@ body {
     bottom: 30px;
     right: -5px;
   }
+
+  .positiveMobileOnly {
+    color: rgb(0, 200, 0) !important;
+  }
+
+  .negativeMobileOnly {
+    color: rgb(255, 0, 0) !important;
+  }
 }
 
