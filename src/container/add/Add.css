@@ -78,6 +78,7 @@ form {
 
 .disabled {
     pointer-events: none;
+    background-color: gray;
 }
 
 .expenseMessage {
