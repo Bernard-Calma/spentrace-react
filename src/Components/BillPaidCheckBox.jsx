@@ -4,7 +4,9 @@ import { useState } from "react";
 const BillPaidCheckBox = props => {
     const [paidStatus] = useState(props.bill.paid);
 
-    const handleChangePaidStatus = async () => {
+    const handleChangePaidStatus = async (e) => {
+        // console.log(e.target.style.display)
+        e.target.style.display = "none"
         await axios({
             method: "PATCH",
             url: `${props.server}/bills/${props.bill._id}`,
