@@ -107,7 +107,7 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 .addForm > .amount {
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 @media screen and (max-width: 900px) {
@@ -124,6 +124,7 @@ input::-webkit-inner-spin-button {
         font-size: 6em;
         width: 95%;
         margin: 20px auto;
+        padding: 0;
     }
 
     .formNotes {
