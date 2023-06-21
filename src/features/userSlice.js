@@ -16,12 +16,13 @@ export const getUser = createAsyncThunk("user/getUser", async (thunkAPI) => {
     }
 })
 
-export const userLogin = createAsyncThunk("user/userLogin", async (loginUser, thunkAPI) => {
+export const userLogin = createAsyncThunk("user/userLogin", async (user, thunkAPI) => {
+    console.log("Login User", user)
     try {
         const res = await axios({
             method: 'POST',
             url: `${process.env.REACT_APP_SERVER_URL}/users/login`,
-            data: loginUser,
+            data: user,
             withCredentials: true
         })
         return res.data;
@@ -49,7 +50,7 @@ const userSlice = createSlice({
             })
             .addCase(userLogin.fulfilled, (state, action) => {
                 state.loggedIn = true;
-                console.log("Action Payload", action.payload)
+                console.log("Action", action)
                 state.username = action.payload;
             })
             .addMatcher(userLogin.rejected, state => {

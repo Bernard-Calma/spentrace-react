@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch} from "react-redux";
 import axios from "axios";
 
 // Landing Page Images
@@ -11,6 +12,7 @@ import Register from "./login/Register";
 import "./landingPage.css"
 
 const LandingPage = (props) =>{
+    const dispatch = useDispatch();
     // VARIABLES
     // User
     const [loginUser, setLoginUser] = useState({
@@ -35,6 +37,9 @@ const LandingPage = (props) =>{
         password: "", 
         verifyPassword: ""
     });
+
+    // Reducers
+    
     
 
     const handleChangeView = view => {
