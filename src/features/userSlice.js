@@ -27,6 +27,7 @@ export const userLogin = createAsyncThunk("user/userLogin", async (user, thunkAP
         })
         return res.data;
     } catch (err) {
+        console.log("error: ", err)
         return thunkAPI.rejectWithValue("Error Loging In")
     }
 })
@@ -53,7 +54,8 @@ const userSlice = createSlice({
                 console.log("Action", action)
                 state.username = action.payload;
             })
-            .addMatcher(userLogin.rejected, state => {
+            .addMatcher(userLogin.rejected, (state, action) => {
+                console.log(action)
                 state.loggedIn = false;
             })
     }

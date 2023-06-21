@@ -3,29 +3,38 @@ import { userLogin } from "../../../features/userSlice";
 import "./Login.css"
 
 import {useState} from "react"
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 const Login = (props) => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState({
         username: "",
-        password: ""
+        password: "",
+        errorMessage: "",
     })
 
-    const handleChange = e => {
-        e.preventDefault()
-        setUser({...user, [e.target.name]: e.target.value})
-    }
+    const handleChange = e => setUser({...user, [e.target.name]: e.target.value})
     
+    const handleLogin = e => {
+        e.preventDefault();
+        // USERNAME CHECK
+        let checkForSpace = user.username.match(" ") || user.password.match(" ");
+        if(checkForSpace) {
+            setUser({...user, 
+                password: "",
+                errorMessage: "Invalid Username or Password"});
+            return
+        } else {
+            dispatch(userLogin(user))
+        }
+    }
+
     return(
         <div className="containerLogin">
             <h1 className="loginTitle"> LOGIN </h1>
             <form 
                 className="formLogin" 
-                onSubmit={e => {
-                    e.preventDefault()
-                    dispatch(userLogin(user))
-                }}
+                onSubmit={handleLogin}
             >
                 <LabelInput 
                     type="text"
@@ -43,8 +52,8 @@ const Login = (props) => {
                     onChange={handleChange} 
                     required
                 />
-                {props.errorMessage !== ""
-                    ? <p className="loginMessage">{props.errorMessage}</p> 
+                {user.errorMessage !== ""
+                    ? <p className="loginMessage">{user.errorMessage}</p> 
                     : <></>
                 }
                 <button className="btnLogin">Login</button>
