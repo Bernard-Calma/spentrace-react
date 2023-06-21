@@ -3,11 +3,13 @@ import axios from "axios"
 
 const initialState = {
     username: "",
-    loggedIn: false
+    loggedIn: false,
+    errorMessage: "",
+    loading: false,
 }
 
 export const getUser = createAsyncThunk("user/getUser", async (thunkAPI) => {
-    console.log("Get User")
+    // console.log("Get User")
     try {
         const res = await axios(process.env.REACT_APP_SERVER_URL)
         return res.data;
@@ -17,18 +19,35 @@ export const getUser = createAsyncThunk("user/getUser", async (thunkAPI) => {
 })
 
 export const userLogin = createAsyncThunk("user/userLogin", async (user, thunkAPI) => {
-    console.log("Login User", user)
+    // console.log("Login User", user)
+    try {
+        if (!thunkAPI.getState().user.loggedIn) {
+            const res = await axios({
+                method: 'POST',
+                url: `${process.env.REACT_APP_SERVER_URL}/users/login`,
+                data: user,
+                withCredentials: true
+            })
+            return res.data;
+        }
+    } catch (err) {
+        // console.log("error: ", err)
+        return thunkAPI.rejectWithValue("Error Loging In")
+    }
+})
+
+export const userRegister = createAsyncThunk("user/userRegister", async (newUser, thunkAPI) => {
     try {
         const res = await axios({
-            method: 'POST',
-            url: `${process.env.REACT_APP_SERVER_URL}/users/login`,
-            data: user,
+            method: "POST",
+            url: `${process.env.REACT_APP_SERVER_URL}/users/register`,
+            data: newUser,
             withCredentials: true
         })
-        return res.data;
+        return res.data
     } catch (err) {
-        console.log("error: ", err)
-        return thunkAPI.rejectWithValue("Error Loging In")
+        // console.log("Registration Error: ", err);
+        return thunkAPI.rejectWithValue(err.response.data.message)
     }
 })
 
@@ -51,11 +70,16 @@ const userSlice = createSlice({
             })
             .addCase(userLogin.fulfilled, (state, action) => {
                 state.loggedIn = true;
-                console.log("Action", action)
+                console.log("fulfilled Action", action)
                 state.username = action.payload;
             })
-            .addMatcher(userLogin.rejected, (state, action) => {
-                console.log(action)
+            .addCase(userRegister.fulfilled, (state, action) => {
+                state.loggedIn = false;
+                // console.log("Register Action", action)
+            })
+            .addCase(userLogin.rejected, (state, {payload}) => {
+                console.log("Error:", payload)
+                state.errorMessage = payload
                 state.loggedIn = false;
             })
     }

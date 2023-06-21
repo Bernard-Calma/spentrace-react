@@ -5,9 +5,7 @@ import Header from './common/Header';
 import Footer from './container/footer/Footer';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
-import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux"
-import { store } from './store';
 import { getUser } from './features/userSlice';
 
 const App = () => { 
@@ -18,8 +16,8 @@ const App = () => {
   const [view, setView] = useState("Login");
   const [appView, setAppView] = useState("");
   // User information
-  const {user, loggedIn} = useSelector(store => store.user)
-  console.log(user)
+  const {username, loggedIn} = useSelector(store => store.user)
+  // console.log("User: ", username)
   // const [user, setUser] = useState({
   //   username: "",
   //   loggedIn: false
@@ -44,7 +42,7 @@ const App = () => {
     <div className="App">
       <Header 
         view = {view}
-        user = {user}
+        user = {username}
         server = {server}
         // setUser = {setUser}
         handleChangeView = {handleChangeView}
@@ -52,7 +50,7 @@ const App = () => {
       />
       {loggedIn 
         ? <Home 
-            user = {user}
+            user = {username}
             server = {server}
             appView = {appView}
             handleChangeView = {handleChangeView}

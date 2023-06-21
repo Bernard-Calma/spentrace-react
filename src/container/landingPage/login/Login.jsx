@@ -23,9 +23,10 @@ const Login = (props) => {
             setUser({...user, 
                 password: "",
                 errorMessage: "Invalid Username or Password"});
-            return
+            return;
         } else {
-            dispatch(userLogin(user))
+            dispatch(userLogin(user));
+            setUser({...user, password: ""});
         }
     }
 
