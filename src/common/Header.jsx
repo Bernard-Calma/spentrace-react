@@ -26,7 +26,7 @@ const Header = (props) => {
     return(
         <section className='header'>
             <h1 className="title" onClick={props.handleChangeHomeView}>Spentrace</h1> 
-            {props.user.loggedIn && <Icon className="fi fi-rr-sign-out-alt" onClick={() => dispatch(logout())} />}
+            {loggedIn && <Icon className="fi fi-rr-sign-out-alt" onClick={() => dispatch(logout())} />}
         </section>
     );
 };

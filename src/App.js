@@ -6,6 +6,9 @@ import Footer from './container/footer/Footer';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux"
+import { store } from './store';
+import { getUser } from './features/userSlice';
 
 const App = () => { 
   // ------------------------------ VARIABLES ------------------------------
@@ -15,10 +18,14 @@ const App = () => {
   const [view, setView] = useState("Login");
   const [appView, setAppView] = useState("");
   // User information
-  const [user, setUser] = useState({
-    username: "",
-    loggedIn: false
-  });
+  const {user, loggedIn} = useSelector(store => store.user)
+  console.log(user)
+  // const [user, setUser] = useState({
+  //   username: "",
+  //   loggedIn: false
+  // });
+  // Reducers
+  const dispatch = useDispatch()
   // ------------------------------ END OF VARIABLES ------------------------------
 
   // ------------------------------ FUNCTIONS ------------------------------
@@ -30,26 +37,8 @@ const App = () => {
   // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
     // Check if current session has user
-    const checkUser = async () => {
-      await axios({
-        method: "GET",
-        withCredentials: true,
-        url: process.env.REACT_APP_SERVER_URL
-      })
-      .then(res => { 
-        if(res.data.passport.user) {
-          setUser({
-            username: res.data.passport.user, 
-            loggedIn: true
-          });
-        } else {
-          console.log(res.response.message);
-        }
-      })
-      .catch(err => console.log(err))
-    }
-    checkUser();
-  },[user.loggedIn]);
+    dispatch(getUser());
+  },[loggedIn]);
 
   return (
     <div className="App">
@@ -57,11 +46,11 @@ const App = () => {
         view = {view}
         user = {user}
         server = {server}
-        setUser = {setUser}
+        // setUser = {setUser}
         handleChangeView = {handleChangeView}
         handleChangeHomeView = {() => handleChangeHomeView("Home")}
       />
-      {user.loggedIn 
+      {loggedIn 
         ? <Home 
             user = {user}
             server = {server}
@@ -70,7 +59,7 @@ const App = () => {
             handleChangeHomeView = {() => handleChangeHomeView("")}
           />
         : <LandingPage 
-            setUser = {setUser}
+            // setUser = {setUser}
             server = {server}
           /> 
       }

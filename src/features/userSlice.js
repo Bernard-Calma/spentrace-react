@@ -6,6 +6,16 @@ const initialState = {
     loggedIn: false
 }
 
+export const getUser = createAsyncThunk("user/getUser", async (thunkAPI) => {
+    console.log("Get User")
+    try {
+        const res = await axios(process.env.REACT_APP_SERVER_URL)
+        return res.data;
+    } catch (err) {
+        return thunkAPI.rejectWithValue("Error Loging In")
+    }
+})
+
 export const userLogin = createAsyncThunk("user/userLogin", async (loginUser, thunkAPI) => {
     try {
         const res = await axios({
@@ -25,19 +35,21 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         logout: state => {
-            console.log("Logout!")
+            axios(`${process.env.REACT_APP_SERVER_URL}/users/signout`)
+            // .then(res => console.log(res))
             state.loggedIn = false;
             state.username = "";
         }
     },
     extraReducers: builder => {
         builder
+            // Login 
             .addCase(userLogin.pending, state => {
                 state.loggedIn = false;
             })
             .addCase(userLogin.fulfilled, (state, action) => {
                 state.loggedIn = true;
-                console.log(action.payload)
+                console.log("Action Payload", action.payload)
                 state.username = action.payload;
             })
             .addMatcher(userLogin.rejected, state => {
