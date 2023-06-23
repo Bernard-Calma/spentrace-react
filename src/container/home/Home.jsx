@@ -14,13 +14,13 @@ import AccountList from '../accounts/AccountList'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
-    const plans = useSelector(store => store.plan)
+    const {planItems} = useSelector(store => store.plan)
     // Views
     let [homeView, setHomeView] = useState('Home');
     // Accounts
     const [accounts, setAccounts] = useState([]);
     // Plans
-    // const [plans, setPlans] = useState([]);
+    const [plans, setPlans] = useState([]);
     // Bills
     const [bills, setBills] = useState([]);
     // Loading
@@ -95,7 +95,7 @@ const Home = (props) => {
                     <Loading />
                 </div>
                 :         <section className="containerHome">
-                {plans.length === 0 
+                {planItems.length === 0 
                     ? <EmptyDashboard 
                         user = {props.user}
                         server = {props.server}
@@ -110,7 +110,7 @@ const Home = (props) => {
                         <div className='containerHomeView'>
                             {homeView === "Home" || props.appView === "Home"
                                 ? <DashBoard 
-                                    plans = {plans}
+                                    plans = {planItems}
                                     bills = {bills}
                                     changeHomeView = {changeHomeView}
                                 />
@@ -118,7 +118,7 @@ const Home = (props) => {
                                 ? <PlanList 
                                     user = {props.user}
                                     server = {props.server}
-                                    plans = {plans}
+                                    plans = {planItems}
                                     // modifyPlans = {modifyPlans}
                                 />
                                 : homeView === "Bills List" 

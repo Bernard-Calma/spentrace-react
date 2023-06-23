@@ -29,7 +29,7 @@ const planSlice = createSlice({
     name: "plan",
     initialState,
     reducers: {
-        load: () => {
+        modifyPlan: () => {
             console.log("Test")
         }
     },
@@ -52,7 +52,7 @@ const planSlice = createSlice({
 })
 
 export const {
-
+    modifyPlan,
 } = planSlice.actions
 
 export default planSlice.reducer;
