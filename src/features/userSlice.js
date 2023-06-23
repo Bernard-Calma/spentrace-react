@@ -11,7 +11,11 @@ const initialState = {
 export const getUser = createAsyncThunk("user/getUser", async (thunkAPI) => {
     // console.log("Get User")
     try {
-        const res = await axios(process.env.REACT_APP_SERVER_URL)
+        const res = await axios({
+            method: "GET",
+            withCredentials: true,
+            url: process.env.REACT_APP_SERVER_URL
+          })
         return res.data;
     } catch (err) {
         return thunkAPI.rejectWithValue("Error Loging In")
@@ -28,7 +32,7 @@ export const userLogin = createAsyncThunk("user/userLogin", async (user, thunkAP
                 data: user,
                 withCredentials: true
             })
-            return res.data;
+            return res.data.user;
         }
     } catch (err) {
         // console.log("error: ", err)
@@ -70,7 +74,7 @@ const userSlice = createSlice({
             })
             .addCase(userLogin.fulfilled, (state, action) => {
                 state.loggedIn = true;
-                console.log("fulfilled Action", action)
+                // console.log("fulfilled Action", action)
                 state.username = action.payload;
             })
             .addCase(userRegister.fulfilled, (state, action) => {
@@ -78,7 +82,7 @@ const userSlice = createSlice({
                 // console.log("Register Action", action)
             })
             .addCase(userLogin.rejected, (state, {payload}) => {
-                console.log("Error:", payload)
+                // console.log("Error:", payload)
                 state.errorMessage = payload
                 state.loggedIn = false;
             })

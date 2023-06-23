@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPlans } from '../../features/planSlice'
 
 import BillsList from '../bills/BillsList'
 import PlanList from '../plan/PlansList'
@@ -12,17 +14,21 @@ import AccountList from '../accounts/AccountList'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
+    const plans = useSelector(store => store.plan)
     // Views
     let [homeView, setHomeView] = useState('Home');
     // Accounts
     const [accounts, setAccounts] = useState([]);
     // Plans
-    const [plans, setPlans] = useState([]);
+    // const [plans, setPlans] = useState([]);
     // Bills
     const [bills, setBills] = useState([]);
     // Loading
     const [loading, setLoading] = useState(true);
     // ------------------------------ END OF VARIABLES ------------------------------
+    // REDUX
+    const dispatch = useDispatch();
+    // REDUX
     // ------------------------------ FUNCTIONS ------------------------------
     // Views
     const changeHomeView = view => {
@@ -46,23 +52,12 @@ const Home = (props) => {
         update: updatedAccount=> setAccounts(accounts.map(account => account._id === updatedAccount._id ? updatedAccount : account)),
         delete: deletedAccount => setAccounts(accounts.filter(account => deletedAccount._id !== account._id))
     }
-    // Plan
-    const getPlans = async () => {
-        // Get all plans from user
-        await axios({ 
-            method: "GET",
-            url: `${props.server}/plans`,
-            withCredentials: true 
-        })
-        .then(res => setPlans(res.data.sort((a, b) => (a.date > b.date) ? 1 : -1)))
-        .catch(err => console.log(err))
-    }
     // Modify Plans Methods
-    const modifyPlans = {
-        add: newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
-        update: updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan).sort((a, b) => (a.date > b.date) ? 1 : -1)),
-        delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
-    }
+    // const modifyPlans = {
+    //     add: newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
+    //     update: updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan).sort((a, b) => (a.date > b.date) ? 1 : -1)),
+    //     delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
+    // }
     // Bills
     const getBills = async () => {
         await axios({
@@ -84,8 +79,10 @@ const Home = (props) => {
     }
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
+        // console.log("Home")
+        dispatch(getPlans())
         getAccounts()
-        getPlans()
+        // getPlans()
         getBills()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -102,7 +99,7 @@ const Home = (props) => {
                     ? <EmptyDashboard 
                         user = {props.user}
                         server = {props.server}
-                        addNewPlan = {modifyPlans.add}
+                        // addNewPlan = {modifyPlans.add}
                     />
                     : <>
                         <div className='homeNavBar'>
@@ -122,7 +119,7 @@ const Home = (props) => {
                                     user = {props.user}
                                     server = {props.server}
                                     plans = {plans}
-                                    modifyPlans = {modifyPlans}
+                                    // modifyPlans = {modifyPlans}
                                 />
                                 : homeView === "Bills List" 
                                 ? <BillsList
