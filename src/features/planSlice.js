@@ -36,6 +36,12 @@ const planSlice = createSlice({
             let runningBalance = 0;
             let totalIncome = 0;
             let totalExpense = 0;
+            // next target
+            let balance = 0;
+            let nextTarget = {
+                amount: 0,
+                date: ""
+            };
             for (const plan of state.planItems) {
                 if (plan.expense) {
                     runningBalance -= plan.amount
@@ -44,14 +50,20 @@ const planSlice = createSlice({
                     runningBalance += plan.amount
                     totalIncome += plan.amount
                 };
+                // next target
+                plan.expense ? balance -= plan.amount :  balance += plan.amount
+                // console.log(balance)
+                if (balance <= 0 && nextTarget.amount === 0) {
+                    nextTarget.amount = balance;
+                    nextTarget.name = plan.name;
+                    nextTarget.date = plan.date;
+                    state.nextTarget = nextTarget;
+                };
             };
             state.balance = runningBalance;
             state.totalIncome = totalIncome;
             state.totalExpense = totalExpense
         },
-        modifyPlan: () => {
-            console.log("Test")
-        }
     },
     extraReducers: builder => {
         builder
@@ -73,7 +85,8 @@ const planSlice = createSlice({
 
 export const {
     modifyPlan,
-    getBalance
+    getBalance,
+    getTarget
 } = planSlice.actions
 
 export default planSlice.reducer;

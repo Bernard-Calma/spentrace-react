@@ -7,13 +7,13 @@ const DashBoard = (props) => {
     const dispatch = useDispatch();
     // VARIABLES
     // Plans
-    const {balance, totalIncome, totalExpense} = useSelector(store => store.plan)
+    const {
+        balance, 
+        totalIncome, 
+        totalExpense, 
+        nextTarget
+    } = useSelector(store => store.plan)
 
-    const [nextTarget, setNextTarget] = useState({
-        amount: 0,
-        date: '',
-        name: ''
-    });
     // Bills
     const [totalBillsPaid, setTotalBillsPaid] = useState(0);
     const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0);
@@ -22,24 +22,6 @@ const DashBoard = (props) => {
 
     // FUNCTIONS
     // Plans
-
-    const getTarget = () => {
-        let balance = 0;
-        let nextTarget = {
-            amount: 0,
-            date: ""
-        };
-        props.plans.forEach( plan => {
-            plan.expense ? balance -= plan.amount :  balance += plan.amount
-            // console.log(balance)
-            if (balance <= 0 && nextTarget.amount === 0) {
-                nextTarget.amount = balance;
-                nextTarget.name = plan.name;
-                nextTarget.date = plan.date;
-                return setNextTarget(nextTarget);
-            };
-        });
-    }
     // Bills
     const getBillsPaid = () => {
         // Get paid and unpaid graph
@@ -99,7 +81,6 @@ const DashBoard = (props) => {
 
     useEffect(() => {
         dispatch(getBalance())
-        getTarget();
         getBillsPaid();
         getNextUnpaidBill();
         // eslint-disable-next-line react-hooks/exhaustive-deps

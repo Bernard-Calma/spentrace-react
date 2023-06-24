@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getBalance, getPlans } from '../../features/planSlice'
+import { getPlans } from '../../features/planSlice'
 
 import BillsList from '../bills/BillsList'
 import PlanList from '../plan/PlansList'
@@ -19,8 +19,6 @@ const Home = (props) => {
     let [homeView, setHomeView] = useState('Home');
     // Accounts
     const [accounts, setAccounts] = useState([]);
-    // Plans
-    const [plans, setPlans] = useState([]);
     // Bills
     const [bills, setBills] = useState([]);
     // Loading
