@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBalance } from "../../features/planSlice";
-import CircleGraph from "../../Components/CircleGraph";
+import { getNextBill } from "../../features/billSlice";
 
+import CircleGraph from "../../Components/CircleGraph";
 const DashBoard = (props) => {
     const dispatch = useDispatch();
     // VARIABLES
@@ -13,33 +14,17 @@ const DashBoard = (props) => {
         totalExpense, 
         nextTarget
     } = useSelector(store => store.plan)
-
     // Bills
-    const [totalBillsPaid, setTotalBillsPaid] = useState(0);
-    const [totalBillsUnpaid, setTotalBillsUnpaid] = useState(0);
-    const [nextUnpaidBill , setNextUnpaidBill] = useState({});
+    const {
+        totalBillsPaid,
+        totalBillsUnpaid
+    } = useSelector(store => store.bill)
+   const [nextUnpaidBill , setNextUnpaidBill] = useState({});
     // ------------------------------ END OF VARIABLES ------------------------------
 
     // FUNCTIONS
     // Plans
     // Bills
-    const getBillsPaid = () => {
-        // Get paid and unpaid graph
-        let totalPaid = 0;
-        let totalUnpaid = 0;
-        const currentMonth = new Date().getMonth();
-        props.bills.forEach(bill => {
-            bill.dueDate.forEach((dueDate, index) => {
-                let billMonth = new Date(dueDate).getMonth()
-                // If month and year is current
-                if (billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
-                    bill.paid[index] ? totalPaid += bill.amount : totalUnpaid += bill.amount;
-                };
-            });
-        })
-        setTotalBillsPaid(totalPaid);
-        setTotalBillsUnpaid(totalUnpaid);
-    }
 
     const getNextUnpaidBill = () => {
         // set a temp unpaid bill
@@ -80,8 +65,8 @@ const DashBoard = (props) => {
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(() => {
-        dispatch(getBalance())
-        getBillsPaid();
+        dispatch(getBalance());
+        dispatch(getNextBill());
         getNextUnpaidBill();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.plans]);

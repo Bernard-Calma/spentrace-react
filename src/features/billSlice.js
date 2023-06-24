@@ -29,7 +29,24 @@ const billSlice = createSlice({
     name: "bill",
     initialState,
     reducers: {
-
+        getNextBill: state => {
+            // console.log("nextGetBill")
+            // Get paid and unpaid graph
+            let totalPaid = 0;
+            let totalUnpaid = 0;
+            const currentMonth = new Date().getMonth();
+            state.billItems.forEach(bill => {
+                bill.dueDate.forEach((dueDate, index) => {
+                    let billMonth = new Date(dueDate).getMonth()
+                    // If month and year is current
+                    if (billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
+                        bill.paid[index] ? totalPaid += bill.amount : totalUnpaid += bill.amount;
+                    };
+                });
+            })
+            state.totalBillsPaid = totalPaid;
+            state.totalBillsUnpaid = totalUnpaid
+        }
     },
     extraReducers: builder => {
         builder
@@ -48,5 +65,9 @@ const billSlice = createSlice({
         })
     }
 })
+
+export const {
+    getNextBill
+} = billSlice.actions
 
 export default billSlice.reducer

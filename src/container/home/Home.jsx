@@ -65,7 +65,6 @@ const Home = (props) => {
     // }
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
-        // console.log("Home")
         dispatch(getPlans())
         dispatch(getBills())
         getAccounts()
