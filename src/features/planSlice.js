@@ -5,19 +5,22 @@ const initialState = {
     planItems: [],
     totalIncome: 0,
     totalExpense: 0,
+    balance: 0,
+    nextTarget: {},
     openPlan: {},
     isLoading: true
 }
 
-export const getPlans = createAsyncThunk("plan/getPlans", async (thunkAPI) => {
+export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAPI) => {
     console.log("Get Plans.")
+    // console.log("Thunk: ",thunkAPI.getState())
     try {
-        
         const res = await axios({ 
                     method: "GET",
                     url: `${process.env.REACT_APP_SERVER_URL}/plans`,
                     withCredentials: true 
                 })
+                console.log(thunkAPI.getState().plan.planItems)
         return res.data;
     } catch (err) {
         console.log("Get Plans Error: ", err)
@@ -29,6 +32,23 @@ const planSlice = createSlice({
     name: "plan",
     initialState,
     reducers: {
+        getBalance: (state, {payload}) => {
+            let runningBalance = 0;
+            let totalIncome = 0;
+            let totalExpense = 0;
+            for (const plan of payload) {
+                if (plan.expense) {
+                    runningBalance -= plan.amount
+                    totalExpense += plan.amount
+                } else {
+                    runningBalance += plan.amount
+                    totalIncome += plan.amount
+                };
+            };
+            state.balance = runningBalance;
+            state.totalIncome = totalIncome;
+            state.totalExpense = totalExpense
+        },
         modifyPlan: () => {
             console.log("Test")
         }
