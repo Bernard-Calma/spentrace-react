@@ -24,7 +24,7 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
         return res.data;
     } catch (err) {
         console.log("Get Plans Error: ", err)
-        return thunkAPI.rejectWithValue("Error Loging In")
+        return thunkAPI.rejectWithValue("Error getting plans")
     }
 })
 

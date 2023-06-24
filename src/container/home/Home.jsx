@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
-
+import { getBills } from '../../features/billSlice'
 import BillsList from '../bills/BillsList'
 import PlanList from '../plan/PlansList'
 import DashBoard from './Dashboard'
@@ -14,15 +14,14 @@ import AccountList from '../accounts/AccountList'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
+    // Plans
     const {planItems} = useSelector(store => store.plan)
+    // Bills
+    const {billItems, isLoading} = useSelector(store => store.bill)
     // Views
     let [homeView, setHomeView] = useState('Home');
     // Accounts
     const [accounts, setAccounts] = useState([]);
-    // Bills
-    const [bills, setBills] = useState([]);
-    // Loading
-    const [loading, setLoading] = useState(true);
     // ------------------------------ END OF VARIABLES ------------------------------
     // REDUX
     const dispatch = useDispatch();
@@ -57,38 +56,26 @@ const Home = (props) => {
     //     delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
     // }
     // Bills
-    const getBills = async () => {
-        await axios({
-            method: "GET",
-            url: `${props.server}/bills`,
-            withCredentials: true
-        })
-        .then(res => {
-            setBills(res.data.sort((a, b) => (a.date > b.date) ? 1 : -1))
-        })
-        .then(()=>setLoading(false))
-        .catch(err => console.log(err))
-    } 
+
     // Modify Bills Methods
-    const modifyBills = {
-        add: newBill => setBills([...bills, newBill].sort((a, b) => (a.date > b.date) ? 1 : -1)),
-        update: updatedBill => setBills(bills.map(bill => bill._id === updatedBill._id ? updatedBill : bill)),
-        delete: targetBill => setBills(bills.filter(bill => targetBill._id !== bill._id))
-    }
+    // const modifyBills = {
+    //     add: newBill => setBills([...bills, newBill].sort((a, b) => (a.date > b.date) ? 1 : -1)),
+    //     update: updatedBill => setBills(bills.map(bill => bill._id === updatedBill._id ? updatedBill : bill)),
+    //     delete: targetBill => setBills(bills.filter(bill => targetBill._id !== bill._id))
+    // }
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
         // console.log("Home")
         dispatch(getPlans())
+        dispatch(getBills())
         getAccounts()
-        // getPlans()
-        getBills()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return(
         <>
             {
-                loading
+                isLoading
                 ? <div className='containerLoading'>
                     <Loading />
                 </div>
@@ -109,7 +96,7 @@ const Home = (props) => {
                             {homeView === "Home" || props.appView === "Home"
                                 ? <DashBoard 
                                     plans = {planItems}
-                                    bills = {bills}
+                                    bills = {billItems}
                                     changeHomeView = {changeHomeView}
                                 />
                                 : homeView === "Plan" 
@@ -123,8 +110,8 @@ const Home = (props) => {
                                 ? <BillsList
                                     user = {props.user}
                                     server = {props.server}
-                                    bills = {bills}
-                                    modifyBills = {modifyBills}
+                                    bills = {billItems}
+                                    // modifyBills = {modifyBills}
                                 />  
                                 : homeView === "Account List" 
                                 ? < AccountList
