@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getPlans } from "../../features/planSlice";
 
 import Plan from "./Plan";
 import AddPlan from "../add/AddPlan";
@@ -8,42 +10,19 @@ import Categories from "../../common/Categories";
 import "./PlansList.css"
 import Icon from "../../common/Icon";
 
-import { useSelector } from "react-redux";
+
+
 
 
 const PlanList = (props) => {
-    const {planItems} = useSelector(store => store.plan)
+    const dispatch = useDispatch();
+    const {
+        planItems,
+        totalIncome,
+        totalExpense
+    } = useSelector(store => store.plan)
     const [openPlan, setOpenPlan] = useState({});
     let [planView, setPlanView] = useState("Plan List");
-    let [totalIncome, setTotalIncome] = useState(0);
-    let [totalExpense, setTotalExpense] = useState(0);
-
-    const getRunningBalanceTarget = () => {
-        /**
-         * Compute for running balance and target
-         * from plan parameter from plans array
-         */
-        // Set variables back to 0 to prevent adding values from previous computation
-        let runningTarget = 0;
-        let total = 0;
-        planItems.forEach(plan => {
-          if (plan.expense === true) {
-              setTotalExpense(totalExpense += plan.amount);
-              runningTarget += plan.amount;
-              total -= plan.amount;
-          } else if (plan.expense === false) {
-              setTotalIncome(totalIncome += plan.amount);
-              runningTarget -= plan.amount;
-              total += plan.amount;
-          };
-          if (runningTarget < 0) {
-              plan.target = 0;
-          } else {
-              plan.target = runningTarget;
-          }
-          plan.runningTotal = total;  
-        });
-      };
 
     const handleChangeView = view => setPlanView(view);
     
@@ -53,9 +32,9 @@ const PlanList = (props) => {
     }
 
     useEffect(()=>{
-        getRunningBalanceTarget();
+        dispatch(getPlans())
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.plans]);
+    },[planItems]);
 
     return (
         <> 
@@ -66,7 +45,7 @@ const PlanList = (props) => {
                         fullCategories={["type"]}
                     />
                     <div className="plansContainer">
-                        {props.plans?.map((plan, index) => 
+                        {planItems?.map((plan, index) => 
                             <Plan 
                                 key={index}
                                 index={index}

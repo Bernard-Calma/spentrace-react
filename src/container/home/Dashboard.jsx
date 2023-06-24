@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBalance } from "../../features/planSlice";
 import { getNextBill } from "../../features/billSlice";

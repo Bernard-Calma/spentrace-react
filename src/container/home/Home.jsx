@@ -102,12 +102,7 @@ const Home = (props) => {
                                     changeHomeView = {changeHomeView}
                                 />
                                 : homeView === "Plan" 
-                                ? <PlanList 
-                                    user = {props.user}
-                                    server = {props.server}
-                                    plans = {planItems}
-                                    // modifyPlans = {modifyPlans}
-                                />
+                                ? <PlanList/>
                                 : homeView === "Bills List" 
                                 ? <BillsList
                                     user = {props.user}

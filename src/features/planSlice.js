@@ -16,12 +16,35 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
     // console.log("Thunk: ",thunkAPI)
     try {
         const res = await axios({ 
-                    method: "GET",
-                    url: `${process.env.REACT_APP_SERVER_URL}/plans`,
-                    withCredentials: true 
-                })
-                // console.log(thunkAPI.getState().plan.planItems)
-        return res.data;
+            method: "GET",
+            url: `${process.env.REACT_APP_SERVER_URL}/plans`,
+            withCredentials: true 
+        })
+        // console.log(thunkAPI.getState().plan.planItems)
+        /**
+        * Compute for running balance and target
+        * from plan parameter from plans array
+        */
+        // Set variables back to 0 to prevent adding values from previous computation
+        let runningTarget = 0;
+        let total = 0;
+        const plansArray = res.data
+        plansArray.forEach(plan => {
+          if (plan.expense === true) {
+              runningTarget += plan.amount;
+              total -= plan.amount;
+          } else if (plan.expense === false) {
+              runningTarget -= plan.amount;
+              total += plan.amount;
+          };
+          if (runningTarget < 0) {
+              plan.target = 0;
+          } else {
+              plan.target = runningTarget;
+          }
+          plan.runningTotal = total;  
+        });
+        return plansArray;
     } catch (err) {
         console.log("Get Plans Error: ", err)
         return thunkAPI.rejectWithValue("Error getting plans")
@@ -67,7 +90,7 @@ const planSlice = createSlice({
             state.totalExpense = totalExpense
         },
         modifyPlan: state => {
-            
+
         }
     },
     extraReducers: builder => {
