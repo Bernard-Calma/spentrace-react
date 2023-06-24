@@ -12,15 +12,15 @@ const initialState = {
 }
 
 export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAPI) => {
-    console.log("Get Plans.")
-    // console.log("Thunk: ",thunkAPI.getState())
+    // console.log("Get Plans.")
+    // console.log("Thunk: ",thunkAPI)
     try {
         const res = await axios({ 
                     method: "GET",
                     url: `${process.env.REACT_APP_SERVER_URL}/plans`,
                     withCredentials: true 
                 })
-                console.log(thunkAPI.getState().plan.planItems)
+                // console.log(thunkAPI.getState().plan.planItems)
         return res.data;
     } catch (err) {
         console.log("Get Plans Error: ", err)
@@ -32,11 +32,11 @@ const planSlice = createSlice({
     name: "plan",
     initialState,
     reducers: {
-        getBalance: (state, {payload}) => {
+        getBalance: state => {
             let runningBalance = 0;
             let totalIncome = 0;
             let totalExpense = 0;
-            for (const plan of payload) {
+            for (const plan of state.planItems) {
                 if (plan.expense) {
                     runningBalance -= plan.amount
                     totalExpense += plan.amount
@@ -56,16 +56,16 @@ const planSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(getPlans.pending, state => {
-                console.log("Pending")
+                // console.log("Pending")
                 state.isLoading = true;
             })
             .addCase(getPlans.fulfilled, (state, action) => {
                 state.isLoading = false;
-                console.log("Fulfilled: ", action)
+                // console.log("Fulfilled: ", action)
                 state.planItems = action.payload;
             })
             .addCase(getPlans.rejected, state => {
-                console.log("Rejected: ", state)
+                // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
     }  
@@ -73,6 +73,7 @@ const planSlice = createSlice({
 
 export const {
     modifyPlan,
+    getBalance
 } = planSlice.actions
 
 export default planSlice.reducer;

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPlans } from '../../features/planSlice'
+import { getBalance, getPlans } from '../../features/planSlice'
 
 import BillsList from '../bills/BillsList'
 import PlanList from '../plan/PlansList'

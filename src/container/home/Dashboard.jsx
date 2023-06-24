@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBalance } from "../../features/planSlice";
 import CircleGraph from "../../Components/CircleGraph";
 
 const DashBoard = (props) => {
+    const dispatch = useDispatch();
     // VARIABLES
     // Plans
-    const [balance, setBalance] = useState(0);
-    const [totalIncome, setTotalIncome] = useState(0);
-    const [totalExpense, setTotalExpense] = useState(0);
+    const {balance, totalIncome, totalExpense} = useSelector(store => store.plan)
+
     const [nextTarget, setNextTarget] = useState({
         amount: 0,
         date: '',
@@ -20,23 +22,6 @@ const DashBoard = (props) => {
 
     // FUNCTIONS
     // Plans
-    const getBalance = () =>{ 
-        let runningBalance = 0;
-        let totalIncome = 0;
-        let totalExpense = 0;
-        for (const plan of props.plans) {
-            if (plan.expense) {
-                runningBalance -= plan.amount
-                totalExpense += plan.amount
-            } else {
-                runningBalance += plan.amount
-                totalIncome += plan.amount
-            };
-        };
-        setBalance(runningBalance);
-        setTotalIncome(totalIncome);
-        setTotalExpense(totalExpense);
-    }
 
     const getTarget = () => {
         let balance = 0;
@@ -113,7 +98,7 @@ const DashBoard = (props) => {
     // ------------------------------ END OF FUNCTIONS ------------------------------
 
     useEffect(() => {
-        getBalance();
+        dispatch(getBalance())
         getTarget();
         getBillsPaid();
         getNextUnpaidBill();
