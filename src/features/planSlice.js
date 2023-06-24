@@ -66,6 +66,9 @@ const planSlice = createSlice({
             state.totalIncome = totalIncome;
             state.totalExpense = totalExpense
         },
+        modifyPlan: state => {
+            
+        }
     },
     extraReducers: builder => {
         builder

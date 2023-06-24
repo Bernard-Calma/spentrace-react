@@ -17,7 +17,10 @@ const Home = (props) => {
     // Plans
     const {planItems} = useSelector(store => store.plan)
     // Bills
-    const {billItems, isLoading} = useSelector(store => store.bill)
+    const {
+        billItems, 
+        isLoading
+    } = useSelector(store => store.bill)
     // Views
     let [homeView, setHomeView] = useState('Home');
     // Accounts

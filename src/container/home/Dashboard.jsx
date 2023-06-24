@@ -16,58 +16,16 @@ const DashBoard = (props) => {
     } = useSelector(store => store.plan)
     // Bills
     const {
+        billItems,
         totalBillsPaid,
-        totalBillsUnpaid
+        totalBillsUnpaid,
+        nextUnpaidBill
     } = useSelector(store => store.bill)
-   const [nextUnpaidBill , setNextUnpaidBill] = useState({});
-    // ------------------------------ END OF VARIABLES ------------------------------
+   // ------------------------------ END OF VARIABLES ------------------------------
 
-    // FUNCTIONS
-    // Plans
-    // Bills
-
-    const getNextUnpaidBill = () => {
-        // set a temp unpaid bill
-        const firstBill = props.bills[0]
-        // console.log(firstBill.paid.indexOf(false))
-        let firstFalseIndex = firstBill.paid.indexOf(false)
-        // If firstfalseindex is negative (bill is not on repeat)
-        firstFalseIndex = firstFalseIndex === -1 ? 0 : firstFalseIndex
-        let unpaidBill = {
-            name: firstBill.name,
-            amount: firstBill.amount,
-            dueDate: firstBill.dueDate[firstFalseIndex],
-            paid: firstBill.paid[firstFalseIndex]
-        }
-        // console.log(unpaidBill)
-        const currentMonth = new Date().getMonth();
-        // Get the first bill that has a due date for the current year and month that is not paid
-        props.bills.forEach(bill => {
-            bill.dueDate.forEach((dueDate, index) => {
-                let billMonth = new Date(dueDate).getMonth()
-                if (billMonth === currentMonth) {
-                    if(!bill.paid[index] && billMonth === currentMonth && new Date(dueDate).getFullYear() === new Date().getFullYear()) {
-                        if(dueDate < unpaidBill.dueDate) {
-                            // console.log(bill)
-                            unpaidBill = {
-                                name: bill.name,
-                                amount: bill.amount,
-                                dueDate: dueDate,
-                                paid: bill.paid[index]
-                            };
-                        }
-                    };
-                };
-            });
-        });
-        setNextUnpaidBill(unpaidBill);
-    }
-    // ------------------------------ END OF FUNCTIONS ------------------------------
-
-    useEffect(() => {
+   useEffect(() => {
         dispatch(getBalance());
         dispatch(getNextBill());
-        getNextUnpaidBill();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.plans]);
     
@@ -111,7 +69,7 @@ const DashBoard = (props) => {
                     </div>
                 }
             </div> 
-            {props.bills.length === 0
+            {billItems.length === 0
                 ? <div className="containerEmptyPlan">
                     <h2>ADD YOUR FIRST BILL</h2>
                     <i 

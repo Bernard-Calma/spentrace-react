@@ -8,7 +8,11 @@ import Categories from "../../common/Categories";
 import "./PlansList.css"
 import Icon from "../../common/Icon";
 
+import { useSelector } from "react-redux";
+
+
 const PlanList = (props) => {
+    const {planItems} = useSelector(store => store.plan)
     const [openPlan, setOpenPlan] = useState({});
     let [planView, setPlanView] = useState("Plan List");
     let [totalIncome, setTotalIncome] = useState(0);
@@ -22,7 +26,7 @@ const PlanList = (props) => {
         // Set variables back to 0 to prevent adding values from previous computation
         let runningTarget = 0;
         let total = 0;
-        props.plans.forEach( plan => {
+        planItems.forEach(plan => {
           if (plan.expense === true) {
               setTotalExpense(totalExpense += plan.amount);
               runningTarget += plan.amount;

@@ -36,6 +36,7 @@ const App = () => {
   useEffect(() => {
     // Check if current session has user
     dispatch(getUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[loggedIn]);
 
   return (
