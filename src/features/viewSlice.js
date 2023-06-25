@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     view: "Login",
+    homeView: "Home",
     isLoading: false
 }
 
@@ -10,7 +11,10 @@ const viewSlice = createSlice({
     initialState,
     reducers: {
         changeView: (state, {payload}) => {
-            state.view = payload;
+            console.log(payload)
+            const {view, homeView} = payload
+            state.view = view;
+            state.homeView = homeView
         }
     }
 })

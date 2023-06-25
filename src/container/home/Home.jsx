@@ -11,6 +11,7 @@ import './home.css'
 import '../../Components/NavBar.css'
 import Loading from '../../Components/Loading'
 import AccountList from '../accounts/AccountList'
+import { changeView } from '../../features/viewSlice'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
@@ -22,7 +23,11 @@ const Home = (props) => {
         isLoading
     } = useSelector(store => store.bill)
     // Views
-    let [homeView, setHomeView] = useState('Home');
+    const {
+        view,
+        homeView
+    } = useSelector(store => store.view)
+    let [homeViews, setHomeView] = useState('Home');
     // Accounts
     const [accounts, setAccounts] = useState([]);
     // ------------------------------ END OF VARIABLES ------------------------------
@@ -53,11 +58,11 @@ const Home = (props) => {
         delete: deletedAccount => setAccounts(accounts.filter(account => deletedAccount._id !== account._id))
     }
     // Modify Plans Methods
-    // const modifyPlans = {
-    //     add: newPlan => setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
-    //     update: updatedPlan => setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan).sort((a, b) => (a.date > b.date) ? 1 : -1)),
-    //     delete: targetPlan => setPlans(plans.filter(plan => targetPlan._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
-    // }
+    const modifyPlans = {
+        add: newPlan => console.log(""), //setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
+        update: updatedPlan => console.log(""), //setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan).sort((a, b) => (a.date > b.date) ? 1 : -1)),
+        delete: targetPlan => console.log("") //setPlans(plans.filter(plan => targetPlan._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
+    }
     // Bills
 
     // Modify Bills Methods
@@ -90,12 +95,12 @@ const Home = (props) => {
                     />
                     : <>
                         <div className='homeNavBar'>
-                            <p onClick={() => changeHomeView("Plan")}>Budget</p>
+                            <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
                             <p onClick={() => changeHomeView("Bills List")}>Bills</p>
                             <p onClick={() => changeHomeView("Account List")}>Account</p>
                         </div>
                         <div className='containerHomeView'>
-                            {homeView === "Home" || props.appView === "Home"
+                            {homeView === "Home" || view === "Home"
                                 ? <DashBoard 
                                     plans = {planItems}
                                     bills = {billItems}

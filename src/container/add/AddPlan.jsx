@@ -28,7 +28,7 @@ const AddPlan = (props) => {
     const handleSubmitAdd = e => {
         e.preventDefault();
         dispatch(addPlan(newPlan));
-        dispatch(changeView("Main"))
+        dispatch(changeView({homeView: "Main"}))
     };
 
     return (

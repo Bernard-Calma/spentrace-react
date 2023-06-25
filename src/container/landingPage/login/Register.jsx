@@ -57,7 +57,7 @@ const Register = props => {
     return(
         <div className="containerRegister">
             <div className="registerHeader">
-                <BackButton handleChangeView = {() => dispatch(changeView("Login"))} />
+                <BackButton handleChangeView = {() => dispatch(changeView({view: "Login"}))} />
                 <h1 className="registerTitle">REGISTER</h1>
             </div>
             <form className="formRegister" onSubmit={handleRegister}>

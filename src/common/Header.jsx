@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import "./Header.css"
 import Icon from "./Icon";
 import { logout } from '../features/userSlice';
+import { changeView } from '../features/viewSlice';
 
 const Header = (props) => {
     const {loggedIn, username} = useSelector(store => store.user)
@@ -25,7 +26,7 @@ const Header = (props) => {
     
     return(
         <section className='header'>
-            <h1 className="title" onClick={props.handleChangeHomeView}>Spentrace</h1> 
+            <h1 className="title" onClick={() => dispatch(changeView({homeView: "Home"}))}>Spentrace</h1> 
             {loggedIn && <Icon className="fi fi-rr-sign-out-alt" onClick={() => dispatch(logout())} />}
         </section>
     );

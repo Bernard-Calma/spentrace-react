@@ -62,7 +62,7 @@ const Login = (props) => {
             </form>
             <p className="registerText">Don't have an account yet? 
                 <span 
-                    onClick={() => dispatch(changeView("Register"))} 
+                    onClick={() => dispatch(changeView({view: "Register"}))} 
                     className="registerText registerLink"
                 > Register Here
                 </span>
