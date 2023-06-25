@@ -9,7 +9,7 @@ const viewSlice = createSlice({
     name: "view",
     initialState,
     reducers: {
-        changeView: (state, payload) => {
+        changeView: (state, {payload}) => {
             state.view = payload;
         }
     }

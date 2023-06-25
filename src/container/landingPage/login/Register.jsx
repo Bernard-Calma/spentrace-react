@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import BackButton from "../../../Components/Buttons/BackButton"
 import LabelInput from "../../../common/LabelInput";
 import { userRegister } from "../../../features/userSlice";
+import { changeView } from "../../../features/viewSlice";
 
 const Register = props => {
     const dispatch = useDispatch()
@@ -56,7 +57,7 @@ const Register = props => {
     return(
         <div className="containerRegister">
             <div className="registerHeader">
-                <BackButton handleChangeView = {() => props.handleChangeView("Login")} />
+                <BackButton handleChangeView = {() => dispatch(changeView("Login"))} />
                 <h1 className="registerTitle">REGISTER</h1>
             </div>
             <form className="formRegister" onSubmit={handleRegister}>

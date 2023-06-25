@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/userSlice";
 import planReducer from "./features/planSlice";
 import billReducer from "./features/billSlice";
+import viewReducer from "./features/viewSlice";
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
         plan: planReducer,
-        bill: billReducer
+        bill: billReducer,
+        view: viewReducer
     }
 });

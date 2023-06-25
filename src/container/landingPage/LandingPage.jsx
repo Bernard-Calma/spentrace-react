@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 // Landing Page Images
 import mainPageImage from "../../assets/img/MainPage.png"
 import mobilePage from "../../assets/img/MobilePage.png"
@@ -8,10 +8,8 @@ import Login from "./login/Login";
 import Register from "./login/Register";
 import "./landingPage.css"
 
-const LandingPage = (props) =>{
-    let [landingPageView, setLandingPageView] = useState("Login");
-    const handleChangeView = view => setLandingPageView(view);
-
+const LandingPage = () =>{
+    const { view } = useSelector(store => store.view)
     return(
         <div className="containerLandingPage">
             <div className="introduction">
@@ -28,14 +26,7 @@ const LandingPage = (props) =>{
                     className="mainPageImage"
                 />
             </div>
-            {landingPageView === "Login"
-                ? <Login 
-                    handleChangeView = {handleChangeView}
-                />
-                : <Register 
-                    handleChangeView = {handleChangeView}
-                />
-            }
+            {view === "Login" ? <Login/> : <Register/>}
         </div>
     );
 };

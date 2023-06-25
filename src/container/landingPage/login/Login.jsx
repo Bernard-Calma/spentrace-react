@@ -1,5 +1,6 @@
 import LabelInput from "../../../common/LabelInput";
 import { userLogin } from "../../../features/userSlice";
+import { changeView } from "../../../features/viewSlice";
 import "./Login.css"
 
 import {useState} from "react"
@@ -61,7 +62,7 @@ const Login = (props) => {
             </form>
             <p className="registerText">Don't have an account yet? 
                 <span 
-                    onClick={() => props.handleChangeView("Register")} 
+                    onClick={() => dispatch(changeView("Register"))} 
                     className="registerText registerLink"
                 > Register Here
                 </span>
