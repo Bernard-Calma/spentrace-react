@@ -51,6 +51,22 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
     }
 })
 
+export const addPlan = createAsyncThunk("plan/add", async (newPlan, thunkAPI) => {
+    try {
+        const res = axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_SERVER_URL}/plans/`,
+            data: newPlan,
+            withCredentials: true
+        })
+        return res.data
+    } catch (err) {
+        console.log("Add plan Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting plans")
+   
+    }
+})
+
 const planSlice = createSlice({
     name: "plan",
     initialState,

@@ -1,11 +1,17 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPlan } from '../../features/planSlice';
+import { changeView } from '../../features/viewSlice';
 import './Add.css';
 import BackButton from '../../Components/Buttons/BackButton';
 import LabelInput from '../../common/LabelInput';
 
 const AddPlan = (props) => {
-    const [newPlan, setNewPlan] = useState({userId: props.user.username});
+    const dispatch = useDispatch();
+    const {
+        username
+    } = useSelector(store => store.user)
+    const [newPlan, setNewPlan] = useState({userId: username});
     const [submitStatus, setSubmitStatus] = useState(false)
     const handleChange = e => {
         // Handle input changes
@@ -19,20 +25,10 @@ const AddPlan = (props) => {
             setNewPlan({...newPlan, [e.target.name]: e.target.value});
     }
 
-    const handleSubmitAdd = async e => {
+    const handleSubmitAdd = e => {
         e.preventDefault();
-        await axios({
-            method: "POST",
-            url: `${props.server}/plans/`,
-            data: newPlan,
-            withCredentials: true
-        })
-        .then(res => {
-                setSubmitStatus(true)
-                props.addNewPlan(res.data)
-            }
-             );
-        props.handleChangeView("Main");
+        dispatch(addPlan(newPlan));
+        dispatch(changeView("Main"))
     };
 
     return (
@@ -118,7 +114,7 @@ const AddPlan = (props) => {
                     onChange={handleChange}
                 />
                 <LabelInput 
-                    className = {submitStatus && "disabled"}
+                    className = {submitStatus ? `${submitStatus} disabled` : `${submitStatus}`}
                     disabled = {submitStatus}
                     type="submit" 
                     name="submit" 

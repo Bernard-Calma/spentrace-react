@@ -34,7 +34,7 @@ const PlanList = (props) => {
     useEffect(()=>{
         dispatch(getPlans())
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[planItems]);
+    },[]);
 
     return (
         <> 
@@ -64,8 +64,7 @@ const PlanList = (props) => {
             : planView === "Add Plan"
                 ? <AddPlan
                     user = {props.user}
-                    server = {props.server}
-                    addNewPlan = {props.modifyPlans.add}
+                    server = {props.server} 
                     handleChangeView = {() =>handleChangeView("Plan List")}
                 />
             : planView === "Show Plan"
