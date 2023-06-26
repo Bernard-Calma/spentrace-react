@@ -1,10 +1,13 @@
 import axios from "axios"
+import { useDispatch } from "react-redux";
 import "./Show.css"
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
 import ParagraphSpan from "../../common/ParagraphSpan";
+import { changeView } from "../../features/viewSlice";
 
 const ShowPlan = (props) => {
+    const dispatch = useDispatch();
     const getDate = () => {
         let dateToday = new Date(Date.now()).toDateString().slice(4,7) + " " + new Date(Date.now()).getUTCDate();
         let datePlan = new Date(props.plan.date).toDateString().slice(4,7) + " " + (new Date(props.plan.date).getUTCDate());
@@ -25,7 +28,7 @@ const ShowPlan = (props) => {
     return(
         <div className="containerShow">
             <div className="showHeader">
-                <i className="fi fi-rr-angle-small-left" onClick={props.return}/>
+                <i className="fi fi-rr-angle-small-left" onClick={() => dispatch(changeView({planView: "Plan List"}))}/>
                 <div>
                     <Edit className="fi fi-rr-edit" onClick={props.edit}/>
                     <Delete className="fi fi-rr-trash" onClick={handleDelete}/>

@@ -12,7 +12,7 @@ const viewSlice = createSlice({
     initialState,
     reducers: {
         changeView: (state, {payload}) => {
-            console.log(payload)
+            // console.log(payload)
             const {view, homeView, planView} = payload
             state.view = view ? view: state.view;
             state.homeView = homeView ? homeView : state.homeView;

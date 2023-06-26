@@ -105,6 +105,9 @@ const planSlice = createSlice({
             state.totalIncome = totalIncome;
             state.totalExpense = totalExpense
         },
+        setOpenPlan: (state, {payload}) => {
+            state.openPlan = payload;
+        },
         modifyPlan: state => {
 
         }
@@ -128,7 +131,8 @@ const planSlice = createSlice({
 })
 
 export const {
-    getBalance
+    getBalance,
+    setOpenPlan
 } = planSlice.actions
 
 export default planSlice.reducer;
