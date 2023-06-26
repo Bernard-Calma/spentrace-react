@@ -11,8 +11,10 @@ const AddPlan = (props) => {
     const {
         username
     } = useSelector(store => store.user)
+    const {
+        isLoading
+    } = useSelector(store => store.plan)
     const [newPlan, setNewPlan] = useState({userId: username});
-    const [submitStatus, setSubmitStatus] = useState(false)
     const handleChange = e => {
         // Handle input changes
         // If expense or income changed return true or false
@@ -114,8 +116,8 @@ const AddPlan = (props) => {
                     onChange={handleChange}
                 />
                 <LabelInput 
-                    className = {submitStatus ? `${submitStatus} disabled` : `${submitStatus}`}
-                    disabled = {submitStatus}
+                    className = {isLoading ? `${isLoading} disabled` : `${isLoading}`}
+                    disabled = {isLoading}
                     type="submit" 
                     name="submit" 
                     id="submit" />

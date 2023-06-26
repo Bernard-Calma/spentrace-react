@@ -9,6 +9,7 @@ import ShowPlan from "../show/ShowPlan";
 import Categories from "../../common/Categories";
 import "./PlansList.css"
 import Icon from "../../common/Icon";
+import { changeView } from "../../features/viewSlice";
 
 
 
@@ -21,10 +22,13 @@ const PlanList = (props) => {
         totalIncome,
         totalExpense
     } = useSelector(store => store.plan)
+    const {
+        planView
+    } = useSelector(store => store.view)
     const [openPlan, setOpenPlan] = useState({});
-    let [planView, setPlanView] = useState("Plan List");
+    // let [planView, setPlanView] = useState("Plan List");
 
-    const handleChangeView = view => setPlanView(view);
+    const handleChangeView = view => dispatch(changeView({planView: view}));
     
     const handleShowPlan = plan => {
         setOpenPlan(plan);
@@ -58,7 +62,7 @@ const PlanList = (props) => {
                         )}
                     </div>
                     <div className="containerAdd" style={{textAlign: "center"}}>
-                        <Icon className="fi fi-rr-add" onClick={() =>handleChangeView("Add Plan")}/>
+                        <Icon className="fi fi-rr-add" onClick={() => dispatch(changeView({planView: "Add Plan"}))}/>
                     </div>
                 </section>
             : planView === "Add Plan"

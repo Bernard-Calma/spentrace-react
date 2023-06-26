@@ -27,8 +27,7 @@ const Home = (props) => {
         view,
         homeView
     } = useSelector(store => store.view)
-    let [homeViews, setHomeView] = useState('Home');
-    // Accounts
+   // Accounts
     const [accounts, setAccounts] = useState([]);
     // ------------------------------ END OF VARIABLES ------------------------------
     // REDUX
@@ -36,10 +35,7 @@ const Home = (props) => {
     // REDUX
     // ------------------------------ FUNCTIONS ------------------------------
     // Views
-    const changeHomeView = view => {
-        setHomeView(view);
-        props.handleChangeHomeView("");
-    };
+ 
     // Accounts
     const getAccounts = async () => {
         // Get all accounts from user
@@ -96,15 +92,14 @@ const Home = (props) => {
                     : <>
                         <div className='homeNavBar'>
                             <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
-                            <p onClick={() => changeHomeView("Bills List")}>Bills</p>
-                            <p onClick={() => changeHomeView("Account List")}>Account</p>
+                            <p onClick={() => dispatch(changeView({homeView: "Bills List"}))}>Bills</p>
+                            <p onClick={() => dispatch(changeView({homeView: "Account List"}))}>Account</p>
                         </div>
                         <div className='containerHomeView'>
                             {homeView === "Home" || view === "Home"
                                 ? <DashBoard 
                                     plans = {planItems}
                                     bills = {billItems}
-                                    changeHomeView = {changeHomeView}
                                 />
                                 : homeView === "Plan" 
                                 ? <PlanList/>
