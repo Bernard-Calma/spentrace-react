@@ -30,7 +30,7 @@ const AddPlan = (props) => {
     const handleSubmitAdd = e => {
         e.preventDefault();
         dispatch(addPlan(newPlan));
-        dispatch(changeView({homeView: "Main"}))
+        dispatch(changeView({planView: "Plan List"}))
     };
 
     return (

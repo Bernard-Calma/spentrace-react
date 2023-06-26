@@ -53,12 +53,13 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
 
 export const addPlan = createAsyncThunk("plan/add", async (newPlan, thunkAPI) => {
     try {
-        const res = axios({
+        const res = await axios({
             method: "POST",
             url: `${process.env.REACT_APP_SERVER_URL}/plans/`,
             data: newPlan,
             withCredentials: true
         })
+        // console.log(res.data);
         return res.data
     } catch (err) {
         console.log("Add plan Error: ", err)
@@ -107,9 +108,6 @@ const planSlice = createSlice({
         },
         setOpenPlan: (state, {payload}) => {
             state.openPlan = payload;
-        },
-        modifyPlan: state => {
-
         }
     },
     extraReducers: builder => {
@@ -124,6 +122,20 @@ const planSlice = createSlice({
                 state.planItems = action.payload;
             })
             .addCase(getPlans.rejected, state => {
+                // console.log("Rejected: ", state)
+                state.isLoading = false;
+            })
+            // Add Plan
+            .addCase(addPlan.pending, state => {
+                // console.log("Pending")
+                state.isLoading = true;
+            })
+            .addCase(addPlan.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                // console.log(payload)
+                state.planItems = [...state.planItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1)
+            })
+            .addCase(addPlan.rejected, state => {
                 // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
