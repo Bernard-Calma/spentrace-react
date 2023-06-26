@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
 import "./Show.css"
 import Edit from "../../common/Icon";
@@ -18,24 +17,16 @@ const ShowPlan = (props) => {
         return dateToday === datePlan ? "Today": datePlan;
     }
 
-    const handleDelete = async () => {
-        await axios({
-            method: "DELETE",
-            url: `${props.server}/plans/${openPlan._id}`,
-            withCredentials: true,
-        })
-        .then(res => props.deletePlan(res.data))
-        .catch(err => console.log(err));
-        props.return();
-    }
-
     return(
         <div className="containerShow">
             <div className="showHeader">
                 <i className="fi fi-rr-angle-small-left" onClick={() => dispatch(changeView({planView: "Plan List"}))}/>
                 <div>
                     <Edit className="fi fi-rr-edit" onClick={props.edit}/>
-                    <Delete className="fi fi-rr-trash" onClick={() => dispatch(deletePlan(openPlan))}/>
+                    <Delete className="fi fi-rr-trash" onClick={() => {
+                        dispatch(deletePlan(openPlan))
+                        dispatch(changeView({planView: "Plan List"}))
+                    }}/>
                 </div>
             </div>
 

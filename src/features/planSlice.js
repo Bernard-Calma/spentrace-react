@@ -70,7 +70,7 @@ export const addPlan = createAsyncThunk("plan/add", async (newPlan, thunkAPI) =>
 })
 
 export const deletePlan = createAsyncThunk("plan/delete", async (plan, thunkAPI) => {
-    console.log(thunkAPI.dispatch().plan)
+    console.log(plan)
     try {
         const res = await axios({
             method: "DELETE",
