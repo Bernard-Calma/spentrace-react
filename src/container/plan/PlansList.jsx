@@ -75,7 +75,6 @@ const PlanList = (props) => {
                 ? <ShowPlan 
                     plan = {openPlan}
                     server = {props.server}
-                    deletePlan = {props.modifyPlans.delete}
                     return = {() => handleChangeView("Plan List")}
                     edit = {() => handleChangeView("Edit Plan")}
                 />

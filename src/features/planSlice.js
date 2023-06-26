@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const serverURL = process.env.REACT_APP_SERVER_URL;
+
 const initialState = {
     planItems: [],
     totalIncome: 0,
@@ -17,7 +19,7 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
     try {
         const res = await axios({ 
             method: "GET",
-            url: `${process.env.REACT_APP_SERVER_URL}/plans`,
+            url: `${serverURL}/plans`,
             withCredentials: true 
         })
         // console.log(thunkAPI.getState().plan.planItems)
@@ -55,7 +57,7 @@ export const addPlan = createAsyncThunk("plan/add", async (newPlan, thunkAPI) =>
     try {
         const res = await axios({
             method: "POST",
-            url: `${process.env.REACT_APP_SERVER_URL}/plans/`,
+            url: `${serverURL}/plans/`,
             data: newPlan,
             withCredentials: true
         })
@@ -64,9 +66,42 @@ export const addPlan = createAsyncThunk("plan/add", async (newPlan, thunkAPI) =>
     } catch (err) {
         console.log("Add plan Error: ", err)
         return thunkAPI.rejectWithValue("Error getting plans")
-   
     }
 })
+
+export const deletePlan = createAsyncThunk("plan/delete", async (plan, thunkAPI) => {
+    console.log(thunkAPI.dispatch().plan)
+    try {
+        const res = await axios({
+            method: "DELETE",
+            url: `${serverURL}/plans/${plan._id}`,
+            withCredentials: true,
+        })
+        console.log(res.data);
+        return res.data
+    } catch (err) {
+        console.log("Delete plan Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting plans")
+    }
+})
+
+export const modifyPlan = createAsyncThunk("plan/modify", async (plan, thunkAPI) => {
+    console.log(thunkAPI.dispatch().plan)
+    try {
+        const res = await axios({
+            method: "PUT",
+            url: `${serverURL}/plans/${plan._id}`,
+            data: plan,
+            withCredentials: true,
+        })
+        console.log(res.data);
+        return res.data
+    } catch (err) {
+        console.log("Modify plan Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting plans")
+    }
+})
+
 
 const planSlice = createSlice({
     name: "plan",
@@ -136,6 +171,34 @@ const planSlice = createSlice({
                 state.planItems = [...state.planItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1)
             })
             .addCase(addPlan.rejected, state => {
+                // console.log("Rejected: ", state)
+                state.isLoading = false;
+            })
+            // Delete Plan
+            .addCase(deletePlan.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+            })
+            .addCase(deletePlan.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                // console.log(payload)
+                state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
+            })
+            .addCase(deletePlan.rejected, state => {
+                // console.log("Rejected: ", state)
+                state.isLoading = false;
+            })
+            // Modify Plan
+            .addCase(modifyPlan.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+            })
+            .addCase(modifyPlan.fulfilled, (state, {payload}) => {
+                state.isLoading = false;
+                // console.log(payload)
+                state.planItems = state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a, b) => (a.date > b.date) ? 1 : -1);
+            })
+            .addCase(modifyPlan.rejected, state => {
                 // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
