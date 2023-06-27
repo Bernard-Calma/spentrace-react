@@ -93,14 +93,8 @@ const Home = (props) => {
                                         plans = {planItems}
                                         bills = {billItems}
                                     />
-                                    : homeView === "Plan" 
-                                    ? <PlanList/>
-                                    : homeView === "Bills List" 
-                                    ? <BillsList
-                                        user = {props.user}
-                                        server = {props.server}
-                                        bills = {billItems}
-                                    />  
+                                    : homeView === "Plan" ? <PlanList/>
+                                    : homeView === "Bills List" ? <BillsList/>  
                                     : homeView === "Account List" 
                                     ? < AccountList
                                         user = {props.user}

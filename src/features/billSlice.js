@@ -1,11 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+    
 const initialState = {
     billItems: [],
     totalBillsPaid: 0,
     totalBillsUnpaid: 0,
     nextUnpaidBill: {},
+    month: new Date().getUTCMonth(),
+    monthText: monthNames[new Date().getUTCMonth()],
     isLoading: false
 }
 
@@ -77,10 +94,15 @@ const billSlice = createSlice({
                 };
             });
         });
-        
+
         state.totalBillsPaid = totalPaid;
         state.totalBillsUnpaid = totalUnpaid
         state.nextUnpaidBill = unpaidBill;
+        },
+        setMonth: (state, {payload}) => {
+            console.log(payload)
+            state.month = payload;
+            state.monthText = monthNames[payload];
         }
     },
     extraReducers: builder => {
@@ -102,7 +124,8 @@ const billSlice = createSlice({
 })
 
 export const {
-    getNextBill
+    getNextBill,
+    setMonth
 } = billSlice.actions
 
 export default billSlice.reducer

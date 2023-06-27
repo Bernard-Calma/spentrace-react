@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../features/viewSlice';

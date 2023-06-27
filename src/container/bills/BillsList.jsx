@@ -1,16 +1,22 @@
 import {  useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import AddBill from '../add/AddBill'
 import EdditBill from '../edit/EditBill'
 import ShowBill from '../show/ShowBill'
-import './billsList.css'
 import MonthHeader from './MonthHeader'
 import Paid from './Paid'
 import Unpaid from './Unpaid'
 
+import './billsList.css'
+import { setMonth } from '../../features/billSlice'
+
 const BillsList = (props) => {
-    const [monthNames] = useState(["January","February","March","April","May","June","July","August","September","October","November","December"]);
-    let [month, setMonth] = useState(new Date().getMonth());
-    let [monthText, setMonthText] = useState(monthNames[month]);
+    const dispatch = useDispatch();
+    let {
+        billItems,
+        month,
+        monthText
+    } = useSelector(store => store.bill)
     let [billsView, setBillsView] = useState("Bills List");
     let [openBill, setOpenBill] = useState({});
 
@@ -22,15 +28,13 @@ const BillsList = (props) => {
     }
 
     const handlePrevMonth = () => {
-        if (month === 0) setMonth(11);
-        else setMonth(month -= 1);
-        setMonthText(monthNames[month]);
+        if (month === 0) dispatch(setMonth(11));
+        else dispatch(setMonth(month -= 1));
     }
     
     const handleNextMonth = () => {
         if (month === 11) setMonth(0);
         else setMonth(month += 1);
-        setMonthText(monthNames[month]);
     }
 
     const getMonthlyBill = month => {
@@ -38,12 +42,13 @@ const BillsList = (props) => {
         // Add filter if month is included on due date array
         // console.log(month)
         // Iterate each bill
-        props.bills.forEach(bill => {
+        billItems.forEach(bill => {
             // Iterate each due date
             bill.dueDate.forEach((dueDate, index) => {
                 // add a single bill with specific due date
                 // NOTE TO DO: CHANGE CURRENT YEAR FOR USER TO SELECT ANY YEAR AND SHOW BILLS ACCORDING TO YEAR
-                if(new Date(dueDate).getMonth() === month && new Date(dueDate).getFullYear() === new Date().getFullYear()) monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index], dueDateIndex: index});
+                if(new Date(dueDate).getMonth() === month && new Date(dueDate).getFullYear() === new Date().getFullYear()) 
+                    monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index], dueDateIndex: index});
             });
         });      
         return monthBills.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1);
@@ -92,7 +97,7 @@ const BillsList = (props) => {
                 ? <EdditBill 
                     openBill = {openBill}
                     server = {props.server}
-                    updateBill = {props.modifyBills.update}
+                    // updateBill = {props.modifyBills.update}
                     return = {() => changeBillsView("Bills List")}
                 />
             : billsView === "Show Bill"
