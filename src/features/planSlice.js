@@ -30,7 +30,7 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
         // Set variables back to 0 to prevent adding values from previous computation
         let runningTarget = 0;
         let total = 0;
-        const plansArray = res.data
+        const plansArray = res.data.sort((a, b) => (a.date > b.date) ? 1 : -1);
         plansArray.forEach(plan => {
           if (plan.expense === true) {
               runningTarget += plan.amount;
@@ -155,7 +155,7 @@ const planSlice = createSlice({
             .addCase(getPlans.fulfilled, (state, action) => {
                 state.isLoading = false;
                 // console.log("Fulfilled: ", action)
-                state.planItems = action.payload.sort((a, b) => (a.date > b.date) ? 1 : -1);
+                state.planItems = action.payload;
             })
             .addCase(getPlans.rejected, state => {
                 // console.log("Rejected: ", state)
