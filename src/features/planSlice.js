@@ -155,7 +155,7 @@ const planSlice = createSlice({
             .addCase(getPlans.fulfilled, (state, action) => {
                 state.isLoading = false;
                 // console.log("Fulfilled: ", action)
-                state.planItems = action.payload;
+                state.planItems = action.payload.sort((a, b) => (a.date > b.date) ? 1 : -1);
             })
             .addCase(getPlans.rejected, state => {
                 // console.log("Rejected: ", state)
@@ -191,17 +191,17 @@ const planSlice = createSlice({
             })
             // Modify Plan
             .addCase(modifyPlan.pending, state => {
-            console.log("Pending")
+            // console.log("Pending")
             state.isLoading = true;
             })
             .addCase(modifyPlan.fulfilled, (state, {payload}) => {
                 state.isLoading = false;
-                console.log(payload)
+                // console.log(payload)
                 state.openPlan = payload
                 state.planItems = state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a, b) => (a.date > b.date) ? 1 : -1);
             })
             .addCase(modifyPlan.rejected, state => {
-                console.log("Rejected: ", state)
+                // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
     }  
