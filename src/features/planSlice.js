@@ -70,14 +70,14 @@ export const addPlan = createAsyncThunk("plan/add", async (newPlan, thunkAPI) =>
 })
 
 export const deletePlan = createAsyncThunk("plan/delete", async (plan, thunkAPI) => {
-    console.log(plan)
+    // console.log(plan)
     try {
         const res = await axios({
             method: "DELETE",
             url: `${serverURL}/plans/${plan._id}`,
             withCredentials: true,
         })
-        console.log(res.data);
+        // console.log(res.data);
         return res.data
     } catch (err) {
         console.log("Delete plan Error: ", err)
@@ -86,7 +86,8 @@ export const deletePlan = createAsyncThunk("plan/delete", async (plan, thunkAPI)
 })
 
 export const modifyPlan = createAsyncThunk("plan/modify", async (plan, thunkAPI) => {
-    console.log(thunkAPI.dispatch().plan)
+    // console.log(thunkAPI.dispatch().plan)
+    // console.log("Modify Plan")
     try {
         const res = await axios({
             method: "PUT",
@@ -94,7 +95,7 @@ export const modifyPlan = createAsyncThunk("plan/modify", async (plan, thunkAPI)
             data: plan,
             withCredentials: true,
         })
-        console.log(res.data);
+        // console.log(res.data);
         return res.data
     } catch (err) {
         console.log("Modify plan Error: ", err)
@@ -190,16 +191,17 @@ const planSlice = createSlice({
             })
             // Modify Plan
             .addCase(modifyPlan.pending, state => {
-            // console.log("Pending")
+            console.log("Pending")
             state.isLoading = true;
             })
             .addCase(modifyPlan.fulfilled, (state, {payload}) => {
                 state.isLoading = false;
-                // console.log(payload)
+                console.log(payload)
+                state.openPlan = payload
                 state.planItems = state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a, b) => (a.date > b.date) ? 1 : -1);
             })
             .addCase(modifyPlan.rejected, state => {
-                // console.log("Rejected: ", state)
+                console.log("Rejected: ", state)
                 state.isLoading = false;
             })
     }  

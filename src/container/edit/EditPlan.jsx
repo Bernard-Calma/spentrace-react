@@ -7,6 +7,7 @@ import BackButton from '../../Components/Buttons/BackButton'
 import LabelInput from '../../common/LabelInput';
 
 import './EditPlan.css'
+import { modifyPlan } from '../../features/planSlice';
 
 const EditPlan = (props) => {
     const dispatch = useDispatch();
@@ -21,16 +22,11 @@ const EditPlan = (props) => {
         else setEditPlan({...editPlan, [e.target.name]: e.target.value});
     }
 
-    const handleSubmitEdit = async e => {
+    const handleSubmitEdit = e => {
         e.preventDefault();
-        await axios({
-            method: "PUT",
-            url: `${process.env.REACT_APP_SERVER_URL}/plans/${editPlan._id}`,
-            data: editPlan,
-            withCredentials: true,
-        })
-        .then(res => props.updatePlan(res.data));
-        props.return();
+        // console.log(editPlan)
+        dispatch(modifyPlan(editPlan));
+        dispatch(changeView({planView: "Show Plan"}));
     }
 
     return (
