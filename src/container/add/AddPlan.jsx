@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPlan } from '../../features/planSlice';
 import { changeView } from '../../features/viewSlice';
-import './Add.css';
+
 import BackButton from '../../Components/Buttons/BackButton';
 import LabelInput from '../../common/LabelInput';
 
-const AddPlan = (props) => {
+import './Add.css';
+
+const AddPlan = () => {
     const dispatch = useDispatch();
     const {
         username
@@ -37,7 +39,7 @@ const AddPlan = (props) => {
         <div className="addContainer">
             <div className='addHeader'>
                 <BackButton 
-                    handleChangeView = {props.handleChangeView}
+                    handleChangeView = {() => dispatch(changeView({planView: "Plan List"}))}
                 />
                 <h2 className='addTitle'>ADD NEW PLAN</h2>
             </div>

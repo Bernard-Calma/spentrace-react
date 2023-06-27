@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import "./Show.css"
-import Edit from "../../common/Icon";
-import Delete from "../../common/Icon";
-import ParagraphSpan from "../../common/ParagraphSpan";
 import { changeView } from "../../features/viewSlice";
 import { deletePlan } from "../../features/planSlice";
 
-const ShowPlan = (props) => {
+import Edit from "../../common/Icon";
+import Delete from "../../common/Icon";
+import ParagraphSpan from "../../common/ParagraphSpan";
+
+import "./Show.css"
+
+const ShowPlan = () => {
     const {
         openPlan
     } = useSelector(store => store.plan)
@@ -22,7 +24,7 @@ const ShowPlan = (props) => {
             <div className="showHeader">
                 <i className="fi fi-rr-angle-small-left" onClick={() => dispatch(changeView({planView: "Plan List"}))}/>
                 <div>
-                    <Edit className="fi fi-rr-edit" onClick={props.edit}/>
+                    <Edit className="fi fi-rr-edit" onClick={() => dispatch(changeView({planView: "Edit Plan"}))}/>
                     <Delete className="fi fi-rr-trash" onClick={() => {
                         dispatch(deletePlan(openPlan))
                         dispatch(changeView({planView: "Plan List"}))

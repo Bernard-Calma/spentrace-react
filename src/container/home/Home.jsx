@@ -3,15 +3,17 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
 import { getBills } from '../../features/billSlice'
+import { changeView } from '../../features/viewSlice'
+
 import BillsList from '../bills/BillsList'
 import PlanList from '../plan/PlansList'
 import DashBoard from './Dashboard'
 import EmptyDashboard from './EmptyDashboard'
-import './home.css'
-import '../../Components/NavBar.css'
 import Loading from '../../Components/Loading'
 import AccountList from '../accounts/AccountList'
-import { changeView } from '../../features/viewSlice'
+
+import './home.css'
+import '../../Components/NavBar.css'
 
 const Home = (props) => {
     // ------------------------------ VARIABLES ------------------------------
@@ -53,12 +55,6 @@ const Home = (props) => {
         update: updatedAccount=> setAccounts(accounts.map(account => account._id === updatedAccount._id ? updatedAccount : account)),
         delete: deletedAccount => setAccounts(accounts.filter(account => deletedAccount._id !== account._id))
     }
-    // Modify Plans Methods
-    const modifyPlans = {
-        add: newPlan => console.log(""), //setPlans([...plans, newPlan].sort((a, b) => (a.date > b.date) ? 1 : -1)),
-        update: updatedPlan => console.log(""), //setPlans(plans.map(plan => plan._id === updatedPlan._id ? updatedPlan : plan).sort((a, b) => (a.date > b.date) ? 1 : -1)),
-        delete: targetPlan => console.log("") //setPlans(plans.filter(plan => targetPlan._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
-    }
     // Bills
 
     // Modify Bills Methods
@@ -82,47 +78,42 @@ const Home = (props) => {
                 ? <div className='containerLoading'>
                     <Loading />
                 </div>
-                :         <section className="containerHome">
-                {planItems.length === 0 
-                    ? <EmptyDashboard 
-                        user = {props.user}
-                        server = {props.server}
-                        // addNewPlan = {modifyPlans.add}
-                    />
-                    : <>
-                        <div className='homeNavBar'>
-                            <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
-                            <p onClick={() => dispatch(changeView({homeView: "Bills List"}))}>Bills</p>
-                            <p onClick={() => dispatch(changeView({homeView: "Account List"}))}>Account</p>
-                        </div>
-                        <div className='containerHomeView'>
-                            {homeView === "Home" || view === "Home"
-                                ? <DashBoard 
-                                    plans = {planItems}
-                                    bills = {billItems}
-                                />
-                                : homeView === "Plan" 
-                                ? <PlanList/>
-                                : homeView === "Bills List" 
-                                ? <BillsList
-                                    user = {props.user}
-                                    server = {props.server}
-                                    bills = {billItems}
-                                    // modifyBills = {modifyBills}
-                                />  
-                                : homeView === "Account List" 
-                                ? < AccountList
-                                    user = {props.user}
-                                    server = {props.server}
-                                    accounts = {accounts}
-                                    modifyAccounts = {modifyAccounts}
-                                />  
-                                : <></>
-                            }
-                        </div>
-                    </> 
-                }
-            </section>
+                : <section className="containerHome">
+                    {planItems.length === 0 
+                        ? <EmptyDashboard/>
+                        : <>
+                            <div className='homeNavBar'>
+                                <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
+                                <p onClick={() => dispatch(changeView({homeView: "Bills List"}))}>Bills</p>
+                                <p onClick={() => dispatch(changeView({homeView: "Account List"}))}>Account</p>
+                            </div>
+                            <div className='containerHomeView'>
+                                {homeView === "Home" || view === "Home"
+                                    ? <DashBoard 
+                                        plans = {planItems}
+                                        bills = {billItems}
+                                    />
+                                    : homeView === "Plan" 
+                                    ? <PlanList/>
+                                    : homeView === "Bills List" 
+                                    ? <BillsList
+                                        user = {props.user}
+                                        server = {props.server}
+                                        bills = {billItems}
+                                    />  
+                                    : homeView === "Account List" 
+                                    ? < AccountList
+                                        user = {props.user}
+                                        server = {props.server}
+                                        accounts = {accounts}
+                                        modifyAccounts = {modifyAccounts}
+                                    />  
+                                    : <></>
+                                }
+                            </div>
+                        </> 
+                    }
+                </section>
             }
         </>
     )

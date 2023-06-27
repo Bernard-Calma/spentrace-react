@@ -1,11 +1,19 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { changeView } from '../../features/viewSlice';
+
 import BackButton from '../../Components/Buttons/BackButton'
-import './EditPlan.css'
 import LabelInput from '../../common/LabelInput';
 
+import './EditPlan.css'
+
 const EditPlan = (props) => {
-    const [editPlan, setEditPlan] = useState(props.plan);
+    const dispatch = useDispatch();
+    const {
+        openPlan
+    } = useSelector(store => store.plan)
+    const [editPlan, setEditPlan] = useState(openPlan);
 
     const handleChange=(e)=>{
         // e.target.style.backgroundColor = "" // remove color for empty input
@@ -17,7 +25,7 @@ const EditPlan = (props) => {
         e.preventDefault();
         await axios({
             method: "PUT",
-            url: `${props.server}/plans/${props.plan._id}`,
+            url: `${process.env.REACT_APP_SERVER_URL}/plans/${editPlan._id}`,
             data: editPlan,
             withCredentials: true,
         })
@@ -28,7 +36,7 @@ const EditPlan = (props) => {
     return (
         <div className="editContainer">
             <div className='editHeader'>
-                <BackButton handleChangeView = {props.return}/>
+                <BackButton handleChangeView = {() => dispatch(changeView({planView: "Show Plan"}))}/>
                 <h2 className='editTitle'>Edit</h2>
             </div>
             
