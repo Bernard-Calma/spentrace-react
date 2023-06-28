@@ -23,6 +23,12 @@ const initialState = {
     nextUnpaidBill: {},
     month: new Date().getUTCMonth(),
     monthText: monthNames[new Date().getUTCMonth()],
+    monthlyBills: {
+        totalPaid: 0,
+        totalUnpaid: 0,
+        paidList: [],
+        unpaidList: [],
+    },
     isLoading: false
 }
 
@@ -100,7 +106,7 @@ const billSlice = createSlice({
         state.nextUnpaidBill = unpaidBill;
         },
         handleNextMonth: state => {
-            console.log(state.month)
+            // console.log(state.month)
             if (state.month < 11) {
                 state.monthText = monthNames[state.month + 1];
                 state.month += 1;
@@ -118,7 +124,46 @@ const billSlice = createSlice({
                 state.monthText = monthNames[11];
                 state.month = 11;
             }
-        }
+        },
+        setMonthlyBills: state => {
+            let paid = 0;
+            let unpaid = 0;
+            const paidList = [];
+            const unpaidList = [];
+            let monthlyBillsList = [];
+            // Get monthly bills
+            state.billItems.forEach(bill => {
+                // Iterate each due date
+                bill.dueDate.forEach((dueDate, index) => {
+                    // add a single bill with specific due date
+                    // NOTE TO DO: CHANGE CURRENT YEAR FOR USER TO SELECT ANY YEAR AND SHOW BILLS ACCORDING TO YEAR
+                    if(new Date(dueDate).getMonth() === state.month && new Date(dueDate).getFullYear() === new Date().getFullYear()) 
+                    monthlyBillsList.push({...bill, dueDate: dueDate, paid: bill.paid[index], dueDateIndex: index});
+                });
+            });      
+            monthlyBillsList = monthlyBillsList.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1);
+            // Get monthy paid list
+            monthlyBillsList.forEach(element => {
+                if (element.paid) {
+                    paid += element.amount;
+                    paidList.push(element);
+                };
+            });
+            // Get monthly unpaid list
+            monthlyBillsList.forEach(element => {
+                if (!element.paid) {
+                    unpaid += element.amount;
+                    unpaidList.push(element);
+                };
+            });
+
+            state.monthlyBills = {
+                totalPaid: paid,
+                totalUnpaid: unpaid,
+                paidList: paidList,
+                unpaidList: unpaidList,
+            }
+        },
     },
     extraReducers: builder => {
         builder
@@ -141,7 +186,8 @@ const billSlice = createSlice({
 export const {
     getNextBill,
     handleNextMonth,
-    handlePreviousMonth
+    handlePreviousMonth,
+    setMonthlyBills
 } = billSlice.actions
 
 export default billSlice.reducer

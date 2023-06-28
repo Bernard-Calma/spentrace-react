@@ -11,7 +11,7 @@ const Bill = (props) => {
                 <BillPaidCheckBox 
                         server = {props.server}
                         bill = {props.bill}
-                        updateBill = {props.modifyBills.update}
+                        // updateBill = {props.modifyBills.update}
                 />
                 <p className={`billData date ${(Date.parse(new Date(props.bill.dueDate)) - Date.parse(new Date()) < 0 && !props.bill.paid) && 'negative'}`}>
                     {`${dueDate.getUTCDate()}`}

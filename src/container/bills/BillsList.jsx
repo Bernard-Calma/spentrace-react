@@ -1,5 +1,7 @@
-import {  useState } from 'react'
+import {  useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { changeView } from '../../features/viewSlice'
+
 import AddBill from '../add/AddBill'
 import EdditBill from '../edit/EditBill'
 import ShowBill from '../show/ShowBill'
@@ -8,12 +10,13 @@ import Paid from './Paid'
 import Unpaid from './Unpaid'
 
 import './billsList.css'
-import { setMonth } from '../../features/billSlice'
-import { changeView } from '../../features/viewSlice'
+import { setMonthlyBills } from '../../features/billSlice'
 
 const BillsList = (props) => {
     const dispatch = useDispatch();
-    let {billItems} = useSelector(store => store.bill)
+    let {
+        month
+    } = useSelector(store => store.bill)
     const {billView} = useSelector(store => store.view)
     let [openBill, setOpenBill] = useState({});
 
@@ -24,49 +27,32 @@ const BillsList = (props) => {
         dispatch(changeView({billView: "Show Bill"}))
     }
 
-    const getMonthlyBill = month => {
-        let monthBills = []
-        // Add filter if month is included on due date array
-        // console.log(month)
-        // Iterate each bill
-        billItems.forEach(bill => {
-            // Iterate each due date
-            bill.dueDate.forEach((dueDate, index) => {
-                // add a single bill with specific due date
-                // NOTE TO DO: CHANGE CURRENT YEAR FOR USER TO SELECT ANY YEAR AND SHOW BILLS ACCORDING TO YEAR
-                if(new Date(dueDate).getMonth() === month && new Date(dueDate).getFullYear() === new Date().getFullYear()) 
-                    monthBills.push({...bill, dueDate: dueDate, paid: bill.paid[index], dueDateIndex: index});
-            });
-        });      
-        return monthBills.sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1);
-    } 
+    useEffect(() => {
+        dispatch(setMonthlyBills());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [month])
 
     return(
         <>
             {billView === "Bill List"
                 ? <section className='containerBillsList'>
                     <MonthHeader/>
-                    {/* <div className="billsContainer">
+                    <div className="billsContainer">
                         <Unpaid 
-                            month = {month}
                             setHomeView = {props.setHomeView}
-                            server = {props.server}
                             handleShowBill = {handleShowBill}
                             changeBillsView = {changeBillsView}
-                            bills = {getMonthlyBill(month)}
                             modifyBills = {props.modifyBills}
-                            
                         />
-                        <Paid 
+                        {/* <Paid 
                             month = {month}
                             setHomeView = {props.setHomeView}
                             server = {props.server}
                             changeBillsView = {changeBillsView}
                             handleShowBill = {handleShowBill}
-                            bills = {getMonthlyBill(month)}
                             modifyBills = {props.modifyBills}
-                        />
-                    </div> */}
+                        /> */}
+                    </div>
                 </section>
             : billView === "Add Bill"
                 ? <AddBill 
