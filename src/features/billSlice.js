@@ -49,6 +49,39 @@ export const getBills = createAsyncThunk("bill/getBills", async (payload, thunkA
     }
 })
 
+export const addBill = createAsyncThunk("bill/addBill", async (payload, thunkAPI) => {
+    console.log("Add Bill")
+    let newBill = {
+        ...payload,
+        userID: thunkAPI.getState().user.username
+    }
+    try 
+    {
+        let parseDueDate = Date.parse(payload.dueDate);
+        let parseEndDate = Date.parse(payload.endRepeat);
+        // console.log(parseDueDate);
+        // console.log(parseEndDate);
+        // If repeat until is lesser that due date, alert that repeat should be further than due date
+        if(parseDueDate >= parseEndDate) {
+            alert("End date should be further than due date");
+            newBill = {...newBill, endRepeat: ""};
+        } else {
+            console.log(newBill)
+            const res = await axios({
+                method: "POST",
+                url: `${process.env.REACT_APP_SERVER_URL}/bills/`,
+                data: newBill,
+                withCredentials: true
+            })
+            return res.data
+            // console.log(res.data)
+        };
+    } catch (err) {
+        console.log("Get Plans Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting bills")
+    }
+})
+
 const billSlice = createSlice({
     name: "bill",
     initialState,
@@ -175,12 +208,25 @@ const billSlice = createSlice({
             // console.log("Pending")
             state.isLoading = true;
         })
-        .addCase(getBills.fulfilled, (state, action) => {
+        .addCase(getBills.fulfilled, (state, {payload}) => {
             state.isLoading = false;
             // console.log("Fulfilled: ", action)
-            state.billItems = action.payload;
+            state.billItems = payload;
         })
         .addCase(getBills.rejected, state => {
+            // console.log("Rejected: ", state)
+            state.isLoading = false;
+        })
+        .addCase(addBill.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+        })
+        .addCase(addBill.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            // console.log("Fulfilled: ", action)
+            state.billItems = [...state.billItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1);
+        })
+        .addCase(addBill.rejected, state => {
             // console.log("Rejected: ", state)
             state.isLoading = false;
         })
