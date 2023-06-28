@@ -44,14 +44,12 @@ const BillsList = (props) => {
                             changeBillsView = {changeBillsView}
                             modifyBills = {props.modifyBills}
                         />
-                        {/* <Paid 
-                            month = {month}
+                        <Paid 
                             setHomeView = {props.setHomeView}
-                            server = {props.server}
                             changeBillsView = {changeBillsView}
                             handleShowBill = {handleShowBill}
                             modifyBills = {props.modifyBills}
-                        /> */}
+                        />
                     </div>
                 </section>
             : billView === "Add Bill"

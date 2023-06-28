@@ -1,37 +1,19 @@
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import MonthlyBill from "./MonthlyBill";
 
 const Paid = (props) => {
-    let [totalPaid, setTotalPaid] = useState(0);
-    const [billsPaid, setBillsPaid] = useState([]);
- 
-    const getTotalPaid = () => {
-        let paid = 0;
-        const paidList = [];
-        props.bills.forEach(element => {
-            if (element.paid) {
-                paid += element.amount;
-                paidList.push(element);
-            };
-        });
-        setTotalPaid(paid);
-        setBillsPaid(paidList);
-    };
+    const {
+        monthlyBills
+    } = useSelector(store => store.bill)
 
-    useEffect(()=> {
-        getTotalPaid();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.bills]);
     return (
         <>
             <div className='containerPaid'>
                 <p>Paid: </p>
-                <p className="positive">${totalPaid.toFixed(2)}</p>
+                <p className="positive">${monthlyBills.totalPaid.toFixed(2)}</p>
             </div>
             <MonthlyBill 
-                bills = {billsPaid}
-                month = {props.month}
-                server = {props.server}
+                bills = {monthlyBills.paidList}
                 handleShowBill = {props.handleShowBill}
                 modifyBills = {props.modifyBills}
             />
