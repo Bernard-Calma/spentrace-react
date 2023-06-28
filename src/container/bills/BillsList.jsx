@@ -9,32 +9,19 @@ import Unpaid from './Unpaid'
 
 import './billsList.css'
 import { setMonth } from '../../features/billSlice'
+import { changeView } from '../../features/viewSlice'
 
 const BillsList = (props) => {
     const dispatch = useDispatch();
-    let {
-        billItems,
-        month,
-        monthText
-    } = useSelector(store => store.bill)
-    let [billsView, setBillsView] = useState("Bills List");
+    let {billItems} = useSelector(store => store.bill)
+    const {billView} = useSelector(store => store.view)
     let [openBill, setOpenBill] = useState({});
 
-    const changeBillsView = view => setBillsView(view);
+    const changeBillsView = view => dispatch(changeView({billView: view}))
 
     const handleShowBill = bill => {
         setOpenBill(bill);
-        setBillsView("Show Bill");
-    }
-
-    const handlePrevMonth = () => {
-        if (month === 0) dispatch(setMonth(11));
-        else dispatch(setMonth(month -= 1));
-    }
-    
-    const handleNextMonth = () => {
-        if (month === 11) setMonth(0);
-        else setMonth(month += 1);
+        dispatch(changeView({billView: "Show Bill"}))
     }
 
     const getMonthlyBill = month => {
@@ -56,14 +43,10 @@ const BillsList = (props) => {
 
     return(
         <>
-            {billsView === "Bills List"
+            {billView === "Bill List"
                 ? <section className='containerBillsList'>
-                    <MonthHeader 
-                        monthText = {monthText}
-                        handlePrevMonth = {handlePrevMonth}
-                        handleNextMonth = {handleNextMonth}
-                    />
-                    <div className="billsContainer">
+                    <MonthHeader/>
+                    {/* <div className="billsContainer">
                         <Unpaid 
                             month = {month}
                             setHomeView = {props.setHomeView}
@@ -83,9 +66,9 @@ const BillsList = (props) => {
                             bills = {getMonthlyBill(month)}
                             modifyBills = {props.modifyBills}
                         />
-                    </div>
+                    </div> */}
                 </section>
-            : billsView === "Add Bill"
+            : billView === "Add Bill"
                 ? <AddBill 
                     user = {props.user}
                     server = {props.server}
@@ -93,14 +76,14 @@ const BillsList = (props) => {
                     changeBillsView = {() => changeBillsView("Bills List")}
                     handleAddBill = {props.modifyBills.add}
                 />
-            : billsView === "Edit Bill"
+            : billView === "Edit Bill"
                 ? <EdditBill 
                     openBill = {openBill}
                     server = {props.server}
                     // updateBill = {props.modifyBills.update}
                     return = {() => changeBillsView("Bills List")}
                 />
-            : billsView === "Show Bill"
+            : billView === "Show Bill"
                 ? <ShowBill 
                     openBill = {openBill}
                     server = {props.server}

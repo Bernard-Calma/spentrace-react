@@ -99,10 +99,25 @@ const billSlice = createSlice({
         state.totalBillsUnpaid = totalUnpaid
         state.nextUnpaidBill = unpaidBill;
         },
-        setMonth: (state, {payload}) => {
-            console.log(payload)
-            state.month = payload;
-            state.monthText = monthNames[payload];
+        handleNextMonth: state => {
+            console.log(state.month)
+            if (state.month < 11) {
+                state.monthText = monthNames[state.month + 1];
+                state.month += 1;
+            } else {
+                state.monthText = monthNames[0];
+                state.month = 0;
+            }
+        },
+        handlePreviousMonth: state => {
+            // console.log(state.month)
+            if (state.month > 0) {
+                state.monthText = monthNames[state.month - 1];
+                state.month -= 1;
+            } else {
+                state.monthText = monthNames[11];
+                state.month = 11;
+            }
         }
     },
     extraReducers: builder => {
@@ -125,7 +140,8 @@ const billSlice = createSlice({
 
 export const {
     getNextBill,
-    setMonth
+    handleNextMonth,
+    handlePreviousMonth
 } = billSlice.actions
 
 export default billSlice.reducer
