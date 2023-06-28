@@ -1,9 +1,12 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { changeView } from "../../features/viewSlice";
+
 import MonthlyBill from "./MonthlyBill";
 import Categories from "../../common/Categories";
 import Add from "../../common/Icon";
 
 const Unpaid = (props) => {
+    const dispatch = useDispatch();
     const {
         monthlyBills
     } = useSelector( store => store.bill)
@@ -18,11 +21,10 @@ const Unpaid = (props) => {
                 mobileCategories = {["date", "name", "amount", "category"]}
             />
             <div className="billAddContainer">
-                    <Add className="fi fi-rr-add btnAddBill" onClick={() => props.changeBillsView("Add Bill")}/>
+                    <Add className="fi fi-rr-add btnAddBill" onClick={() => dispatch(changeView({billView: "Add Bill"}))}/>
             </div>
             <MonthlyBill 
                 bills = {monthlyBills.unpaidList}
-                handleShowBill = {props.handleShowBill}
                 modifyBills = {props.modifyBills}
             />
         </> 

@@ -58,7 +58,7 @@ const BillsList = (props) => {
                     server = {props.server}
                     bills = {props.bills}
                     changeBillsView = {() => changeBillsView("Bills List")}
-                    handleAddBill = {props.modifyBills.add}
+                    // handleAddBill = {props.modifyBills.add} 
                 />
             : billView === "Edit Bill"
                 ? <EdditBill 
@@ -69,11 +69,8 @@ const BillsList = (props) => {
                 />
             : billView === "Show Bill"
                 ? <ShowBill 
-                    openBill = {openBill}
                     server = {props.server}
                     // deleteBill = {props.modifyBills.delete}
-                    edit = {() => changeBillsView("Edit Bill")}
-                    return = {() => changeBillsView("Bills List")}
                 />
             : <></>
             }

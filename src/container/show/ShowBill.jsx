@@ -1,5 +1,6 @@
 import axios from "axios"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { changeView } from "../../features/viewSlice";
 
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
@@ -8,6 +9,7 @@ import ParagraphSpan from "../../common/ParagraphSpan";
 import "./Show.css"
 
 const ShowBill = (props) => {
+    const dispatch = useDispatch();
     const {
         openBill
     } = useSelector(store => store.bill)
@@ -25,7 +27,7 @@ const ShowBill = (props) => {
     return(
         <div className="containerShowBill">
             <div className="showHeader">
-                <i className="fi fi-rr-angle-small-left" onClick={props.return}/>
+                <i className="fi fi-rr-angle-small-left" onClick={() => dispatch(changeView({billView: "Bill List"}))}/>
                 <div>
                     <Edit className="fi fi-rr-edit" onClick={props.edit}/>
                     <Delete className="fi fi-rr-trash" onClick={handleDelete}/>

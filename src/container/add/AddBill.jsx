@@ -1,16 +1,21 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import BackButton from '../../Components/Buttons/BackButton';
 import './Add.css';
 import axios from 'axios';
 import LabelInput from '../../common/LabelInput';
 
 const AddBill = (props) => {
+    const dispatch = useDispatch();
+    const {
+
+    } = useSelector(store => store.bill)
     const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months']);
     let [newBill, setNewBill] = useState({
         autopay: false,
         repeat: "never",
         paid: false,
-        userId: props.user.id,
+        // userId: props.user.id,
     })
 
     const handleChange= e =>{
@@ -22,27 +27,27 @@ const AddBill = (props) => {
     const handleSubmitAdd = async e => {
         // console.log(newBill);
         e.preventDefault();
-        let parseDueDate = Date.parse(newBill.dueDate);
-        let parseEndDate = Date.parse(newBill.endRepeat);
-        // console.log(parseDueDate);
-        // console.log(parseEndDate);
-        // If repeat until is lesser that due date, alert that repeat should be further than due date
-        if(parseDueDate >= parseEndDate) {
-            alert("End date should be further than due date");
-            setNewBill({...newBill, endRepeat: ""});
-        } else {
-            await axios({
-                method: "POST",
-                url: `${props.server}/bills/`,
-                data: newBill,
-                withCredentials: true
-            })
-            .then(res => {
-                // console.log(res.data);
-                props.handleAddBill(res.data);
-            })
-            props.changeBillsView();
-        };
+        // let parseDueDate = Date.parse(newBill.dueDate);
+        // let parseEndDate = Date.parse(newBill.endRepeat);
+        // // console.log(parseDueDate);
+        // // console.log(parseEndDate);
+        // // If repeat until is lesser that due date, alert that repeat should be further than due date
+        // if(parseDueDate >= parseEndDate) {
+        //     alert("End date should be further than due date");
+        //     setNewBill({...newBill, endRepeat: ""});
+        // } else {
+        //     await axios({
+        //         method: "POST",
+        //         url: `${props.server}/bills/`,
+        //         data: newBill,
+        //         withCredentials: true
+        //     })
+        //     .then(res => {
+        //         // console.log(res.data);
+        //         props.handleAddBill(res.data);
+        //     })
+        //     props.changeBillsView();
+        // };
     };
 
     return (
