@@ -1,10 +1,29 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { changeView } from "../features/viewSlice";
+import { setOpenBill } from "../features/billSlice";
+
 import BillPaidCheckBox from "./BillPaidCheckBox"
 
+
 const Bill = (props) => {
-    const [days] = useState(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", 'Sunday']);
+    const dispatch = useDispatch();
+    const [days] = useState([
+        "Monday", 
+        "Tuesday", 
+        "Wednesday", 
+        "Thursday", 
+        "Friday", 
+        "Saturday", 
+        'Sunday'
+    ]);
     const [dueDate] = useState(new Date(props.bill.dueDate));
     
+    const handleShowBill = () => {
+        dispatch(setOpenBill(props.bill));
+        dispatch(changeView({billView: "Show Bill"}))
+    }
+
     return(
         <div className = {props.bill.expense ? "billContainer expense" : "billContainer income"}>
             <div className={`billDataContainer date`}>  
@@ -22,7 +41,7 @@ const Bill = (props) => {
             </div>
 
             <div className="billDataContainer name">
-                <p className="billData name" onClick={props.handleShowBill}>{props.bill.name}</p>
+                <p className="billData name" onClick={handleShowBill}>{props.bill.name}</p>
             </div>
 
             <div className="billDataContainer">

@@ -71,7 +71,7 @@ const BillsList = (props) => {
                 ? <ShowBill 
                     openBill = {openBill}
                     server = {props.server}
-                    deleteBill = {props.modifyBills.delete}
+                    // deleteBill = {props.modifyBills.delete}
                     edit = {() => changeBillsView("Edit Bill")}
                     return = {() => changeBillsView("Bills List")}
                 />

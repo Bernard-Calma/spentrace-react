@@ -1,9 +1,9 @@
 import Bill from "../../Components/Bill";
 
 const MonthlyBill = (props) => {
-    return props.bills?.map(bill => 
+    return props.bills?.map((bill, index) => 
         <Bill
-            key={bill._id}
+            key={index + "-" + bill._id}
             bill={bill}
             handleShowBill = {() => props.handleShowBill(bill)}
             modifyBills = {props.modifyBills}

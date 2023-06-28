@@ -29,6 +29,7 @@ const initialState = {
         paidList: [],
         unpaidList: [],
     },
+    openBill: {},
     isLoading: false
 }
 
@@ -164,6 +165,9 @@ const billSlice = createSlice({
                 unpaidList: unpaidList,
             }
         },
+        setOpenBill: (state, {payload}) => {
+            state.openBill = {...payload, dueDate: new Date(payload.dueDate).toUTCString()}
+        }
     },
     extraReducers: builder => {
         builder
@@ -187,7 +191,8 @@ export const {
     getNextBill,
     handleNextMonth,
     handlePreviousMonth,
-    setMonthlyBills
+    setMonthlyBills,
+    setOpenBill
 } = billSlice.actions
 
 export default billSlice.reducer
