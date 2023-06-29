@@ -18,14 +18,6 @@ const BillsList = (props) => {
         month
     } = useSelector(store => store.bill)
     const {billView} = useSelector(store => store.view)
-    let [openBill, setOpenBill] = useState({});
-
-    const changeBillsView = view => dispatch(changeView({billView: view}))
-
-    const handleShowBill = bill => {
-        setOpenBill(bill);
-        dispatch(changeView({billView: "Show Bill"}))
-    }
 
     useEffect(() => {
         dispatch(setMonthlyBills());
@@ -40,14 +32,10 @@ const BillsList = (props) => {
                     <div className="billsContainer">
                         <Unpaid 
                             setHomeView = {props.setHomeView}
-                            handleShowBill = {handleShowBill}
-                            changeBillsView = {changeBillsView}
                             modifyBills = {props.modifyBills}
                         />
                         <Paid 
                             setHomeView = {props.setHomeView}
-                            changeBillsView = {changeBillsView}
-                            handleShowBill = {handleShowBill}
                             modifyBills = {props.modifyBills}
                         />
                     </div>
@@ -55,16 +43,12 @@ const BillsList = (props) => {
             : billView === "Add Bill" ? <AddBill/>
             : billView === "Edit Bill"
                 ? <EdditBill 
-                    openBill = {openBill}
+                    // openBill = {openBill}
                     server = {props.server}
                     // updateBill = {props.modifyBills.update}
-                    return = {() => changeBillsView("Bills List")}
+                    return = {() => dispatch(changeView({billView: "Edit Bill"}))}
                 />
-            : billView === "Show Bill"
-                ? <ShowBill 
-                    server = {props.server}
-                    // deleteBill = {props.modifyBills.delete}
-                />
+            : billView === "Show Bill" ? <ShowBill/>
             : <></>
             }
         </>

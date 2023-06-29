@@ -14,7 +14,6 @@ const Paid = (props) => {
             </div>
             <MonthlyBill 
                 bills = {monthlyBills.paidList}
-                handleShowBill = {props.handleShowBill}
                 modifyBills = {props.modifyBills}
             />
         </> 

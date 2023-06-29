@@ -8,7 +8,7 @@ import ParagraphSpan from "../../common/ParagraphSpan";
 
 import "./Show.css"
 
-const ShowBill = (props) => {
+const ShowBill = () => {
     const dispatch = useDispatch();
     const {
         openBill
@@ -18,12 +18,13 @@ const ShowBill = (props) => {
         dispatch(deleteBill(openBill))
         dispatch(changeView({billView: "Bill List"}))
     }
+
     return(
         <div className="containerShowBill">
             <div className="showHeader">
                 <i className="fi fi-rr-angle-small-left" onClick={() => dispatch(changeView({billView: "Bill List"}))}/>
                 <div>
-                    <Edit className="fi fi-rr-edit" onClick={props.edit}/>
+                    <Edit className="fi fi-rr-edit" onClick={() => dispatch(changeView({billView: "Edit Bill"}))}/>
                     <Delete className="fi fi-rr-trash" onClick={handleDelete}/>
                 </div>
             </div>

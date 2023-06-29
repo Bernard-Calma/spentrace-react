@@ -46,7 +46,7 @@ const EdditBill = (props) => {
                     type="date" 
                     name="dueDate" 
                     id="editDate" 
-                    value={new Date(editBill.dueDate).toISOString().slice(0,10)} 
+                    // value={new Date(editBill.dueDate).toISOString().slice(0,10)} 
                     onChange = {handleChange} 
                     required
                 />
@@ -108,7 +108,7 @@ const EdditBill = (props) => {
                         type="date" 
                         name="endRepeat" 
                         id="addBillEndRepeat" 
-                        value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
+                        // value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
                         onChange={handleChange} 
                         required
                     />
