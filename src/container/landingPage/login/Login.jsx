@@ -5,7 +5,7 @@ import "./Login.css"
 
 import {useState} from "react"
 import {useDispatch} from "react-redux"
-const Login = (props) => {
+const Login = () => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState({

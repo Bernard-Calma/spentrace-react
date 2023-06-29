@@ -32,9 +32,7 @@ const App = () => {
             user = {username}
             server = {server}
           />
-        : <LandingPage 
-            server = {server}
-          /> 
+        : <LandingPage/> 
       }
       <Footer />
     </div>

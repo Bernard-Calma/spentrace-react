@@ -15,7 +15,7 @@ import AccountList from '../accounts/AccountList'
 import './home.css'
 import '../../Components/NavBar.css'
 
-const Home = (props) => {
+const Home = props => {
     const dispatch = useDispatch();
     // ------------------------------ VARIABLES ------------------------------
     // Plans

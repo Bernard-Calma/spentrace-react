@@ -4,7 +4,7 @@ import { getBalance } from "../../features/planSlice";
 import { getNextBill } from "../../features/billSlice";
 
 import CircleGraph from "../../Components/CircleGraph";
-const DashBoard = (props) => {
+const DashBoard = props => {
     const dispatch = useDispatch();
     // VARIABLES
     // Plans

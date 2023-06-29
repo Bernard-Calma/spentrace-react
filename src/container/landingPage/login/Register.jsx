@@ -5,7 +5,7 @@ import LabelInput from "../../../common/LabelInput";
 import { userRegister } from "../../../features/userSlice";
 import { changeView } from "../../../features/viewSlice";
 
-const Register = props => {
+const Register = () => {
     const dispatch = useDispatch()
     const {errorMessage} = useSelector(store => store.user)
     // console.log(useSelector(store => store.user))
