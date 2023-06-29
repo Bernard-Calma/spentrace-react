@@ -98,6 +98,23 @@ export const deleteBill = createAsyncThunk("bill/deteleBill", async (payload, th
     }
 })
 
+export const modifyBill = createAsyncThunk("bill/modifyBill", async (payload, thunkAPI) => {
+    // console.log("Modify Bill")
+    try 
+    {
+        const res = await axios({
+            method: "PUT",
+            url: `${process.env.REACT_APP_SERVER_URL}/bills/${payload._id}`,
+            data: payload,
+            withCredentials: true
+        })
+        return res.data
+    } catch (err) {
+        console.log("Get Plans Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting bills")
+    }
+})
+
 const billSlice = createSlice({
     name: "bill",
     initialState,
@@ -259,6 +276,20 @@ const billSlice = createSlice({
             state.billItems = [...state.billItems, payload].filter(account => payload._id !== account._id).sort((a, b) => (a.date > b.date) ? 1 : -1);
         })
         .addCase(deleteBill.rejected, state => {
+            // console.log("Rejected: ", state)
+            state.isLoading = false;
+        })
+        // Modify bill
+        .addCase(modifyBill.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+        })
+        .addCase(modifyBill.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            // console.log("Fulfilled: ", action)
+            state.billItems = state.billItems.map(account => account._id === payload._id ? payload : account).sort((a, b) => (a.date > b.date) ? 1 : -1);
+        })
+        .addCase(modifyBill.rejected, state => {
             // console.log("Rejected: ", state)
             state.isLoading = false;
         })

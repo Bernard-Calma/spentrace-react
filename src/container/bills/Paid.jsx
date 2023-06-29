@@ -12,10 +12,7 @@ const Paid = (props) => {
                 <p>Paid: </p>
                 <p className="positive">${monthlyBills.totalPaid.toFixed(2)}</p>
             </div>
-            <MonthlyBill 
-                bills = {monthlyBills.paidList}
-                modifyBills = {props.modifyBills}
-            />
+            <MonthlyBill bills = {monthlyBills.paidList}/>
         </> 
     );
 };

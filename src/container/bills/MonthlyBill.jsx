@@ -5,8 +5,6 @@ const MonthlyBill = (props) => {
         <Bill
             key={index + "-" + bill._id}
             bill={bill}
-            handleShowBill = {() => props.handleShowBill(bill)}
-            modifyBills = {props.modifyBills}
         />
     )
 }

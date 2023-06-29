@@ -1,11 +1,20 @@
-import axios from 'axios'
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { changeView } from '../../features/viewSlice'
+import { modifyBill } from '../../features/billSlice'
+
 import BackButton from '../../Components/Buttons/BackButton'
-import './EditPlan.css'
 import LabelInput from '../../common/LabelInput';
 
-const EdditBill = (props) => {
-    const [editBill, setEditBill] = useState({...props.openBill});
+import './EditPlan.css'
+
+const EdditBill = () => {
+    const dispatch = useDispatch();
+    const {
+        openBill        
+    } = useSelector(store => store.bill)
+    
+    const [editBill, setEditBill] = useState({...openBill});
     const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months']);
 
     const handleChange = e => {
@@ -18,23 +27,14 @@ const EdditBill = (props) => {
     const handleSubmitEdit = async e => {
         // console.log("Edit", editBill)
         e.preventDefault();
-        await axios({
-            method: "PUT",
-            url: `${props.server}/bills/${editBill._id}`,
-            data: editBill,
-            withCredentials: true
-        })
-        .then(res => {
-            // console.log(res.data)
-            props.updateBill(res.data);
-        })
-        props.return();
+        dispatch(modifyBill(editBill));
+        dispatch(changeView({billView: "Bill List"}));
     };
 
     return (
         <div className="editContainer">
             <div className='editHeader'>
-                <BackButton handleChangeView = {props.return}/>
+                <BackButton handleChangeView = {() => dispatch(changeView({billView: "Bill List"}))}/>
                 <h2 className='editTitle'>Edit</h2>
             </div>
             
@@ -46,7 +46,7 @@ const EdditBill = (props) => {
                     type="date" 
                     name="dueDate" 
                     id="editDate" 
-                    // value={new Date(editBill.dueDate).toISOString().slice(0,10)} 
+                    value={new Date(editBill.dueDate).toISOString().slice(0,10)} 
                     onChange = {handleChange} 
                     required
                 />
@@ -108,7 +108,7 @@ const EdditBill = (props) => {
                         type="date" 
                         name="endRepeat" 
                         id="addBillEndRepeat" 
-                        // value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
+                        value={new Date(editBill.endRepeat).toISOString().slice(0,10)} 
                         onChange={handleChange} 
                         required
                     />

@@ -5,7 +5,6 @@ import { setOpenBill } from "../features/billSlice";
 
 import BillPaidCheckBox from "./BillPaidCheckBox"
 
-
 const Bill = (props) => {
     const dispatch = useDispatch();
     const [days] = useState([

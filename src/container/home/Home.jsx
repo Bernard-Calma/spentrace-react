@@ -55,14 +55,7 @@ const Home = (props) => {
         update: updatedAccount=> setAccounts(accounts.map(account => account._id === updatedAccount._id ? updatedAccount : account)),
         delete: deletedAccount => setAccounts(accounts.filter(account => deletedAccount._id !== account._id))
     }
-    // Bills
 
-    // Modify Bills Methods
-    // const modifyBills = {
-    //     add: newBill => setBills([...bills, newBill].sort((a, b) => (a.date > b.date) ? 1 : -1)),
-    //     update: updatedBill => setBills(bills.map(bill => bill._id === updatedBill._id ? updatedBill : bill)),
-    //     delete: targetBill => setBills(bills.filter(bill => targetBill._id !== bill._id))
-    // }
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
         dispatch(getPlans())

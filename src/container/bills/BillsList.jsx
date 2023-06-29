@@ -1,6 +1,6 @@
-import {  useEffect, useState } from 'react'
+import {  useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeView } from '../../features/viewSlice'
+import { setMonthlyBills } from '../../features/billSlice'
 
 import AddBill from '../add/AddBill'
 import EdditBill from '../edit/EditBill'
@@ -10,9 +10,8 @@ import Paid from './Paid'
 import Unpaid from './Unpaid'
 
 import './billsList.css'
-import { setMonthlyBills } from '../../features/billSlice'
 
-const BillsList = (props) => {
+const BillsList = () => {
     const dispatch = useDispatch();
     let {
         month
@@ -30,26 +29,14 @@ const BillsList = (props) => {
                 ? <section className='containerBillsList'>
                     <MonthHeader/>
                     <div className="billsContainer">
-                        <Unpaid 
-                            setHomeView = {props.setHomeView}
-                            modifyBills = {props.modifyBills}
-                        />
-                        <Paid 
-                            setHomeView = {props.setHomeView}
-                            modifyBills = {props.modifyBills}
-                        />
+                        <Unpaid/>
+                        <Paid/>
                     </div>
                 </section>
-            : billView === "Add Bill" ? <AddBill/>
-            : billView === "Edit Bill"
-                ? <EdditBill 
-                    // openBill = {openBill}
-                    server = {props.server}
-                    // updateBill = {props.modifyBills.update}
-                    return = {() => dispatch(changeView({billView: "Edit Bill"}))}
-                />
-            : billView === "Show Bill" ? <ShowBill/>
-            : <></>
+                : billView === "Add Bill" ? <AddBill/>
+                : billView === "Edit Bill" ? <EdditBill/>
+                : billView === "Show Bill" ? <ShowBill/>
+                : <></>
             }
         </>
     );
