@@ -1,25 +1,23 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeView } from "../../features/viewSlice";
+
 import AddPlan from "../add/AddPlan";
 
-const EmptyDashboard = (props) => {
-    const [emptyView, setEmptyView] = useState("Empty")
-    const handleChangeView = view => setEmptyView(view)
-    
+const EmptyDashboard = () => {
+    const dispatch = useDispatch();
+    const {
+        emptyView
+    } = useSelector(store => store.view)
     return <div className="containerEmptyDashboard">
-        { emptyView === "Empty"
+        { emptyView === "Empty Dashboard"
             ? <div className="containerEmptyPlan">
                 <h2>ADD YOUR FIRST PLAN</h2>
                 <i 
                     className="fi fi-rr-add addEmptyDashboard" 
-                    onClick={() => setEmptyView("Add")}
+                    onClick={() => dispatch(changeView({emptyView: "Add Bill"}))}
                 />
             </div>
-            : <AddPlan 
-                user = {props.user}
-                server = {props.server}
-                handleChangeView = {() =>handleChangeView("Empty")}
-                addNewPlan = {props.addNewPlan}
-            />
+            : <AddPlan/>
         }
     </div>
 }

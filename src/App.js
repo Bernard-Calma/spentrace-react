@@ -1,38 +1,23 @@
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from "react-redux"
+import { getUser } from './features/userSlice';
 
-import './App.css';
 import Header from './common/Header';
 import Footer from './container/footer/Footer';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
-import { useSelector, useDispatch } from "react-redux"
-import { getUser } from './features/userSlice';
+
+import './App.css';
 
 const App = () => { 
+  const dispatch = useDispatch()
   // ------------------------------ VARIABLES ------------------------------
   // Server
   const [server] = useState(process.env.REACT_APP_SERVER_URL);
-  // View
-  const [view, setView] = useState("Login");
-  const [appView, setAppView] = useState("");
   // User information
   const {username, loggedIn} = useSelector(store => store.user)
-  // console.log("User: ", username)
-  // const [user, setUser] = useState({
-  //   username: "",
-  //   loggedIn: false
-  // });
-  // Reducers
-  const dispatch = useDispatch()
   // ------------------------------ END OF VARIABLES ------------------------------
 
-  // ------------------------------ FUNCTIONS ------------------------------
-  // View
-  // Handle view change while navigating
-  const handleChangeView = view => setView(view);
-  // Access homeView in Home and pass to Header
-  const handleChangeHomeView = view => setAppView(view);
-  // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
     // Check if current session has user
     dispatch(getUser());
@@ -41,24 +26,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header 
-        view = {view}
-        user = {username}
-        server = {server}
-        // setUser = {setUser}
-        handleChangeView = {handleChangeView}
-        handleChangeHomeView = {() => handleChangeHomeView("Home")}
-      />
+      <Header/>
       {loggedIn 
         ? <Home 
             user = {username}
             server = {server}
-            appView = {appView}
-            handleChangeView = {handleChangeView}
-            handleChangeHomeView = {() => handleChangeHomeView("")}
           />
         : <LandingPage 
-            // setUser = {setUser}
             server = {server}
           /> 
       }

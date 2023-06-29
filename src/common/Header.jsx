@@ -7,7 +7,7 @@ import Icon from "./Icon";
 
 import "./Header.css"
 
-const Header = (props) => {
+const Header = () => {
     const {loggedIn} = useSelector(store => store.user)
     const dispatch = useDispatch()
     

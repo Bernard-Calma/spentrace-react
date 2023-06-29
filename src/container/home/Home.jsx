@@ -16,6 +16,7 @@ import './home.css'
 import '../../Components/NavBar.css'
 
 const Home = (props) => {
+    const dispatch = useDispatch();
     // ------------------------------ VARIABLES ------------------------------
     // Plans
     const {planItems} = useSelector(store => store.plan)
@@ -32,12 +33,8 @@ const Home = (props) => {
    // Accounts
     const [accounts, setAccounts] = useState([]);
     // ------------------------------ END OF VARIABLES ------------------------------
-    // REDUX
-    const dispatch = useDispatch();
-    // REDUX
-    // ------------------------------ FUNCTIONS ------------------------------
-    // Views
  
+    // ------------------------------ FUNCTIONS ------------------------------
     // Accounts
     const getAccounts = async () => {
         // Get all accounts from user
