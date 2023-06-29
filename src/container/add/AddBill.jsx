@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBill } from '../../features/billSlice';
+import { changeView } from '../../features/viewSlice';
 
 import BackButton from '../../Components/Buttons/BackButton';
-import './Add.css';
 import LabelInput from '../../common/LabelInput';
-import { changeView } from '../../features/viewSlice';
+
+import './Add.css';
 
 const AddBill = () => {
     const dispatch = useDispatch();

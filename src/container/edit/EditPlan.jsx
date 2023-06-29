@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../features/viewSlice';
+import { modifyPlan } from '../../features/planSlice';
 
 import BackButton from '../../Components/Buttons/BackButton'
 import LabelInput from '../../common/LabelInput';
 
 import './EditPlan.css'
-import { modifyPlan } from '../../features/planSlice';
 
-const EditPlan = (props) => {
+const EditPlan = () => {
     const dispatch = useDispatch();
     const {
         openPlan
