@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useSelector, useDispatch } from "react-redux";
 import { changeView } from "../../features/viewSlice";
+import { deleteBill } from "../../features/billSlice";
 
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
@@ -15,14 +15,8 @@ const ShowBill = (props) => {
     } = useSelector(store => store.bill)
 
     const handleDelete = () => {
-        axios({
-            method: "DELETE",
-            url: `${props.server}/bills/${openBill._id}`,
-            withCredentials: true
-        })
-        .then(res => props.deleteBill(res.data))
-        .catch(err => console.log(err));
-        props.return();
+        dispatch(deleteBill(openBill))
+        dispatch(changeView({billView: "Bill List"}))
     }
     return(
         <div className="containerShowBill">

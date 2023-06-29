@@ -7,7 +7,7 @@ import './Add.css';
 import LabelInput from '../../common/LabelInput';
 import { changeView } from '../../features/viewSlice';
 
-const AddBill = (props) => {
+const AddBill = () => {
     const dispatch = useDispatch();
     const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months']);
     let [newBill, setNewBill] = useState({

@@ -34,7 +34,7 @@ const initialState = {
 }
 
 export const getBills = createAsyncThunk("bill/getBills", async (payload, thunkAPI) => {
-    // console.log("Getbills")
+    // console.log("Get Bills")
     try {
         const res = await axios({
             method: "GET",
@@ -50,7 +50,7 @@ export const getBills = createAsyncThunk("bill/getBills", async (payload, thunkA
 })
 
 export const addBill = createAsyncThunk("bill/addBill", async (payload, thunkAPI) => {
-    console.log("Add Bill")
+    // console.log("Add Bill")
     let newBill = {
         ...payload,
         userID: thunkAPI.getState().user.username
@@ -79,6 +79,22 @@ export const addBill = createAsyncThunk("bill/addBill", async (payload, thunkAPI
     } catch (err) {
         console.log("Get Plans Error: ", err)
         return thunkAPI.rejectWithValue("Error getting bills")
+    }
+})
+
+export const deleteBill = createAsyncThunk("bill/deteleBill", async (payload, thunkAPI) => {
+    // console.log("Delete Bill")
+    try {
+        const res = await axios({
+            method: "DELETE",
+            url: `${process.env.REACT_APP_SERVER_URL}/bills/${payload._id}`,
+            withCredentials: true
+        })
+        return res.data;
+    } catch (err) {
+        console.log("Get Plans Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting bills")
+    
     }
 })
 
@@ -200,10 +216,11 @@ const billSlice = createSlice({
         },
         setOpenBill: (state, {payload}) => {
             state.openBill = {...payload, dueDate: new Date(payload.dueDate).toUTCString()}
-        }
+        },
     },
     extraReducers: builder => {
         builder
+        // Get bills
         .addCase(getBills.pending, state => {
             // console.log("Pending")
             state.isLoading = true;
@@ -217,6 +234,7 @@ const billSlice = createSlice({
             // console.log("Rejected: ", state)
             state.isLoading = false;
         })
+        // Add bill
         .addCase(addBill.pending, state => {
             // console.log("Pending")
             state.isLoading = true;
@@ -227,6 +245,20 @@ const billSlice = createSlice({
             state.billItems = [...state.billItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1);
         })
         .addCase(addBill.rejected, state => {
+            // console.log("Rejected: ", state)
+            state.isLoading = false;
+        })
+        // Delete bill
+        .addCase(deleteBill.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+        })
+        .addCase(deleteBill.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            // console.log("Fulfilled: ", action)
+            state.billItems = [...state.billItems, payload].filter(account => payload._id !== account._id).sort((a, b) => (a.date > b.date) ? 1 : -1);
+        })
+        .addCase(deleteBill.rejected, state => {
             // console.log("Rejected: ", state)
             state.isLoading = false;
         })

@@ -52,14 +52,7 @@ const BillsList = (props) => {
                         />
                     </div>
                 </section>
-            : billView === "Add Bill"
-                ? <AddBill 
-                    user = {props.user}
-                    server = {props.server}
-                    bills = {props.bills}
-                    changeBillsView = {() => changeBillsView("Bills List")}
-                    // handleAddBill = {props.modifyBills.add} 
-                />
+            : billView === "Add Bill" ? <AddBill/>
             : billView === "Edit Bill"
                 ? <EdditBill 
                     openBill = {openBill}
