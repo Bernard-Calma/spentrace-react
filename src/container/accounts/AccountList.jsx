@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import './AccountList.css'
+import { useSelector } from 'react-redux';
+
 import Account from './Account';
 import CreditCard from './CreditCard';
 import Loan from './Loan';
@@ -8,7 +9,12 @@ import ShowAccount from '../show/ShowAccount';
 import EditAccount from '../edit/EditAccount';
 import Categories from '../../common/Categories';
 
+import './AccountList.css'
+
 const AccountList = props => {
+    const {
+        accList
+    } = useSelector(store => store.account)
     // Variables
     const [accountCategory, setAccountCategory] = useState({
         checking: {
@@ -147,14 +153,14 @@ const AccountList = props => {
                     </div>
 
                     {/* Checking Account */}
-                    {(accountCategory.checking.list.length > 0 && accountCategory.checking.show) &&
+                    {(accList.checking.length > 0 && accountCategory.checking.show) &&
                         <section className='sectionChecking account'>
                             <h1>Checking Accounts</h1>
                             <Categories 
                                 mobileCategories = {["bank", "account number", "balance"]}
                             />
                             <div className='accountContainer'>
-                                {accountCategory.checking.list.map((account, index) => 
+                                {accList.checking.map((account, index) => 
                                     <Account 
                                         key = {index}
                                         account = {account}
@@ -168,14 +174,14 @@ const AccountList = props => {
                     }
 
                     {/* Savings Account */}
-                    {(accountCategory.savings.list.length > 0 && accountCategory.savings.show) &&
+                    {(accList.savings.length > 0 && accountCategory.savings.show) &&
                         <section className='sectionSavings account'>
                             <h1>Savings Accounts</h1>
                             <Categories 
                                 mobileCategories = {["bank", "account number", "balance"]}
                             />
                             <div className='accountContainer'>
-                                {accountCategory.savings.list.map((account, index) => 
+                                {accList.savings.map((account, index) => 
                                     <Account 
                                         key = {index}
                                         account = {account}
@@ -188,7 +194,7 @@ const AccountList = props => {
                     }
 
                     {/* Credit Card */}
-                    {(accountCategory.creditCard.list.length > 0 && accountCategory.creditCard.show) &&
+                    {(accList.creditCard.length > 0 && accountCategory.creditCard.show) &&
                         <section className='sectionCredit account'>
                             <h1>Credit Card Accounts</h1>
                             <Categories 
@@ -205,7 +211,7 @@ const AccountList = props => {
                                     "interest"
                                 ]}
                             />
-                            {accountCategory.creditCard.list.map((account, index) => 
+                            {accList.creditCard.map((account, index) => 
                                 <CreditCard 
                                     key = {index}
                                     account = {account}
@@ -217,7 +223,7 @@ const AccountList = props => {
                     }
 
                     {/* Loan */}
-                    {(accountCategory.loan.list.length > 0 && accountCategory.loan.show) &&
+                    {(accList.loan.length > 0 && accountCategory.loan.show) &&
                         <section className='sectionLoan account'>
                             <h1>Loans</h1>
                             <Categories 
@@ -229,7 +235,7 @@ const AccountList = props => {
                                 ]}
                                 fullCategories = {["balance", "loan amount", "interest"]}
                             />
-                            {accountCategory.loan.list.map((account, index) => 
+                            {accList.loan.map((account, index) => 
                                 <Loan 
                                     key = {index}
                                     account = {account} 
