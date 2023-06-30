@@ -6,6 +6,13 @@ const initialState = {
     planView: "Plan List",
     billView: "Bill List",
     emptyView: "Empty Dashboard",
+    accountView: {
+        view: "Account List",
+        checkingView: true,
+        savingsView: true,
+        creditCardsView: true,
+        loansView: true
+    },
     isLoading: false
 }
 
