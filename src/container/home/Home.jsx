@@ -76,8 +76,8 @@ const Home = props => {
                         : <>
                             <div className='homeNavBar'>
                                 <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
-                                <p onClick={() => dispatch(changeView({homeView: "Bills List"}))}>Bills</p>
-                                <p onClick={() => dispatch(changeView({homeView: "Account List"}))}>Account</p>
+                                {billItems.length > 0 && <p onClick={() => dispatch(changeView({homeView: "Bills List"}))}>Bills</p>}
+                                <p onClick={() => dispatch(changeView({homeView: "Account List"}))}>Accounts</p>
                             </div>
                             <div className='containerHomeView'>
                                 {homeView === "Home" || view === "Home"
