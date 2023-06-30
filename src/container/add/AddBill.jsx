@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addBill } from '../../features/billSlice';
 import { changeView } from '../../features/viewSlice';
 
@@ -10,6 +10,7 @@ import './Add.css';
 
 const AddBill = () => {
     const dispatch = useDispatch();
+    const {billItems} = useSelector(store => store.bill)
     const [repeatOptions] = useState(['never', 'every week', 'every 2 weeks', 'every month', 'every 2 months']);
     let [newBill, setNewBill] = useState({
         autopay: false,
@@ -33,7 +34,11 @@ const AddBill = () => {
     return (
         <div className="addContainer">
             <div className='addHeader'>
-                <BackButton handleChangeView = {() => dispatch(changeView({billView: "Bills List"}))}/>
+                <BackButton handleChangeView = {() => {
+                    dispatch(changeView({billView: "Bills List"}))
+                    // Add if statement to display dashboard if no bill present
+                    if (billItems.length === 0) dispatch(changeView({homeView: "Home"}))
+            }}/>
                 <h2 className='addTitle'>ADD NEW BILL</h2>
             </div>            
             <form className='addForm'onSubmit={handleSubmitAdd}>

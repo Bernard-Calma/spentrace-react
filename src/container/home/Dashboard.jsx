@@ -4,6 +4,7 @@ import { getBalance } from "../../features/planSlice";
 import { getNextBill } from "../../features/billSlice";
 
 import CircleGraph from "../../Components/CircleGraph";
+import { changeView } from "../../features/viewSlice";
 const DashBoard = props => {
     const dispatch = useDispatch();
     // VARIABLES
@@ -55,29 +56,24 @@ const DashBoard = props => {
                     <h2>${Math.ceil(totalExpense)}</h2>
                 </div>    
                 </div>
-                {/* Show add if balance is positive */}
-                {nextTarget.amount === 0
-                    ? <div className="containerEmptyPlan">
-                        <h2>Add an expense</h2>
-                        <i 
-                            className="fi fi-rr-add addEmptyDashboard" 
-                            onClick={() => props.handleChangeView("Add Plan")}
-                        />
-                    </div>
-                    : <div className='containerNextTarget'>
-                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
-                        <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                        {/* Shorten the if statement */}
-                        <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
-                    </div>
-                }
+                <div className='containerNextTarget'>
+                    <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
+                    <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                    {/* Shorten the if statement */}
+                    <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
+                </div>
             </div> 
             {billItems.length === 0
                 ? <div className="containerEmptyPlan">
                     <h2>ADD YOUR FIRST BILL</h2>
                     <i 
                         className="fi fi-rr-add addEmptyDashboard" 
-                        onClick={() => props.changeHomeView("Bills List")}
+                        onClick={() => {
+                            dispatch(changeView({
+                                homeView: "Bills List",
+                                billView: "Add Bill",
+                            }))
+                        }}
                     />
                 </div>
                 : <>
