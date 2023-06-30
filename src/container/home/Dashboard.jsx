@@ -9,6 +9,7 @@ const DashBoard = props => {
     // VARIABLES
     // Plans
     const {
+        planItems,
         balance, 
         totalIncome, 
         totalExpense, 
@@ -24,10 +25,12 @@ const DashBoard = props => {
    // ------------------------------ END OF VARIABLES ------------------------------
 
    useEffect(() => {
-        dispatch(getBalance());
-        dispatch(getNextBill());
+        if (billItems.length > 0 ){
+            dispatch(getBalance());
+            dispatch(getNextBill());
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[props.plans]);
+    },[planItems]);
     
     return (
         <div className='dashboard'>

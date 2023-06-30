@@ -81,10 +81,7 @@ const Home = props => {
                             </div>
                             <div className='containerHomeView'>
                                 {homeView === "Home" || view === "Home"
-                                    ? <DashBoard 
-                                        plans = {planItems}
-                                        bills = {billItems}
-                                    />
+                                    ? <DashBoard/>
                                     : homeView === "Plan" ? <PlanList/>
                                     : homeView === "Bills List" ? <BillsList/>  
                                     : homeView === "Account List" 
