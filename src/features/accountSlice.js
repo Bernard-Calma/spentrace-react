@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export const getAccounts = createAsyncThunk("account/getAccounts", async (payload, thunkAPI) => {
-    console.log("Get Accounts")
+    // console.log("Get Accounts")
     try {
         const res = await axios({ 
             method: "GET",
@@ -35,13 +35,38 @@ const accountSlice = createSlice({
     extraReducers: builder => {
         builder
         .addCase(getAccounts.pending, state => {
-            console.log("Pending")
+            // console.log("Pending")
             state.isLoading = true;
         })
         .addCase(getAccounts.fulfilled, (state, {payload}) => {
             state.isLoading = false;
-            console.log("Fulfilled: ", payload)
-            // state.billItems = payload;
+            // console.log("Fulfilled: ", payload)
+            const accountsCategories = {
+                checking: [],
+                savings: [],
+                creditCard: [],
+                loan: []
+            }
+            payload.forEach(account => {
+                switch (account.accType) {
+                    case "Checking":
+                        accountsCategories.checking.push(account)
+                        break;
+                    case "Savings":
+                        accountsCategories.savings.push(account)
+                        break;
+                    case "Credit Card":
+                        accountsCategories.creditCard.push(account)
+                        break;
+                    case "Loan":
+                        accountsCategories.loan.push(account)
+                        break;
+                    default:
+                        break;
+                }
+            });
+            // console.log(accountsCategories)
+            state.accList = accountsCategories;
         })
         .addCase(getAccounts.rejected, state => {
             console.log("Rejected: ", state)

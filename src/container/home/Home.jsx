@@ -31,7 +31,7 @@ const Home = props => {
         view,
         homeView
     } = useSelector(store => store.view)
-   // Accounts
+    // Accounts
     const [accounts, setAccounts] = useState([]);
     // ------------------------------ END OF VARIABLES ------------------------------
  
