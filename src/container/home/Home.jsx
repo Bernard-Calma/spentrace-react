@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
 import { getBills } from '../../features/billSlice'
+import { getAccounts } from '../../features/accountSlice'
 import { changeView } from '../../features/viewSlice'
 
 import BillsList from '../bills/BillsList'
@@ -36,16 +37,16 @@ const Home = props => {
  
     // ------------------------------ FUNCTIONS ------------------------------
     // Accounts
-    const getAccounts = async () => {
-        // Get all accounts from user
-        await axios({ 
-            method: "GET",
-            url: `${props.server}/accounts`,
-            withCredentials: true 
-        })
-        .then(res => setAccounts(res.data))
-        .catch(err => console.log(err));
-    }
+    // const getAccounts = async () => {
+    //     // Get all accounts from user
+    //     await axios({ 
+    //         method: "GET",
+    //         url: `${props.server}/accounts`,
+    //         withCredentials: true 
+    //     })
+    //     .then(res => setAccounts(res.data))
+    //     .catch(err => console.log(err));
+    // }
     // Moidfy Accounts Methods
     const modifyAccounts =  {
         add: newAccount => setAccounts([...accounts, newAccount]),
@@ -57,7 +58,8 @@ const Home = props => {
     useEffect(()=>{
         dispatch(getPlans())
         dispatch(getBills())
-        getAccounts()
+        dispatch(getAccounts());
+        // getAccounts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
