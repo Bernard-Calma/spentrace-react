@@ -66,7 +66,13 @@ const accountSlice = createSlice({
                 }
             });
             // console.log(accountsCategories)
-            state.accList = accountsCategories;
+            state.accList = {
+                checking: accountsCategories.checking.sort((a,b) => b.balance - a.balance),
+                savings: accountsCategories.savings.sort((a,b) => b.balance - a.balance),
+                creditCard: accountsCategories.creditCard.sort((a,b) => b.availableCredit - a.availableCredit),
+                loan: accountsCategories.loan.sort((a,b) => ((a.loanAmount - a.balance) / a.loanAmount) - ((b.loanAmount - b.balance) / b.loanAmount)),
+            
+            };
         })
         .addCase(getAccounts.rejected, state => {
             console.log("Rejected: ", state)

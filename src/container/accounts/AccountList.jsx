@@ -79,24 +79,24 @@ const AccountList = props => {
             const accsSavings = [];
             const accsCreditCard = [];
             const accsLoan = [];
-            props.accounts.forEach(account => {
-                switch(account.accType) {
-                    case 'Checking': 
-                        accsCheckings.push(account);
-                        break;
-                    case 'Savings':
-                        accsSavings.push(account);
-                        break;
-                    case 'Credit Card':
-                        accsCreditCard.push(account);
-                        break;
-                    case 'Loan':
-                        accsLoan.push(account);
-                        break;
-                    default:
-                        break;
-                };
-            });
+            // accList.forEach(account => {
+            //     switch(account.accType) {
+            //         case 'Checking': 
+            //             accsCheckings.push(account);
+            //             break;
+            //         case 'Savings':
+            //             accsSavings.push(account);
+            //             break;
+            //         case 'Credit Card':
+            //             accsCreditCard.push(account);
+            //             break;
+            //         case 'Loan':
+            //             accsLoan.push(account);
+            //             break;
+            //         default:
+            //             break;
+            //     };
+            // });
 
             setAccountCategory({
                 checking: {
@@ -118,7 +118,7 @@ const AccountList = props => {
             })
         };
         handleAccountCategory();
-    }, [props.accounts]);
+    }, []);
 
     return (
         <div className="sectionAccountList">

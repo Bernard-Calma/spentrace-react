@@ -36,17 +36,6 @@ const Home = props => {
     // ------------------------------ END OF VARIABLES ------------------------------
  
     // ------------------------------ FUNCTIONS ------------------------------
-    // Accounts
-    // const getAccounts = async () => {
-    //     // Get all accounts from user
-    //     await axios({ 
-    //         method: "GET",
-    //         url: `${props.server}/accounts`,
-    //         withCredentials: true 
-    //     })
-    //     .then(res => setAccounts(res.data))
-    //     .catch(err => console.log(err));
-    // }
     // Moidfy Accounts Methods
     const modifyAccounts =  {
         add: newAccount => setAccounts([...accounts, newAccount]),
@@ -59,7 +48,6 @@ const Home = props => {
         dispatch(getPlans())
         dispatch(getBills())
         dispatch(getAccounts());
-        // getAccounts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -86,9 +74,6 @@ const Home = props => {
                                     : homeView === "Bills List" ? <BillsList/>  
                                     : homeView === "Account List" 
                                     ? < AccountList
-                                        user = {props.user}
-                                        server = {props.server}
-                                        accounts = {accounts}
                                         modifyAccounts = {modifyAccounts}
                                     />  
                                     : <></>
