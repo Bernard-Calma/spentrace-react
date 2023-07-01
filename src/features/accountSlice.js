@@ -8,6 +8,7 @@ const initialState = {
         creditCard: [],
         loan: []
     },
+    openAcc: {},
     isLoading: false
 }
 
@@ -30,7 +31,7 @@ const accountSlice = createSlice({
     name: "account",
     initialState,
     reducers: {
-
+        setOpenAcc: (state, {payload}) => {state.openAcc = payload}
     },
     extraReducers: builder => {
         builder
@@ -82,7 +83,7 @@ const accountSlice = createSlice({
 });
 
 export const {
-
+    setOpenAcc
 } = accountSlice.actions
 
 export default accountSlice.reducer;

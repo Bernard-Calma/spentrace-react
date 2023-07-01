@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { getAccounts } from '../../features/accountSlice';
+import { getAccounts, setOpenAcc } from '../../features/accountSlice';
+import { changeView, toggleAccountsCategory } from '../../features/viewSlice';
 
 import Account from './Account';
 import CreditCard from './CreditCard';
@@ -11,60 +12,27 @@ import EditAccount from '../edit/EditAccount';
 import Categories from '../../common/Categories';
 
 import './AccountList.css'
-import { changeView, toggleAccountsCategory } from '../../features/viewSlice';
 
 const AccountList = props => {
     const dispatch = useDispatch();
     const {
-        accList
+        accList,
+        openAcc
     } = useSelector(store => store.account)
     const {
-        accountView
+        accountView,
     } = useSelector(store => store.view)
     // Variables
-    const [accountCategory, setAccountCategory] = useState({
-        checking: {
-            list:[],
-            show: true
-        },
-        savings:  {
-            list:[],
-            show: true
-        },
-        creditCard:  {
-            list:[],
-            show: true
-        },
-        loan:  {
-            list:[],
-            show: true
-        },
-    });
-
-    const [openAcc, setOpenAcc] = useState({});
     const [view, setView] = useState("Account List");
-
     // View
     const handleChangeView = view => setView(view)
     
     const handleShowAcc = account => {
-        setOpenAcc(account);
-        setView("Show");
+        dispatch(setOpenAcc(account));
+        dispatch(changeView({
+            accountView: {view: "Show"}
+        }))
     }
-
-    const handleShowCategory = e => {
-        for (const [key, value] of Object.entries(accountCategory)) {
-            if(key === e.target.classList[2]) {
-                // console.log(accountCategory[key])
-                setAccountCategory({...accountCategory, [key]: 
-                    {
-                        ...value,
-                        show: !value.show
-                    }
-                });
-            };
-        };
-    };
 
     // Number modifiers
     const addComma = numToString => {
@@ -91,9 +59,8 @@ const AccountList = props => {
                         <i 
                             className="fi fi-rr-add account" 
                             onClick={() => dispatch(changeView({
-                                accountView: {
-                                    view: "Add"
-                            }}))}
+                                accountView: {view: "Add"}
+                            }))}
                         />
                         <div className='accountListCategories'>
                             <p 
@@ -213,10 +180,8 @@ const AccountList = props => {
                     }
                 </>
             : accountView.view === "Add"
-                ? <AddAccount 
-                        server = {props.server}
+                ? <AddAccount
                         add = {props.modifyAccounts.add}
-                        return = {() => handleChangeView("Account List")}
                     />
             : accountView.view === "Show"
                 ? <ShowAccount 
@@ -224,12 +189,10 @@ const AccountList = props => {
                         server = {props.server}
                         addComma = {addComma}
                         delete = {props.modifyAccounts.delete}
-                        return = {() => handleChangeView("Account List")}
-                        edit = {() => handleChangeView("Edit")}
+                         edit = {() => handleChangeView("Edit")}
                     />
             : accountView.view === "Edit"
                 ? <EditAccount 
-                        openAcc = {openAcc}
                         server = {props.server}
                         addComma = {addComma}
                         update = {props.modifyAccounts.update}
