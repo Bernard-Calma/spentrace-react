@@ -17,7 +17,6 @@ const AccountList = props => {
     const dispatch = useDispatch();
     const {
         accList,
-        openAcc
     } = useSelector(store => store.account)
     const {
         accountView,
@@ -185,11 +184,9 @@ const AccountList = props => {
                     />
             : accountView.view === "Show"
                 ? <ShowAccount 
-                        openAcc = {openAcc}
                         server = {props.server}
                         addComma = {addComma}
                         delete = {props.modifyAccounts.delete}
-                         edit = {() => handleChangeView("Edit")}
                     />
             : accountView.view === "Edit"
                 ? <EditAccount 

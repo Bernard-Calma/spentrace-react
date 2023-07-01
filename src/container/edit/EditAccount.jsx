@@ -1,11 +1,19 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeView } from '../../features/viewSlice'
+
 import BackButton from '../../Components/Buttons/BackButton'
-import './EditPlan.css'
 import LabelInput from '../../common/LabelInput';
 
+import './EditPlan.css'
+
 const EditAccount = (props) => {
-    const [editAccount, setEditAccount] = useState(props.openAcc);
+    const dispatch = useDispatch();
+    const {
+        openAcc
+    } = useSelector(store => store.account)
+    const [editAccount, setEditAccount] = useState(openAcc);
 
     const handleChange= e => {
         // e.target.style.backgroundColor = "" // remove color for empty input
@@ -32,7 +40,11 @@ const EditAccount = (props) => {
     return (
         <div className="editContainer">
             <div className='editHeader'>
-                <BackButton handleChangeView = {props.return}/>
+                <BackButton handleChangeView = {() => dispatch(changeView({
+                    accountView: {
+                        view: "Account List"
+                    }
+                }))}/>
                 <h2 className='editTitle'>Edit</h2>
             </div>
             <form className='addForm' onSubmit={handleSubmit}>

@@ -46,7 +46,11 @@ const ShowAccount = (props) => {
                     }
                 }))}/>
                 <div>
-                    <Edit className="fi fi-rr-edit" onClick={props.edit}/>
+                    <Edit className="fi fi-rr-edit" onClick={() => dispatch(changeView({
+                    accountView: {
+                        view: "Edit"
+                    }
+                }))}/>
                     <Delete className="fi fi-rr-trash" onClick={handleDelete}/>
                 </div>
             </div>
