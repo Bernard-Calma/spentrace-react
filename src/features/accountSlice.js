@@ -45,17 +45,34 @@ export const addAccount = createAsyncThunk("account/addAccount", async (payload,
 })
 
 export const deleteAccount = createAsyncThunk("account/deleteAccount", async (payload, thunkAPI) => {
-    console.log("Delete Account")
+    // console.log("Delete Account")
     try {
         const res = await axios({
             method: "DELETE",
             url: `${process.env.REACT_APP_SERVER_URL}/accounts/${payload._id}`,
             withCredentials: true
         })
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     } catch (err) {
         console.log("Delete Account Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting bills")
+    }
+})
+
+export const editAccount = createAsyncThunk("account/editAccount", async (payload, thunkAPI) => {
+    console.log("Edit Account")
+    try {
+        const res = await axios({
+            method: "PUT",
+            url: `${process.env.REACT_APP_SERVER_URL}/accounts/${payload._id}`,
+            data: payload,
+            withCredentials: true,
+        })
+        console.log(res.data)
+        return res.data
+    } catch (err) {
+        console.log("Edit Account Error: ", err)
         return thunkAPI.rejectWithValue("Error getting bills")
     }
 })
@@ -137,6 +154,20 @@ const accountSlice = createSlice({
             state.accList = state.accList.filter(account => payload._id !== account._id);
         })
         .addCase(deleteAccount.rejected, state => {
+            // console.log("Rejected: ", state)
+            state.isLoading = false;
+        })
+        // Edit Account
+        .addCase(editAccount.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+        })
+        .addCase(editAccount.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            // console.log("Fulfilled: ", action)
+            state.accList = state.accList.map(account => account._id === payload._id ? payload : account);
+        })
+        .addCase(editAccount.rejected, state => {
             // console.log("Rejected: ", state)
             state.isLoading = false;
         })

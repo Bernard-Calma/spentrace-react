@@ -1,14 +1,14 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeView } from '../../features/viewSlice'
+import { getAccounts } from '../../features/accountSlice'
 
 import BackButton from '../../Components/Buttons/BackButton'
 import LabelInput from '../../common/LabelInput';
 
 import './EditPlan.css'
 
-const EditAccount = (props) => {
+const EditAccount = () => {
     const dispatch = useDispatch();
     const {
         openAcc
@@ -24,17 +24,13 @@ const EditAccount = (props) => {
     const handleSubmit = async e => {
         e.preventDefault();
         // console.log(editAccount)
-        await axios({
-            method: "PUT",
-            url: `${props.server}/accounts/${props.openAcc._id}`,
-            data: editAccount,
-            withCredentials: true,
-        })
-        .then(res => {
-            // console.log(res)
-            props.update(res.data);
-        });
-        props.return();
+        dispatch(editAccount(editAccount))
+        dispatch(changeView({
+            accountView: {
+                view: "Account List"
+            }
+        }))
+        dispatch(getAccounts())
     }
 
     return (

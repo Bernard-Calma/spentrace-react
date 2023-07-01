@@ -175,16 +175,8 @@ const AccountList = props => {
                     }
                 </>
             : accountView.view === "Add" ? <AddAccount/>
-            : accountView.view === "Show"
-                ? <ShowAccount 
-                        addComma = {addComma}
-                    />
-            : accountView.view === "Edit"
-                ? <EditAccount 
-                        server = {props.server}
-                        addComma = {addComma}
-                        update = {props.modifyAccounts.update}
-                    />
+            : accountView.view === "Show" ? <ShowAccount addComma = {addComma}/>
+            : accountView.view === "Edit" ? <EditAccount addComma = {addComma}/>
             : <></>
             }
         </div>
