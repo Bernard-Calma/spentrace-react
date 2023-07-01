@@ -6,6 +6,7 @@ import { changeView } from "../../features/viewSlice";
 
 import BackButton from "../../Components/Buttons/BackButton";
 import LabelInput from "../../common/LabelInput";
+import { addAccount, getAccounts } from "../../features/accountSlice";
 
 const AddAccount = (props) => {
     const dispatch = useDispatch();
@@ -29,18 +30,13 @@ const AddAccount = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        axios({
-            method: "POST",
-            url: `${props.server}/accounts`,
-            data: newAccount,
-            withCredentials: true
-        })
-        .then(res => {
-            // console.log(res.data)
-            props.add(res.data);
-            props.return();
-        })
-        .catch(err => console.log(err));
+        dispatch(addAccount(newAccount));
+        dispatch(changeView({
+            accountView: {
+                view: "Account List"
+            }
+        }))
+        dispatch(getAccounts())
     };
 
     return (

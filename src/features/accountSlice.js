@@ -27,6 +27,23 @@ export const getAccounts = createAsyncThunk("account/getAccounts", async (payloa
     }
 })
 
+export const addAccount = createAsyncThunk("account/addAccount", async (payload, thunkAPI) => {
+    console.log("Add Accounts")
+    try {
+        const res = await axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_SERVER_URL}/accounts`,
+            data: payload,
+            withCredentials: true
+        })
+        console.log(res.data)
+        return res.data
+    } catch (err) {
+        console.log("Add Account Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting bills")
+    }
+})
+
 const accountSlice = createSlice({
     name: "account",
     initialState,
@@ -77,6 +94,20 @@ const accountSlice = createSlice({
         })
         .addCase(getAccounts.rejected, state => {
             console.log("Rejected: ", state)
+            state.isLoading = false;
+        })
+        // Add Account
+        .addCase(addAccount.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+        })
+        .addCase(addAccount.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            // console.log("Fulfilled: ", action)
+            state.accList = [...state.accList, payload];
+        })
+        .addCase(addAccount.rejected, state => {
+            // console.log("Rejected: ", state)
             state.isLoading = false;
         })
     }

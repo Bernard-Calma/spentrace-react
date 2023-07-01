@@ -21,11 +21,7 @@ const AccountList = props => {
     const {
         accountView,
     } = useSelector(store => store.view)
-    // Variables
-    const [view, setView] = useState("Account List");
-    // View
-    const handleChangeView = view => setView(view)
-    
+
     const handleShowAcc = account => {
         dispatch(setOpenAcc(account));
         dispatch(changeView({
@@ -193,7 +189,6 @@ const AccountList = props => {
                         server = {props.server}
                         addComma = {addComma}
                         update = {props.modifyAccounts.update}
-                        return = {() => handleChangeView("Account List")}
                     />
             : <></>
             }
