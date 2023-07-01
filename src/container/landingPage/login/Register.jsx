@@ -1,9 +1,10 @@
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux"
-import BackButton from "../../../Components/Buttons/BackButton"
-import LabelInput from "../../../common/LabelInput";
 import { userRegister } from "../../../features/userSlice";
 import { changeView } from "../../../features/viewSlice";
+
+import BackButton from "../../../Components/Buttons/BackButton"
+import LabelInput from "../../../common/LabelInput";
 
 const Register = () => {
     const dispatch = useDispatch()

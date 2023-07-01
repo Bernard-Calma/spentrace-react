@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
@@ -16,7 +15,7 @@ import AccountList from '../accounts/AccountList'
 import './home.css'
 import '../../Components/NavBar.css'
 
-const Home = props => {
+const Home = () => {
     const dispatch = useDispatch();
     // ------------------------------ VARIABLES ------------------------------
     // Plans

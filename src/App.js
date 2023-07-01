@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { getUser } from './features/userSlice';
 
@@ -12,10 +12,8 @@ import './App.css';
 const App = () => { 
   const dispatch = useDispatch()
   // ------------------------------ VARIABLES ------------------------------
-  // Server
-  const [server] = useState(process.env.REACT_APP_SERVER_URL);
   // User information
-  const {username, loggedIn} = useSelector(store => store.user)
+  const {loggedIn} = useSelector(store => store.user)
   // ------------------------------ END OF VARIABLES ------------------------------
 
   useEffect(() => {
@@ -28,10 +26,7 @@ const App = () => {
     <div className="App">
       <Header/>
       {loggedIn 
-        ? <Home 
-            user = {username}
-            server = {server}
-          />
+        ? <Home/>
         : <LandingPage/> 
       }
       <Footer />

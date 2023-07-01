@@ -22,12 +22,13 @@ const viewSlice = createSlice({
     reducers: {
         changeView: (state, {payload}) => {
             // console.log(payload)
-            const {view, billView, homeView, planView, emptyView} = payload
+            const {view, billView, homeView, planView, emptyView, accountView} = payload
             state.view = view ? view: state.view;
             state.homeView = homeView ? homeView : state.homeView;
             state.planView = planView ? planView : state.planView;
             state.billView = billView ? billView : state.billView;
             state.emptyView = emptyView ? emptyView : state.emptyView;
+            state.accountView = {...state.accountView, ...accountView}
         }
     }
 })

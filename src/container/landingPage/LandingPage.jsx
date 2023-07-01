@@ -26,7 +26,10 @@ const LandingPage = () =>{
                     className="mainPageImage"
                 />
             </div>
-            {view === "Login" ? <Login/> : <Register/>}
+            {view === "Login" 
+                ? <Login/> 
+                : <Register/>
+            }
         </div>
     );
 };

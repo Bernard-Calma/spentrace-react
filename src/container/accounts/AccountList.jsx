@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAccounts } from '../../features/accountSlice';
 
 import Account from './Account';
 import CreditCard from './CreditCard';
@@ -10,11 +11,16 @@ import EditAccount from '../edit/EditAccount';
 import Categories from '../../common/Categories';
 
 import './AccountList.css'
+import { changeView } from '../../features/viewSlice';
 
 const AccountList = props => {
+    const dispatch = useDispatch();
     const {
         accList
     } = useSelector(store => store.account)
+    const {
+        accountView
+    } = useSelector(store => store.view)
     // Variables
     const [accountCategory, setAccountCategory] = useState({
         checking: {
@@ -72,62 +78,22 @@ const AccountList = props => {
         return numToString;
     }
 
-    useEffect(()=>{
-        // GET
-        const handleAccountCategory = () => {
-            const accsCheckings = [];
-            const accsSavings = [];
-            const accsCreditCard = [];
-            const accsLoan = [];
-            // accList.forEach(account => {
-            //     switch(account.accType) {
-            //         case 'Checking': 
-            //             accsCheckings.push(account);
-            //             break;
-            //         case 'Savings':
-            //             accsSavings.push(account);
-            //             break;
-            //         case 'Credit Card':
-            //             accsCreditCard.push(account);
-            //             break;
-            //         case 'Loan':
-            //             accsLoan.push(account);
-            //             break;
-            //         default:
-            //             break;
-            //     };
-            // });
-
-            setAccountCategory({
-                checking: {
-                    list: accsCheckings.sort((a,b) => b.balance - a.balance),
-                    show: true
-                },
-                savings:  {
-                    list: accsSavings.sort((a,b) => b.balance - a.balance),
-                    show: true
-                },
-                creditCard:  {
-                    list: accsCreditCard.sort((a,b) => b.availableCredit - a.availableCredit),
-                    show: true
-                },
-                loan:  {
-                    list: accsLoan.sort((a,b) => ((a.loanAmount - a.balance) / a.loanAmount) - ((b.loanAmount - b.balance) / b.loanAmount)),
-                    show: true
-                }
-            })
-        };
-        handleAccountCategory();
-    }, []);
+    useEffect(() => {
+        dispatch(getAccounts());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className="sectionAccountList">
-            {view === "Account List"
+            {accountView.view === "Account List"
                 ? <>
                     <div className='accountListHeader'>
                         <i 
                             className="fi fi-rr-add account" 
-                            onClick={() => handleChangeView("Add")}
+                            onClick={() => dispatch(changeView({
+                                accountView: {
+                                    view: "Add"
+                            }}))}
                         />
                         <div className='accountListCategories'>
                             <p 
@@ -246,13 +212,13 @@ const AccountList = props => {
                         </section>
                     }
                 </>
-            : view === "Add"
+            : accountView.view === "Add"
                 ? <AddAccount 
                         server = {props.server}
                         add = {props.modifyAccounts.add}
                         return = {() => handleChangeView("Account List")}
                     />
-            : view === "Show"
+            : accountView.view === "Show"
                 ? <ShowAccount 
                         openAcc = {openAcc}
                         server = {props.server}
@@ -261,7 +227,7 @@ const AccountList = props => {
                         return = {() => handleChangeView("Account List")}
                         edit = {() => handleChangeView("Edit")}
                     />
-            : view === "Edit"
+            : accountView.view === "Edit"
                 ? <EditAccount 
                         openAcc = {openAcc}
                         server = {props.server}

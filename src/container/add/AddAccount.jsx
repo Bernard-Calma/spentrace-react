@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import BackButton from "../../Components/Buttons/BackButton";
 import axios from "axios";
 import LabelInput from "../../common/LabelInput";
+import { changeView } from "../../features/viewSlice";
 
 const AddAccount = (props) => {
+    const dispatch = useDispatch();
     const accountType = ['','Checking', 'Savings', 'Credit Card', 'Loan'];
     const [newAccount, setNewAccount] = useState({
         accType: '',
@@ -41,7 +44,11 @@ const AddAccount = (props) => {
     return (
         <div className="addContainer">
             <div className='addHeader'>
-                <BackButton handleChangeView = {props.return}/>
+                <BackButton handleChangeView = {() => dispatch(changeView({
+                    accountView: {
+                        view: "Account List"
+                    }
+                }))}/>
                 <h2 className='addTitle'>ADD NEW ACCOUNT</h2>
             </div>  
             <form className='addForm'onSubmit={handleSubmit}>
