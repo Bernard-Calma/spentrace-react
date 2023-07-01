@@ -29,12 +29,20 @@ const viewSlice = createSlice({
             state.billView = billView ? billView : state.billView;
             state.emptyView = emptyView ? emptyView : state.emptyView;
             state.accountView = {...state.accountView, ...accountView}
+        },
+        toggleAccountsCategory: (state, {payload}) => {
+            let accountView = state.accountView;
+            accountView = {...accountView, 
+                [payload]: !accountView[payload]
+            }
+            state.accountView = {...state.accountView, ...accountView}
         }
     }
 })
 
 export const {
-    changeView
+    changeView,
+    toggleAccountsCategory
 } = viewSlice.actions
 
 export default viewSlice.reducer

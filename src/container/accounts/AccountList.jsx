@@ -11,7 +11,7 @@ import EditAccount from '../edit/EditAccount';
 import Categories from '../../common/Categories';
 
 import './AccountList.css'
-import { changeView } from '../../features/viewSlice';
+import { changeView, toggleAccountsCategory } from '../../features/viewSlice';
 
 const AccountList = props => {
     const dispatch = useDispatch();
@@ -97,29 +97,29 @@ const AccountList = props => {
                         />
                         <div className='accountListCategories'>
                             <p 
-                                className={`accountListHeader categories checking ${accountCategory.checking.show && 'selected'}`} 
-                                onClick={handleShowCategory}
+                                className={`accountListHeader categories checking ${accountView.checkingView && 'selected'}`} 
+                                onClick={() => dispatch(toggleAccountsCategory("checkingView"))}
                             >Checking</p>
 
                             <p 
-                                className={`accountListHeader categories savings ${accountCategory.savings.show && 'selected'}`} 
-                                onClick={handleShowCategory}
+                                className={`accountListHeader categories savings ${accountView.savingsView && 'selected'}`} 
+                                onClick={() => dispatch(toggleAccountsCategory("savingsView"))}
                             >Savings</p>
 
                             <p 
-                                className={`accountListHeader categories creditCard ${accountCategory.creditCard.show && 'selected'}`} 
-                                onClick={handleShowCategory}
+                                className={`accountListHeader categories creditCard ${accountView.creditCardsView && 'selected'}`} 
+                                onClick={() => dispatch(toggleAccountsCategory("creditCardsView"))}
                             >Credit Card</p>
 
                             <p 
-                                className={`accountListHeader categories loan ${accountCategory.loan.show && 'selected'}`} 
-                                onClick={handleShowCategory}
+                                className={`accountListHeader categories loan ${accountView.loansView && 'selected'}`} 
+                                onClick={() => dispatch(toggleAccountsCategory("loansView"))}
                             >Loan</p>
                         </div>
                     </div>
 
                     {/* Checking Account */}
-                    {(accList.checking.length > 0 && accountCategory.checking.show) &&
+                    {(accList.checking.length > 0 && accountView.checkingView) &&
                         <section className='sectionChecking account'>
                             <h1>Checking Accounts</h1>
                             <Categories 
@@ -140,7 +140,7 @@ const AccountList = props => {
                     }
 
                     {/* Savings Account */}
-                    {(accList.savings.length > 0 && accountCategory.savings.show) &&
+                    {(accList.savings.length > 0 && accountView.savingsView) &&
                         <section className='sectionSavings account'>
                             <h1>Savings Accounts</h1>
                             <Categories 
@@ -160,7 +160,7 @@ const AccountList = props => {
                     }
 
                     {/* Credit Card */}
-                    {(accList.creditCard.length > 0 && accountCategory.creditCard.show) &&
+                    {(accList.creditCard.length > 0 && accountView.creditCardsView) &&
                         <section className='sectionCredit account'>
                             <h1>Credit Card Accounts</h1>
                             <Categories 
@@ -189,7 +189,7 @@ const AccountList = props => {
                     }
 
                     {/* Loan */}
-                    {(accList.loan.length > 0 && accountCategory.loan.show) &&
+                    {(accList.loan.length > 0 && accountView.loansView) &&
                         <section className='sectionLoan account'>
                             <h1>Loans</h1>
                             <Categories 
