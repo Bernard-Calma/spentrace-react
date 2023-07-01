@@ -1,6 +1,6 @@
-import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
 import { changeView } from "../../features/viewSlice";
+import { deleteAccount, getAccounts } from "../../features/accountSlice";
 
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
@@ -25,17 +25,13 @@ const ShowAccount = (props) => {
 
     const handleDelete = async () => {
         // console.log("Delete");
-        await axios({
-            method: "DELETE",
-            url: `${props.server}/accounts/${openAcc._id}`,
-            withCredentials: true
-        })
-        .then(res => {
-            // console.log(res);
-            props.delete(res.data);
-        })
-        .catch(err => console.log(err));
-        props.return();
+        dispatch(deleteAccount(openAcc))
+        dispatch(changeView({
+            accountView: {
+                view: "Account List"
+            }
+        }))
+        dispatch(getAccounts())
     }
     return(
         <div className="containerShowBill">

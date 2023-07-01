@@ -37,9 +37,7 @@ const Home = () => {
     // ------------------------------ FUNCTIONS ------------------------------
     // Moidfy Accounts Methods
     const modifyAccounts =  {
-        add: newAccount => setAccounts([...accounts, newAccount]),
         update: updatedAccount=> setAccounts(accounts.map(account => account._id === updatedAccount._id ? updatedAccount : account)),
-        delete: deletedAccount => setAccounts(accounts.filter(account => deletedAccount._id !== account._id))
     }
 
     // ------------------------------ END OF FUNCTIONS ------------------------------

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAccounts, setOpenAcc } from '../../features/accountSlice';
 import { changeView, toggleAccountsCategory } from '../../features/viewSlice';
@@ -174,15 +174,10 @@ const AccountList = props => {
                         </section>
                     }
                 </>
-            : accountView.view === "Add"
-                ? <AddAccount
-                        add = {props.modifyAccounts.add}
-                    />
+            : accountView.view === "Add" ? <AddAccount/>
             : accountView.view === "Show"
                 ? <ShowAccount 
-                        server = {props.server}
                         addComma = {addComma}
-                        delete = {props.modifyAccounts.delete}
                     />
             : accountView.view === "Edit"
                 ? <EditAccount 

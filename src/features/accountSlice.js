@@ -28,7 +28,7 @@ export const getAccounts = createAsyncThunk("account/getAccounts", async (payloa
 })
 
 export const addAccount = createAsyncThunk("account/addAccount", async (payload, thunkAPI) => {
-    console.log("Add Accounts")
+    // console.log("Add Account")
     try {
         const res = await axios({
             method: "POST",
@@ -36,10 +36,26 @@ export const addAccount = createAsyncThunk("account/addAccount", async (payload,
             data: payload,
             withCredentials: true
         })
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     } catch (err) {
         console.log("Add Account Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting bills")
+    }
+})
+
+export const deleteAccount = createAsyncThunk("account/deleteAccount", async (payload, thunkAPI) => {
+    console.log("Delete Account")
+    try {
+        const res = await axios({
+            method: "DELETE",
+            url: `${process.env.REACT_APP_SERVER_URL}/accounts/${payload._id}`,
+            withCredentials: true
+        })
+        console.log(res.data)
+        return res.data
+    } catch (err) {
+        console.log("Delete Account Error: ", err)
         return thunkAPI.rejectWithValue("Error getting bills")
     }
 })
@@ -107,6 +123,20 @@ const accountSlice = createSlice({
             state.accList = [...state.accList, payload];
         })
         .addCase(addAccount.rejected, state => {
+            // console.log("Rejected: ", state)
+            state.isLoading = false;
+        })
+        // Delete Account
+        .addCase(deleteAccount.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+        })
+        .addCase(deleteAccount.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            // console.log("Fulfilled: ", action)
+            state.accList = state.accList.filter(account => payload._id !== account._id);
+        })
+        .addCase(deleteAccount.rejected, state => {
             // console.log("Rejected: ", state)
             state.isLoading = false;
         })

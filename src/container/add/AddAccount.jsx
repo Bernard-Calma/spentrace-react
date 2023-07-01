@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeView } from "../../features/viewSlice";
@@ -8,7 +6,7 @@ import BackButton from "../../Components/Buttons/BackButton";
 import LabelInput from "../../common/LabelInput";
 import { addAccount, getAccounts } from "../../features/accountSlice";
 
-const AddAccount = (props) => {
+const AddAccount = () => {
     const dispatch = useDispatch();
     const accountType = ['','Checking', 'Savings', 'Credit Card', 'Loan'];
     const [newAccount, setNewAccount] = useState({
