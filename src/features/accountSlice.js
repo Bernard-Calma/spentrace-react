@@ -61,7 +61,8 @@ export const deleteAccount = createAsyncThunk("account/deleteAccount", async (pa
 })
 
 export const editAccount = createAsyncThunk("account/editAccount", async (payload, thunkAPI) => {
-    console.log("Edit Account")
+    // console.log("Edit Account")
+    // console.log(payload)
     try {
         const res = await axios({
             method: "PUT",
@@ -69,10 +70,28 @@ export const editAccount = createAsyncThunk("account/editAccount", async (payloa
             data: payload,
             withCredentials: true,
         })
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     } catch (err) {
         console.log("Edit Account Error: ", err)
+        return thunkAPI.rejectWithValue("Error getting bills")
+    }
+})
+
+export const updateBalance = createAsyncThunk("account/updateBalance", async ({id, newBalance}, thunkAPI) => {
+    // console.log("Update Balance")
+    // console.log(id, newBalance)
+    try {
+        const res = await axios({
+            method: "PATCH",
+            url: `${process.env.REACT_APP_SERVER_URL}/accounts/${id}`,
+            data: {balance: newBalance},
+            withCredentials: true
+        })
+        // console.log(res.data)
+        return res.data
+    } catch (err) {
+        console.log("Update Balance Error: ", err)
         return thunkAPI.rejectWithValue("Error getting bills")
     }
 })
@@ -126,7 +145,7 @@ const accountSlice = createSlice({
             };
         })
         .addCase(getAccounts.rejected, state => {
-            console.log("Rejected: ", state)
+            // console.log("Rejected: ", state)
             state.isLoading = false;
         })
         // Add Account
@@ -137,7 +156,6 @@ const accountSlice = createSlice({
         .addCase(addAccount.fulfilled, (state, {payload}) => {
             state.isLoading = false;
             // console.log("Fulfilled: ", action)
-            state.accList = [...state.accList, payload];
         })
         .addCase(addAccount.rejected, state => {
             // console.log("Rejected: ", state)
@@ -151,7 +169,6 @@ const accountSlice = createSlice({
         .addCase(deleteAccount.fulfilled, (state, {payload}) => {
             state.isLoading = false;
             // console.log("Fulfilled: ", action)
-            state.accList = state.accList.filter(account => payload._id !== account._id);
         })
         .addCase(deleteAccount.rejected, state => {
             // console.log("Rejected: ", state)
@@ -165,9 +182,21 @@ const accountSlice = createSlice({
         .addCase(editAccount.fulfilled, (state, {payload}) => {
             state.isLoading = false;
             // console.log("Fulfilled: ", action)
-            state.accList = state.accList.map(account => account._id === payload._id ? payload : account);
         })
         .addCase(editAccount.rejected, state => {
+            // console.log("Rejected: ", state)
+            state.isLoading = false;
+        })
+        // Update Balance
+        .addCase(updateBalance.pending, state => {
+            // console.log("Pending")
+            state.isLoading = true;
+        })
+        .addCase(updateBalance.fulfilled, (state, {payload}) => {
+            state.isLoading = false;
+            // console.log("Fulfilled: ", action)
+        })
+        .addCase(updateBalance.rejected, state => {
             // console.log("Rejected: ", state)
             state.isLoading = false;
         })

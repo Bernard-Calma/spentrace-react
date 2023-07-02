@@ -1,7 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateBalance } from "../../features/accountSlice";
 
 const Account = (props) => {
+    const dispatch = useDispatch();
     const getBalanceText = (balance) => {
         return balance >= 0 ? `$${Number(balance).toFixed(2)}` : `-$${Math.abs(balance).toFixed(2)}`;
     };
@@ -11,20 +13,13 @@ const Account = (props) => {
     const handleChange = e => setBalanceText(e.target.value)
 
     const handleUpdateBalance = async e => {
-        await axios({
-            method: "PATCH",
-            url: `${props.server}/accounts/${props.account._id}`,
-            data: {balance: e.target.value},
-            withCredentials: true
-        })
-        .then(res => {
-            // console.log(res.data);
-            props.update(res.data);
-        })
-        .catch(err => console.log(err));
+        dispatch(updateBalance({
+            id: props.account._id,
+            newBalance: e.target.value
+        }))
     };
 
-    const updateBalance = e => {
+    const updateBalanceTemp = e => {
         e.preventDefault();
         // console.log(e.target.value);
         if(e.target.value === '0') {
@@ -58,7 +53,7 @@ const Account = (props) => {
                 onChange={handleChange}
                 // Remove $ when clicked
                 onFocus={(e) => setBalanceText(e.target.value.slice(1))}
-                onBlur={updateBalance}  
+                onBlur={updateBalanceTemp}  
                 value = {balanceText}
             />
         </div> 

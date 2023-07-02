@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeView } from '../../features/viewSlice'
-import { getAccounts } from '../../features/accountSlice'
+import { editAccount, getAccounts } from '../../features/accountSlice'
 
 import BackButton from '../../Components/Buttons/BackButton'
 import LabelInput from '../../common/LabelInput';
@@ -13,18 +13,18 @@ const EditAccount = () => {
     const {
         openAcc
     } = useSelector(store => store.account)
-    const [editAccount, setEditAccount] = useState(openAcc);
+    const [account, setEditAccount] = useState(openAcc);
 
     const handleChange= e => {
         // e.target.style.backgroundColor = "" // remove color for empty input
-        if (e.target.name === "expense") setEditAccount({...editAccount, [e.target.name]: e.target.value === "Expense" ? true : false});
-        else setEditAccount({...editAccount, [e.target.name]: e.target.value});
+        if (e.target.name === "expense") setEditAccount({...account, [e.target.name]: e.target.value === "Expense" ? true : false});
+        else setEditAccount({...account, [e.target.name]: e.target.value});
     }
 
     const handleSubmit = async e => {
         e.preventDefault();
-        // console.log(editAccount)
-        dispatch(editAccount(editAccount))
+        // console.log(account)
+        dispatch(editAccount(account))
         dispatch(changeView({
             accountView: {
                 view: "Account List"
@@ -44,8 +44,8 @@ const EditAccount = () => {
                 <h2 className='editTitle'>Edit</h2>
             </div>
             <form className='addForm' onSubmit={handleSubmit}>
-                <label htmlFor="repeat" className='formInput acc'>Account Type: {editAccount.accType}</label>
-                {editAccount.accType &&
+                <label htmlFor="repeat" className='formInput acc'>Account Type: {account.accType}</label>
+                {account.accType &&
                 <>
                     <LabelInput 
                         tmlFor="bank" 
@@ -54,7 +54,7 @@ const EditAccount = () => {
                         type="text" 
                         name="bank" 
                         id="addAccountBank" 
-                        value={editAccount.bank} 
+                        value={account.bank} 
                         onChange={handleChange} 
                         required
                     />
@@ -66,7 +66,7 @@ const EditAccount = () => {
                         type="text" 
                         name="accNumber" 
                         id="addAccountAccNumber" 
-                        value={editAccount.accNumber} 
+                        value={account.accNumber} 
                         onChange={handleChange}
                     />
 
@@ -77,11 +77,11 @@ const EditAccount = () => {
                         type="date" 
                         name="accOpen" 
                         id="addAccountAccOpen" 
-                        value={editAccount.accOpen ? new Date(editAccount.accOpen).toISOString().slice(0,10) : ''} 
+                        value={account.accOpen ? new Date(account.accOpen).toISOString().slice(0,10) : ''} 
                         onChange={handleChange}
                     />
 
-                    {editAccount.accType !== "Credit Card" &&
+                    {account.accType !== "Credit Card" &&
                         <LabelInput 
                             htmlFor="balance" 
                             className='formInput acc'
@@ -90,12 +90,12 @@ const EditAccount = () => {
                             name="balance" 
                             step={0.01}
                             id="addAccountBalance" 
-                            value={editAccount.balance} 
+                            value={account.balance} 
                             onChange={handleChange} 
                             required
                         />
                     }
-                    {editAccount.accType === "Credit Card"
+                    {account.accType === "Credit Card"
                         ? <>
                             <LabelInput 
                                 htmlFor="creditLimit" 
@@ -104,7 +104,7 @@ const EditAccount = () => {
                                 type="number" 
                                 name="creditLimit" 
                                 id="addAccountCreditLimit" 
-                                value={editAccount.creditLimit} 
+                                value={account.creditLimit} 
                                 onChange={handleChange} 
                                 required
                             />
@@ -117,11 +117,11 @@ const EditAccount = () => {
                                 name="availableCredit" 
                                 step="0.01" 
                                 id="addAvailableCredit" 
-                                value={editAccount.availableCredit} 
+                                value={account.availableCredit} 
                                 onChange={handleChange}
                             />
                         </>
-                    : editAccount.accType === "Loan"
+                    : account.accType === "Loan"
                         ?<LabelInput 
                             htmlFor="loanAmount" 
                             className='formInput acc'
@@ -129,13 +129,13 @@ const EditAccount = () => {
                             type="number"
                             name="loanAmount" 
                             id="addLoanAmount"
-                            value={editAccount.loanAmount} 
+                            value={account.loanAmount} 
                             onChange={handleChange} 
                             required
                         />
                     : <> </>
                     }
-                    {(editAccount.accType === "Credit Card" || editAccount.accType === "Loan") &&
+                    {(account.accType === "Credit Card" || account.accType === "Loan") &&
                         <>
                             <LabelInput 
                                 htmlFor="dueDate" 
@@ -144,7 +144,7 @@ const EditAccount = () => {
                                 type="date"
                                 name="dueDate" 
                                 id="addAccDueDate" 
-                                value={editAccount.dueDate ? new Date(editAccount.dueDate).toISOString().slice(0,10) : ''} 
+                                value={account.dueDate ? new Date(account.dueDate).toISOString().slice(0,10) : ''} 
                                 onChange={handleChange}
                             />
 
@@ -156,7 +156,7 @@ const EditAccount = () => {
                                 name="minPayment"
                                 step="0.01"
                                 id="addAccountMinPayment" 
-                                value={editAccount.minPayment} 
+                                value={account.minPayment} 
                                 onChange={handleChange}
                             />
 
@@ -168,7 +168,7 @@ const EditAccount = () => {
                                 name="interest"
                                 step="0.01"
                                 id="addAccInterest"
-                                value={editAccount.interest}
+                                value={account.interest}
                                 onChange={handleChange}
                             />
                         </>
