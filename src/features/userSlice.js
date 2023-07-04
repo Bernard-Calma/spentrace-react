@@ -65,6 +65,9 @@ const userSlice = createSlice({
             // .then(res => console.log(res))
             state.loggedIn = false;
             state.username = "";
+        },
+        clearError: state => {
+            state.errorMessage = "";
         }
     },
     extraReducers: builder => {
@@ -92,6 +95,7 @@ const userSlice = createSlice({
 
 export const {
     logout,
+    clearError
 } = userSlice.actions;
 
 export default userSlice.reducer;
