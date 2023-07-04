@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { changeView } from '../../features/viewSlice';
-import { modifyPlan } from '../../features/planSlice';
+import { getPlans, modifyPlan } from '../../features/planSlice';
 
 import BackButton from '../../Components/Buttons/BackButton'
 import LabelInput from '../../common/LabelInput';
@@ -25,6 +25,7 @@ const EditPlan = () => {
         e.preventDefault();
         // console.log(editPlan)
         dispatch(modifyPlan(editPlan));
+        dispatch(getPlans())
         dispatch(changeView({planView: "Show Plan"}));
     }
 
