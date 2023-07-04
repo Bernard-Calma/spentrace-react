@@ -1,5 +1,5 @@
 import {useState} from "react"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { userLogin } from "../../../features/userSlice";
 import { changeView } from "../../../features/viewSlice";
 
@@ -9,6 +9,9 @@ import "./Login.css"
 
 const Login = () => {
     const dispatch = useDispatch()
+    const {
+        errorMessage
+    } = useSelector(store => store.user)
 
     const [user, setUser] = useState({
         username: "",
@@ -56,9 +59,9 @@ const Login = () => {
                     onChange={handleChange} 
                     required
                 />
-                {user.errorMessage !== ""
-                    ? <p className="loginMessage">{user.errorMessage}</p> 
-                    : <></>
+                {
+                    errorMessage && 
+                        <p className="loginMessage">{errorMessage}</p> 
                 }
                 <button className="btnLogin">Login</button>
             </form>
