@@ -25,8 +25,13 @@ const AddPlan = () => {
     };
 
     const handleChangeAmount = e => {
-        if (parseInt(e.target.value) <= 9999 && e.target.value.length <= 7)
-            setNewPlan({...newPlan, [e.target.name]: e.target.value});
+        // Handle all restrictions in amount
+        if (
+            // Amount must be lower than 10000.
+            parseInt(e.target.value) <= 9999 && 
+            // Amount length should not exceed 7 characters
+            e.target.value.length <= 7)
+            setNewPlan({...newPlan, amount: e.target.value});
     }
 
     const handleSubmitAdd = e => {
@@ -55,6 +60,7 @@ const AddPlan = () => {
                     placeholder='0.00' 
                     min="-5000" 
                     max="5000" 
+                    defaultValue={"0.00"}
                     value={newPlan.amount}
                     onChange={handleChangeAmount}
                     step={0.01}
