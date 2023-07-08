@@ -16,7 +16,10 @@ const AddPlan = () => {
     const {
         isLoading
     } = useSelector(store => store.plan)
-    const [newPlan, setNewPlan] = useState({userId: username});
+    const [newPlan, setNewPlan] = useState({
+        userId: username,
+        amount: 0,
+    });
     const handleChange = e => {
         // Handle input changes
         // If expense or income changed return true or false
@@ -26,6 +29,7 @@ const AddPlan = () => {
 
     const handleChangeAmount = e => {
         // Handle all restrictions in amount
+        if (!e.target.value) console.log("000")
         if (
             // Amount must be lower than 10000.
             parseInt(e.target.value) <= 9999 && 
@@ -60,7 +64,6 @@ const AddPlan = () => {
                     placeholder='0.00' 
                     min="-5000" 
                     max="5000" 
-                    defaultValue={"0.00"}
                     value={newPlan.amount}
                     onChange={handleChangeAmount}
                     step={0.01}
