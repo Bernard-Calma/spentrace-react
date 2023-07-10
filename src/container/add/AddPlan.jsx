@@ -26,10 +26,10 @@ const AddPlan = () => {
         if (e.target.name === "expense") setNewPlan({...newPlan, [e.target.name]: e.target.value === "Expense" ? true : false});
         else setNewPlan({...newPlan, [e.target.name]: e.target.value});
     };
-
+    
     const handleChangeAmount = e => {
         // Handle all restrictions in amount
-        if (!e.target.value) console.log("000")
+        if (!e.target.value) e.target.value = 0
         if (
             // Amount must be lower than 10000.
             parseInt(e.target.value) <= 9999 && 

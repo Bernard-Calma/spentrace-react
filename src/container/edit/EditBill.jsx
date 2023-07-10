@@ -7,6 +7,7 @@ import BackButton from '../../Components/Buttons/BackButton'
 import LabelInput from '../../common/LabelInput';
 
 import './EditPlan.css'
+import { getPlans } from '../../features/planSlice'
 
 const EdditBill = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const EdditBill = () => {
         // console.log("Edit", editBill)
         e.preventDefault();
         dispatch(modifyBill(editBill));
+        dispatch(getPlans());
         dispatch(changeView({billView: "Bill List"}));
     };
 
