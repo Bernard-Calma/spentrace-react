@@ -26,7 +26,7 @@ const PlanList = () => {
     useEffect(()=>{
         dispatch(getPlans())
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    },[planView]);
 
     return <> 
         {planView === "Plan List"
