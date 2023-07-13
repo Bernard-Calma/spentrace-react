@@ -14,7 +14,8 @@ import './billsList.css'
 const BillsList = () => {
     const dispatch = useDispatch();
     let {
-        month
+        month,
+        billItems
     } = useSelector(store => store.bill)
     const {billView} = useSelector(store => store.view)
 
@@ -22,6 +23,11 @@ const BillsList = () => {
         dispatch(setMonthlyBills());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [month])
+
+    useEffect(() => {
+        dispatch(setMonthlyBills());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [billItems])
 
     return(
         <>

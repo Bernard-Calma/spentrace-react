@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import MonthlyBill from "./MonthlyBill";
 
-const Paid = (props) => {
+const Paid = () => {
     const {
         monthlyBills
     } = useSelector(store => store.bill)

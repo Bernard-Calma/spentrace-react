@@ -9,7 +9,6 @@ import BillsList from '../bills/BillsList'
 import PlanList from '../plan/PlansList'
 import DashBoard from './Dashboard'
 import EmptyDashboard from './EmptyDashboard'
-import Loading from '../../Components/Loading'
 import AccountList from '../accounts/AccountList'
 
 import './home.css'
@@ -21,10 +20,7 @@ const Home = () => {
     // Plans
     const {planItems} = useSelector(store => store.plan)
     // Bills
-    const {
-        billItems, 
-        isLoading
-    } = useSelector(store => store.bill)
+    const {billItems} = useSelector(store => store.bill)
     // Views
     const {
         view,
