@@ -75,17 +75,21 @@ const userSlice = createSlice({
             // Login 
             .addCase(userLogin.pending, state => {
                 state.loggedIn = false;
+                state.loading = true;
             })
             .addCase(userLogin.fulfilled, (state, action) => {
+                state.loading = false;
                 state.loggedIn = true;
                 // console.log("fulfilled Action", action)
                 state.username = action.payload;
             })
             .addCase(userRegister.fulfilled, (state, action) => {
+                state.loading = true;
                 state.loggedIn = false;
                 // console.log("Register Action", action)
             })
             .addCase(userLogin.rejected, (state, {payload}) => {
+                state.loading = false;
                 // console.log("Error:", payload)
                 state.errorMessage = payload
                 state.loggedIn = false;
