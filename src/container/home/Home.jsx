@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
 import { getBills } from '../../features/billSlice'
@@ -26,16 +26,6 @@ const Home = () => {
         view,
         homeView
     } = useSelector(store => store.view)
-    // Accounts
-    const [accounts, setAccounts] = useState([]);
-    // ------------------------------ END OF VARIABLES ------------------------------
- 
-    // ------------------------------ FUNCTIONS ------------------------------
-    // Moidfy Accounts Methods
-    const modifyAccounts =  {
-        update: updatedAccount=> setAccounts(accounts.map(account => account._id === updatedAccount._id ? updatedAccount : account)),
-    }
-
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
         dispatch(getPlans())
@@ -51,18 +41,26 @@ const Home = () => {
                 : <>
                     <div className='homeNavBar'>
                         <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
-                        {billItems.length > 0 && <p onClick={() => dispatch(changeView({homeView: "Bills List"}))}>Bills</p>}
-                        <p onClick={() => dispatch(changeView({homeView: "Account List"}))}>Accounts</p>
+                        {billItems.length > 0 && 
+                            <p onClick={() => dispatch(changeView(
+                                {
+                                    homeView: "Bills List"
+                            }))}>
+                                Bills
+                            </p>}
+                            <p onClick={() => dispatch(changeView(
+                                {
+                                    homeView: "Account List"
+                            }))}>
+                                    Accounts
+                            </p>
                     </div>
                     <div className='containerHomeView'>
                         {homeView === "Home" || view === "Home"
                             ? <DashBoard/>
                             : homeView === "Plan" ? <PlanList/>
                             : homeView === "Bills List" ? <BillsList/>  
-                            : homeView === "Account List" 
-                            ? < AccountList
-                                modifyAccounts = {modifyAccounts}
-                            />  
+                            : homeView === "Account List" ? < AccountList/>  
                             : <></>
                         }
                     </div>

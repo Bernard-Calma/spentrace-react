@@ -13,14 +13,10 @@ import Categories from '../../common/Categories';
 
 import './AccountList.css'
 
-const AccountList = props => {
+const AccountList = () => {
     const dispatch = useDispatch();
-    const {
-        accList,
-    } = useSelector(store => store.account)
-    const {
-        accountView,
-    } = useSelector(store => store.view)
+    const {accList} = useSelector(store => store.account)
+    const {accountView} = useSelector(store => store.view)
 
     const handleShowAcc = account => {
         dispatch(setOpenAcc(account));
@@ -92,8 +88,6 @@ const AccountList = props => {
                                     <Account 
                                         key = {index}
                                         account = {account}
-                                        server = {props.server}
-                                        update = {props.modifyAccounts.update}
                                         handleShowAcc = {() => handleShowAcc(account)}
                                     />
                                 )}
@@ -113,7 +107,6 @@ const AccountList = props => {
                                     <Account 
                                         key = {index}
                                         account = {account}
-                                        update = {props.modifyAccounts.update}
                                         handleShowAcc = {() => handleShowAcc(account)}
                                     />
                                 )}

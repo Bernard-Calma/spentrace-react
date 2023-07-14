@@ -14,7 +14,10 @@ const EmptyDashboard = () => {
                 <h2>ADD YOUR FIRST PLAN</h2>
                 <i 
                     className="fi fi-rr-add addEmptyDashboard" 
-                    onClick={() => dispatch(changeView({emptyView: "Add Bill"}))}
+                    onClick={() => dispatch(changeView(
+                        {
+                            emptyView: "Add Bill"
+                        }))}
                 />
             </div>
             : <AddPlan/>
