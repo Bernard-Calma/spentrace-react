@@ -34,7 +34,9 @@ const App = () => {
               <Loading />
           </div>
           : <>
-            { loggedIn ? <Home/> : <LandingPage/> }
+            { loggedIn 
+            ? <Home/> 
+            : <LandingPage/> }
           </>
       }
       <Footer />

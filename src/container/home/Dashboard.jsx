@@ -5,6 +5,7 @@ import { getNextBill } from "../../features/billSlice";
 
 import CircleGraph from "../../Components/CircleGraph";
 import { changeView } from "../../features/viewSlice";
+import Loading from "../../Components/Loading";
 const DashBoard = props => {
     const dispatch = useDispatch();
     // VARIABLES
@@ -34,7 +35,11 @@ const DashBoard = props => {
     },[planItems]);
     
     return (
-        <div className='dashboard'>
+        <>
+                {
+            planItems.length === 0
+            ? <Loading />
+            :        <div className='dashboard'>
             <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
             <div className='containerDashboard'>
                 <div className="dashboardGraph">
@@ -111,6 +116,8 @@ const DashBoard = props => {
                 </>
             } 
         </div>
+        }
+        </>
     );
 };
 
