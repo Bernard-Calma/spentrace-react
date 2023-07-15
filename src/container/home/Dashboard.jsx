@@ -36,39 +36,37 @@ const DashBoard = props => {
     
     return (
         <>
-                {
-            planItems.length === 0
+        { planItems.length === 0
             ? <Loading />
-            :        <div className='dashboard'>
-            <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
-            <div className='containerDashboard'>
-                <div className="dashboardGraph">
-                <div className='graphSubTitle'>
-                    <h2>Income</h2>
-                    <h2>${Math.ceil(totalIncome)}</h2>
-                </div>
-
-                {/* PLAN GRAPH */}
-                <CircleGraph
-                    data = {[totalExpense, totalIncome]}
-                    colors = {['red', 'green']}
-                    width = {250}
-                    height = {250}
-                    value = {balance}
-                />
-                <div className='graphSubTitle'>
-                    <h2>Expense</h2>
-                    <h2>${Math.ceil(totalExpense)}</h2>
-                </div>    
-                </div>
-                <div className='containerNextTarget'>
-                    <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
-                    <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                    {/* Shorten the if statement */}
-                    <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
-                </div>
-            </div> 
-            {billItems.length === 0
+            : <div className='dashboard'>
+                <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
+                <div className='containerDashboard'>
+                    <div className="dashboardGraph">
+                        <div className='graphSubTitle'>
+                            <h2>Income</h2>
+                            <h2>${Math.ceil(totalIncome)}</h2>
+                        </div>
+                        {/* PLAN GRAPH */}
+                        <CircleGraph
+                            data = {[totalExpense, totalIncome]}
+                            colors = {['red', 'green']}
+                            width = {250}
+                            height = {250}
+                            value = {balance}
+                        />
+                        <div className='graphSubTitle'>
+                            <h2>Expense</h2>
+                            <h2>${Math.ceil(totalExpense)}</h2>
+                        </div>    
+                    </div>
+                    <div className='containerNextTarget'>
+                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
+                        <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                        {/* Shorten the if statement */}
+                        <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
+                    </div>
+                </div> 
+                {billItems.length === 0
                 ? <div className="containerEmptyPlan">
                     <h2>ADD YOUR FIRST BILL</h2>
                     <i 
@@ -114,8 +112,8 @@ const DashBoard = props => {
                         }
                     </div>              
                 </>
-            } 
-        </div>
+                } 
+            </div>
         }
         </>
     );
