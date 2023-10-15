@@ -13,6 +13,7 @@ import AccountList from '../accounts/AccountList'
 
 import './home.css'
 import '../../Components/NavBar.css'
+import Loading from '../../Components/Loading'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -20,7 +21,10 @@ const Home = () => {
     // Plans
     const {planItems} = useSelector(store => store.plan)
     // Bills
-    const {billItems} = useSelector(store => store.bill)
+    const {
+        billItems,
+        isLoading
+    } = useSelector(store => store.bill)
     // Views
     const {
         view,
@@ -36,35 +40,41 @@ const Home = () => {
 
     return(
        <section className="containerHome">
-            {planItems.length === 0 
-                ? <EmptyDashboard/>
-                : <>
-                    <div className='homeNavBar'>
-                        <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
-                        {billItems.length > 0 && 
-                            <p onClick={() => dispatch(changeView(
-                                {
-                                    homeView: "Bills List"
-                            }))}>
-                                Bills
-                            </p>}
-                            <p onClick={() => dispatch(changeView(
-                                {
-                                    homeView: "Account List"
-                            }))}>
-                                    Accounts
-                            </p>
-                    </div>
-                    <div className='containerHomeView'>
-                        {homeView === "Home" || view === "Home"
-                            ? <DashBoard/>
-                            : homeView === "Plan" ? <PlanList/>
-                            : homeView === "Bills List" ? <BillsList/>  
-                            : homeView === "Account List" ? < AccountList/>  
-                            : <></>
-                        }
-                    </div>
-                </> 
+            {
+                isLoading
+                ? <Loading />
+                :<>
+                {planItems.length === 0 
+                    ? <EmptyDashboard/>
+                    : <>
+                        <div className='homeNavBar'>
+                            <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
+                            {billItems.length > 0 && 
+                                <p onClick={() => dispatch(changeView(
+                                    {
+                                        homeView: "Bills List"
+                                }))}>
+                                    Bills
+                                </p>}
+                                <p onClick={() => dispatch(changeView(
+                                    {
+                                        homeView: "Account List"
+                                }))}>
+                                        Accounts
+                                </p>
+                        </div>
+                        <div className='containerHomeView'>
+                            {homeView === "Home" || view === "Home"
+                                ? <DashBoard/>
+                                : homeView === "Plan" ? <PlanList/>
+                                : homeView === "Bills List" ? <BillsList/>  
+                                : homeView === "Account List" ? < AccountList/>  
+                                : <></>
+                            }
+                        </div>
+                    </> 
+                }
+                </>
             }
         </section>
     )
