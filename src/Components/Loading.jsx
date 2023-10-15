@@ -3,6 +3,7 @@ import ReactLoading from 'react-loading';
  
 const Loading = () => (
     <ReactLoading 
+        className='loading'
         type={'bars'} 
         color={'white'} 
         height={'10%'} 
