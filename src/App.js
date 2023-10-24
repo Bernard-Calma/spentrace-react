@@ -9,6 +9,7 @@ import Home from './container/home/Home';
 
 import './App.css';
 import Loading from './Components/Loading';
+import { getBills } from './features/billSlice';
 
 const App = () => { 
   const dispatch = useDispatch()

@@ -22,7 +22,8 @@ const DashBoard = props => {
         billItems,
         totalBillsPaid,
         totalBillsUnpaid,
-        nextUnpaidBill
+        nextUnpaidBill,
+        isLoading
     } = useSelector(store => store.bill)
    // ------------------------------ END OF VARIABLES ------------------------------
 
@@ -36,7 +37,7 @@ const DashBoard = props => {
     
     return (
         <>
-        { planItems.length === 0
+        { isLoading
             ? <Loading />
             : <div className='dashboard'>
                 <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>

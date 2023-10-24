@@ -41,41 +41,42 @@ const Home = () => {
     return(
        <section className="containerHome">
             {
-                isLoading
-                ? <Loading />
-                :<>
-                {planItems.length === 0 
-                    ? <EmptyDashboard/>
-                    : <>
-                        <div className='homeNavBar'>
-                            <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
-                            {billItems.length > 0 && 
-                                <p onClick={() => dispatch(changeView(
-                                    {
-                                        homeView: "Bills List"
-                                }))}>
-                                    Bills
-                                </p>}
-                                <p onClick={() => dispatch(changeView(
-                                    {
-                                        homeView: "Account List"
-                                }))}>
-                                        Accounts
-                                </p>
-                        </div>
-                        <div className='containerHomeView'>
-                            {homeView === "Home" || view === "Home"
-                                ? <DashBoard/>
-                                : homeView === "Plan" ? <PlanList/>
-                                : homeView === "Bills List" ? <BillsList/>  
-                                : homeView === "Account List" ? < AccountList/>  
-                                : <></>
-                            }
-                        </div>
-                    </> 
-                }
+                planItems.length === 0 
+                ? <>
+                    {
+                        isLoading 
+                        ? <Loading/>
+                        : <EmptyDashboard/>
+                    } 
                 </>
-            }
+                : <>
+                    <div className='homeNavBar'>
+                        <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
+                        {billItems.length > 0 && 
+                            <p onClick={() => dispatch(changeView(
+                                {
+                                    homeView: "Bills List"
+                            }))}>
+                                Bills
+                            </p>}
+                            <p onClick={() => dispatch(changeView(
+                                {
+                                    homeView: "Account List"
+                            }))}>
+                                    Accounts
+                            </p>
+                    </div>
+                    <div className='containerHomeView'>
+                        {homeView === "Home" || view === "Home"
+                            ? <DashBoard/>
+                            : homeView === "Plan" ? <PlanList/>
+                            : homeView === "Bills List" ? <BillsList/>  
+                            : homeView === "Account List" ? < AccountList/>  
+                            : <></>
+                        }
+                    </div>
+                </> 
+            }             
         </section>
     )
 }
