@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
+import { getBalance } from "../../features/planSlice"
 import { getBills } from '../../features/billSlice'
 import { getAccounts } from '../../features/accountSlice'
 import { changeView } from '../../features/viewSlice'
@@ -68,7 +69,7 @@ const Home = () => {
                     </div>
                     <div className='containerHomeView'>
                         {homeView === "Home" || view === "Home"
-                            ? <DashBoard/>
+                            ? <DashBoard planItems = {planItems}/>
                             : homeView === "Plan" ? <PlanList/>
                             : homeView === "Bills List" ? <BillsList/>  
                             : homeView === "Account List" ? < AccountList/>  

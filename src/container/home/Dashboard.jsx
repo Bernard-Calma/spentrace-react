@@ -15,21 +15,23 @@ const DashBoard = props => {
         balance, 
         totalIncome, 
         totalExpense, 
-        nextTarget
+        nextTarget,
+        isLoading
     } = useSelector(store => store.plan)
     // Bills
     const {
         billItems,
         totalBillsPaid,
         totalBillsUnpaid,
-        nextUnpaidBill,
-        isLoading
+        nextUnpaidBill
     } = useSelector(store => store.bill)
+    const billLoading = useSelector(store => store.bill.isLoading)
    // ------------------------------ END OF VARIABLES ------------------------------
 
    useEffect(() => {
+    console.log(totalIncome)
+        dispatch(getBalance());
         if (billItems.length > 0 ){
-            dispatch(getBalance());
             dispatch(getNextBill());
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,7 +39,7 @@ const DashBoard = props => {
     
     return (
         <>
-        { isLoading
+        { isLoading || !nextTarget.amount || billLoading || (billItems.length > 0 && !nextUnpaidBill.name)
             ? <Loading />
             : <div className='dashboard'>
                 <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
