@@ -11,7 +11,6 @@ const CreditCard = (props) => {
                 ? <h2 className="bank usage positive">{(balance / props.account.creditLimit * 100).toFixed(2)}%</h2>
                 : <h2 className="bank usage negative">{(balance / props.account.creditLimit * 100).toFixed(2)}%</h2>
             }
-            <h2 className="bank full account number">{props.account.accNumber ? props.account.accNumber : '-'}</h2>
             <h2 className="bank full balance">${props.addComma(balance)}</h2>
             <h2 className="bank full due date">{props.account.dueDate ? `${new Date(props.account.dueDate).getUTCDate()}` : '-'}</h2>
             <h2 className="bank full interest">{props.account.interest ? `${props.account.interest}%` : '-'}</h2>

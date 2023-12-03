@@ -81,7 +81,7 @@ const AccountList = () => {
                         <section className='sectionChecking account'>
                             <h1>Checking Accounts</h1>
                             <Categories 
-                                mobileCategories = {["bank", "account number", "balance"]}
+                                mobileCategories = {["bank", "balance"]}
                             />
                             <div className='accountContainer'>
                                 {accList.checking.map((account, index) => 
@@ -100,7 +100,7 @@ const AccountList = () => {
                         <section className='sectionSavings account'>
                             <h1>Savings Accounts</h1>
                             <Categories 
-                                mobileCategories = {["bank", "account number", "balance"]}
+                                mobileCategories = {["bank", "balance"]}
                             />
                             <div className='accountContainer'>
                                 {accList.savings.map((account, index) => 
@@ -126,7 +126,6 @@ const AccountList = () => {
                                     "usage"
                                 ]}
                                 fullCategories = {[
-                                    "account number", 
                                     "balance", 
                                     "due date", 
                                     "interest"
