@@ -35,7 +35,7 @@ const DashBoard = props => {
             dispatch(getNextBill());
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[planItems]);
+    },[planItems, billItems]);
     
     return (
         <>
