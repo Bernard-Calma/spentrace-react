@@ -53,7 +53,6 @@ const ShowAccount = (props) => {
             <div className="containerShowInner accounts">
                 <ParagraphSpan className="show label accType" label="Account Type" value={openAcc.accType}/>
                 <ParagraphSpan className="show label bank" label="Bank" value={openAcc.bank}/>
-                <ParagraphSpan className="show label accNumber" label="Account Number" value={openAcc.accNumber ? openAcc.accNumber : '-'}/>
                 <ParagraphSpan className="show label accOpen" label="Account Opened" value={openAcc.accOpen ? new Date(openAcc.accOpen).toISOString().slice(0,10) : '-'}/>
                 {openAcc.accType !== 'Credit Card' && <ParagraphSpan className="show label balance" label="Balance" value= {openAcc.balance >= 0 ? `$${props.addComma(openAcc.balance)}` : `-$${props.addComma(Math.abs(openAcc.balance))}`}/>}
                 {openAcc.accType === 'Credit Card'
