@@ -12,7 +12,6 @@ const AddAccount = () => {
     const [newAccount, setNewAccount] = useState({
         accType: '',
         bank: '',
-        accNumber: '',
         accOpen: '',
         balance: '',
         creditLimit: '',
@@ -75,17 +74,6 @@ const AddAccount = () => {
                             value={newAccount.bank} 
                             onChange={handleChange} 
                             required
-                        />
-
-                        <LabelInput 
-                            htmlFor="accNumber" 
-                            className='formInput acc'
-                            text="Account Number: "
-                            type="text" 
-                            name="accNumber" 
-                            id="addAccountAccNumber" 
-                            value={newAccount.accNumber} 
-                            onChange={handleChange}
                         />
 
                         <LabelInput 
