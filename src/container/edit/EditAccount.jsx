@@ -59,17 +59,6 @@ const EditAccount = () => {
                         required
                     />
 
-                    <LabelInput 
-                        htmlFor="accNumber" 
-                        className='formInput acc'
-                        text="Account Number: "
-                        type="text" 
-                        name="accNumber" 
-                        id="addAccountAccNumber" 
-                        value={account.accNumber} 
-                        onChange={handleChange}
-                    />
-
                     <LabelInput
                         htmlFor="accOpen" 
                         className='formInput acc'
