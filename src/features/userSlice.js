@@ -90,8 +90,8 @@ const userSlice = createSlice({
             })
             .addCase(userLogin.rejected, (state, {payload}) => {
                 state.loading = false;
-                // console.log("Error:", payload)
-                state.errorMessage = payload
+                console.log("Error:", payload)
+                state.errorMessage = "Invalid username or password."
                 state.loggedIn = false;
             })
     }
