@@ -9,7 +9,6 @@ import Home from './container/home/Home';
 
 import './App.css';
 import Loading from './Components/Loading';
-import { getBills } from './features/billSlice';
 
 const App = () => { 
   const dispatch = useDispatch()
@@ -30,15 +29,9 @@ const App = () => {
   return (
     <div className="App">
       <Header/>
-      { loading
-          ? <div className='containerLoading'>
-              <Loading />
-          </div>
-          : <>
-            { loggedIn 
-            ? <Home/> 
-            : <LandingPage/> }
-          </>
+      { loggedIn 
+        ? <Home/> 
+        : <LandingPage/> 
       }
       <Footer />
     </div>
