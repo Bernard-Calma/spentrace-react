@@ -22,6 +22,7 @@ const initialState = {
     totalBillsUnpaid: 0,
     nextUnpaidBill: {},
     month: new Date().getUTCMonth(),
+    year: new Date().getFullYear(),
     monthText: monthNames[new Date().getUTCMonth()],
     monthlyBills: {
         totalPaid: 0,
