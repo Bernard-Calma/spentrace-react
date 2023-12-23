@@ -196,20 +196,23 @@ const billSlice = createSlice({
             // console.log(state.month)
             if (state.month < 11) {
                 state.monthText = monthNames[state.month + 1];
-                state.month += 1;
+                state.month++;
+                
             } else {
                 state.monthText = monthNames[0];
                 state.month = 0;
+                state.year++;
             }
         },
         handlePreviousMonth: state => {
             // console.log(state.month)
             if (state.month > 0) {
                 state.monthText = monthNames[state.month - 1];
-                state.month -= 1;
+                state.month--;
             } else {
                 state.monthText = monthNames[11];
                 state.month = 11;
+                state.year--;
             }
         },
         setMonthlyBills: state => {
