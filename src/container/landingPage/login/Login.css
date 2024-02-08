@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgb(53, 52, 52);
+    background-color: rgba(53, 52, 52, 0.1);
     box-shadow:0 0 5px 0 rgb(240, 240, 240);
     margin: 5% 0;
 }
@@ -92,10 +92,14 @@
 
 .registerText {
     font-size: 1rem;
+    color: rgb(53, 52, 52);
 }
 
 .registerText > span {
     color: white;
+}
+
+.registerText > span:hover{
     font-weight: bold;
 }
 

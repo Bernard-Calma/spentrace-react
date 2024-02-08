@@ -52,6 +52,7 @@ const Register = () => {
                 setErrorMessage("Password does not match.");
             } else {
                 dispatch(userRegister(newUser))
+                clearPasswords();
                 console.log("Error Message: ", errorMessage)
             };
     }
@@ -89,7 +90,7 @@ const Register = () => {
                     text="Password"
                     type="password" 
                     name="password" 
-                    placeholder="username" 
+                    placeholder="password" 
                     value={newUser.password} 
                     onChange={handleChange} 
                     required

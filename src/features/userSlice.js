@@ -49,7 +49,7 @@ export const userRegister = createAsyncThunk("user/userRegister", async (newUser
             data: newUser,
             withCredentials: true
         })
-        return res.data
+        return res.data.user
     } catch (err) {
         // console.log("Registration Error: ", err);
         return thunkAPI.rejectWithValue(err.response.data.message)
@@ -83,17 +83,22 @@ const userSlice = createSlice({
                 // console.log("fulfilled Action", action)
                 state.username = action.payload;
             })
-            .addCase(userRegister.fulfilled, (state, action) => {
-                state.loading = true;
-                state.loggedIn = false;
-                // console.log("Register Action", action)
-            })
             .addCase(userLogin.rejected, (state, {payload}) => {
                 state.loading = false;
                 console.log("Error:", payload)
                 state.errorMessage = "Invalid username or password."
                 state.loggedIn = false;
             })
+            .addCase(userRegister.fulfilled, (state, action) => {
+                state.loading = true;
+                state.loggedIn = false;
+                // console.log("Register Action", action)
+            })
+            .addCase(userRegister.rejected, (state, {payload}) => {
+                state.errorMessage = payload
+                // console.log("Register Rejected", payload)
+            })
+            
     }
 })
 

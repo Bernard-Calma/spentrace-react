@@ -28,6 +28,11 @@
     width: auto;
     margin: auto 5px;
     text-align: center;
+    text-decoration: line-through;
+}
+
+.accountListHeader.categories.selected {
+    text-decoration: none;
 }
 
 .accountListHeader.categories:hover {
