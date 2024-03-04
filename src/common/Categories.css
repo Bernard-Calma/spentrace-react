@@ -3,20 +3,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: solid #B0B7C4 5px;
+    border: solid #B0B7C4 2px;
 }
 
 .categoriesContainer {
+    display: flex;
+    align-items: baseline;
     font-family: "Russo One";
     background-color: rgb(19, 19, 19);
+    color: white;
 }
 
 .categoriesContainer > h2 {
     flex: 2;
     text-align: center;
     margin: 0;
-    font-size: 30px;
+    font-size: 1.2rem;
     text-transform: capitalize;
+
 }
 
 .category.amount, .category.available.credit, .category.date, .category.interest,  .category.minimum.payment, .category.paid, .category.usage{
@@ -30,7 +34,7 @@
 @media screen and (max-width: 900px) { 
     .categoriesContainer {
         border: none;
-        background-color: #50555f;
+        /* background-color: #50555f; */
         box-shadow: 1px 1px 5px 1px white;
         margin-bottom: 5px;
     }

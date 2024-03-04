@@ -26,7 +26,8 @@
 .homeNavBar p:hover {
     cursor: pointer;
     font-size: 17px;
-    text-shadow: 1px 0 green;
+    color: white;
+    text-shadow: 0 0px 5px white;
 }
 /* ----- END OF NAVBAR STYLES ----- */
 
@@ -68,6 +69,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
 }
 
 .containerDashboard {
@@ -80,7 +82,9 @@
 
 /* Bills */
 .dashboardBillMonth {
-    font-size: 3rem;
+    color: white;
+    font-size: 3em;
+    font-style: italic;
     margin: 0;
 }
 
@@ -100,10 +104,11 @@
 
 .graphSubTitle h2 {
     margin: 0;
+    font-size: 1rem;
 }
 
 .balance, .nextTarget {
-    font-size: 36px;
+    font-size: 1.5em;
     color: white;
     margin: 0;
 }
@@ -152,6 +157,10 @@
     .containerPlansDashboard {
         height: 100vh;
         margin: 30px 0;
+    }
+
+    .containerNextTarget {
+        margin: 10px;
     }
 
     .containerNextTarget > .nextTarget{

@@ -88,7 +88,7 @@ const DashBoard = props => {
                         <div className="dashboardGraph">
                             <div className='graphSubTitle'>
                                 <h2>Paid</h2>
-                                <h2>${totalBillsPaid}</h2>
+                                <h2>${totalBillsPaid.toFixed(0)}</h2>
                             </div>    
                             {/* BILLS GRAPH */}
                             <CircleGraph 
@@ -100,7 +100,7 @@ const DashBoard = props => {
                             />
                             <div className='graphSubTitle'>
                                 <h2>Unpaid</h2>
-                                <h2>${totalBillsUnpaid}</h2>
+                                <h2>${totalBillsUnpaid.toFixed(0)}</h2>
                             </div>
                         </div>
                         {totalBillsUnpaid === 0 

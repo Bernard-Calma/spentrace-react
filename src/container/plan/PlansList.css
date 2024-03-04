@@ -1,9 +1,12 @@
 /* MAIN CONTAINER STYLES */
 .containerPlanList {
     border: solid #B0B7C4;
+    border-radius: 5px;
     background-color: rgb(53, 52, 52);
+    box-shadow: 1px 1px 5px 3px gray;
     overflow: scroll;
     flex-grow: 1;
+    margin: 0 20px 5px;
 }
 
 .containerPlanList::-webkit-scrollbar{
@@ -31,7 +34,7 @@
     flex: 2;
     text-align: center;
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1em;
     border: solid #B0B7C4 1px;
 }
 
@@ -54,6 +57,7 @@
     .containerPlanList {
         border: none;
         max-height: 700px;
+        margin: 0;
     }
 
     .planContainer {

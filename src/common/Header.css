@@ -19,6 +19,18 @@
     cursor: pointer;
 }
 
+.fi-rr-sign-out-alt  {
+    font-size: 1.5em;
+}
+
+.fi-rr-sign-out-alt {
+    margin: auto 10px !important;
+}
+
+.fi-rr-sign-out-alt:hover {
+    font-size: 1.7em !important;
+}
+
 @media screen and (max-width: 900px) {
     .header {
         padding: 0;
