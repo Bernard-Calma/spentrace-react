@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
-import { getBalance } from "../../features/planSlice"
 import { getBills } from '../../features/billSlice'
 import { getAccounts } from '../../features/accountSlice'
 import { changeView } from '../../features/viewSlice'
@@ -29,7 +28,10 @@ const Home = () => {
     // Views
     const {
         view,
-        homeView
+        homeView,
+        planView,
+        billView,
+        accountView
     } = useSelector(store => store.view)
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
@@ -52,17 +54,22 @@ const Home = () => {
                 </>
                 : <>
                     <div className='homeNavBar'>
-                        <p onClick={() => dispatch(changeView({homeView: "Plan"}))}>Budget</p>
+                        <p onClick={() => dispatch(changeView({
+                            planView: homeView === "Plan" ? "Plan List" : planView,
+                            homeView: "Plan",
+                        }))}>Budget</p>
                         {billItems.length > 0 && 
                             <p onClick={() => dispatch(changeView(
                                 {
+                                    billView: homeView === "Bills List" ? "Bill List" : billView,
                                     homeView: "Bills List"
                             }))}>
                                 Bills
                             </p>}
                             <p onClick={() => dispatch(changeView(
                                 {
-                                    homeView: "Account List"
+                                    homeView: "Account List",
+                                    accountView: {view: homeView === "Account List" ? "Account List" : accountView.view}
                             }))}>
                                     Accounts
                             </p>
