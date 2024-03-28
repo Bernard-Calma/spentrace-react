@@ -30,7 +30,7 @@ const ShowBill = () => {
             </div>
 
             <div className="containerShowInner bills">
-                <ParagraphSpan className="show label date" label="Date" value={Date(openBill.dueDate).slice(0,10)}/>
+                <ParagraphSpan className="show label date" label="Date" value={openBill.dueDate.slice(0, -12)}/>
                 <ParagraphSpan className="show label name" label="Name" value={openBill.name}/>
                 <ParagraphSpan className="show label amount" label="Amount" value={`$${openBill.amount.toFixed(2)}`}/>
                 <ParagraphSpan className="show label category" label="Caregory" value={openBill.category? openBill.category : "None"}/>
