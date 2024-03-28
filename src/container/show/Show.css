@@ -15,6 +15,10 @@
     justify-content: space-between;
 }
 
+.showHeader .fi {
+    font-size: 2.5rem;
+}
+
 /* Plan */
 
 .closeBtn {
