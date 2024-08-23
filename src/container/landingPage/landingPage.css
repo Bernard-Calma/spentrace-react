@@ -1,40 +1,43 @@
 .containerLandingPage{
-    border: solid white;
-    border-radius: 50px;
-    margin: 20px 5%;
-    padding-top: 10px;
+    max-height: 500px;
+    width: 75%;
+    margin: auto;
+    padding: 10px 0;
     display: flex;
     justify-content: center;
+    gap: 0;
+    border: solid white;
+    border-radius: 20px;
     background: linear-gradient(rgb(37, 34, 34), rgb(161, 158, 158));
-    box-shadow: 1px 1px 5px 2px white;
 }
 
 .introduction{
     /* border: solid gray; */
-    font-family: "Space Mono";
-    font-size: 25px;
-    width: 50%;
-}
-
-.mainPageImage{
-    width: 250px;
-    padding-left: 100px;
-}
-
-.mobilePageImage > p{
-    font-size: 0.9em;
-    width: 50%;
-    margin: 0;
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Kanit", sans-serif;
+    font-size: 1.25rem;
 }
 
 .mobilePageImage{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+
+.mobilePageImage > p {
+    font-weight: 300;
+    color: white;
+    margin: auto;
+    text-align: center;
 }
 
 .mobilePageImage > img {
-    width: 8em;
-    height: 16em;
+    width: 10em;
+    height: 10em;
+    margin: auto;
 }
 
 @media screen and (max-width: 900px) {

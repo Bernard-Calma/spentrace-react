@@ -22,17 +22,19 @@ const LandingPage = () =>{
         <div className="containerLandingPage">
             <div className="introduction">
                 <div className="mobilePageImage">
-                    <p>Spentrace will help you list your earnings and expenses then provides how much you need to earn for your next bills.</p>
+                    <p>Spentrace will help you track your earnings and expenses then provides how much you need to earn for your next bills.</p>
                     <img 
+                        src={mainPageImage} 
+                        alt="Main Page" 
+                        className="mainPageImage"
+                    />
+                                  
+                </div>
+                    <img
                         src={mobilePage} 
                         alt="Main Page"
+                        className="mobilePageImage"
                     />
-                </div>
-                <img 
-                    src={mainPageImage} 
-                    alt="Main Page" 
-                    className="mainPageImage"
-                />
             </div>
             {view === "Login" 
                 ? <Login/> 
