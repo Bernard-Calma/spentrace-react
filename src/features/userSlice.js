@@ -66,6 +66,9 @@ const userSlice = createSlice({
             state.loggedIn = false;
             state.username = "";
         },
+        setError: (state, {payload}) => {
+            state.errorMessage = payload;
+        },
         clearError: state => {
             state.errorMessage = "";
         }
@@ -92,11 +95,16 @@ const userSlice = createSlice({
             .addCase(userRegister.fulfilled, (state, action) => {
                 state.loading = true;
                 state.loggedIn = false;
-                // console.log("Register Action", action)
+                console.log("Register Action", action.payload)
             })
             .addCase(userRegister.rejected, (state, {payload}) => {
-                state.errorMessage = payload
-                // console.log("Register Rejected", payload)
+                if( payload.code === 11000) {
+                    state.errorMessage = "Email is already been used."
+                } else if (payload.message === "A user with the given username is already registered"){
+                    state.errorMessage = "Username is already been used."
+                }else state.errorMessage = payload.message
+                
+                console.log("Register Rejected", payload)
             })
             
     }
@@ -104,6 +112,7 @@ const userSlice = createSlice({
 
 export const {
     logout,
+    setError,
     clearError
 } = userSlice.actions;
 

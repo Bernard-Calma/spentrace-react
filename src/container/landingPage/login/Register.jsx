@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { userRegister } from "../../../features/userSlice";
+import { setError, userRegister } from "../../../features/userSlice";
 import { changeView } from "../../../features/viewSlice";
 
 import BackButton from "../../../Components/Buttons/BackButton"
@@ -25,16 +25,13 @@ const Register = () => {
         verifyPassword: ""
     });
 
-    const setErrorMessage = message => {
-        setNewUser({...newUser, errorMessage: message})
-    }
     const handleRegister = e => {
         e.preventDefault();
             // USERNAME CHECK
             let checkSpaceUserName = newUser.username.match(" ");
             if(checkSpaceUserName) {
                 clearPasswords();
-                setErrorMessage("Username must not contain any spaces.");
+                dispatch(setError("Username must not contain any spaces."));
                 return
             };
             // PASSWORD CHECK
@@ -43,17 +40,16 @@ const Register = () => {
             let checkPasswordLength = newUser.password.length > 5;
             if (!checkPasswordLength) {
                 clearPasswords();
-                setErrorMessage("Password should be at least 6 characters.");
+                dispatch(setError("Password should be at least 6 characters."));
             } else if (checkSpacePassword) {
                 clearPasswords();
-                setErrorMessage("Password must not contain any spaces.");
+                dispatch(setError("Password must not contain any spaces."));
             } else if (!verifyPasswordMatch){
                 clearPasswords();
-                setErrorMessage("Password does not match.");
+                dispatch(setError("Password does not match."));
             } else {
                 dispatch(userRegister(newUser))
                 clearPasswords();
-                console.log("Error Message: ", errorMessage)
             };
     }
     return(
@@ -106,10 +102,6 @@ const Register = () => {
                     onChange={handleChange} 
                     required
                 />
-                {newUser.errorMessage !== ""
-                    ? <p className="loginMessage">{newUser.errorMessage}</p> 
-                    : <></>
-                }
                 {errorMessage !== ""
                     ? <p className="loginMessage">{errorMessage}</p> 
                     : <></>

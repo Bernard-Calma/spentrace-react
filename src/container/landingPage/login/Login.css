@@ -1,53 +1,63 @@
 .containerLogin, .containerRegister {
-    border: solid #B0B7C4;
-    border-radius: 20px;
-    width: 400px;
-    text-align: center;
-    font-family: 'Space Mono', monospace;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgba(53, 52, 52, 0.1);
-    box-shadow:0 0 5px 0 rgb(240, 240, 240);
-    margin: 5% 0;
+    flex-basis: 100%;
+    width: 400px;
+    text-align: center;
+    font-family: "Kanit", sans-serif;
 }
 
 .registerHeader {
     display: flex;
-    flex: row;
+    align-items: center;
+    justify-content: center;
+    
+    
+    transition: all ease-in-out 0.5s;
 }
 
-.loginTitle {
-    font-size: 40px;
-    font-family: "Russo One", sans-serif;
+.loginTitle, .registerTitle {
+    margin: 0;
+    flex-basis: 100%;
+    color: white;
+    font-size: 5em;  
+    text-shadow: 5px 5px #272727;
 }
 
-.registerTitle{
-    font-size: 40px;
-    font-family: "Russo One", sans-serif;
-    margin: 15px 0 20px;
+.registerHeader > i {
+    width: auto;
+    align-self: flex-start;
+    font-size: 3em;
 }
 
 .formLogin, .formRegister {
     flex: 1;
     display: flex;
     flex-direction: column;
-    font-family: 'Ubuntu', sans-serif;
+}
+
+.formRegister {
+    justify-content: center;
+    align-items: center;
 }
 
 .formLogin > label, .formRegister > label {
     display: flex;
     flex-direction: column;
-    font-family: 'Space Mono', monospace;
 }
 
 .formLogin > input, .formRegister > label > input {
-    width: 50%;
-    margin: 10px auto;
-    font-family: 'Space Mono', monospace;
-    border-radius: 10px;
     height: 40px;
+    
     padding-left: 10px;
+    font-family: "Kanit", sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.formLogin > input {
+    margin: 10px auto;
 }
 
 .formLogin > input:focus{
@@ -69,20 +79,21 @@
 .btnLogin:hover, .btnRegister:hover {
     background-color: #414449;
     color: #B0B7C4;
-    height: 40px;
-    margin-top: 15px;
 }
 
 .return {
     margin: 0;
 }
 
-.return:hover {
+.return:hover, button {
     cursor: pointer;
 }
 
 .loginMessage {
-    color: rgb(252, 78, 78)
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: rgb(255, 30, 30)
 }
 
 .registerLink:hover {
@@ -92,22 +103,27 @@
 
 .registerText {
     font-size: 1rem;
-    font-weight: bold;
-    color: rgb(53, 52, 52);
+    font-weight: 300;
+    color: black;
 }
 
 .registerText > span {
-    color: white;
+    font-weight: 400;
+    color: rgb(223, 223, 223);
 }
 
 .registerText > span:hover{
-    font-weight: bold;
+    color: white;
 }
 
 @media screen and (max-width: 900px) {
     .containerLogin, .containerRegister {
         width: auto;
         margin: auto;
+        border: solid #B0B7C4;
+        border-radius: 20px;
+        background-color: rgba(53, 52, 52, 0.1);
+        box-shadow:0 0 5px 0 rgb(240, 240, 240);
     }
 
     .formLogin {
