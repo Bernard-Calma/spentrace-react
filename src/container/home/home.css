@@ -2,14 +2,15 @@
 .containerHome{
     display: flex;
     flex-direction: column;
-    font-family: 'Space Mono'; 
+    font-family: "Kanit", sans-serif;
     flex-grow: 1;
 }
 
 .containerHomeView {
+    height: 100%;
     display: flex;
     justify-content: center;
-    flex-grow: 1;
+    align-items: center;
 }
 /* ----- END OF HOME STYLES ----- */
 
@@ -125,6 +126,15 @@
 }
 
 /* ACCOUNT LIST STYLE */
+
+/* GLOBAL STYLES */
+.containerHomeView input#submit{
+    padding: 5px 10px;
+    background-color: rgb(53, 52, 52);
+    color: white;
+    border: white 5px;
+    border-style: solid;
+}
 
 
 /* ----- END OF ACCOUNT LIST STYLE -----*/
