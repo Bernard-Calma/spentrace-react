@@ -4,7 +4,24 @@ import axios from "axios";
 const serverURL = process.env.REACT_APP_SERVER_URL;
 
 const initialState = {
-    planItems: [],
+    planItems: [/** 
+        * Paste one or more documents here
+        */
+        {
+          "date": "2024-08-24T00:00:00.000Z",
+          "amount": 120,
+          "name": "Test",
+          "expense": false,
+          "notes": "test",
+          "user": "66c86b028f4ca56a799a0256",
+          "createdAt": {
+            "$date": "2024-08-24T11:29:27.511Z"
+          },
+          "updatedAt": {
+            "$date": "2024-08-25T09:34:38.087Z"
+          },
+          "__v": 0
+        }],
     totalIncome: 0,
     totalExpense: 0,
     balance: 0,
