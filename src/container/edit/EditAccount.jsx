@@ -43,7 +43,7 @@ const EditAccount = () => {
                 }))}/>
                 <h2 className='editTitle'>Edit</h2>
             </div>
-            <form className='addForm' onSubmit={handleSubmit}>
+            <form className='editForm' onSubmit={handleSubmit}>
                 <label htmlFor="repeat" className='formInput acc'>Account Type: {account.accType}</label>
                 {account.accType &&
                 <>

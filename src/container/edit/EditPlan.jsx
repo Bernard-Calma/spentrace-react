@@ -33,7 +33,7 @@ const EditPlan = () => {
         <div className="editContainer">
             <div className='editHeader'>
                 <BackButton handleChangeView = {() => dispatch(changeView({planView: "Show Plan"}))}/>
-                <h2 className='editTitle'>Edit</h2>
+                <h2 className='editTitle'>EDIT</h2>
             </div>
             
             <form 
