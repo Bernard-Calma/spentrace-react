@@ -13,6 +13,10 @@ const Header = () => {
     
     return(
         <section className='header'>
+            <Icon 
+                className="fi fi-rr-bars-staggered" 
+                onClick={() => dispatch(logout())} 
+            />
             <h1 
                 className="title" 
                 onClick={() => dispatch(changeView({homeView: "Home"}))}
