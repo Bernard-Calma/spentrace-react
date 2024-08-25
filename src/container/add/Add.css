@@ -6,56 +6,78 @@
 
 /* Container */
 .addContainer {
+    width: 40rem;
     flex-direction: column;
     border: solid #B0B7C4;
     border-radius: 20px;
     padding: 10px;
     background-color: rgb(53, 52, 52);
-    margin: 20px;
-    height: fit-content;
-    margin: 80px 20px;
+    margin: auto;
 }
 
 /* Header */
-.addHeader > h2 {
-    flex: 1;
-    text-align: center;
+.addHeader {
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+.addHeader > i {
+    height: 1.5em;
 }
 
 .addTitle {
-    font-family: "Russo One";
-    font-weight: bold;
-    font-size: 45px;
+    flex-basis: 100%;
+    font-family: "Kanit", sans-serif;
+    font-weight: 500;
+    text-align: center;
     margin: auto 0;
 }
 
 /* Add Plan Form */
-form {
+.addContainer > form {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.addForm > .amount {
+    /* Firefox */
+    appearance: textfield;
+  }
+  
+
 .formInput {
+    width: 50%;
     display: flex;
-    font-size: 2rem;
+    font-size: 1.5em;
     font-family: "Space Mono";
-    margin: 5px 0;    
+    margin: 0.25em auto;  
 }
 
 .formInput > input[type=text], input[type=date], input[type=number], #addBillRepeat {
     font-size: 1.5rem;
-    flex: 1;
+    width: 100%;
+
 }
 
 .radio {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
 }
 
 .formNotes {
-    margin: 10px 0;
-    height: 150px;
-    font-size: 1.5rem;
+    width: 50%;
+    height: 3rem;
+    font-size: 1.25rem;
     resize: none;
+}
+
+.formNotes::-webkit-scrollbar {
+    display: none;
 }
 
 #submit {
@@ -81,12 +103,6 @@ form {
     background-color: gray;
 }
 
-.expenseMessage {
-    font-size: 1rem;
-    color: rgb(255, 61, 61);
-    font-style: italic;
-}
-
 /* new Amount Style */
 .addForm > .amount {
     font-size: 8em;
@@ -103,11 +119,6 @@ form {
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-/* Firefox */
-.addForm > .amount {
-  appearance: textfield;
 }
 
 @media screen and (max-width: 900px) {

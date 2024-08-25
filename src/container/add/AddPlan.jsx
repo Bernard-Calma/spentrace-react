@@ -29,13 +29,18 @@ const AddPlan = () => {
     
     const handleChangeAmount = e => {
         // Handle all restrictions in amount
-        if (!e.target.value) e.target.value = 0
+        e.preventDefault()
+        if(e.target.value.charAt(0) === '0') {
+            e.target.value = e.target.value.slice(1);
+        }
         if (
             // Amount must be lower than 10000.
             parseInt(e.target.value) <= 9999 && 
             // Amount length should not exceed 7 characters
-            e.target.value.length <= 7)
-            setNewPlan({...newPlan, amount: e.target.value});
+            e.target.value.length <= 7){
+                setNewPlan({...newPlan, amount: e.target.value});
+            }
+            
     }
 
     const handleSubmitAdd = e => {
@@ -61,10 +66,10 @@ const AddPlan = () => {
                     className='amount' 
                     name="amount" 
                     id="addAmount" 
-                    placeholder='0.00' 
+                    placeholder='0.00'
+                    pattern="[0-9]*"
                     min="-5000" 
                     max="5000" 
-                    value={newPlan.amount}
                     onChange={handleChangeAmount}
                     step={0.01}
                     required
@@ -119,7 +124,6 @@ const AddPlan = () => {
                         required
                     />
                 </div>
-                <span className = "expenseMessage" hidden>Select a transaction type above.</span>
                 <textarea 
                     name="notes" 
                     id="addNotes" 
