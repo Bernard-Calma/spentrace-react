@@ -23,11 +23,7 @@ const initialState = {
         {
           "name": "Palengke",
           "amount": 100,
-          "dueDate": [
-            {
-              "$date": "2024-08-27T00:00:00.000Z"
-            }
-          ],
+          "dueDate": ["2024-08-27T00:00:00.000Z"],
           "category": "PH Bills",
           "autoPay": false,
           "paid": [
