@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { logout } from '../features/userSlice';
-import { changeView } from '../features/viewSlice';
+import { changeView, toggleNavBar } from '../features/viewSlice';
 
 import Icon from "./Icon";
 
@@ -15,7 +15,7 @@ const Header = () => {
         <section className='header'>
             <Icon 
                 className="fi fi-rr-bars-staggered" 
-                onClick={() => dispatch(logout())} 
+                onClick={() => dispatch(toggleNavBar())} 
             />
             <h1 
                 className="title" 

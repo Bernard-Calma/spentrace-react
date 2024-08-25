@@ -31,7 +31,8 @@ const Home = () => {
         homeView,
         planView,
         billView,
-        accountView
+        accountView,
+        showNav
     } = useSelector(store => store.view)
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
@@ -53,7 +54,7 @@ const Home = () => {
                     } 
                 </>
                 : <>
-                    <div className='homeNavBar'>
+                    <div className={`homeNavBar ${showNav}`}>
                         <p onClick={() => dispatch(changeView({
                             planView: homeView === "Plan" ? "Plan List" : planView,
                             homeView: "Plan",

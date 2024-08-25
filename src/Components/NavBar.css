@@ -111,6 +111,10 @@
         position: absolute;
         right: 0;
     }
+
+    .homeNavBar.false {
+        display: none;
+    }
 }
 
 

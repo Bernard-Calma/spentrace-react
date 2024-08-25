@@ -43,6 +43,9 @@ const viewSlice = createSlice({
         },
         hideNav: state => {
             state.showNav = false;
+        },
+        toggleNavBar: state => {
+            state.showNav = !state.showNav;
         }
     }
 })
@@ -51,7 +54,8 @@ export const {
     changeView,
     toggleAccountsCategory,
     showNav,
-    hideNav
+    hideNav,
+    toggleNavBar
 } = viewSlice.actions
 
 export default viewSlice.reducer
