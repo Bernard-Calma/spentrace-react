@@ -24,7 +24,7 @@ const App = () => {
     // Check if current session has user
     dispatch(getUser());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[loggedIn]);
+  },[]);
 
   return (
     <div className="App">

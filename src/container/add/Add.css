@@ -123,7 +123,7 @@ input::-webkit-inner-spin-button {
 @media screen and (max-width: 900px) {
     .addContainer {
         padding: 0 5px;
-        margin: 10px;
+        width: 100%;
     }
 
     .addHeader > h2 {

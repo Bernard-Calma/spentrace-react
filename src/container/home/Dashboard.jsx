@@ -29,7 +29,7 @@ const DashBoard = props => {
    // ------------------------------ END OF VARIABLES ------------------------------
 
    useEffect(() => {
-    console.log(totalIncome)
+    // console.log(totalIncome)
         dispatch(getBalance());
         if (billItems.length > 0 ){
             dispatch(getNextBill());

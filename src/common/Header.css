@@ -31,14 +31,6 @@
     font-size: 1.7em !important;
 }
 
-.fi-rr-bars-staggered {
-    display: none;
-    position: absolute;
-    left: 0;
-    width: min-content;
-    font-size: 2em;
-}
-
 @media screen and (max-width: 900px) {
     .header {
         padding: 0;

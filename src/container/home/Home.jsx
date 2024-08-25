@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPlans } from '../../features/planSlice'
 import { getBills } from '../../features/billSlice'
 import { getAccounts } from '../../features/accountSlice'
-import { changeView } from '../../features/viewSlice'
+import { changeView, toggleNavBar } from '../../features/viewSlice'
 
 import BillsList from '../bills/BillsList'
 import PlanList from '../plan/PlansList'
@@ -14,6 +14,7 @@ import AccountList from '../accounts/AccountList'
 import './home.css'
 import '../../Components/NavBar.css'
 import Loading from '../../Components/Loading'
+import Icon from '../../common/Icon'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -54,20 +55,27 @@ const Home = () => {
                     } 
                 </>
                 : <>
+                    <Icon 
+                        className="fi fi-rr-bars-staggered" 
+                        onClick={() => dispatch(toggleNavBar())} 
+                    />
                     <div className={`homeNavBar ${showNav}`}>
-                        <p onClick={() => dispatch(changeView({
+                        <p  className={`navItem ${homeView === "Plan" ? "selected" : ''}`}
+                            onClick={() => dispatch(changeView({
                             planView: homeView === "Plan" ? "Plan List" : planView,
                             homeView: "Plan",
                         }))}>Budget</p>
                         {billItems.length > 0 && 
-                            <p onClick={() => dispatch(changeView(
+                            <p className={`navItem ${homeView === "Bills List" ? "selected" : ''}`}
+                                onClick={() => dispatch(changeView(
                                 {
                                     billView: homeView === "Bills List" ? "Bill List" : billView,
                                     homeView: "Bills List"
                             }))}>
                                 Bills
                             </p>}
-                            <p onClick={() => dispatch(changeView(
+                            <p  className={`navItem ${homeView === "Account List" ? "selected" : ''}`}
+                                onClick={() => dispatch(changeView(
                                 {
                                     homeView: "Account List",
                                     accountView: {view: homeView === "Account List" ? "Account List" : accountView.view}
