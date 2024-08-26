@@ -39,7 +39,7 @@ const DashBoard = props => {
     
     return (
         <>
-        { isLoading || !nextTarget.amount || billLoading || (billItems.length > 0 && !nextUnpaidBill.name)
+        { isLoading || billLoading || (billItems.length > 0 && !nextUnpaidBill.name)
             ? <Loading />
             : <div className='dashboard'>
                 <h1 className='dashboardBillMonth'>{new Date().toLocaleString('en-us',{month: "long"})} Budget</h1>
@@ -62,12 +62,31 @@ const DashBoard = props => {
                             <h2>${Math.ceil(totalExpense)}</h2>
                         </div>    
                     </div>
-                    <div className='containerNextTarget'>
-                        <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
-                        <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
-                        {/* Shorten the if statement */}
-                        <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
-                    </div>
+                    {
+                        !nextTarget.amount
+                        ? <div className='containerNextTarget'>
+                            <h2 className='nextTarget positive'>You have enough to pay for all of your bills.</h2>
+                            <h2 className='addBillTarget'>
+                                Add your next bill to your budget.
+                                <i 
+                                    className="fi fi-rr-add" 
+                                    onClick={() => {
+                                        dispatch(changeView({
+                                            homeView: "Bills List",
+                                            billView: "Add Bill",
+                                        }))
+                                    }}
+                                />
+                            </h2>
+                            
+                        </div>
+                        :<div className='containerNextTarget'>
+                            <h2 className='nextTarget'>Next Target: ${Math.abs(nextTarget.amount).toFixed(2)}</h2>
+                            <h2 className='nextTarget'>{nextTarget.name} - {new Date(nextTarget.date).toUTCString().slice(0, 11)}</h2>
+                            {/* Shorten the if statement */}
+                            <h2 className={`nextTarget ${((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) > 0 ? "positive" : "negative"}`}> Days Remaining: {(Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000 > 0 ? Math.ceil((Date.parse(nextTarget.date) - Date.parse(new Date())) / 24 / 60 / 60 / 1000) :  'Overdue' }</h2>
+                        </div>
+                    }
                 </div> 
                 {billItems.length === 0
                 ? <div className="containerEmptyPlan">
