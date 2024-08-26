@@ -31,7 +31,7 @@ const BillsList = () => {
 
     return(
         <>
-            {billView === "Bill List"
+            {billView === "Bills List"
                 ? <section className='containerBillsList'>
                     <MonthHeader/>
                     <div className="billsContainer">
