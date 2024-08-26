@@ -179,4 +179,24 @@ input::-webkit-inner-spin-button {
     #submit {
         text-align: center;
     }
+
+    /* ADD NEW ACCOUNT */
+    .sectionAccountList > .addContainer {
+        width: 98%;
+    }
+
+    .addForm > .formInput.acc{
+        padding: 0;
+    }
+
+    .addForm > .formInput.acc > select {
+        flex-basis: 50%;
+        margin-right: 20px;
+    }
+
+    .addForm > .formInput.acc > input {
+        justify-self: flex-end;
+        flex-basis: 35%;
+    }
+
 }

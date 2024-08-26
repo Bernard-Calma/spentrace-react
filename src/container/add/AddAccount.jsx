@@ -48,7 +48,7 @@ const AddAccount = () => {
             </div>  
             <form className='addForm'onSubmit={handleSubmit}>
                 <label 
-                    htmlFor="repeat" 
+                    htmlFor="accType" 
                     className='formInput acc'
                 > Account Type: 
                     <select 
