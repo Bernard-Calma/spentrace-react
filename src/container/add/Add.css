@@ -122,41 +122,61 @@ input::-webkit-inner-spin-button {
 
 @media screen and (max-width: 900px) {
     .addContainer {
-        padding: 0 5px;
+        padding: 0;
+        margin: 0;
         width: 100%;
     }
 
-    .addHeader > h2 {
-        font-size: 2em;
+    .addHeader > .addTitle, .addHeader > .fi-rr-angle-small-left {
+        font-size: 1em;
+    }
+
+    .addHeader > .fi-rr-angle-small-left {
+        margin: 0;
+        display: flex;
+        align-items: center;
     }
 
     .addForm > .amount {
-        font-size: 6em;
+        font-size: 4em;
         width: 95%;
-        margin: 20px auto;
         padding: 0;
     }
 
-    .formNotes {
-        height: 150px;
+    .addContainer > .addForm > .formInput > input {
+        margin-right: 20px;
+        flex-basis: 100%;
     }
 
-    .formInput {
-        font-size: 25px;
-        margin: 0;
-        margin: 5px ;
+    .addContainer > .addForm > .formInput > #addBillDate, 
+    .addContainer > .addForm > .formInput > #addBillName, 
+    .addContainer > .addForm > .formInput > #addBillAmount,
+    .addContainer > .addForm > .formInput > #addBillCategory {
+        flex-basis: 60%;
+    }
+
+    .addContainer > .addForm > .formInput > #addBillRepeat {
+        flex-basis: 62%;
+    }
+
+    .billCheckBoxes {
+        align-self: flex-start;
+    }
+
+    .billCheckBoxes > .formInput > input{
+        margin: auto;
+    }
+
+    .radio .formInput {
+        align-items: center;
+    }
+
+    .formNotes {
+        width: 90%;
+        height: 5rem;
     }
 
     #submit {
         text-align: center;
-    }
-
-    .billCheckBoxes {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .billCheckBoxes input {
-        margin: auto 0;
     }
 }
