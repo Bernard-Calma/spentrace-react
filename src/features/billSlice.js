@@ -17,29 +17,7 @@ const monthNames = [
 ];
     
 const initialState = {
-    billItems: [/** 
-        * Paste one or more documents here
-        */
-        {
-          "name": "Palengke",
-          "amount": 100,
-          "dueDate": ["2024-08-27T00:00:00.000Z"],
-          "category": "PH Bills",
-          "autoPay": false,
-          "paid": [
-            false
-          ],
-          "repeat": "never",
-          "notes": "test",
-          "user": "66c86b028f4ca56a799a0256",
-          "createdAt": {
-            "$date": "2024-08-25T09:35:05.776Z"
-          },
-          "updatedAt": {
-            "$date": "2024-08-25T10:41:28.610Z"
-          },
-          "__v": 0
-        }],
+    billItems: [],
     totalBillsPaid: 0,
     totalBillsUnpaid: 0,
     nextUnpaidBill: {},
