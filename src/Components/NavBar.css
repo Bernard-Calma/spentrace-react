@@ -110,6 +110,10 @@
     .homeNavBar.false {
         display: none;
     }
+
+    .homeNavBar.true {
+        margin-top: 5px;
+    }
 }
 
 
