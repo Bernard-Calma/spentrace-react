@@ -35,6 +35,35 @@ const Home = () => {
         accountView,
         showNav
     } = useSelector(store => store.view)
+
+    const hadleChangeView = view => {
+        // planView: homeView === "Plan" ? "Plan List" : planView
+        // This same login accross all cases is to keep the current view on each mainViews
+        // e.g if bill view is add if you change the main view and go back to bill view it will still be on add.
+        switch (view) {
+            case "Plan List":
+                dispatch(changeView({
+                    homeView: "Plan",
+                    planView: homeView === "Plan" ? "Plan List" : planView
+                }))
+                break;
+            case "Bills List":
+                dispatch(changeView({
+                    homeView: "Bills List",
+                    billView: homeView === "Bills List" ? "Bills List" : billView
+                }))
+                break;
+            case "Account List":
+                dispatch(changeView({
+                    homeView: "Account List",
+                    accountView: {view: homeView === "Account List" ? "Account List" : accountView.view}
+                }))
+                break;
+            default:
+                break;
+        }
+        dispatch(toggleNavBar())
+    }
     // ------------------------------ END OF FUNCTIONS ------------------------------
     useEffect(()=>{
         dispatch(getPlans())
@@ -61,25 +90,14 @@ const Home = () => {
                     />
                     <div className={`homeNavBar ${showNav}`}>
                         <p  className={`navItem ${homeView === "Plan" ? "selected" : ''}`}
-                            onClick={() => dispatch(changeView({
-                            planView: homeView === "Plan" ? "Plan List" : planView,
-                            homeView: "Plan",
-                        }))}>Budget</p>
+                            onClick={() => hadleChangeView("Plan List")}>Budget</p>
                         {billItems.length > 0 && 
                             <p className={`navItem ${homeView === "Bills List" ? "selected" : ''}`}
-                                onClick={() => dispatch(changeView(
-                                {
-                                    billView: homeView === "Bills List" ? "Bill List" : billView,
-                                    homeView: "Bills List"
-                            }))}>
+                                onClick={() => hadleChangeView("Bills List")}>
                                 Bills
                             </p>}
                             <p  className={`navItem ${homeView === "Account List" ? "selected" : ''}`}
-                                onClick={() => dispatch(changeView(
-                                {
-                                    homeView: "Account List",
-                                    accountView: {view: homeView === "Account List" ? "Account List" : accountView.view}
-                            }))}>
+                                onClick={() => hadleChangeView("Account List")}>
                                     Accounts
                             </p>
                     </div>
