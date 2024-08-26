@@ -142,6 +142,11 @@
         font-size: 12px;
     }
 
+    .loginMessage {
+        font-size: 0.75em;
+        font-weight: 400;
+    }
+
     .btnLogin {
         font-size: 20px;
         width: auto;
