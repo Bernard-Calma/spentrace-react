@@ -59,18 +59,67 @@
 
 @media screen and (max-width: 900px) {
     .editContainer {
-        height: auto;
-        margin: 70px 30px;
+        width: 100%;
+        margin: 0;
         text-align: start;
         justify-content: start;
-        padding: 10px;
     }
 
-    .editTitle {
-        font-size: 2rem;
+    .editHeader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .editHeader > .editTitle, .editHeader > .fi-rr-angle-small-left {
+        margin: 0;
+        font-size: 2em;
+    }
+
+    .editHeader > .fi-rr-angle-small-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .editHeader > .editTitle {
+        flex-basis: 100%;
+    }
+
+    .editForm, .editForm > .formInput {
+        width: 100%;
+        margin: 0.25em 0;
+    }
+
+    .formInput {
+        width: 100%;
+        padding: 0 5px;
+        font-size: 1.25em;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .formInput> input, .formInput > input[type=text], .formInput > #addBillRepeat{
+        flex-basis: 65%;
+        font-size: 0.75em;
+        margin-right: 20px;
+    }
+
+    .formInput > #addBillRepeat {
+        flex-basis: 70%;
     }
 
     .formInput > input[type=text], .formInput > input[type=number] {
         width: 100%;
+    }
+
+    .billCheckBoxes > .formInput {
+        margin: 0 0 5px;
+    }
+
+    .editForm > .formNotes {
+        height: 3rem;
+        margin: auto;
+        width: 90%;
     }
 }
