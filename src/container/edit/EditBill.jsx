@@ -30,13 +30,13 @@ const EdditBill = () => {
         e.preventDefault();
         dispatch(modifyBill(editBill));
         dispatch(getPlans());
-        dispatch(changeView({billView: "Bill List"}));
+        dispatch(changeView({billView: "Bills List"}));
     };
 
     return (
         <div className="editContainer">
             <div className='editHeader'>
-                <BackButton handleChangeView = {() => dispatch(changeView({billView: "Bill List"}))}/>
+                <BackButton handleChangeView = {() => dispatch(changeView({billView: "Bills List"}))}/>
                 <h2 className='editTitle'>Edit</h2>
             </div>
             

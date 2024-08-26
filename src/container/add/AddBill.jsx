@@ -28,7 +28,7 @@ const AddBill = () => {
         // console.log(newBill);
         e.preventDefault();
         dispatch(addBill(newBill))
-        dispatch(changeView({billView: "Bill List"}))
+        dispatch(changeView({billView: "Bills List"}))
     };
 
     return (

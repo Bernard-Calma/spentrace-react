@@ -16,13 +16,13 @@ const ShowBill = () => {
 
     const handleDelete = () => {
         dispatch(deleteBill(openBill))
-        dispatch(changeView({billView: "Bill List"}))
+        dispatch(changeView({billView: "Bills List"}))
     }
 
     return(
         <div className="containerShowBill">
             <div className="showHeader">
-                <i className="fi fi-rr-angle-small-left" onClick={() => dispatch(changeView({billView: "Bill List"}))}/>
+                <i className="fi fi-rr-angle-small-left" onClick={() => dispatch(changeView({billView: "Bills List"}))}/>
                 <div>
                     <Edit className="fi fi-rr-edit" onClick={() => dispatch(changeView({billView: "Edit Bill"}))}/>
                     <Delete className="fi fi-rr-trash" onClick={handleDelete}/>

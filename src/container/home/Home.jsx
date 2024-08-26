@@ -37,23 +37,26 @@ const Home = () => {
     } = useSelector(store => store.view)
 
     const hadleChangeView = view => {
+        // planView: homeView === "Plan" ? "Plan List" : planView
+        // This same login accross all cases is to keep the current view on each mainViews
+        // e.g if bill view is add if you change the main view and go back to bill view it will still be on add.
         switch (view) {
             case "Plan List":
                 dispatch(changeView({
                     homeView: "Plan",
-                    planView: "Plan List"
+                    planView: homeView === "Plan" ? "Plan List" : planView
                 }))
                 break;
             case "Bills List":
                 dispatch(changeView({
                     homeView: "Bills List",
-                    billView: "Bills List"
+                    billView: homeView === "Bills List" ? "Bills List" : billView
                 }))
                 break;
             case "Account List":
                 dispatch(changeView({
                     homeView: "Account List",
-                    billView: "Account List"
+                    accountView: {view: homeView === "Account List" ? "Account List" : accountView.view}
                 }))
                 break;
             default:
