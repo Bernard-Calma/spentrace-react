@@ -18,6 +18,7 @@ export const getUser = createAsyncThunk("user/getUser", async (thunkAPI) => {
           })
         return res.data;
     } catch (err) {
+        // console.log(err.response.data)
         return thunkAPI.rejectWithValue("Error Loging In")
     }
 })
@@ -75,6 +76,23 @@ const userSlice = createSlice({
     },
     extraReducers: builder => {
         builder
+            //Get User
+            .addCase(getUser.pending, state => {
+                state.loggedIn = false;
+                state.loading = true;
+            })
+            .addCase(getUser.fulfilled, (state, {payload}) => {
+                state.loading = false;
+                state.loggedIn = true;
+                // console.log("fulfilled Action", action)
+                state.username = payload;
+            })
+            .addCase(getUser.rejected, (state, {payload}) => {
+                state.loading = false;
+                console.log("Error:", payload)
+                state.username = "";
+                state.loggedIn = false;
+            })
             // Login 
             .addCase(userLogin.pending, state => {
                 state.loggedIn = false;
@@ -92,6 +110,7 @@ const userSlice = createSlice({
                 state.errorMessage = "Invalid username or password."
                 state.loggedIn = false;
             })
+            // Register
             .addCase(userRegister.fulfilled, (state, action) => {
                 state.loading = true;
                 state.loggedIn = false;

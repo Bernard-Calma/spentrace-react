@@ -83,7 +83,7 @@ const AddBill = () => {
                     text="Category: "
                     type="text" 
                     name="category" 
-                    id="addBillCatagory" 
+                    id="addBillCategory" 
                     onChange={handleChange} 
                     required
                 />

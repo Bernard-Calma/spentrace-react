@@ -139,16 +139,41 @@
         padding: 0;
     }
 
-    .month, .btnPrevious, .btnNext {
-        position: relative;
-        left: 0;
-        right: 0;
-        font-size: 24px;
+    .billsListHeader {
+        margin: 0 auto;
+        align-items: center;;
+        width: 90%;
+        font-size: 1.5em;
     }
 
-    .month {
-        text-align: center;
-        font-size: 35px;
+    .billsListHeader > .fi {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        font-size: 2em;
+    }
+
+    .billsListHeader > .fi:hover {
+        font-size: 2em;
+    }
+
+    .billsListHeader > .month {
+        flex-basis: 100%;
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    .billsContainer {
+        margin: 0;
+    }
+
+    .billsContainer > .containerPaid > p {
+        font-weight: 200;
+        font-size: 0.75em;
+    }
+
+    .billsContainer > .containerPaid > .negative, .billsContainer > .containerPaid > .positive{
+        font-weight: 400;
     }
 
     .billAddContainer {
@@ -156,15 +181,47 @@
         justify-content: center;
     }
     
-
-    .btnAddBill, .iconCheckBox {
-        position: relative;
-        left: 0;
+    .billsContainer > .categoriesContainer > .category{
+        margin: 0;
+        font-size: 1em;
+        font-weight: 300;
+        flex: 1;
+    }
+    
+    .billAddContainer {
+        display: flex;
+        border: 0;
     }
 
-    .date > .billData.date {
-        padding: 0;
-        text-align: center;
+    .billAddContainer > .btnAddBill {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
+    .billContainer.income {
+        justify-content: center;
+    }
+
+    .billDataContainer {
+        border-width: 0;
+        justify-content: center;
+    }
+
+    .billDataContainer.date {
+        justify-content: space-between;
+    }
+
+    .billDataContainer.date > .date {
+        flex-basis: 100%;
+        text-align: start;
+        padding-left: 0.25em;
+    }
+
+    .billDataContainer > .iconCheckBox {
+        margin: 0;
+        display: flex;
+        position: relative;
+        align-self: center;
     }
 
     .day {

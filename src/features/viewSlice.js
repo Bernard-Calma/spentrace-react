@@ -13,6 +13,7 @@ const initialState = {
         creditCardsView: true,
         loansView: true
     },
+    showNav: false,
     isLoading: false
 }
 
@@ -36,13 +37,25 @@ const viewSlice = createSlice({
                 [payload]: !accountView[payload]
             }
             state.accountView = {...state.accountView, ...accountView}
+        },
+        showNav: state => {
+            state.showNav = true;
+        },
+        hideNav: state => {
+            state.showNav = false;
+        },
+        toggleNavBar: state => {
+            state.showNav = !state.showNav;
         }
     }
 })
 
 export const {
     changeView,
-    toggleAccountsCategory
+    toggleAccountsCategory,
+    showNav,
+    hideNav,
+    toggleNavBar
 } = viewSlice.actions
 
 export default viewSlice.reducer

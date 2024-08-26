@@ -64,13 +64,28 @@
         margin: 0;
     }
 
+    .categoriesContainer {
+        align-items: center;
+    }
+
+    .categoriesContainer > h2 {
+        font-family: "Kanit", sans-serif;
+        font-weight: 700;
+        font-size: 1.25em;
+    }
+
     .planContainer {
         border: none;
     }
 
     .planContainer > p {
+        font-weight: 300;
         font-size: 1em;
         border: none;
+    }
+
+    .planContainer > .running.total {
+        padding-right: 5px;
     }
 
     .plan.name {
@@ -84,5 +99,9 @@
 
     .plan.amount::-webkit-scrollbar, .plan.running.total::-webkit-scrollbar{
         display: none;
+    }
+
+    .containerAdd > .fi-rr-add {
+        font-size: 1.5em;
     }
 }
