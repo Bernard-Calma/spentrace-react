@@ -65,9 +65,9 @@ const DashBoard = props => {
                     {
                         !nextTarget.amount
                         ? <div className='containerNextTarget'>
-                            <h2 className='nextTarget positive'>You have enough to pay for all of your bills.</h2>
+                            <h2 className='nextTarget positive'>You don't have any expenses.</h2>
                             <h2 className='addBillTarget'>
-                                Add your next bill to your budget.
+                                Add your next expense.
                                 <i 
                                     className="fi fi-rr-add" 
                                     onClick={() => {

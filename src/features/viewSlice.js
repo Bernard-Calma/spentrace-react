@@ -4,7 +4,7 @@ const initialState = {
     view: "Login",
     homeView: "Home",
     planView: "Plan List",
-    billView: "Bill List",
+    billView: "Bills List",
     emptyView: "Empty Dashboard",
     accountView: {
         view: "Account List",
