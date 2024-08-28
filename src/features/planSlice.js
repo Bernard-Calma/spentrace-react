@@ -80,22 +80,6 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
     }
 })
 
-export const addPlanDB = createAsyncThunk("plan/add", async (newPlan, thunkAPI) => {
-    try {
-        const res = await axios({
-            method: "POST",
-            url: `${serverURL}/plans/`,
-            data: newPlan,
-            withCredentials: true
-        })
-        // console.log(res.data);
-        return res.data
-    } catch (err) {
-        console.log("Add plan Error: ", err)
-        return thunkAPI.rejectWithValue("Error getting plans")
-    }
-})
-
 export const deletePlan = createAsyncThunk("plan/delete", async (plan, thunkAPI) => {
     // console.log(plan)
     try {
@@ -183,6 +167,13 @@ const planSlice = createSlice({
 
             state.planItems = setRunningTotal(state, planToAdd);
             state.isLoading = false;
+
+            axios({
+                method: "POST",
+                url: `${serverURL}/plans/`,
+                data: planToAdd,
+                withCredentials: true
+            })
         }
     },
     extraReducers: builder => {
@@ -197,20 +188,6 @@ const planSlice = createSlice({
                 state.planItems = action.payload;
             })
             .addCase(getPlans.rejected, state => {
-                // console.log("Rejected: ", state)
-                state.isLoading = false;
-            })
-            // Add Plan
-            .addCase(addPlanDB.pending, state => {
-                // console.log("Pending")
-                state.isLoading = true;
-            })
-            .addCase(addPlanDB.fulfilled, (state, {payload}) => {
-                state.isLoading = false;
-                // console.log(payload)
-                // state.planItems = [...state.planItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1)
-            })
-            .addCase(addPlanDB.rejected, state => {
                 // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
