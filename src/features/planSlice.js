@@ -80,22 +80,6 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
     }
 })
 
-export const deletePlan = createAsyncThunk("plan/delete", async (plan, thunkAPI) => {
-    // console.log(plan)
-    try {
-        const res = await axios({
-            method: "DELETE",
-            url: `${serverURL}/plans/${plan._id}`,
-            withCredentials: true,
-        })
-        // console.log(res.data);
-        return res.data
-    } catch (err) {
-        console.log("Delete plan Error: ", err)
-        return thunkAPI.rejectWithValue("Error getting plans")
-    }
-})
-
 export const modifyPlan = createAsyncThunk("plan/modify", async (plan, thunkAPI) => {
     // console.log(thunkAPI.dispatch().plan)
     // console.log("Modify Plan")
@@ -168,11 +152,21 @@ const planSlice = createSlice({
             state.planItems = setRunningTotal(state, planToAdd);
             state.isLoading = false;
 
+            // Add a way to catch network error
             axios({
                 method: "POST",
                 url: `${serverURL}/plans/`,
                 data: planToAdd,
                 withCredentials: true
+            })
+        },
+        deletePlan: (state, {payload}) => {
+            state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
+
+            axios({
+                method: "DELETE",
+                url: `${serverURL}/plans/${payload._id}`,
+                withCredentials: true,
             })
         }
     },
@@ -188,19 +182,6 @@ const planSlice = createSlice({
                 state.planItems = action.payload;
             })
             .addCase(getPlans.rejected, state => {
-                // console.log("Rejected: ", state)
-                state.isLoading = false;
-            })
-            // Delete Plan
-            .addCase(deletePlan.pending, state => {
-            // console.log("Pending")
-            state.isLoading = true;
-            })
-            .addCase(deletePlan.fulfilled, (state, {payload}) => {
-                // console.log(payload)
-                state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
-            })
-            .addCase(deletePlan.rejected, state => {
                 // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
@@ -225,7 +206,8 @@ const planSlice = createSlice({
 export const {
     getBalance,
     setOpenPlan,
-    addPlan
+    addPlan,
+    deletePlan
 } = planSlice.actions
 
 export default planSlice.reducer;

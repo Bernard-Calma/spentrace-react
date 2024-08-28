@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPlans } from "../../features/planSlice";
 import { changeView } from "../../features/viewSlice";
 
 import Plan from "./Plan";
