@@ -18,11 +18,11 @@ const App = () => {
   } = useSelector(store => store.user)
   // ------------------------------ END OF VARIABLES ------------------------------
 
-  // useEffect(() => {
-  //   // Check if current session has user
-  //   dispatch(getUser());
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // },[]);
+  useEffect(() => {
+    // Check if current session has user
+    dispatch(getUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   return (
     <div className="App">
