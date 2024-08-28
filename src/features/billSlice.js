@@ -228,6 +228,7 @@ const billSlice = createSlice({
                     // add a single bill with specific due date
                     // NOTE TO DO: CHANGE CURRENT YEAR FOR USER TO SELECT ANY YEAR AND SHOW BILLS ACCORDING TO YEAR
                     // Add .replace(/-/g, '\/').replace(/T.+/, ''). to fix weird javascript date time zone difference
+                    //eslint-disable-next-line
                     if(new Date(dueDate.replace(/-/g, '\/').replace(/T.+/, '')).getMonth() === state.month && new Date(dueDate).getFullYear() === state.year) 
                     monthlyBillsList.push({...bill, dueDate: dueDate, paid: bill.paid[index], dueDateIndex: index});
                 });

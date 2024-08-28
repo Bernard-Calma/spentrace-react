@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPlan, getPlans } from '../../features/planSlice';
+import { addPlan, addPlanDB, getBalance, getPlans } from '../../features/planSlice';
 import { changeView } from '../../features/viewSlice';
 
 import BackButton from '../../Components/Buttons/BackButton';
@@ -46,8 +46,8 @@ const AddPlan = () => {
     const handleSubmitAdd = e => {
         e.preventDefault();
         dispatch(addPlan(newPlan));
-        dispatch(getPlans())
-        dispatch(changeView({planView: "Plan List"}))
+        dispatch(changeView({planView: "Plan List"}));
+        dispatch(addPlanDB(newPlan));
     };
 
     return (

@@ -10,8 +10,35 @@ const initialState = {
     balance: 0,
     nextTarget: {},
     openPlan: {},
+    newPlanId: 0,
     isLoading: true
 }
+
+// Local Functions
+// Calculate next balance start
+const setRunningTotal = (state, planToAdd) => {
+    let runningTarget = 0;
+    let total = 0;
+    const plansArray = [...state.planItems, planToAdd].sort((a, b) => (a.date > b.date) ? 1 : -1);
+    plansArray.forEach(plan => {
+    if (plan.expense === true) {
+        runningTarget += plan.amount;
+        total -= plan.amount;
+    } else if (plan.expense === false) {
+        runningTarget -= plan.amount;
+        total += plan.amount;
+    };
+    if (runningTarget < 0) {
+        plan.target = 0;
+    } else {
+        plan.target = runningTarget;
+    }
+    plan.runningTotal = total;  
+    });
+    return plansArray;
+    // Calculate next balance ends
+}
+
 
 export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAPI) => {
     // console.log("Get Plans.")
@@ -53,7 +80,7 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
     }
 })
 
-export const addPlan = createAsyncThunk("plan/add", async (newPlan, thunkAPI) => {
+export const addPlanDB = createAsyncThunk("plan/add", async (newPlan, thunkAPI) => {
     try {
         const res = await axios({
             method: "POST",
@@ -144,6 +171,18 @@ const planSlice = createSlice({
         },
         setOpenPlan: (state, {payload}) => {
             state.openPlan = payload;
+        },
+        addPlan: (state, {payload}) => {
+            // Set a new planToAdd variable cotaining payload key:value pair
+            const planToAdd = {
+                name: payload.name,
+                amount: parseInt(payload.amount),
+                date: payload.date,
+                expense: payload.expense
+            }
+
+            state.planItems = setRunningTotal(state, planToAdd);
+            state.isLoading = false;
         }
     },
     extraReducers: builder => {
@@ -162,16 +201,16 @@ const planSlice = createSlice({
                 state.isLoading = false;
             })
             // Add Plan
-            .addCase(addPlan.pending, state => {
+            .addCase(addPlanDB.pending, state => {
                 // console.log("Pending")
                 state.isLoading = true;
             })
-            .addCase(addPlan.fulfilled, (state, {payload}) => {
+            .addCase(addPlanDB.fulfilled, (state, {payload}) => {
                 state.isLoading = false;
                 // console.log(payload)
-                state.planItems = [...state.planItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1)
+                // state.planItems = [...state.planItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1)
             })
-            .addCase(addPlan.rejected, state => {
+            .addCase(addPlanDB.rejected, state => {
                 // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
@@ -181,7 +220,6 @@ const planSlice = createSlice({
             state.isLoading = true;
             })
             .addCase(deletePlan.fulfilled, (state, {payload}) => {
-                state.isLoading = false;
                 // console.log(payload)
                 state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
             })
@@ -209,7 +247,8 @@ const planSlice = createSlice({
 
 export const {
     getBalance,
-    setOpenPlan
+    setOpenPlan,
+    addPlan
 } = planSlice.actions
 
 export default planSlice.reducer;
