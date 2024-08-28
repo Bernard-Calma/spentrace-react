@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeView } from "../../features/viewSlice";
-import { deletePlan, getPlans } from "../../features/planSlice";
+import { deletePlan } from "../../features/planSlice";
 
 import Edit from "../../common/Icon";
 import Delete from "../../common/Icon";
@@ -27,7 +27,6 @@ const ShowPlan = () => {
                     <Edit className="fi fi-rr-edit" onClick={() => dispatch(changeView({planView: "Edit Plan"}))}/>
                     <Delete className="fi fi-rr-trash" onClick={() => {
                         dispatch(deletePlan(openPlan))
-                        dispatch(getPlans())
                         dispatch(changeView({planView: "Plan List"}))
                     }}/>
                 </div>
