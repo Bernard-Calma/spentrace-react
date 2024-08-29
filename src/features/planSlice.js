@@ -161,13 +161,33 @@ const planSlice = createSlice({
             })
         },
         deletePlan: (state, {payload}) => {
-            state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
-
-            axios({
-                method: "DELETE",
-                url: `${serverURL}/plans/${payload._id}`,
-                withCredentials: true,
-            })
+            if(payload._id) {
+                state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
+                axios({
+                    method: "DELETE",
+                    url: `${serverURL}/plans/${payload._id}`,
+                    withCredentials: true,
+                })
+            } else {
+                // For new plans without any id
+                // Return If statement conditions are true
+                // Properties that doesn't match
+                // _id, name, amount, date, expense
+                state.planItems = state.planItems.filter(plan => (
+                    payload._id !== plan._id ||
+                    payload.name !== plan.name ||
+                    payload.amount !== plan.amount ||
+                    payload.date !== plan.date ||
+                    payload.expense !== plan.expense
+                )).sort((a, b) => (a.date > b.date) ? 1 : -1)
+                axios({
+                    method: "DELETE",
+                    url: `${serverURL}/plans`,
+                    withCredentials: true,
+                    data: payload
+                })
+            }
+            
         }
     },
     extraReducers: builder => {
