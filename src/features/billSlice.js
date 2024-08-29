@@ -42,7 +42,7 @@ export const getBills = createAsyncThunk("bill/getBills", async (payload, thunkA
             url: `${process.env.REACT_APP_SERVER_URL}/bills`,
             withCredentials: true
         })
-        return res.data.sort((a, b) => (a.date > b.date) ? 1 : -1)
+        return res.data.sort((a,b) => new Date(a.date) - new Date(b.date) || a.name.localeCompare(b.name))
     } catch (err) {
         console.log("Get Plans Error: ", err)
         return thunkAPI.rejectWithValue("Error getting bills")
