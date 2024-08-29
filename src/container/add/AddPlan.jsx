@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPlan, addPlanDB, getBalance, getPlans } from '../../features/planSlice';
+import { addPlan } from '../../features/planSlice';
 import { changeView } from '../../features/viewSlice';
 
 import BackButton from '../../Components/Buttons/BackButton';
@@ -47,7 +47,6 @@ const AddPlan = () => {
         e.preventDefault();
         dispatch(addPlan(newPlan));
         dispatch(changeView({planView: "Plan List"}));
-        dispatch(addPlanDB(newPlan));
     };
 
     return (

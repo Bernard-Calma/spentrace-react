@@ -80,57 +80,6 @@ export const getPlans = createAsyncThunk("plan/getPlans", async (params, thunkAP
     }
 })
 
-export const addPlanDB = createAsyncThunk("plan/add", async (newPlan, thunkAPI) => {
-    try {
-        const res = await axios({
-            method: "POST",
-            url: `${serverURL}/plans/`,
-            data: newPlan,
-            withCredentials: true
-        })
-        // console.log(res.data);
-        return res.data
-    } catch (err) {
-        console.log("Add plan Error: ", err)
-        return thunkAPI.rejectWithValue("Error getting plans")
-    }
-})
-
-export const deletePlan = createAsyncThunk("plan/delete", async (plan, thunkAPI) => {
-    // console.log(plan)
-    try {
-        const res = await axios({
-            method: "DELETE",
-            url: `${serverURL}/plans/${plan._id}`,
-            withCredentials: true,
-        })
-        // console.log(res.data);
-        return res.data
-    } catch (err) {
-        console.log("Delete plan Error: ", err)
-        return thunkAPI.rejectWithValue("Error getting plans")
-    }
-})
-
-export const modifyPlan = createAsyncThunk("plan/modify", async (plan, thunkAPI) => {
-    // console.log(thunkAPI.dispatch().plan)
-    // console.log("Modify Plan")
-    try {
-        const res = await axios({
-            method: "PUT",
-            url: `${serverURL}/plans/${plan._id}`,
-            data: plan,
-            withCredentials: true,
-        })
-        // console.log(res.data);
-        return res.data
-    } catch (err) {
-        console.log("Modify plan Error: ", err)
-        return thunkAPI.rejectWithValue("Error getting plans")
-    }
-})
-
-
 const planSlice = createSlice({
     name: "plan",
     initialState,
@@ -178,11 +127,81 @@ const planSlice = createSlice({
                 name: payload.name,
                 amount: parseInt(payload.amount),
                 date: payload.date,
-                expense: payload.expense
+                expense: payload.expense,
+                notes: payload.notes
             }
 
             state.planItems = setRunningTotal(state, planToAdd);
             state.isLoading = false;
+
+            // Add a way to catch network error
+            axios({
+                method: "POST",
+                url: `${serverURL}/plans/`,
+                data: planToAdd,
+                withCredentials: true
+            })
+        },
+        deletePlan: (state, {payload}) => {
+            if(payload._id) {
+                state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
+                axios({
+                    method: "DELETE",
+                    url: `${serverURL}/plans/${payload._id}`,
+                    withCredentials: true,
+                })
+            } else {
+                // For new plans without any id
+                // Return If statement conditions are true
+                // Properties that doesn't match
+                // _id, name, amount, date, expense, notes
+                state.planItems = state.planItems.filter(plan => (
+                    payload._id !== plan._id ||
+                    payload.name !== plan.name ||
+                    payload.amount !== plan.amount ||
+                    payload.date !== plan.date ||
+                    payload.expense !== plan.expense ||
+                    payload.notes !== plan.notes
+                )).sort((a, b) => (a.date > b.date) ? 1 : -1)
+                axios({
+                    method: "DELETE",
+                    url: `${serverURL}/plans`,
+                    withCredentials: true,
+                    data: payload
+                })
+            }
+            
+        },
+        modifyPlan: (state, {payload}) => {
+            if(payload._id) {
+                state.planItems = state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a, b) => (a.date > b.date) ? 1 : -1);
+                axios({
+                    method: "PUT",
+                    url: `${serverURL}/plans/${payload._id}`,
+                    withCredentials: true,
+                    data: {newData: payload},
+                })
+            } else {
+                state.planItems = state.planItems.map(plan => (
+                    plan._id !== state.openPlan._id ||
+                    plan.name !== state.openPlan.name ||
+                    plan.amount !== state.openPlan.amount ||
+                    plan.date !== state.openPlan.date ||
+                    plan.expense !== state.openPlan.expense ||
+                    plan.notes !== state.openPlan.notes
+                ) ? plan : payload).sort((a, b) => (a.date > b.date) ? 1 : -1);
+                axios({
+                    method: "PUT",
+                    url: `${serverURL}/plans/${state.openPlan._id || "-1"}`,
+                    data: {
+                        originalPlan: state.openPlan,
+                        newData: payload
+                    },
+                    withCredentials: true,
+                })
+            }
+
+            state.openPlan = payload;
         }
     },
     extraReducers: builder => {
@@ -200,55 +219,15 @@ const planSlice = createSlice({
                 // console.log("Rejected: ", state)
                 state.isLoading = false;
             })
-            // Add Plan
-            .addCase(addPlanDB.pending, state => {
-                // console.log("Pending")
-                state.isLoading = true;
-            })
-            .addCase(addPlanDB.fulfilled, (state, {payload}) => {
-                state.isLoading = false;
-                // console.log(payload)
-                // state.planItems = [...state.planItems, payload].sort((a, b) => (a.date > b.date) ? 1 : -1)
-            })
-            .addCase(addPlanDB.rejected, state => {
-                // console.log("Rejected: ", state)
-                state.isLoading = false;
-            })
-            // Delete Plan
-            .addCase(deletePlan.pending, state => {
-            // console.log("Pending")
-            state.isLoading = true;
-            })
-            .addCase(deletePlan.fulfilled, (state, {payload}) => {
-                // console.log(payload)
-                state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
-            })
-            .addCase(deletePlan.rejected, state => {
-                // console.log("Rejected: ", state)
-                state.isLoading = false;
-            })
-            // Modify Plan
-            .addCase(modifyPlan.pending, state => {
-            // console.log("Pending")
-            state.isLoading = true;
-            })
-            .addCase(modifyPlan.fulfilled, (state, {payload}) => {
-                state.isLoading = false;
-                // console.log(payload)
-                state.openPlan = payload
-                state.planItems = state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a, b) => (a.date > b.date) ? 1 : -1);
-            })
-            .addCase(modifyPlan.rejected, state => {
-                // console.log("Rejected: ", state)
-                state.isLoading = false;
-            })
     }  
 })
 
 export const {
     getBalance,
     setOpenPlan,
-    addPlan
+    addPlan,
+    deletePlan,
+    modifyPlan
 } = planSlice.actions
 
 export default planSlice.reducer;
