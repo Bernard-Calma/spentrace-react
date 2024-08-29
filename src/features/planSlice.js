@@ -172,6 +172,7 @@ const planSlice = createSlice({
             
         },
         modifyPlan: (state, {payload}) => {
+            payload.amount = parseInt(payload.amount)
             if(payload._id) {
                 state.planItems = setRunningTotal(state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a,b) => new Date(a.date) - new Date(b.date) || a.name.localeCompare(b.name)));
                 axios({
@@ -199,7 +200,6 @@ const planSlice = createSlice({
                     withCredentials: true,
                 })
             }
-
             state.openPlan = payload;
         }
     },
