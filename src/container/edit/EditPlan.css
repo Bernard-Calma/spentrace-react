@@ -60,7 +60,7 @@
 @media screen and (max-width: 900px) {
     .editContainer {
         width: 100%;
-        margin: 0;
+        margin: auto;
         text-align: start;
         justify-content: start;
     }
