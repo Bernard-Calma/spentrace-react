@@ -16,10 +16,10 @@ const initialState = {
 
 // Local Functions
 // Calculate next balance start
-const setRunningTotal = (state, planToAdd) => {
+const setRunningTotal = newPlanItems => {
     let runningTarget = 0;
     let total = 0;
-    const plansArray = [...state.planItems, planToAdd].sort((a, b) => (a.date > b.date) ? 1 : -1);
+    const plansArray = newPlanItems.sort((a, b) => (a.date > b.date) ? 1 : -1);
     plansArray.forEach(plan => {
     if (plan.expense === true) {
         runningTarget += plan.amount;
@@ -131,7 +131,7 @@ const planSlice = createSlice({
                 notes: payload.notes
             }
 
-            state.planItems = setRunningTotal(state, planToAdd);
+            state.planItems = setRunningTotal([...state.planItems, planToAdd]);
             state.isLoading = false;
 
             // Add a way to catch network error
@@ -144,7 +144,7 @@ const planSlice = createSlice({
         },
         deletePlan: (state, {payload}) => {
             if(payload._id) {
-                state.planItems = state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1)
+                state.planItems = setRunningTotal(state.planItems.filter(plan => payload._id !== plan._id).sort((a, b) => (a.date > b.date) ? 1 : -1))
                 axios({
                     method: "DELETE",
                     url: `${serverURL}/plans/${payload._id}`,
@@ -155,14 +155,14 @@ const planSlice = createSlice({
                 // Return If statement conditions are true
                 // Properties that doesn't match
                 // _id, name, amount, date, expense, notes
-                state.planItems = state.planItems.filter(plan => (
+                state.planItems = setRunningTotal(state.planItems.filter(plan => (
                     payload._id !== plan._id ||
                     payload.name !== plan.name ||
                     payload.amount !== plan.amount ||
                     payload.date !== plan.date ||
                     payload.expense !== plan.expense ||
                     payload.notes !== plan.notes
-                )).sort((a, b) => (a.date > b.date) ? 1 : -1)
+                )).sort((a, b) => (a.date > b.date) ? 1 : -1))
                 axios({
                     method: "DELETE",
                     url: `${serverURL}/plans`,
@@ -174,7 +174,7 @@ const planSlice = createSlice({
         },
         modifyPlan: (state, {payload}) => {
             if(payload._id) {
-                state.planItems = state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a, b) => (a.date > b.date) ? 1 : -1);
+                state.planItems = setRunningTotal(state.planItems.map(plan => plan._id === payload._id ? payload : plan).sort((a, b) => (a.date > b.date) ? 1 : -1));
                 axios({
                     method: "PUT",
                     url: `${serverURL}/plans/${payload._id}`,
@@ -182,14 +182,14 @@ const planSlice = createSlice({
                     data: {newData: payload},
                 })
             } else {
-                state.planItems = state.planItems.map(plan => (
+                state.planItems = setRunningTotal(state.planItems.map(plan => (
                     plan._id !== state.openPlan._id ||
                     plan.name !== state.openPlan.name ||
                     plan.amount !== state.openPlan.amount ||
                     plan.date !== state.openPlan.date ||
                     plan.expense !== state.openPlan.expense ||
                     plan.notes !== state.openPlan.notes
-                ) ? plan : payload).sort((a, b) => (a.date > b.date) ? 1 : -1);
+                ) ? plan : payload).sort((a, b) => (a.date > b.date) ? 1 : -1));
                 axios({
                     method: "PUT",
                     url: `${serverURL}/plans/${state.openPlan._id || "-1"}`,
