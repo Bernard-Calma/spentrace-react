@@ -146,7 +146,8 @@ const planSlice = createSlice({
                 name: payload.name,
                 amount: parseInt(payload.amount),
                 date: payload.date,
-                expense: payload.expense
+                expense: payload.expense,
+                notes: payload.notes
             }
 
             state.planItems = setRunningTotal(state, planToAdd);
@@ -172,13 +173,14 @@ const planSlice = createSlice({
                 // For new plans without any id
                 // Return If statement conditions are true
                 // Properties that doesn't match
-                // _id, name, amount, date, expense
+                // _id, name, amount, date, expense, notes
                 state.planItems = state.planItems.filter(plan => (
                     payload._id !== plan._id ||
                     payload.name !== plan.name ||
                     payload.amount !== plan.amount ||
                     payload.date !== plan.date ||
-                    payload.expense !== plan.expense
+                    payload.expense !== plan.expense ||
+                    payload.notes !== plan.notes
                 )).sort((a, b) => (a.date > b.date) ? 1 : -1)
                 axios({
                     method: "DELETE",
