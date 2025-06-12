@@ -1,45 +1,54 @@
 import { useDispatch, useSelector } from "react-redux";
+
 // Landing Page Images
-import mainPageImage from "../../assets/img/MainPage.png"
 import mobilePage from "../../assets/img/MobilePage.png"
 
 // Conponents
 import Login from "./login/Login";
 import Register from "./login/Register";
-import "./landingPage.css"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { clearError } from "../../features/userSlice";
+
+
+import "./landingpage.scss";
 
 const LandingPage = () =>{
     const dispatch = useDispatch();
-    const { view } = useSelector(store => store.view)
+    const [view, setView] = useState("Login");
     
     useEffect(() => {
         dispatch(clearError())
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[view])
     return(
-        <div className="containerLandingPage">
-            <div className="introduction">
-                <div className="mobilePageImage">
-                    <p>Spentrace will help you track your earnings and expenses then provides how much you need to earn for your next bills.</p>
-                    <img 
-                        src={mainPageImage} 
-                        alt="Main Page" 
-                        className="mainPageImage"
-                    />
-                                  
-                </div>
-                    <img
-                        src={mobilePage} 
-                        alt="Main Page"
-                        className="mobilePageImage"
-                    />
+        <div className="container landing-page">
+            <header>
+                <h1 className='app-title'>Spen<span>trace</span></h1>
+                <p>Smart tracking. Smarter Spending,</p>
+            </header>
+            <div className="container login">
+                <div className="introduction">
+                    <h2>Why Spentrace?</h2>
+                    <ul className="space-y-2 text-sm text-gray-200">
+                        <li>✅ Track your expenses and income effortlessly</li>
+                        <li>📅 See upcoming bills in a single view</li>
+                        <li>🎯 Know exactly how much you need to earn next</li>
+                    </ul>
+                </div>    
+                <img
+                    src={mobilePage} 
+                    alt="Main Page"
+                    className="mobilePageImage"
+                />
+                {view === "Login" 
+                    ? <Login
+                        view = {view}
+                        handleChangeView={() => setView("Register")}
+                        /> 
+                    : <Register/>
+                }
             </div>
-            {view === "Login" 
-                ? <Login/> 
-                : <Register/>
-            }
+            
         </div>
     );
 };

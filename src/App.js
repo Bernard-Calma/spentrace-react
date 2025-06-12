@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { getUser } from './features/userSlice';
 
-import Header from './common/Header';
 import Footer from './container/footer/Footer';
 import LandingPage from './container/landingPage/LandingPage';
 import Home from './container/home/Home';
 
-import './App.css';
+import './app.scss';
 
 const App = () => { 
   const dispatch = useDispatch()
@@ -26,7 +25,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header/>
+      {/* Render Landing Page or Home based on loggedIn state */}
       { loggedIn 
         ? <Home/> 
         : <LandingPage/> 

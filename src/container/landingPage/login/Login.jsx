@@ -1,13 +1,9 @@
 import {useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import { userLogin } from "../../../features/userSlice";
-import { changeView } from "../../../features/viewSlice";
-
 import LabelInput from "../../../common/LabelInput";
 
-import "./Login.css"
-
-const Login = () => {
+const Login = ({view, handleChangeView}) => {
     const dispatch = useDispatch()
     const {
         errorMessage
@@ -36,9 +32,21 @@ const Login = () => {
         }
     }
 
+    const handleDemoLogin = () => {
+        setUser({
+            username: "demoUser",
+            password: "demoPass",
+            errorMessage: ""
+        });
+        dispatch(userLogin({
+            username: "demoUser",
+            password: "demoPass"
+        }));
+    }
+
     return(
-        <div className="containerLogin">
-            <h1 className="loginTitle"> LOGIN </h1>
+        <div className="container login-register">
+            <h2 className="title">Login</h2>
             <form 
                 className="formLogin" 
                 onSubmit={handleLogin}
@@ -63,16 +71,22 @@ const Login = () => {
                     errorMessage && 
                         <p className="loginMessage">{errorMessage}</p> 
                 }
-                <button className="btnLogin">Login</button>
+                <button className="btnLogin">Sign in</button>
             </form>
             <p className="registerText">Don't have an account yet? 
                 <span 
-                    onClick={() => dispatch(changeView({view: "Register"}))} 
+                    onClick={() => handleChangeView()} 
                     className="registerText registerLink"
                 > Register Here
-                </span>
+                </span> 
             </p>
-        </div>
+            <p>or<span 
+                    onClick={handleDemoLogin} 
+                    className="registerText registerLink"
+                > Try Demo
+                </span></p>
+                
+          </div>
     );
 };
 

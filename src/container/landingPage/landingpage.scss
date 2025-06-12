@@ -1,0 +1,77 @@
+.landing-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    header {
+        text-align: center;
+        .app-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 0.5rem;
+
+            span {
+                color: #0070bb; /* blue-600 */
+            }
+        }
+
+        p {
+            margin: 0;
+            font-size: 0.75rem;
+        }
+    }
+
+    .login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2.5rem auto;
+        gap: 2.5rem;
+        .introduction, .login-register {
+            display: flex;
+            padding: 1.5rem;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+            border: 0 solid #e5e7eb;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                color: #4b5563; /* gray-600 */
+            }
+        }
+
+        .login-register {
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .containerLandingPage{
+        all: unset;
+        display: flex;
+    }
+    .containerLandingPage {
+        /* border: solid red; */
+        height: 100%;
+      }
+
+    .introduction{
+        display: none;
+    }
+}
