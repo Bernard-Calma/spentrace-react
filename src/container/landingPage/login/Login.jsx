@@ -50,7 +50,7 @@ const Login = ({view, handleChangeView}) => {
         <div className="container login-register">
             <h2 className="title">Login</h2>
             <form 
-                className="formLogin" 
+                className="form login" 
                 onSubmit={handleLogin}
             >
                 <LabelInput 
@@ -77,7 +77,7 @@ const Login = ({view, handleChangeView}) => {
                 }
                 <button className="button btn-login">Sign in</button>
             </form>
-            <p className="registerText">Don't have an account yet? 
+            <p>Don't have an account yet? 
                 <span 
                     onClick={() => handleChangeView()} 
                     className="registerText registerLink"

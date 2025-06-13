@@ -54,11 +54,11 @@ const Register = () => {
     }
     return(
         <div className="container login-register">
-            <div className="registerHeader">
+            <div className="login-register_header">
                 <BackButton handleChangeView = {() => dispatch(changeView({view: "Login"}))} />
                 <h2 className="title">Register</h2>
             </div>
-            <form className="formRegister" onSubmit={handleRegister}>
+            <form className="form register" onSubmit={handleRegister}>
                 <LabelInput 
                     htmlFor="email"
                     text="Email"
@@ -103,7 +103,7 @@ const Register = () => {
                     ? <p className="loginMessage">{errorMessage}</p> 
                     : <></>
                 }
-                <button className="btnLogin">Register</button>
+                <button className="button btn-login">Register</button>
             </form>
         </div>
     );

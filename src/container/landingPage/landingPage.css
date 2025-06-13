@@ -1,7 +1,6 @@
 .landing-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .landing-page header {
   text-align: center;
