@@ -71,7 +71,7 @@ const Login = ({view, handleChangeView}) => {
                     errorMessage && 
                         <p className="loginMessage">{errorMessage}</p> 
                 }
-                <button className="btnLogin">Sign in</button>
+                <button className="button btn-login">Sign in</button>
             </form>
             <p className="registerText">Don't have an account yet? 
                 <span 
@@ -84,8 +84,8 @@ const Login = ({view, handleChangeView}) => {
                     onClick={handleDemoLogin} 
                     className="registerText registerLink"
                 > Try Demo
-                </span></p>
-                
+                </span>
+            </p>
           </div>
     );
 };
