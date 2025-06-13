@@ -43,36 +43,6 @@
   padding: 0;
   margin: 0;
 }
-.landing-page .login .login-register form {
-  display: flex;
-  flex-direction: column;
-}
-.landing-page .login .login-register form .btn-login {
-  padding: 0.5rem 1rem;
-  margin: 1rem 0;
-  background-color: #0070bb;
-  color: white;
-}
-.landing-page .login .login-register form input {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border: 1px solid #e5e7eb; /* gray-300 */
-  background-color: #f9fafb; /* gray-100 */
-  font-size: 1rem;
-}
-.landing-page .login .login-register form input:focus {
-  border-color: #0070bb; /* blue-600 */
-  border-width: 2px;
-  outline: none;
-}
-.landing-page .login .login-register p {
-  margin: 0;
-}
-.landing-page .login .login-register p span {
-  color: #1f2937; /* gray-800 */
-  font-weight: 700;
-  cursor: pointer;
-}
 
 @media screen and (max-width: 900px) {
   .containerLandingPage {

@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux"
 import { userLogin } from "../../../features/userSlice";
 import LabelInput from "../../../common/LabelInput";
 
+import "./login.scss";
+
 const Login = ({view, handleChangeView}) => {
     const dispatch = useDispatch()
     const {
@@ -53,16 +55,18 @@ const Login = ({view, handleChangeView}) => {
             >
                 <LabelInput 
                     type="text"
+                    htmlFor="username"
+                    text="Username"
                     name="username"
-                    placeholder="username" 
                     value={user.username} 
                     onChange={handleChange} 
                     required
                 />
                 <LabelInput 
                     type="password" 
+                    htmlFor="password"
+                    text="Password"
                     name="password" 
-                    placeholder="password" 
                     value={user.password} 
                     onChange={handleChange} 
                     required

@@ -8,7 +8,7 @@ const LabelInput = props => <>
                 id = {props.id}
                 type={props.type}
                 name={props.name}
-                placeholder={props.placeholder}
+                placeholder={props.placeholder || "Enter your " + props.name}
                 value={props.value}
                 onChange={props.onChange}
                 required = {props.required ? true : false}

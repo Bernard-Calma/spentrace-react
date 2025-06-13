@@ -53,10 +53,10 @@ const Register = () => {
             };
     }
     return(
-        <div className="containerRegister">
+        <div className="container login-register">
             <div className="registerHeader">
                 <BackButton handleChangeView = {() => dispatch(changeView({view: "Login"}))} />
-                <h1 className="registerTitle">REGISTER</h1>
+                <h2 className="title">Register</h2>
             </div>
             <form className="formRegister" onSubmit={handleRegister}>
                 <LabelInput 
@@ -64,7 +64,6 @@ const Register = () => {
                     text="Email"
                     type="email" 
                     name="email" 
-                    placeholder="email" 
                     value={newUser.email} 
                     onChange={handleChange} 
                     required
@@ -74,8 +73,7 @@ const Register = () => {
                     htmlFor="username"
                     text="Username"
                     type="text" 
-                    name="username" 
-                    placeholder="username" 
+                    name="username"
                     value={newUser.username} 
                     onChange={handleChange} 
                     required
@@ -85,8 +83,7 @@ const Register = () => {
                     htmlFor="password"
                     text="Password"
                     type="password" 
-                    name="password" 
-                    placeholder="password" 
+                    name="password"
                     value={newUser.password} 
                     onChange={handleChange} 
                     required
@@ -97,7 +94,7 @@ const Register = () => {
                     text="Verify Password"
                     type="password" 
                     name="verifyPassword" 
-                    placeholder="verify password" 
+                    placeholder="Verify your password" 
                     value={newUser.verifyPassword} 
                     onChange={handleChange} 
                     required
