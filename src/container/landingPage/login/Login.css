@@ -12,6 +12,10 @@
   position: absolute;
   left: 0;
 }
+.login-register .login-register_header i:hover {
+  cursor: pointer;
+  color: #0070bb; /* blue-600 */
+}
 .login-register form.login, .login-register form.register {
   width: 100%;
   margin: 0 auto;
@@ -74,6 +78,9 @@
   color: #1f2937; /* gray-800 */
   font-weight: 700;
   cursor: pointer;
+}
+.login-register p span:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 900px) {

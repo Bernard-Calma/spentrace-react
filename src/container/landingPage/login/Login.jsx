@@ -77,17 +77,16 @@ const Login = ({handleChangeView}) => {
                 }
                 <button className="button btn-login">Sign in</button>
             </form>
-            <p>Don't have an account yet? 
-                <span 
+            <p>Don't have an account yet? <span 
                     onClick={() => handleChangeView()} 
                     className="registerText registerLink"
-                > Register Here
+                >Register Here
                 </span> 
             </p>
-            <p>or<span 
+            <p>or <span 
                     onClick={handleDemoLogin} 
                     className="registerText registerLink"
-                > Try Demo
+                >Try Demo
                 </span>
             </p>
           </div>

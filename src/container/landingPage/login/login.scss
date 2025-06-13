@@ -13,6 +13,11 @@
         i {
             position: absolute;
             left: 0;
+
+            &:hover {
+                cursor: pointer;
+                color: #0070bb; /* blue-600 */
+            }
         }
     }    
 
@@ -87,6 +92,10 @@
             color: #1f2937; /* gray-800 */
             font-weight: 700;
             cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }
