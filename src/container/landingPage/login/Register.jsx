@@ -6,7 +6,7 @@ import { changeView } from "../../../features/viewSlice";
 import BackButton from "../../../Components/Buttons/BackButton"
 import LabelInput from "../../../common/LabelInput";
 
-const Register = () => {
+const Register = ({handleChangeView}) => {
     const dispatch = useDispatch()
     const {errorMessage} = useSelector(store => store.user)
     // console.log(useSelector(store => store.user))
@@ -55,7 +55,7 @@ const Register = () => {
     return(
         <div className="container login-register">
             <div className="login-register_header">
-                <BackButton handleChangeView = {() => dispatch(changeView({view: "Login"}))} />
+                <BackButton handleChangeView = {handleChangeView} />
                 <h2 className="title">Register</h2>
             </div>
             <form className="form register" onSubmit={handleRegister}>

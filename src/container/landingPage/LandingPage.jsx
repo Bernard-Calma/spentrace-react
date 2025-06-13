@@ -42,13 +42,13 @@ const LandingPage = () =>{
                 />
                 {view === "Login" 
                     ? <Login
-                        view = {view}
                         handleChangeView={() => setView("Register")}
                         /> 
-                    : <Register/>
+                    : <Register
+                        handleChangeView={() => setView("Login")}
+                    />
                 }
             </div>
-            
         </div>
     );
 };

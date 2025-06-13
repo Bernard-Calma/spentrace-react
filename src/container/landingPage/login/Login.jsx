@@ -5,7 +5,7 @@ import LabelInput from "../../../common/LabelInput";
 
 import "./login.scss";
 
-const Login = ({view, handleChangeView}) => {
+const Login = ({handleChangeView}) => {
     const dispatch = useDispatch()
     const {
         errorMessage
