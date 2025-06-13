@@ -17,18 +17,39 @@
   src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
 }
 html, body, #root, .App {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   font-family: "Kanit", sans-serif;
   color: #4b5563; /* gray-600 */
 }
 
 ul, ol {
   list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0070bb;
+}
+footer .footer-content {
+  color: white;
+  font-size: 0.75rem;
+  text-align: center;
 }
 
 .signout {

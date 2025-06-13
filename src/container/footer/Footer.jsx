@@ -1,17 +1,15 @@
-import "./footer.css"
-
 const Footer = () => {
     return(
-        <section className='footerContainer'>
-            <h1 className="footerContent">©
+        <footer>
+            <h1 className="footer-content">©
                 <a 
                     href="http://bernardcalma.com" 
                     target="_blank" 
                     rel="noreferrer noopener" 
                     id="protfolioLink"
-                > Bernard Calma</a>
+                > Spentrace {new Date().getFullYear()}</a>
             </h1>
-        </section>
+        </footer>
     )
 }
 

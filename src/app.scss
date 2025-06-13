@@ -1,12 +1,12 @@
 @use "./styles/fonts";
 
 html, body, #root, .App {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     font-family: "Kanit", sans-serif;
     color: #4b5563; /* gray-600 */
 }
@@ -14,6 +14,30 @@ html, body, #root, .App {
 ul, ol {
     list-style: none;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0070bb;
+
+    .footer-content {
+        color: white;
+        font-size: 0.75rem;
+        text-align: center;
+    }
+}
+
+// end of new styles
 
 .signout {
   position: fixed;
