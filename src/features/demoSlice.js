@@ -14,13 +14,14 @@ export const loadFromLocalStorage = createAsyncThunk(
 );
 
 const initialState = {
+  budgetName: "",
+  owner: "",
   budgetItems: [],
   totalIncome: 0,
   totalExpense: 0,
   balance: 0,
   nextTarget: {},
-  openBudget: {},
-  newBudgetId: 0,
+  openBudgetItem: {},
   isLoading: true,
 };
 
@@ -30,6 +31,11 @@ const demoSlice = createSlice({
   reducers: {
     getBudgets: (state, action) => {
       state.planItems = action.payload;
+      state.isLoading = false;
+    },
+    createBudget: (state, { payload }) => {
+      state.budgetName = payload.budgetName;
+      state.owner = payload.owner;
       state.isLoading = false;
     },
   },
@@ -57,5 +63,5 @@ const demoSlice = createSlice({
   },
 });
 
-export const { getBudgets } = demoSlice.actions;
+export const { getBudgets, createBudget } = demoSlice.actions;
 export default demoSlice.reducer;

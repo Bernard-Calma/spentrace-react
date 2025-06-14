@@ -1,8 +1,10 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LabelInput from "../../../common/LabelInput";
 import { useState } from "react";
+import { createBudget } from "../../../features/demoSlice";
 
 const DemoDashboard = () => {
+  const dispatch = useDispatch();
   const [budget, setBudget] = useState({
     budgetName: "",
     owner: "",
@@ -17,12 +19,17 @@ const DemoDashboard = () => {
     }));
   };
 
+  const handleSubmitCreateBudget = (e) => {
+    e.preventDefault();
+    dispatch(createBudget(budget));
+  };
+
   const { budgetItems } = useSelector((state) => state.demo);
   if (!budgetItems || budgetItems.length === 0) {
     return (
       <div className="empty-dashboard">
         <h2>🧾 Create Your Budget</h2>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleSubmitCreateBudget}>
           <LabelInput
             type="text"
             htmlFor="budgetName"
