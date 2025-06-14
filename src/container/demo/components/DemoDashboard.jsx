@@ -1,74 +1,62 @@
 import { useSelector } from "react-redux";
 import LabelInput from "../../../common/LabelInput";
+import { useState } from "react";
 
 const DemoDashboard = () => {
+  const [budget, setBudget] = useState({
+    budgetName: "",
+    owner: "",
+    collaborators: [],
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBudget((prevBudget) => ({
+      ...prevBudget,
+      [name]: value,
+    }));
+  };
+
   const { budgetItems } = useSelector((state) => state.demo);
   if (!budgetItems || budgetItems.length === 0) {
     return (
       <div className="empty-dashboard">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
-          🧾 Create Your Budget
-        </h2>
-
-        <form className="form">
+        <h2>🧾 Create Your Budget</h2>
+        <form onSubmit={(e) => e.preventDefault()}>
           <LabelInput
             type="text"
             htmlFor="budgetName"
             text="Budget Name"
             name="budgetName"
             placeholder="e.g., January Budget"
+            value={budget.budgetName}
+            onChange={handleChange}
+            required
           />
-
-          <div>
-            <label className="block text-sm font-medium text-gray-600">
-              Owner
-            </label>
-            <input
-              type="text"
-              placeholder="Your name or email"
-              className="w-full mt-1 border border-gray-300 rounded-md p-2"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-600">
-              Invite Collaborators (subscription required)
-            </label>
-            <input
-              type="email"
-              placeholder="Enter email to invite"
-              className="w-full mt-1 border border-gray-300 rounded-md p-2"
-              disabled
-            />
-            <p className="text-xs text-gray-500 mt-1">
-              Upgrade to invite others to this budget.
-            </p>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-600">
-              Notes
-            </label>
-            <textarea
-              className="w-full mt-1 border border-gray-300 rounded-md p-2"
-              rows="3"
-            ></textarea>
-          </div>
-
-          <div className="flex justify-end gap-4">
-            <button
-              type="button"
-              className="px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 text-gray-800"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-medium"
-            >
-              Create Budget
-            </button>
-          </div>
+          <LabelInput
+            type="text"
+            htmlFor="owner"
+            text="Owner"
+            name="owner"
+            placeholder="Your name or email"
+            value={budget.owner}
+            onChange={handleChange}
+            required
+          />
+          <LabelInput
+            type="email"
+            htmlFor="collaboratrors"
+            text="Invite Collaborators (subscription required)"
+            name="collaboratrors"
+            placeholder="Enter email to invite"
+            disabled
+            value={budget.collaborators.join(", ")}
+            onChange={handleChange}
+          />
+          <p className="text-required">
+            Upgrade to invite others to this budget.
+          </p>
+          <button className="button">Create Budget</button>
         </form>
       </div>
     );

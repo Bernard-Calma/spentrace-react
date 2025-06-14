@@ -34,13 +34,13 @@
     .btn-login {
       padding: 0.5rem 1rem;
       margin: 1rem 0;
-      background-color: rgba(v.$accent-color, 0.85);
+      background-color: v.$accent-color;
       color: white;
       border: none;
 
       &:hover {
         cursor: pointer;
-        background-color: v.$accent-color;
+        background-color: v.$accent-color_darker;
       }
     }
   }

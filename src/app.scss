@@ -14,7 +14,6 @@ body,
   color: v.$text-color;
 
   .form {
-    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -24,9 +23,12 @@ body,
   }
 
   .label-input {
+    width: 100%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     margin: 0.5rem 0;
+    font-weight: 700;
 
     input {
       padding: 0.5rem;
@@ -40,6 +42,17 @@ body,
         border-color: v.$accent-color;
         border-width: 2px;
         outline: none;
+      }
+
+      &:disabled {
+        background-color: v.$text-color;
+        border-color: v.$accent-color;
+        cursor: not-allowed;
+
+        &::placeholder {
+          color: v.$text-color_lighter;
+          font-style: italic;
+        }
       }
     }
   }

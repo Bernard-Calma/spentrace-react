@@ -33,7 +33,6 @@ html .form,
 body .form,
 #root .form,
 .App .form {
-  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -45,9 +44,12 @@ html .label-input,
 body .label-input,
 #root .label-input,
 .App .label-input {
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   margin: 0.5rem 0;
+  font-weight: 700;
 }
 html .label-input input,
 body .label-input input,
@@ -67,6 +69,25 @@ body .label-input input:focus,
   border-color: #0070bb;
   border-width: 2px;
   outline: none;
+}
+html .label-input input:disabled,
+body .label-input input:disabled,
+#root .label-input input:disabled,
+.App .label-input input:disabled {
+  background-color: rgb(75, 85, 99);
+  border-color: #0070bb;
+  cursor: not-allowed;
+}
+html .label-input input:disabled::-moz-placeholder, body .label-input input:disabled::-moz-placeholder, #root .label-input input:disabled::-moz-placeholder, .App .label-input input:disabled::-moz-placeholder {
+  color: rgb(107, 114, 128);
+  font-style: italic;
+}
+html .label-input input:disabled::placeholder,
+body .label-input input:disabled::placeholder,
+#root .label-input input:disabled::placeholder,
+.App .label-input input:disabled::placeholder {
+  color: rgb(107, 114, 128);
+  font-style: italic;
 }
 
 ul,

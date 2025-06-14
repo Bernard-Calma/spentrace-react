@@ -44,14 +44,14 @@
 .login-register form.register .btn-login {
   padding: 0.5rem 1rem;
   margin: 1rem 0;
-  background-color: rgba(0, 112, 187, 0.85);
+  background-color: #0070bb;
   color: white;
   border: none;
 }
 .login-register form.login .btn-login:hover,
 .login-register form.register .btn-login:hover {
   cursor: pointer;
-  background-color: #0070bb;
+  background-color: #005f8a;
 }
 .login-register p {
   font-size: 0.75rem;

@@ -9,6 +9,9 @@
   background-color: v.$primary-color;
 
   .empty-dashboard {
+    width: 50%;
+
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,15 +28,18 @@
     }
 
     form {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      text-align: left;
 
-      p {
-        font-size: 1rem;
-        margin-bottom: 2rem;
+      .text-required {
+        font-size: 0.75rem;
+        color: v.$warning-color;
+        margin-top: 0;
+        margin-bottom: 1rem;
       }
 
       button {
@@ -43,6 +49,10 @@
         border: none;
         border-radius: 0.5rem;
         cursor: pointer;
+
+        &:hover {
+          background-color: v.$accent-color_darker;
+        }
       }
     }
   }

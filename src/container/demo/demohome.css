@@ -25,6 +25,8 @@
   background-color: rgb(243, 244, 246);
 }
 .demo-home .empty-dashboard {
+  width: 50%;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,15 +42,18 @@
   margin-bottom: 1rem;
 }
 .demo-home .empty-dashboard form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  text-align: left;
 }
-.demo-home .empty-dashboard form p {
-  font-size: 1rem;
-  margin-bottom: 2rem;
+.demo-home .empty-dashboard form .text-required {
+  font-size: 0.75rem;
+  color: rgb(255, 30, 30);
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 .demo-home .empty-dashboard form button {
   padding: 0.5rem 1rem;
@@ -57,4 +62,7 @@
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-}/*# sourceMappingURL=demohome.css.map */
+}
+.demo-home .empty-dashboard form button:hover {
+  background-color: #005f8a;
+}/*# sourceMappingURL=demoHome.css.map */

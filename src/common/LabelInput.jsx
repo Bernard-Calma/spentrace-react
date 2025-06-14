@@ -17,6 +17,7 @@ const LabelInput = (props) => (
           required={props.required ? true : false}
           step={props.step}
           checked={props.checked}
+          disabled={props.disabled}
         />
       </label>
     ) : (
