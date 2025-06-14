@@ -12,6 +12,27 @@ body,
   justify-content: center;
   font-family: "Kanit", sans-serif;
   color: v.$text-color;
+
+  .label-input {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+
+    input {
+      padding: 0.5rem;
+      margin: 0;
+      border: 1px solid v.$text-color;
+      background-color: v.$primary-color;
+      font-size: 1rem;
+      font-family: "Kanit", sans-serif;
+
+      &:focus {
+        border-color: v.$accent-color;
+        border-width: 2px;
+        outline: none;
+      }
+    }
+  }
 }
 
 ul,

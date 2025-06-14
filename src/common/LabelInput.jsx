@@ -1,7 +1,10 @@
 const LabelInput = (props) => (
   <>
     {props.text ? (
-      <label className={props.className} htmlFor={props.htmlFor}>
+      <label
+        className={props.className || "label-input"}
+        htmlFor={props.htmlFor}
+      >
         {" "}
         {props.text}
         <input

@@ -39,27 +39,6 @@
       color: v.$warning-color;
     }
 
-    label {
-      display: flex;
-      flex-direction: column;
-      margin: 0.5rem 0;
-
-      input {
-        padding: 0.5rem;
-        margin: 0;
-        border: 1px solid v.$text-color;
-        background-color: v.$primary-color;
-        font-size: 1rem;
-        font-family: "Kanit", sans-serif;
-
-        &:focus {
-          border-color: v.$accent-color;
-          border-width: 2px;
-          outline: none;
-        }
-      }
-    }
-
     .btn-login {
       padding: 0.5rem 1rem;
       margin: 1rem 0;

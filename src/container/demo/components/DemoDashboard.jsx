@@ -11,15 +11,13 @@ const DemoDashboard = () => {
         </h2>
 
         <form className="space-y-6">
-          <div>
-            <LabelInput
-              type="text"
-              htmlFor="budgetName"
-              text="Budget Name"
-              name="budgetName"
-              placeholder="e.g., January Budget"
-            />
-          </div>
+          <LabelInput
+            type="text"
+            htmlFor="budgetName"
+            text="Budget Name"
+            name="budgetName"
+            placeholder="e.g., January Budget"
+          />
 
           <div>
             <label className="block text-sm font-medium text-gray-600">

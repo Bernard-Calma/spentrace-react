@@ -29,6 +29,33 @@ body,
   font-family: "Kanit", sans-serif;
   color: rgb(75, 85, 99);
 }
+html .label-input,
+body .label-input,
+#root .label-input,
+.App .label-input {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+html .label-input input,
+body .label-input input,
+#root .label-input input,
+.App .label-input input {
+  padding: 0.5rem;
+  margin: 0;
+  border: 1px solid rgb(75, 85, 99);
+  background-color: rgb(243, 244, 246);
+  font-size: 1rem;
+  font-family: "Kanit", sans-serif;
+}
+html .label-input input:focus,
+body .label-input input:focus,
+#root .label-input input:focus,
+.App .label-input input:focus {
+  border-color: #0070bb;
+  border-width: 2px;
+  outline: none;
+}
 
 ul,
 ol {

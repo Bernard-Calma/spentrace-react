@@ -50,27 +50,6 @@
   font-weight: 700;
   color: rgb(255, 30, 30);
 }
-.login-register form.login label,
-.login-register form.register label {
-  display: flex;
-  flex-direction: column;
-  margin: 0.5rem 0;
-}
-.login-register form.login label input,
-.login-register form.register label input {
-  padding: 0.5rem;
-  margin: 0;
-  border: 1px solid rgb(75, 85, 99);
-  background-color: rgb(243, 244, 246);
-  font-size: 1rem;
-  font-family: "Kanit", sans-serif;
-}
-.login-register form.login label input:focus,
-.login-register form.register label input:focus {
-  border-color: #0070bb;
-  border-width: 2px;
-  outline: none;
-}
 .login-register form.login .btn-login,
 .login-register form.register .btn-login {
   padding: 0.5rem 1rem;
