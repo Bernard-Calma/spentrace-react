@@ -1,35 +1,35 @@
-const LabelInput = props => <>
-    {props.text 
-        ? <label
-            className={props.className}
-            htmlFor={props.htmlFor}
-        > {props.text}
-            <input 
-                id = {props.id}
-                type={props.type}
-                name={props.name}
-                placeholder={props.placeholder || "Enter your " + props.name}
-                value={props.value}
-                onChange={props.onChange}
-                required = {props.required ? true : false}
-                step = {props.step}
-                checked = {props.checked}
-            />
-            </label>
-        : <input 
-            className={props.className}
-            id = {props.id}
-            type={props.type}
-            name={props.name}
-            placeholder={props.placeholder}
-            value={props.value}
-            onChange={props.onChange}
-            disabled={props.disabled}
-            required = {props.required ? true : false}
+const LabelInput = (props) => (
+  <>
+    {props.text ? (
+      <label className={props.className} htmlFor={props.htmlFor}>
+        {" "}
+        {props.text}
+        <input
+          id={props.id}
+          type={props.type}
+          name={props.name}
+          placeholder={props.placeholder || "Enter your " + props.name}
+          value={props.value}
+          onChange={props.onChange}
+          required={props.required ? true : false}
+          step={props.step}
+          checked={props.checked}
         />
-    }
-</>
-    
-    
+      </label>
+    ) : (
+      <input
+        className={props.className}
+        id={props.id}
+        type={props.type}
+        name={props.name}
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onChange}
+        disabled={props.disabled}
+        required={props.required ? true : false}
+      />
+    )}
+  </>
+);
 
 export default LabelInput;

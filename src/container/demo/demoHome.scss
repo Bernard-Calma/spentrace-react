@@ -1,0 +1,49 @@
+@use "../../styles/variables" as v;
+
+.demo-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: v.$primary-color;
+
+  .empty-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: v.$secondary-color;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: v.$text-color;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        background-color: v.$accent-color;
+        color: v.$secondary-color;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

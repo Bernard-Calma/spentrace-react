@@ -2,26 +2,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeView, toggleNavBar } from "../../features/viewSlice";
 
-// import BillsList from '../bills/BillsList'
-// import PlanList from '../plan/PlansList'
-// import DashBoard from './Dashboard'
-// import EmptyDashboard from './EmptyDashboard'
-// import AccountList from '../accounts/AccountList'
-
-// import './home.css'
-import "../../Components/NavBar.css";
 import Loading from "../../Components/Loading";
 import Icon from "../../common/Icon";
 import { loadFromLocalStorage } from "../../features/demoSlice";
+import DemoDashboard from "./components/DemoDashboard";
+
+import "./demoHome.scss";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
   // ------------------------------ VARIABLES ------------------------------
   // Plans
-  const { planItems } = useSelector((store) => store.demo);
-  // Bills
-  const { billItems, isLoading } = useSelector((store) => store.bill);
-  // Views
+  const { budgetItems, isLoading } = useSelector((store) => store.demo);
   const { view, homeView, planView, billView, accountView, showNav } =
     useSelector((store) => store.view);
 
@@ -69,16 +61,9 @@ const DemoHome = () => {
   }, []);
 
   return (
-    <section className="containerHome">
-      <h2>Demo</h2>
-      {planItems.length === 0 ? (
-        <>
-          {/* {
-                        isLoading 
-                        ? <Loading/>
-                        : <EmptyDashboard/>
-                    }  */}
-        </>
+    <section className="container demo-home">
+      {budgetItems.length === 0 ? (
+        <>{isLoading ? <Loading /> : <DemoDashboard />}</>
       ) : (
         <>
           <Icon
@@ -92,16 +77,6 @@ const DemoHome = () => {
             >
               Budget
             </p>
-            {billItems.length > 0 && (
-              <p
-                className={`navItem ${
-                  homeView === "Bills List" ? "selected" : ""
-                }`}
-                onClick={() => hadleChangeView("Bills List")}
-              >
-                Bills
-              </p>
-            )}
             <p
               className={`navItem ${
                 homeView === "Account List" ? "selected" : ""
