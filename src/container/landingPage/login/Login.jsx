@@ -1,6 +1,6 @@
 import {useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import { userLogin } from "../../../features/userSlice";
+import { demoLogin, userLogin } from "../../../features/userSlice";
 import LabelInput from "../../../common/LabelInput";
 
 import "./login.scss";
@@ -35,15 +35,7 @@ const Login = ({handleChangeView}) => {
     }
 
     const handleDemoLogin = () => {
-        setUser({
-            username: "demoUser",
-            password: "demoPass",
-            errorMessage: ""
-        });
-        dispatch(userLogin({
-            username: "demoUser",
-            password: "demoPass"
-        }));
+        dispatch(demoLogin());
     }
 
     return(

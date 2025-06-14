@@ -4,6 +4,7 @@ import axios from "axios"
 const initialState = {
     username: "",
     loggedIn: false,
+    demo: false,
     errorMessage: "",
     loading: false,
 }
@@ -72,6 +73,13 @@ const userSlice = createSlice({
         },
         clearError: state => {
             state.errorMessage = "";
+        },
+        demoLogin: state => {
+            state.username = "demoUser";
+            state.demo = true;
+            state.loading = false;
+            state.errorMessage = "";
+            // console.log("Demo Login", payload)
         }
     },
     extraReducers: builder => {
@@ -132,7 +140,8 @@ const userSlice = createSlice({
 export const {
     logout,
     setError,
-    clearError
+    clearError,
+    demoLogin
 } = userSlice.actions;
 
 export default userSlice.reducer;
