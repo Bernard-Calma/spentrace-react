@@ -13,6 +13,16 @@ body,
   font-family: "Kanit", sans-serif;
   color: v.$text-color;
 
+  .form {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
   .label-input {
     display: flex;
     flex-direction: column;

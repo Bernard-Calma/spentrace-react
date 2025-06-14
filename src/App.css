@@ -29,6 +29,18 @@ body,
   font-family: "Kanit", sans-serif;
   color: rgb(75, 85, 99);
 }
+html .form,
+body .form,
+#root .form,
+.App .form {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
 html .label-input,
 body .label-input,
 #root .label-input,

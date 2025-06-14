@@ -10,7 +10,7 @@ const DemoDashboard = () => {
           🧾 Create Your Budget
         </h2>
 
-        <form className="space-y-6">
+        <form className="form">
           <LabelInput
             type="text"
             htmlFor="budgetName"
