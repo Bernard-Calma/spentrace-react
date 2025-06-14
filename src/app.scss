@@ -9,6 +9,7 @@ body,
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   font-family: "Kanit", sans-serif;
   color: v.$text-color;
@@ -66,6 +67,13 @@ ol {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.income {
+  color: v.$success-color;
+}
+.expense {
+  color: v.$warning-color;
 }
 
 footer {

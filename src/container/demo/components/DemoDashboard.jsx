@@ -1,87 +1,64 @@
-import { useDispatch, useSelector } from "react-redux";
-import LabelInput from "../../../common/LabelInput";
-import { useState } from "react";
-import { createBudget } from "../../../features/demoSlice";
+import { useSelector } from "react-redux";
 
 const DemoDashboard = () => {
-  const dispatch = useDispatch();
-  const [budget, setBudget] = useState({
-    budgetName: "",
-    owner: "",
-    collaborators: [],
-  });
+  const { budgetName, totalIncome, totalExpense, budgetItems } = useSelector(
+    (store) => store.demo
+  );
+  return (
+    <div className="container dashboard">
+      <h1 className="title">{budgetName}</h1>
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setBudget((prevBudget) => ({
-      ...prevBudget,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmitCreateBudget = (e) => {
-    e.preventDefault();
-    dispatch(createBudget(budget));
-  };
-
-  const { budgetItems } = useSelector((state) => state.demo);
-  if (!budgetItems || budgetItems.length === 0) {
-    return (
-      <div className="empty-dashboard">
-        <h2>🧾 Create Your Budget</h2>
-        <form onSubmit={handleSubmitCreateBudget}>
-          <LabelInput
-            type="text"
-            htmlFor="budgetName"
-            text="Budget Name"
-            name="budgetName"
-            placeholder="e.g., January Budget"
-            value={budget.budgetName}
-            onChange={handleChange}
-            required
-          />
-          <LabelInput
-            type="text"
-            htmlFor="owner"
-            text="Owner"
-            name="owner"
-            placeholder="Your name or email"
-            value={budget.owner}
-            onChange={handleChange}
-            required
-          />
-          <LabelInput
-            type="email"
-            htmlFor="collaboratrors"
-            text="Invite Collaborators (subscription required)"
-            name="collaboratrors"
-            placeholder="Enter email to invite"
-            disabled
-            value={budget.collaborators.join(", ")}
-            onChange={handleChange}
-          />
-          <p className="text-required">
-            Upgrade to invite others to this budget.
-          </p>
-          <button className="button">Create Budget</button>
-        </form>
+      <div className="header">
+        <div className="totals">
+          <div className="total">
+            <p className="text-gray-500 text-sm">Total Income</p>
+            <p className="income">${totalIncome.toFixed(2)}</p>
+          </div>
+          <div className="total">
+            <p className="text-gray-500 text-sm">Total Expense</p>
+            <p className="expense">${totalExpense.toFixed(2)}</p>
+          </div>
+        </div>
+        <button className="add-transaction-button">
+          {/* <Lock size={16} /> */}
+          Add Transaction
+        </button>
       </div>
-    );
-  } else if (budgetItems.length > 0) {
-    return (
-      <div className="demo-dashboard">
-        <h1>Demo Dashboard</h1>
-        <p>You have {budgetItems.length} budget items.</p>
-        <ul>
-          {budgetItems.map((item, index) => (
-            <li key={index}>
-              {item.name}: ${item.amount}
-            </li>
-          ))}
-        </ul>
+
+      <div className="container summaries">
+        <div className="container summary">
+          <h2 className="subtitle">
+            Recent Transactions <span>View All</span>
+          </h2>
+          <ul className="divide-y divide-gray-200">
+            {budgetItems.map((t, idx) => (
+              <li key={idx} className="py-2 flex justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-800">{t.name}</p>
+                  <p className="text-xs text-gray-500">{t.date}</p>
+                </div>
+                <p
+                  className={`text-sm font-semibold ${
+                    t.amount < 0 ? "text-red-600" : "text-green-600"
+                  }`}
+                >
+                  {t.amount < 0 ? "-" : "+"}${Math.abs(t.amount).toFixed(2)}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="container summary">
+          <h2 className="subtitle">
+            {/* <CalendarDays size={18} />  */}
+            Calendar Summary
+          </h2>
+          <div className="coming-soon">(Calendar View Coming Soon)</div>
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default DemoDashboard;

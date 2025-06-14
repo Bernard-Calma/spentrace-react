@@ -25,6 +25,7 @@ body,
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   font-family: "Kanit", sans-serif;
   color: rgb(75, 85, 99);
@@ -98,6 +99,14 @@ ol {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.income {
+  color: rgb(0, 200, 0);
+}
+
+.expense {
+  color: rgb(255, 30, 30);
 }
 
 footer {

@@ -1,15 +1,14 @@
 @use "../../styles/variables" as v;
 
 .demo-home {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: v.$primary-color;
 
   .create-budget {
-    width: 50%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -51,6 +50,114 @@
 
         &:hover {
           background-color: v.$accent-color_darker;
+        }
+      }
+    }
+  }
+
+  .dashboard {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 2rem;
+    width: 50%;
+    height: 95%;
+    // background-color: v.$secondary-color;
+    border-radius: 1rem;
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: v.$text-color;
+
+    .title {
+      font-family: "Russo One", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: v.$text-color_darker;
+      margin-bottom: 0;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+
+      justify-content: space-between;
+      margin-right: 2rem;
+      width: 100%;
+
+      .totals {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        .total {
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      .add-transaction-button {
+        padding: 0.5rem 1rem;
+        background-color: v.$accent-color;
+        color: v.$secondary-color;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: v.$accent-color_darker;
+        }
+      }
+    }
+
+    .summaries {
+      width: 100%;
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .summary {
+        display: flex;
+        flex-direction: column;
+        min-height: 200px;
+        width: 400px;
+        padding: 0 1rem 1rem;
+        margin-bottom: 1rem;
+        background-color: v.$secondary-color;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        color: v.$text-color;
+        text-align: left;
+
+        .subtitle {
+          position: relative;
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+
+          span {
+            position: absolute;
+            right: 0;
+            font-size: 0.875rem;
+            color: v.$text-color_lighter;
+            &:hover {
+              cursor: pointer;
+              color: v.$accent-color;
+            }
+          }
+        }
+
+        .coming-soon {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.5rem;
+          font-size: 0.875rem;
+          color: v.$text-color_lighter;
+          font-style: italic;
+          background-color: v.$primary-color;
+          border: 1px dashed v.$text-color;
+          border-radius: 0.25rem;
         }
       }
     }

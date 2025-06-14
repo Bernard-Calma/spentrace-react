@@ -1,14 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeView, toggleNavBar } from "../../features/viewSlice";
-
-import Loading from "../../Components/Loading";
-import Icon from "../../common/Icon";
 import { loadFromLocalStorage } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
+import CreateBudget from "./components/CreateBudget";
 
 import "./demoHome.scss";
-import CreateBudget from "./components/CreateBudget";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
@@ -63,41 +60,7 @@ const DemoHome = () => {
 
   return (
     <section className="container demo-home">
-      {budgetName === "" ? (
-        <CreateBudget />
-      ) : (
-        <>
-          <Icon
-            className="fi fi-rr-bars-staggered"
-            onClick={() => dispatch(toggleNavBar())}
-          />
-          <div className={`homeNavBar ${showNav}`}>
-            <p
-              className={`navItem ${homeView === "Plan" ? "selected" : ""}`}
-              onClick={() => hadleChangeView("Plan List")}
-            >
-              Budget
-            </p>
-            <p
-              className={`navItem ${
-                homeView === "Account List" ? "selected" : ""
-              }`}
-              onClick={() => hadleChangeView("Account List")}
-            >
-              Accounts
-            </p>
-          </div>
-          <div className="containerHomeView">
-            {/* {homeView === "Home" || view === "Home"
-                            ? <DashBoard planItems = {planItems}/>
-                            : homeView === "Plan" ? <PlanList/>
-                            : homeView === "Bills List" ? <BillsList/>  
-                            : homeView === "Account List" ? < AccountList/>  
-                            : <></>
-                        } */}
-          </div>
-        </>
-      )}
+      {budgetName === "" ? <CreateBudget /> : <DemoDashboard />}
     </section>
   );
 };
