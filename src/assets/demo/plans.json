@@ -1,0 +1,72 @@
+[
+  {
+    "_id": { "$oid": "643adbead3ab9e7d97d9ce4a" },
+    "date": { "$date": { "$numberLong": "1681689600000" } },
+    "amount": { "$numberInt": "110" },
+    "name": "Geico",
+    "expense": true,
+    "notes": "",
+    "userId": "643adbb2d3ab9e7d97d9ce43",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "643adbead3ab9e7d97d9ce4b" },
+    "date": { "$date": { "$numberLong": "1681776000000" } },
+    "amount": { "$numberInt": "50" },
+    "name": "Netflix",
+    "expense": true,
+    "notes": "",
+    "userId": "643adbb2d3ab9e7d97d9ce43",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "643adbead3ab9e7d97d9ce4c" },
+    "date": { "$date": { "$numberLong": "1681862400000" } },
+    "amount": { "$numberInt": "30" },
+    "name": "Spotify",
+    "expense": true,
+    "notes": "",
+    "userId": "643adbb2d3ab9e7d97d9ce43",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "643adbead3ab9e7d97d9ce4d" },
+    "date": { "$date": { "$numberLong": "1681948800000" } },
+    "amount": { "$numberInt": "20" },
+    "name": "Amazon Prime",
+    "expense": true,
+    "notes": "",
+    "userId": "643adbb2d3ab9e7d97d9ce43",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "643adbead3ab9e7d97d9ce4e" },
+    "date": { "$date": { "$numberLong": "1682035200000" } },
+    "amount": { "$numberInt": "15" },
+    "name": "Hulu",
+    "expense": true,
+    "notes": "",
+    "userId": "643adbb2d3ab9e7d97d9ce43",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "643adbead3ab9e7d97d9ce4f" },
+    "date": { "$date": { "$numberLong": "1682121600000" } },
+    "amount": { "$numberInt": "25" },
+    "name": "Disney+",
+    "expense": true,
+    "notes": "",
+    "userId": "643adbb2d3ab9e7d97d9ce43",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "643adbead3ab9e7d97d9ce50" },
+    "date": { "$date": { "$numberLong": "1682208000000" } },
+    "amount": { "$numberInt": "40" },
+    "name": "HBO Max",
+    "expense": true,
+    "notes": "",
+    "userId": "643adbb2d3ab9e7d97d9ce43",
+    "__v": { "$numberInt": "0" }
+  }
+]

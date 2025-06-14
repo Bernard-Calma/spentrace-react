@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Russo One";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../assets/fonts/Russo_One/russo-one.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 500;
+  font-style: light;
+  src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
+}
 .landing-page {
   display: flex;
   flex-direction: column;
@@ -9,11 +27,11 @@
   font-family: "Russo One", sans-serif;
   font-size: 2rem;
   font-weight: 600;
-  color: #1f2937; /* gray-800 */
+  color: rgb(75, 85, 99);
   margin-bottom: 0.5rem;
 }
 .landing-page header .app-title span {
-  color: #0070bb; /* blue-600 */
+  color: #0070bb;
 }
 .landing-page header p {
   margin: 0;
@@ -26,7 +44,8 @@
   margin: 2.5rem auto;
   gap: 2.5rem;
 }
-.landing-page .login .introduction, .landing-page .login .login-register {
+.landing-page .login .introduction,
+.landing-page .login .login-register {
   display: flex;
   padding: 1.5rem;
   flex-direction: column;
@@ -37,7 +56,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   align-items: center;
 }
-.landing-page .login .introduction ul, .landing-page .login .login-register ul {
+.landing-page .login .introduction ul,
+.landing-page .login .login-register ul {
   list-style: none;
   padding: 0;
   margin: 0;

@@ -1,40 +1,45 @@
-@use "./styles/fonts";
+@use "./styles/variables" as v;
 
-html, body, #root, .App {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: "Kanit", sans-serif;
-    color: #4b5563; /* gray-600 */
+html,
+body,
+#root,
+.App {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Kanit", sans-serif;
+  color: v.$text-color;
 }
 
-ul, ol {
-    list-style: none;
+ul,
+ol {
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #0070bb;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: v.$accent-color;
 
-    .footer-content {
-        color: white;
-        font-size: 0.75rem;
-        text-align: center;
-    }
+  .footer-content {
+    color: v.$secondary-color;
+
+    font-size: 0.75rem;
+    text-align: center;
+  }
 }
 
 // end of new styles
@@ -46,7 +51,7 @@ footer {
 }
 
 .negative {
-  color: rgb(255, 0, 0) !important;
+  color: v.$warning-color !important;
 }
 
 .positive {
@@ -54,13 +59,13 @@ footer {
 }
 
 .selected {
-  text-shadow: 1px 0 #B0B7C4 !important;
+  text-shadow: 1px 0 #b0b7c4 !important;
 }
 
 .fi {
   cursor: pointer;
 }
-.fi:hover{
+.fi:hover {
   color: white;
   text-shadow: 0 0px 5px white;
 }
@@ -84,4 +89,3 @@ footer {
     color: rgb(255, 0, 0) !important;
   }
 }
-
