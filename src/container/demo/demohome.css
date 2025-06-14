@@ -24,7 +24,7 @@
   height: 100vh;
   background-color: rgb(243, 244, 246);
 }
-.demo-home .empty-dashboard {
+.demo-home .create-budget {
   width: 50%;
   padding: 2rem;
   display: flex;
@@ -37,11 +37,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: rgb(75, 85, 99);
 }
-.demo-home .empty-dashboard h2 {
+.demo-home .create-budget h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-.demo-home .empty-dashboard form {
+.demo-home .create-budget form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -49,13 +49,13 @@
   justify-content: center;
   text-align: left;
 }
-.demo-home .empty-dashboard form .text-required {
+.demo-home .create-budget form .text-required {
   font-size: 0.75rem;
   color: rgb(255, 30, 30);
   margin-top: 0;
   margin-bottom: 1rem;
 }
-.demo-home .empty-dashboard form button {
+.demo-home .create-budget form button {
   padding: 0.5rem 1rem;
   background-color: #0070bb;
   color: white;
@@ -63,6 +63,6 @@
   border-radius: 0.5rem;
   cursor: pointer;
 }
-.demo-home .empty-dashboard form button:hover {
+.demo-home .create-budget form button:hover {
   background-color: #005f8a;
-}/*# sourceMappingURL=demoHome.css.map */
+}/*# sourceMappingURL=demohome.css.map */

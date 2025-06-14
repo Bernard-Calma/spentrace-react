@@ -8,12 +8,13 @@ import { loadFromLocalStorage } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
 
 import "./demoHome.scss";
+import CreateBudget from "./components/CreateBudget";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
   // ------------------------------ VARIABLES ------------------------------
   // Plans
-  const { budgetItems, isLoading } = useSelector((store) => store.demo);
+  const { budgetName, isLoading } = useSelector((store) => store.demo);
   const { view, homeView, planView, billView, accountView, showNav } =
     useSelector((store) => store.view);
 
@@ -62,8 +63,8 @@ const DemoHome = () => {
 
   return (
     <section className="container demo-home">
-      {budgetItems.length === 0 ? (
-        <>{isLoading ? <Loading /> : <DemoDashboard />}</>
+      {budgetName === "" ? (
+        <CreateBudget />
       ) : (
         <>
           <Icon
