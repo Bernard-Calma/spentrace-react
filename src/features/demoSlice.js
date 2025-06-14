@@ -14,13 +14,13 @@ export const loadFromLocalStorage = createAsyncThunk(
 );
 
 const initialState = {
-  planItems: [],
+  budgetItems: [],
   totalIncome: 0,
   totalExpense: 0,
   balance: 0,
   nextTarget: {},
-  openPlan: {},
-  newPlanId: 0,
+  openBudget: {},
+  newBudgetId: 0,
   isLoading: true,
 };
 
@@ -40,13 +40,13 @@ const demoSlice = createSlice({
       })
       .addCase(loadFromLocalStorage.fulfilled, (state, action) => {
         if (action.payload) {
-          state.planItems = action.payload.planItems || [];
+          state.budgetItems = action.payload.budgetItems || [];
           state.totalIncome = action.payload.totalIncome || 0;
           state.totalExpense = action.payload.totalExpense || 0;
           state.balance = action.payload.balance || 0;
           state.nextTarget = action.payload.nextTarget || {};
-          state.openPlan = action.payload.openPlan || {};
-          state.newPlanId = action.payload.newPlanId || 0;
+          state.openBudget = action.payload.openBudget || {};
+          state.newBudgetId = action.payload.newBudgetId || 0;
         }
         state.isLoading = false;
       })
