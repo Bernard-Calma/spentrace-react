@@ -1,7 +1,10 @@
 import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../../../features/demoSlice";
 
 const AddTransaction = ({ handleToggleAddTransaction }) => {
+  const dispatch = useDispatch();
   const [newTransaction, setNewTransaction] = useState({
     amount: 0,
     date: "",
@@ -37,6 +40,7 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
     e.preventDefault();
     // Here you would typically dispatch an action to add the transaction
     console.log("New Transaction Submitted:", newTransaction);
+    dispatch(addTransaction(newTransaction));
     // Reset form after submission
     setNewTransaction({
       amount: 0,

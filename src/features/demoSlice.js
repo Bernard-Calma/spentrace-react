@@ -49,6 +49,19 @@ const demoSlice = createSlice({
       state.owner = payload.owner;
       state.isLoading = false;
     },
+    addTransaction: (state, { payload }) => {
+      const { date, name, amount } = payload;
+      state.budgetItems.push({ date, name, amount });
+      state.isLoading = false;
+
+      // Update totals
+      if (amount < 0) {
+        state.totalExpense += Math.abs(amount);
+      } else {
+        state.totalIncome += amount;
+      }
+      state.balance = state.totalIncome - state.totalExpense;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -74,5 +87,5 @@ const demoSlice = createSlice({
   },
 });
 
-export const { getBudgets, createBudget } = demoSlice.actions;
+export const { getBudgets, createBudget, addTransaction } = demoSlice.actions;
 export default demoSlice.reducer;
