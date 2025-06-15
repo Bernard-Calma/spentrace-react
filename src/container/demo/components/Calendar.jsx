@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 const Calendar = () => {
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const today = new Date();
   const [currentDate, setCurrentDate] = useState(
     new Date(today.getFullYear(), today.getMonth(), 1)
   );
 
   const transactions = [
-    { date: "2025-06-01", name: "Groceries", amount: -45.0 },
+    { date: "2025-06-01", name: "Groceries", amount: -45544.0 },
     { date: "2025-06-03", name: "Internet Bill", amount: -60.0 },
     { date: "2025-06-05", name: "Salary", amount: 1500.0 },
     { date: "2025-06-14", name: "Dining", amount: -22.5 },
@@ -62,11 +63,17 @@ const Calendar = () => {
         currentDate.getFullYear() === today.getFullYear();
       const totalExpenses = getDayExpenses(day);
       cells.push(
-        <div key={day} className={`calendar-day${isToday ? " today" : ""}`}>
-          <div className="day-number">{day}</div>
-          <div className={`day-total ${totalExpenses > 0 ? "expense" : ""}`}>
-            ${totalExpenses.toFixed(2)}
-          </div>
+        <div key={day} className={"calendar-day"}>
+          <div className={`day-number ${isToday ? " today" : ""}`}>{day}</div>
+          {totalExpenses > 999 ? (
+            <div className={`day-total ${totalExpenses > 0 ? "expense" : ""}`}>
+              ${(totalExpenses / 1000).toFixed(1)}K
+            </div>
+          ) : (
+            <div className={`day-total ${totalExpenses > 0 ? "expense" : ""}`}>
+              ${totalExpenses.toFixed(0)}
+            </div>
+          )}
         </div>
       );
     }
@@ -83,13 +90,20 @@ const Calendar = () => {
     <div className="summary calendar-box">
       <div className="calendar-header">
         <button onClick={handlePrevMonth}>&lt;</button>
-        <h2 className="section-title">
+        <h2 className="subtitle">
           {currentDate.toLocaleString("default", { month: "long" })}{" "}
           {currentDate.getFullYear()}
         </h2>
         <button onClick={handleNextMonth}>&gt;</button>
       </div>
       <div className="summary-content calendar">
+        <div className="calendar-weekdays">
+          {weekdays.map((day) => (
+            <div key={day} className="calendar-weekday">
+              {day}
+            </div>
+          ))}
+        </div>
         <div className="calendar-grid">{renderCalendar()}</div>
       </div>
     </div>
