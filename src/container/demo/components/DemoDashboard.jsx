@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
+import Calendar from "./Calendar";
 
 const DemoDashboard = () => {
   const { budgetName, totalIncome, totalExpense, budgetItems } = useSelector(
     (store) => store.demo
   );
+
   return (
     <div className="container dashboard">
       <h1 className="title">{budgetName}</h1>
@@ -49,13 +51,7 @@ const DemoDashboard = () => {
           </ul>
         </div>
 
-        <div className="container summary">
-          <h2 className="subtitle">
-            {/* <CalendarDays size={18} />  */}
-            Calendar Summary
-          </h2>
-          <div className="coming-soon">(Calendar View Coming Soon)</div>
-        </div>
+        <Calendar />
       </div>
     </div>
   );
