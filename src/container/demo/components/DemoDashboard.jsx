@@ -6,6 +6,14 @@ const DemoDashboard = () => {
     (store) => store.demo
   );
 
+  const sortedTransactions = [...budgetItems].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    if (dateA > dateB) return -1;
+    if (dateA < dateB) return 1;
+    return a.name.localeCompare(b.name);
+  });
+
   return (
     <div className="container dashboard">
       <h1 className="title">{budgetName}</h1>
@@ -32,22 +40,31 @@ const DemoDashboard = () => {
           <h2 className="subtitle">
             Recent Transactions <span>View All</span>
           </h2>
-          <ul className="summary-content">
-            {budgetItems.map((t, idx) => (
-              <li key={idx} className="py-2 flex justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-800">{t.name}</p>
-                  <p className="text-xs text-gray-500">{t.date}</p>
-                </div>
-                <p
-                  className={`text-sm font-semibold ${
-                    t.amount < 0 ? "text-red-600" : "text-green-600"
-                  }`}
-                >
-                  {t.amount < 0 ? "-" : "+"}${Math.abs(t.amount).toFixed(2)}
-                </p>
-              </li>
-            ))}
+          <ul className="summary-content transactions-list">
+            {sortedTransactions.map((t, idx) =>
+              idx <= 4 ? (
+                <li key={idx} className="transaction-item">
+                  <div className="transaction-item_details">
+                    <p className="transaction-item_name">{t.name}</p>
+                    <p className="transaction-item_date">{t.date}</p>
+                  </div>
+                  <p
+                    className={`transaction-item_amount ${
+                      t.amount < 0 ? "expense" : "income"
+                    }`}
+                  >
+                    {t.amount < 0 ? "-" : "+"}${Math.abs(t.amount).toFixed(2)}
+                  </p>
+                </li>
+              ) : null
+            )}
+            <div>
+              <p className="transactions-list_more">
+                {sortedTransactions.length >= 5
+                  ? `view +${sortedTransactions.length - 5} more`
+                  : ""}
+              </p>
+            </div>
           </ul>
         </div>
 

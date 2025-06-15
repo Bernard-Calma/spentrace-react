@@ -1,19 +1,13 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Calendar = () => {
+  const { budgetItems } = useSelector((store) => store.demo);
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const today = new Date();
   const [currentDate, setCurrentDate] = useState(
     new Date(today.getFullYear(), today.getMonth(), 1)
   );
-
-  const transactions = [
-    { date: "2025-06-01", name: "Groceries", amount: -45544.0 },
-    { date: "2025-06-03", name: "Internet Bill", amount: -60.0 },
-    { date: "2025-06-05", name: "Salary", amount: 1500.0 },
-    { date: "2025-06-14", name: "Dining", amount: -22.5 },
-    { date: today.toISOString().split("T")[0], name: "Fuel", amount: -30.0 },
-  ];
 
   const daysInMonth = new Date(
     currentDate.getFullYear(),
@@ -34,7 +28,7 @@ const Calendar = () => {
     )
       .toISOString()
       .split("T")[0];
-    return transactions
+    return budgetItems
       .filter((t) => t.date === dateStr && t.amount < 0)
       .reduce((sum, t) => sum + Math.abs(t.amount), 0);
   };

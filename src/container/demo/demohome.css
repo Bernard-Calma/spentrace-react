@@ -152,6 +152,42 @@
   width: 350px;
   height: 320px;
 }
+.demo-home .dashboard .summaries .summary .summary-content.transactions-list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.demo-home .dashboard .summaries .summary .summary-content.transactions-list .transaction-item {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(75, 85, 99);
+  border-bottom: rgba(107, 114, 128, 0.5) 1px solid;
+  font-size: 0.75rem;
+}
+.demo-home .dashboard .summaries .summary .summary-content.transactions-list .transaction-item .transaction-item_details p {
+  color: rgb(107, 114, 128);
+  margin: 0;
+}
+.demo-home .dashboard .summaries .summary .summary-content.transactions-list .transaction-item .transaction-item_details .transaction-amount {
+  font-weight: bold;
+  color: rgb(0, 200, 0);
+}
+.demo-home .dashboard .summaries .summary .summary-content.transactions-list .transactions-list_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+  font-style: italic;
+  background-color: rgb(243, 244, 246);
+  border: 1px dashed rgb(75, 85, 99);
+  border-radius: 0.25rem;
+}
+.demo-home .dashboard .summaries .summary .summary-content.transactions-list .transactions-list_more:hover {
+  cursor: pointer;
+  color: #0070bb;
+}
 .demo-home .dashboard .summaries .summary .coming-soon {
   flex: 1;
   display: flex;
