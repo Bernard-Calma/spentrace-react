@@ -14,7 +14,7 @@ body,
   font-family: "Kanit", sans-serif;
   color: v.$text-color;
 
-  .form {
+  form {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -32,6 +32,7 @@ body,
     font-weight: 700;
 
     input {
+      width: auto;
       padding: 0.5rem;
       margin: 0;
       border: 1px solid v.$text-color;
@@ -57,23 +58,43 @@ body,
       }
     }
   }
-}
 
-ul,
-ol {
-  list-style: none;
-}
+  ul,
+  ol {
+    list-style: none;
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-.income {
-  color: v.$success-color;
-}
-.expense {
-  color: v.$warning-color;
+  .income {
+    color: v.$success-color;
+  }
+  .expense {
+    color: v.$warning-color;
+  }
+
+  .button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: v.$accent-color;
+    color: v.$secondary-color;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      background-color: v.$accent-color_darker;
+    }
+
+    &:disabled {
+      background-color: v.$text-color_lighter;
+      cursor: not-allowed;
+    }
+  }
 }
 
 footer {

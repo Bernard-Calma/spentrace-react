@@ -1,10 +1,14 @@
 import { useSelector } from "react-redux";
 import Calendar from "./Calendar";
+import { useState } from "react";
+import AddTransaction from "./AddTransaction";
 
 const DemoDashboard = () => {
   const { budgetName, totalIncome, totalExpense, budgetItems } = useSelector(
     (store) => store.demo
   );
+
+  const [showAddTransaction, setShowAddTransaction] = useState(false);
 
   const sortedTransactions = [...budgetItems].sort((a, b) => {
     const dateA = new Date(a.date);
@@ -14,10 +18,18 @@ const DemoDashboard = () => {
     return a.name.localeCompare(b.name);
   });
 
+  const handleToggleAddTransaction = () => {
+    setShowAddTransaction((prev) => !prev);
+  };
+
   return (
     <div className="container dashboard">
       <h1 className="title">{budgetName}</h1>
-
+      {showAddTransaction && (
+        <AddTransaction
+          handleToggleAddTransaction={handleToggleAddTransaction}
+        />
+      )}
       <div className="header">
         <div className="totals">
           <div className="total">
@@ -29,7 +41,10 @@ const DemoDashboard = () => {
             <p className="expense">${totalExpense.toFixed(2)}</p>
           </div>
         </div>
-        <button className="add-transaction-button">
+        <button
+          className="add-transaction-button"
+          onClick={handleToggleAddTransaction}
+        >
           {/* <Lock size={16} /> */}
           Add Transaction
         </button>
