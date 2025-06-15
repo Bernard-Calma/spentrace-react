@@ -33,6 +33,20 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
     }
   };
 
+  const handleSubmitNewTransaction = (e) => {
+    e.preventDefault();
+    // Here you would typically dispatch an action to add the transaction
+    console.log("New Transaction Submitted:", newTransaction);
+    // Reset form after submission
+    setNewTransaction({
+      amount: 0,
+      date: "",
+      name: "",
+      category: "",
+    });
+    handleToggleAddTransaction();
+  };
+
   return (
     <div className="overlay">
       <div className="container add-transaction">
@@ -43,7 +57,7 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
           <span className="close-icon">&times;</span>
         </button>
         <h2 className="title">Add Transaction</h2>
-        <form>
+        <form onSubmit={handleSubmitNewTransaction}>
           <LabelInput
             className="input-amount"
             type="number"
@@ -61,6 +75,8 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
             text="Transaction Date"
             name="date"
             className="label-input"
+            value={newTransaction.date}
+            onChange={handleChange}
             required
           />
 
@@ -70,6 +86,8 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
             text="Transaction Name"
             name="name"
             placeholder="e.g., Grocery Shopping"
+            value={newTransaction.name}
+            onChange={handleChange}
             required
           />
 
@@ -79,10 +97,14 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
             text="Category"
             name="category"
             placeholder="e.g., Food, Utilities"
+            value={newTransaction.category}
+            onChange={handleChange}
             required
           />
 
-          <button className="button">Add Transaction</button>
+          <button className="button" type="submit">
+            Add Transaction
+          </button>
         </form>
       </div>
     </div>
