@@ -80,7 +80,7 @@ const Calendar = () => {
   };
 
   return (
-    <div className="calendar-box">
+    <div className="summary calendar-box">
       <div className="calendar-header">
         <button onClick={handlePrevMonth}>&lt;</button>
         <h2 className="section-title">
@@ -89,7 +89,7 @@ const Calendar = () => {
         </h2>
         <button onClick={handleNextMonth}>&gt;</button>
       </div>
-      <div className="calendar">
+      <div className="summary-content calendar">
         <div className="calendar-grid">{renderCalendar()}</div>
       </div>
     </div>

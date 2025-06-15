@@ -32,7 +32,7 @@ const DemoDashboard = () => {
           <h2 className="subtitle">
             Recent Transactions <span>View All</span>
           </h2>
-          <ul className="divide-y divide-gray-200">
+          <ul className="summary-content">
             {budgetItems.map((t, idx) => (
               <li key={idx} className="py-2 flex justify-between">
                 <div>
