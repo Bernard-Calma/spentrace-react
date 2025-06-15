@@ -9,6 +9,7 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
     amount: 0,
     date: "",
     name: "",
+    type: "expense", // Default type is expense
     category: "",
   });
 
@@ -38,9 +39,18 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
 
   const handleSubmitNewTransaction = (e) => {
     e.preventDefault();
-    // Here you would typically dispatch an action to add the transaction
-    console.log("New Transaction Submitted:", newTransaction);
-    dispatch(addTransaction(newTransaction));
+    // Modify amount to be negative for expenses
+    const transactionAmount =
+      newTransaction.type === "expense"
+        ? -Math.abs(newTransaction.amount)
+        : Math.abs(newTransaction.amount);
+    const newTransactionData = {
+      ...newTransaction,
+      amount: transactionAmount,
+    };
+    // Dispatch the action to add the new transaction
+    console.log("Adding new transaction:", newTransactionData);
+    dispatch(addTransaction(newTransactionData));
     // Reset form after submission
     setNewTransaction({
       amount: 0,
@@ -73,6 +83,39 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
             onChange={handleChange}
             required
           />
+          {/* Radio to set if tranasction is expense or income */}
+          <div className="radio-group transaction-type">
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="expense"
+                checked={newTransaction.type === "expense"}
+                onChange={() =>
+                  setNewTransaction((prev) => ({
+                    ...prev,
+                    type: "expense",
+                  }))
+                }
+              />
+              Expense
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="income"
+                checked={newTransaction.type === "income"}
+                onChange={() =>
+                  setNewTransaction((prev) => ({
+                    ...prev,
+                    type: "income",
+                  }))
+                }
+              />
+              Income
+            </label>
+          </div>
           <LabelInput
             type="date"
             htmlFor="date"
@@ -105,7 +148,6 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
             onChange={handleChange}
             required
           />
-
           <button className="button" type="submit">
             Add Transaction
           </button>
