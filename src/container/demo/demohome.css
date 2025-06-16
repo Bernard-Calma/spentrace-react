@@ -422,4 +422,58 @@
 }
 .demo-home > .transactions-list .budget-items .transaction-item .item-actions button:hover {
   background-color: #005f8a;
+}
+
+@media screen and (max-width: 900px) {
+  .demo-home {
+    height: 100vh;
+    justify-content: flex-start;
+  }
+  .demo-home header {
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .demo-home header .title {
+    display: none;
+  }
+  .demo-home header .nav-container {
+    margin-right: 0;
+    font-size: 1rem;
+  }
+  .demo-home header .nav-container nav {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+  .demo-home .dashboard {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+  .demo-home .dashboard .title {
+    font-size: 1.5rem;
+    margin: 5px auto;
+  }
+  .demo-home .dashboard .dashboard-header {
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .demo-home .dashboard .dashboard-header .add-transaction-button {
+    display: none;
+  }
+  .demo-home .transactions-list {
+    margin: 0;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: rgb(75, 85, 99);
+  }
+  .demo-home .transactions-list .budget-items {
+    width: 100%;
+    padding: 0.5rem;
+  }
 }/*# sourceMappingURL=demohome.css.map */

@@ -161,6 +161,10 @@ footer {
     display: none;
   }
 
+  .hidden-mobile {
+    display: none !important;
+  }
+
   .signout {
     position: fixed;
     bottom: 30px;

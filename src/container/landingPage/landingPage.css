@@ -66,13 +66,18 @@
 }
 
 @media screen and (max-width: 900px) {
-  .containerLandingPage {
-    all: unset;
-    display: flex;
-  }
-  .containerLandingPage {
-    /* border: solid red; */
+  .container.landing-page {
+    margin: 0;
+    width: 100%;
     height: 100%;
+  }
+  .container.landing-page .landing-page_header {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .container.landing-page .login,
+  .container.landing-page .login-register {
+    width: 100%;
   }
   .introduction {
     display: none;

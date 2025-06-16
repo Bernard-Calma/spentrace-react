@@ -471,3 +471,64 @@
     }
   }
 }
+
+@media screen and (max-width: 900px) {
+  .demo-home {
+    height: 100vh;
+    justify-content: flex-start;
+    header {
+      height: auto;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        display: none; // Hide the title on smaller screens
+      }
+
+      .nav-container {
+        margin-right: 0;
+        font-size: 1rem;
+
+        nav {
+          margin-left: 0;
+          font-size: 1rem;
+        }
+      }
+    }
+    .dashboard {
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        font-size: 1.5rem;
+        margin: 5px auto;
+      }
+
+      .dashboard-header {
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        .add-transaction-button {
+          display: none; // Hide the button on smaller screens
+        }
+      }
+    }
+    .transactions-list {
+      margin: 0;
+      background-color: v.$secondary-color;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      color: v.$text-color;
+
+      .budget-items {
+        width: 100%;
+        padding: 0.5rem;
+      }
+    }
+  }
+}

@@ -28,15 +28,19 @@ const LandingPage = () => {
         <p>Smart tracking. Smarter Spending,</p>
       </div>
       <div className="container login">
-        <div className="introduction">
+        <div className="introduction hidden-mobile">
           <h2>Why Spentrace?</h2>
-          <ul className="space-y-2 text-sm text-gray-200">
+          <ul>
             <li>✅ Track your expenses and income effortlessly</li>
             <li>📅 See upcoming bills in a single view</li>
             <li>🎯 Know exactly how much you need to earn next</li>
           </ul>
         </div>
-        <img src={mobilePage} alt="Main Page" className="mobilePageImage" />
+        <img
+          src={mobilePage}
+          alt="Main Page"
+          className="mobilePageImage hidden-mobile"
+        />
         {view === "Login" ? (
           <Login handleChangeView={() => setView("Register")} />
         ) : (
