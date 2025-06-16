@@ -27,12 +27,12 @@
   justify-content: center;
 }
 .login-register .login-register_header i {
+  color: #0070bb;
   position: absolute;
   left: 0;
 }
 .login-register .login-register_header i:hover {
   cursor: pointer;
-  color: #0070bb;
 }
 .login-register form.login .loginMessage,
 .login-register form.register .loginMessage {

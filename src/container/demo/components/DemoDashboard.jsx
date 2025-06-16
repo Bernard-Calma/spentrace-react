@@ -31,7 +31,7 @@ const DemoDashboard = () => {
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
       )}
-      <div className="header">
+      <div className="dashboard-header">
         <TotalBalance className="totals" />
         <button
           className="add-transaction-button"

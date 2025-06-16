@@ -7,6 +7,7 @@ import CreateBudget from "./components/CreateBudget";
 
 import "./demoHome.scss";
 import TransactionsList from "./components/TransactionsList";
+import Header from "../../common/Header/Header";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ const DemoHome = () => {
 
   return (
     <section className="container demo-home">
+      <Header />
       {budgetName === "" ? (
         <CreateBudget />
       ) : demoView === "Demo" ? (

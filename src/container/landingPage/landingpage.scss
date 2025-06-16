@@ -3,14 +3,16 @@
 .landing-page {
   display: flex;
   flex-direction: column;
+  margin: auto;
 
-  header {
+  .landing-page_header {
     text-align: center;
     .app-title {
       font-family: "Russo One", sans-serif;
-      font-size: 2rem;
+      font-size: 4rem;
       font-weight: 600;
       color: v.$text-color;
+      margin: 0;
       margin-bottom: 0.5rem;
 
       span {

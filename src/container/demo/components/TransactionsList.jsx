@@ -39,7 +39,7 @@ const TransactionsList = ({ budgetName }) => {
               {/* If date is today show today string instead */}
               {format(tx.date, "yyyy-MM-dd") ===
               format(new Date(), "yyyy-MM-dd")
-                ? "Today"
+                ? "Today "
                 : `${format(tx.date, "MMMM dd")} `}
               - {tx.name}
             </span>

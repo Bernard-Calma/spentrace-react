@@ -19,21 +19,23 @@
 .landing-page {
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
-.landing-page header {
+.landing-page .landing-page_header {
   text-align: center;
 }
-.landing-page header .app-title {
+.landing-page .landing-page_header .app-title {
   font-family: "Russo One", sans-serif;
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 600;
   color: rgb(75, 85, 99);
+  margin: 0;
   margin-bottom: 0.5rem;
 }
-.landing-page header .app-title span {
+.landing-page .landing-page_header .app-title span {
   color: #0070bb;
 }
-.landing-page header p {
+.landing-page .landing-page_header p {
   margin: 0;
   font-size: 0.75rem;
 }

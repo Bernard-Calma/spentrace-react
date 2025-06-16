@@ -10,7 +10,6 @@ body,
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-family: "Kanit", sans-serif;
   color: v.$text-color;
 
@@ -64,11 +63,6 @@ body,
     list-style: none;
   }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
   .income {
     color: v.$success-color;
   }
@@ -105,6 +99,14 @@ body,
       background-color: v.$text-color_lighter;
       cursor: not-allowed;
     }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    cursor: pointer;
   }
 }
 

@@ -13,12 +13,12 @@
     justify-content: center;
 
     i {
+      color: v.$accent-color;
       position: absolute;
       left: 0;
 
       &:hover {
         cursor: pointer;
-        color: v.$accent-color;
       }
     }
   }

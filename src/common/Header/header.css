@@ -1,0 +1,99 @@
+@font-face {
+  font-family: "Russo One";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../assets/fonts/Russo_One/russo-one.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 500;
+  font-style: light;
+  src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
+}
+header {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  height: 60px;
+  width: 100%;
+  z-index: 1000;
+}
+header .title {
+  font-family: "Russo One", sans-serif;
+  font-size: 50px;
+  margin: 0 0 0 20px;
+}
+header .title span {
+  color: #0070bb;
+}
+header .title:hover {
+  cursor: pointer;
+}
+header .nav-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-right: 20px;
+  font-size: 1.2em;
+}
+header .nav-container nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 2rem;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: rgb(75, 85, 99);
+  text-decoration: none;
+}
+header .nav-container nav a:hover {
+  color: #0070bb;
+}
+
+.fi-rr-sign-out-alt {
+  font-size: 1.5em;
+}
+
+.fi-rr-sign-out-alt {
+  margin: auto 10px !important;
+}
+
+.fi-rr-sign-out-alt:hover {
+  font-size: 1.7em !important;
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    padding: 0;
+    height: 35px;
+    width: auto;
+  }
+  .title {
+    font-size: 25px;
+    margin: 0 10px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .header {
+    display: flex;
+    padding: 0;
+    height: 35px;
+  }
+  .title {
+    flex-basis: 100%;
+    text-align: center;
+    margin-left: 50px;
+  }
+  .fi-rr-bars-staggered {
+    display: block;
+  }
+}/*# sourceMappingURL=header.css.map */
