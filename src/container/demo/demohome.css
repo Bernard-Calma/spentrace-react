@@ -306,6 +306,48 @@
 .demo-home .overlay .add-transaction form .button {
   margin-top: 1rem;
 }
+.demo-home .overlay .transaction-show {
+  padding: 1.5rem;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: rgb(75, 85, 99);
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+}
+.demo-home .overlay .transaction-show .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(107, 114, 128);
+}
+.demo-home .overlay .transaction-show .btn-close:hover {
+  color: #0070bb;
+}
+.demo-home .overlay .transaction-show .transaction-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.demo-home .overlay .transaction-show .transaction-details .transaction-item_details {
+  margin-bottom: 1rem;
+}
+.demo-home .overlay .transaction-show .transaction-details .transaction-item_details p {
+  margin: 0.25rem 0;
+}
+.demo-home .overlay .transaction-show .transaction-details .transaction-item_details .transaction-amount {
+  font-weight: bold;
+  color: rgb(22, 163, 74);
+}
 .demo-home > .transactions-list {
   display: flex;
   flex-direction: column;
@@ -346,6 +388,9 @@
   border-radius: 0.25rem;
   color: rgb(55, 65, 81);
   padding: 0.25rem;
+}
+.demo-home > .transactions-list .budget-items .transaction-item.income {
+  background-color: rgba(22, 163, 74, 0.4);
 }
 .demo-home > .transactions-list .budget-items .transaction-item.past-due {
   background-color: rgb(254, 202, 202);

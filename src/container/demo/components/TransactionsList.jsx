@@ -1,9 +1,24 @@
 import { format } from "date-fns";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TotalBalance from "../../../common/TotalBalance";
+import { useState } from "react";
+import ShowTransaction from "./ShowTransaction";
+import { setOpenBudgetItem } from "../../../features/demoSlice";
 
 const TransactionsList = ({ budgetName }) => {
-  const { budgetItems } = useSelector((store) => store.demo);
+  const dispatch = useDispatch();
+  const { budgetItems, openBudgetItem } = useSelector((store) => store.demo);
+
+  const [showTransaction, setShowTransaction] = useState(false);
+  const handleToggleTransaction = (transaction) => {
+    if (transaction) {
+      dispatch(setOpenBudgetItem(transaction));
+    } else {
+      dispatch(setOpenBudgetItem({}));
+    }
+
+    setShowTransaction((prev) => !prev);
+  };
 
   const getDueDateStyle = (date) => {
     const current = new Date();
@@ -24,8 +39,12 @@ const TransactionsList = ({ budgetName }) => {
     }
     return dateA - dateB;
   });
+
   return (
     <div className="container transactions-list">
+      {showTransaction && (
+        <ShowTransaction handleToggleTransaction={handleToggleTransaction} />
+      )}
       <h1 className="title">{budgetName}</h1>
       <h2 className="subtitle">Transactions List</h2>
       <TotalBalance className="totals" />
@@ -33,7 +52,10 @@ const TransactionsList = ({ budgetName }) => {
         {sortedTransactions.map((tx, index) => (
           <div
             key={index}
-            className={`transaction-item ${getDueDateStyle(tx.date)}`}
+            className={`transaction-item ${
+              tx.amount > 0 ? "income" : getDueDateStyle(tx.date)
+            }`}
+            onClick={() => handleToggleTransaction(tx)}
           >
             <span>
               {/* If date is today show today string instead */}
@@ -44,7 +66,12 @@ const TransactionsList = ({ budgetName }) => {
               - {tx.name}
             </span>
             <span className={tx.amount < 0 ? "expense" : "income"}>
-              ${Math.abs(tx.amount).toFixed(2)}
+              $
+              {Math.abs(tx.amount).toLocaleString("en-US", {
+                style: "decimal",
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
             </span>
           </div>
         ))}

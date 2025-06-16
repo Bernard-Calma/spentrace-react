@@ -62,6 +62,9 @@ const demoSlice = createSlice({
       }
       state.balance = state.totalIncome - state.totalExpense;
     },
+    setOpenBudgetItem: (state, action) => {
+      state.openBudgetItem = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -87,5 +90,6 @@ const demoSlice = createSlice({
   },
 });
 
-export const { getBudgets, createBudget, addTransaction } = demoSlice.actions;
+export const { getBudgets, createBudget, addTransaction, setOpenBudgetItem } =
+  demoSlice.actions;
 export default demoSlice.reducer;

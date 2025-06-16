@@ -152,7 +152,6 @@
               justify-content: space-between;
               color: v.$text-color;
               border-bottom: rgba(v.$text-color_lighter, 0.5) 1px solid;
-
               font-size: 0.75rem;
               .transaction-item_details {
                 p {
@@ -331,6 +330,55 @@
         }
       }
     }
+
+    .transaction-show {
+      padding: 1.5rem;
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: v.$secondary-color;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color: v.$text-color;
+      width: 400px;
+      max-width: 90%;
+      position: relative;
+
+      .btn-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: v.$text-color_lighter;
+
+        &:hover {
+          color: v.$accent-color;
+        }
+      }
+
+      .transaction-details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .transaction-item_details {
+          margin-bottom: 1rem;
+
+          p {
+            margin: 0.25rem 0;
+          }
+
+          .transaction-amount {
+            font-weight: bold;
+            color: v.$success-color; // or v.$warning-color based on the transaction type
+          }
+        }
+      }
+    }
   }
 
   & > .transactions-list {
@@ -375,6 +423,10 @@
         border-radius: 0.25rem;
         color: v.$text-color_darker;
         padding: 0.25rem;
+
+        &.income {
+          background-color: rgba(v.$success-color, 0.4);
+        }
 
         &.past-due {
           background-color: v.$past-due-color;
