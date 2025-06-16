@@ -2,6 +2,7 @@ import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../../../features/demoSlice";
+import { format } from "date-fns";
 
 const AddTransaction = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
@@ -15,6 +16,15 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // Format date using date-fns
+    if (name === "date") {
+      const formattedDate = format(new Date(value), "yyyy-MM-dd");
+      setNewTransaction((prev) => ({
+        ...prev,
+        [name]: formattedDate,
+      }));
+      return;
+    }
     // Limit amount to two decimal places and max value of 1000000
     if (name === "amount") {
       if (value === "") {

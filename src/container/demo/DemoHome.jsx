@@ -6,12 +6,15 @@ import DemoDashboard from "./components/DemoDashboard";
 import CreateBudget from "./components/CreateBudget";
 
 import "./demoHome.scss";
+import TransactionsList from "./components/TransactionsList";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
   // ------------------------------ VARIABLES ------------------------------
   // Plans
   const { budgetName, isLoading } = useSelector((store) => store.demo);
+  // Views
+  const { demoView } = useSelector((store) => store.view);
   const { view, homeView, planView, billView, accountView, showNav } =
     useSelector((store) => store.view);
 
@@ -60,7 +63,13 @@ const DemoHome = () => {
 
   return (
     <section className="container demo-home">
-      {budgetName === "" ? <CreateBudget /> : <DemoDashboard />}
+      {budgetName === "" ? (
+        <CreateBudget />
+      ) : demoView === "Demo" ? (
+        <DemoDashboard />
+      ) : (
+        <TransactionsList budgetName={budgetName} />
+      )}
     </section>
   );
 };

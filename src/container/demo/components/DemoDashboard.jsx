@@ -1,12 +1,13 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Calendar from "./Calendar";
 import { useState } from "react";
 import AddTransaction from "./AddTransaction";
+import { changeView } from "../../../features/viewSlice";
+import TotalBalance from "../../../common/TotalBalance";
 
 const DemoDashboard = () => {
-  const { budgetName, totalIncome, totalExpense, budgetItems } = useSelector(
-    (store) => store.demo
-  );
+  const dispatch = useDispatch();
+  const { budgetName, budgetItems } = useSelector((store) => store.demo);
 
   const [showAddTransaction, setShowAddTransaction] = useState(false);
 
@@ -31,16 +32,7 @@ const DemoDashboard = () => {
         />
       )}
       <div className="header">
-        <div className="totals">
-          <div className="total">
-            <p className="text-gray-500 text-sm">Total Income</p>
-            <p className="income">${totalIncome.toFixed(2)}</p>
-          </div>
-          <div className="total">
-            <p className="text-gray-500 text-sm">Total Expense</p>
-            <p className="expense">${totalExpense.toFixed(2)}</p>
-          </div>
-        </div>
+        <TotalBalance className="totals" />
         <button
           className="add-transaction-button"
           onClick={handleToggleAddTransaction}
@@ -53,7 +45,14 @@ const DemoDashboard = () => {
       <div className="container summaries">
         <div className="container summary">
           <h2 className="subtitle">
-            Recent Transactions <span>View All</span>
+            Recent Transactions{" "}
+            <span
+              onClick={() =>
+                dispatch(changeView({ demoView: "transactions-list" }))
+              }
+            >
+              View All
+            </span>
           </h2>
           <ul className="summary-content transactions-list">
             {sortedTransactions.map((t, idx) =>
