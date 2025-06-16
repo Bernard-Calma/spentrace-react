@@ -84,17 +84,6 @@
       align-self: center;
       width: 75%;
 
-      .totals {
-        display: flex;
-        justify-content: space-between;
-        gap: 2rem;
-        .total {
-          p {
-            margin: 0;
-          }
-        }
-      }
-
       .add-transaction-button {
         padding: 0.5rem 1rem;
         background-color: v.$accent-color;

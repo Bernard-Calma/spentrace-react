@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
+import TotalBalance from "../../../common/TotalBalance";
 
 const TransactionsList = ({ budgetName }) => {
   const { budgetItems } = useSelector((store) => store.demo);
@@ -27,6 +28,7 @@ const TransactionsList = ({ budgetName }) => {
     <div className="container transactions-list">
       <h1 className="title">{budgetName}</h1>
       <h2 className="subtitle">Transactions List</h2>
+      <TotalBalance className="totals" />
       <div className="budget-items">
         {sortedTransactions.map((tx, index) => (
           <div
@@ -38,7 +40,7 @@ const TransactionsList = ({ budgetName }) => {
               {format(tx.date, "yyyy-MM-dd") ===
               format(new Date(), "yyyy-MM-dd")
                 ? "Today"
-                : `${format(tx.date, "MM-dd")} `}
+                : `${format(tx.date, "MMMM dd")} `}
               - {tx.name}
             </span>
             <span className={tx.amount < 0 ? "expense" : "income"}>

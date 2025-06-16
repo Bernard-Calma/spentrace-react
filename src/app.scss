@@ -76,6 +76,17 @@ body,
     color: v.$warning-color;
   }
 
+  .totals {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    .total {
+      p {
+        margin: 0;
+      }
+    }
+  }
+
   .button {
     padding: 0.5rem 1rem;
     border: none;

@@ -120,6 +120,20 @@ body .expense,
 .App .expense {
   color: rgb(255, 30, 30);
 }
+html .totals,
+body .totals,
+#root .totals,
+.App .totals {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+html .totals .total p,
+body .totals .total p,
+#root .totals .total p,
+.App .totals .total p {
+  margin: 0;
+}
 html .button,
 body .button,
 #root .button,

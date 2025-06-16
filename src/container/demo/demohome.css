@@ -90,14 +90,6 @@
   align-self: center;
   width: 75%;
 }
-.demo-home .dashboard .header .totals {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-}
-.demo-home .dashboard .header .totals .total p {
-  margin: 0;
-}
 .demo-home .dashboard .header .add-transaction-button {
   padding: 0.5rem 1rem;
   background-color: #0070bb;
@@ -385,4 +377,4 @@
 }
 .demo-home > .transactions-list .budget-items .transaction-item .item-actions button:hover {
   background-color: #005f8a;
-}/*# sourceMappingURL=demoHome.css.map */
+}/*# sourceMappingURL=demohome.css.map */
