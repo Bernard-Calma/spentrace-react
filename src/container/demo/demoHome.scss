@@ -554,5 +554,30 @@
         padding: 0.5rem;
       }
     }
+    .overlay {
+      .add-transaction {
+        width: 90%;
+        max-width: 400px;
+        margin-top: 2rem;
+
+        .btn-close {
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+      }
+
+      .transaction-show {
+        width: 90%;
+        height: 100%;
+        max-width: 400px;
+        margin-top: 2rem;
+        justify-content: flex-start;
+
+        .close-button {
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+      }
+    }
   }
 }
