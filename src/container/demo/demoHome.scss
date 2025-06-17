@@ -333,10 +333,10 @@
 
     .transaction-show {
       padding: 1.5rem;
-      margin-top: 2.5rem;
+      margin: auto;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       background-color: v.$secondary-color;
       border-radius: 1rem;
@@ -346,35 +346,59 @@
       max-width: 90%;
       position: relative;
 
-      .btn-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        color: v.$text-color_lighter;
+      .transaction-show-header {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-self: center;
 
-        &:hover {
-          color: v.$accent-color;
+        .subtitle {
+          margin: 0;
         }
+
+        .close-button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          color: v.$text-color_lighter;
+
+          &:hover {
+            color: v.$accent-color;
+          }
+        }
+      }
+
+      .transaction-title {
+        margin: 0;
       }
 
       .transaction-details {
         width: 100%;
         display: flex;
         flex-direction: column;
+        margin-bottom: 1rem;
 
-        .transaction-item_details {
-          margin-bottom: 1rem;
+        p {
+          display: flex;
+          justify-content: space-between;
+          margin: 0.25rem 0;
+
+          span {
+            font-weight: 700;
+          }
+        }
+
+        .notes-container {
+          margin-top: 1rem;
+          padding: 0.5rem;
+          background-color: v.$primary-color;
+          border-radius: 0.25rem;
+          color: v.$text-color_lighter;
 
           p {
-            margin: 0.25rem 0;
-          }
-
-          .transaction-amount {
-            font-weight: bold;
-            color: v.$success-color; // or v.$warning-color based on the transaction type
+            margin: 0;
+            font-size: 0.875rem;
           }
         }
       }

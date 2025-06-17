@@ -308,10 +308,10 @@
 }
 .demo-home .overlay .transaction-show {
   padding: 1.5rem;
-  margin-top: 2.5rem;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: white;
   border-radius: 1rem;
@@ -321,32 +321,52 @@
   max-width: 90%;
   position: relative;
 }
-.demo-home .overlay .transaction-show .btn-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+.demo-home .overlay .transaction-show .transaction-show-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+.demo-home .overlay .transaction-show .transaction-show-header .subtitle {
+  margin: 0;
+}
+.demo-home .overlay .transaction-show .transaction-show-header .close-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
   color: rgb(107, 114, 128);
 }
-.demo-home .overlay .transaction-show .btn-close:hover {
+.demo-home .overlay .transaction-show .transaction-show-header .close-button:hover {
   color: #0070bb;
+}
+.demo-home .overlay .transaction-show .transaction-title {
+  margin: 0;
 }
 .demo-home .overlay .transaction-show .transaction-details {
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-.demo-home .overlay .transaction-show .transaction-details .transaction-item_details {
   margin-bottom: 1rem;
 }
-.demo-home .overlay .transaction-show .transaction-details .transaction-item_details p {
+.demo-home .overlay .transaction-show .transaction-details p {
+  display: flex;
+  justify-content: space-between;
   margin: 0.25rem 0;
 }
-.demo-home .overlay .transaction-show .transaction-details .transaction-item_details .transaction-amount {
-  font-weight: bold;
-  color: rgb(22, 163, 74);
+.demo-home .overlay .transaction-show .transaction-details p span {
+  font-weight: 700;
+}
+.demo-home .overlay .transaction-show .transaction-details .notes-container {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: rgb(243, 244, 246);
+  border-radius: 0.25rem;
+  color: rgb(107, 114, 128);
+}
+.demo-home .overlay .transaction-show .transaction-details .notes-container p {
+  margin: 0;
+  font-size: 0.875rem;
 }
 .demo-home > .transactions-list {
   display: flex;

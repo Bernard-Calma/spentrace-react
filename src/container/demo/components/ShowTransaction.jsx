@@ -6,14 +6,18 @@ const ShowTransaction = ({ handleToggleTransaction }) => {
   return (
     <div className="overlay">
       <div className="container transaction-show">
-        <button
-          className="close-button"
-          onClick={() => handleToggleTransaction()}
-        >
-          Close
-        </button>
-        <h2 className="showTransactionTitle">{openBudgetItem.name}</h2>
-        <div className="showTransactionDetails">
+        <div className="transaction-show-header">
+          <h1 className="subtitle">Transaction Details</h1>
+          <button
+            className="button close-button"
+            onClick={() => handleToggleTransaction()}
+          >
+            Close
+          </button>
+        </div>
+
+        <h2 className="transaction-title">{openBudgetItem.name}</h2>
+        <div className="transaction-details">
           <p>
             Amount:{" "}
             <span className={openBudgetItem.amount < 0 ? "expense" : "income"}>
@@ -25,9 +29,18 @@ const ShowTransaction = ({ handleToggleTransaction }) => {
               })}
             </span>
           </p>
-          <p>Date: {format(openBudgetItem.date, "MMMM dd, yyyy")}</p>
-          <p>Category: {openBudgetItem.category}</p>
-          <p>Notes: {openBudgetItem.description}</p>
+          <p>
+            Date: <span>{format(openBudgetItem.date, "MMMM dd, yyyy")}</span>
+          </p>
+          <p>
+            Category: <span>{openBudgetItem.category || "Uncategorized"}</span>
+          </p>
+          <p>Notes:</p>
+          <div className="notes-container">
+            <p className="notes">
+              {openBudgetItem.notes || "No notes available"}
+            </p>
+          </div>
         </div>
       </div>
     </div>
