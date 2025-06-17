@@ -65,6 +65,14 @@ const DemoHome = () => {
   return (
     <section className="container demo-home">
       <Header />
+      <div className="mobile-only add-transaction">
+        <button
+          className="button add-transaction-button"
+          onClick={() => hadleChangeView("Add Transaction")}
+        >
+          +
+        </button>
+      </div>
       {budgetName === "" ? (
         <CreateBudget />
       ) : demoView === "Demo" ? (

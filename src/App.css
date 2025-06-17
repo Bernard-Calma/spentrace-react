@@ -152,6 +152,12 @@ body .button:disabled,
   background-color: rgb(107, 114, 128);
   cursor: not-allowed;
 }
+html .mobile-only,
+body .mobile-only,
+#root .mobile-only,
+.App .mobile-only {
+  display: none;
+}
 
 a {
   text-decoration: none;
@@ -210,6 +216,9 @@ footer .footer-content {
   }
   .hidden-mobile {
     display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
   }
   .signout {
     position: fixed;

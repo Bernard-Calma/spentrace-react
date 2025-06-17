@@ -469,6 +469,7 @@
   .demo-home .dashboard {
     width: 100%;
     height: auto;
+    padding-bottom: 6rem;
     flex-direction: column;
     align-items: center;
   }
@@ -515,5 +516,20 @@
   .demo-home .overlay .transaction-show .close-button {
     top: 0.5rem;
     right: 0.5rem;
+  }
+  .demo-home .mobile-only.add-transaction {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .demo-home .mobile-only.add-transaction button {
+    width: 4rem;
+    height: 4rem;
+  }
+  .demo-home .mobile-only.add-transaction button:hover {
+    background-color: #005f8a;
   }
 }/*# sourceMappingURL=demoHome.css.map */

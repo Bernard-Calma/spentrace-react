@@ -523,6 +523,7 @@
     .dashboard {
       width: 100%;
       height: auto;
+      padding-bottom: 6rem; // Add padding for mobile view
       flex-direction: column;
       align-items: center;
 
@@ -576,6 +577,24 @@
         .close-button {
           top: 0.5rem;
           right: 0.5rem;
+        }
+      }
+    }
+    .mobile-only.add-transaction {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+      button {
+        width: 4rem;
+        height: 4rem;
+
+        &:hover {
+          background-color: v.$accent-color_darker;
         }
       }
     }
