@@ -22,4 +22,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(243, 244, 246);
+}
+
+@media screen and (max-width: 600px) {
+  html,
+  body {
+    position: relative;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+  }
 }/*# sourceMappingURL=index.css.map */

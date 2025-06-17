@@ -31,6 +31,14 @@ const DemoDashboard = () => {
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
       )}
+      <div className="mobile-only add-transaction">
+        <button
+          className="button add-transaction-button"
+          onClick={handleToggleAddTransaction}
+        >
+          +
+        </button>
+      </div>
       <div className="dashboard-header">
         <TotalBalance className="totals" />
         <button

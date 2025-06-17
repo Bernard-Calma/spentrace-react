@@ -16,8 +16,9 @@ const DemoHome = () => {
   const { budgetName, isLoading } = useSelector((store) => store.demo);
   // Views
   const { demoView } = useSelector((store) => store.view);
-  const { view, homeView, planView, billView, accountView, showNav } =
-    useSelector((store) => store.view);
+  const { homeView, planView, billView, accountView } = useSelector(
+    (store) => store.view
+  );
 
   const hadleChangeView = (view) => {
     // planView: homeView === "Plan" ? "Plan List" : planView
@@ -65,14 +66,6 @@ const DemoHome = () => {
   return (
     <section className="container demo-home">
       <Header />
-      <div className="mobile-only add-transaction">
-        <button
-          className="button add-transaction-button"
-          onClick={() => hadleChangeView("Add Transaction")}
-        >
-          +
-        </button>
-      </div>
       {budgetName === "" ? (
         <CreateBudget />
       ) : demoView === "Demo" ? (

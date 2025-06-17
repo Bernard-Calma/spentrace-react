@@ -558,8 +558,18 @@
     .overlay {
       .add-transaction {
         width: 90%;
+        height: 100%;
+        z-index: 1000;
         max-width: 400px;
-        margin-top: 2rem;
+        margin: 0;
+
+        .input-amount {
+          input {
+            box-sizing: content;
+            width: fit-content;
+            min-width: 3ch;
+          }
+        }
 
         .btn-close {
           top: 0.5rem;
@@ -570,8 +580,10 @@
       .transaction-show {
         width: 90%;
         height: 100%;
+        position: fixed;
+        top: 0;
+        margin: 0;
         max-width: 400px;
-        margin-top: 2rem;
         justify-content: flex-start;
 
         .close-button {
@@ -584,10 +596,8 @@
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      z-index: 1000;
-
+      z-index: 999;
       border-radius: 50%;
-
       overflow: hidden;
       button {
         width: 4rem;

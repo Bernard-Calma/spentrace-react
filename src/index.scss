@@ -10,3 +10,12 @@ body {
 
   background-color: c.$primary-color;
 }
+
+@media screen and (max-width: 600px) {
+  html,
+  body {
+    position: relative;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+  }
+}
