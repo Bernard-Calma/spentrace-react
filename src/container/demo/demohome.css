@@ -22,10 +22,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 .demo-home .create-budget {
   padding: 2rem;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -476,4 +476,4 @@
     width: 100%;
     padding: 0.5rem;
   }
-}/*# sourceMappingURL=demohome.css.map */
+}/*# sourceMappingURL=demoHome.css.map */
