@@ -16,18 +16,7 @@ export const loadFromLocalStorage = createAsyncThunk(
 const initialState = {
   budgetName: "",
   owner: "",
-  budgetItems: [
-    { date: "2025-06-01", name: "Groceries", amount: -45544.0 },
-    { date: "2025-06-03", name: "Internet Bill", amount: -60.0 },
-    { date: "2025-06-05", name: "Salary", amount: 1500.0 },
-    { date: "2025-06-05", name: "Salary", amount: -875.0 },
-    { date: "2025-06-14", name: "Dining", amount: -22.5 },
-    {
-      date: new Date().toISOString().split("T")[0],
-      name: "Fuel",
-      amount: -30.0,
-    },
-  ],
+  budgetItems: [],
   totalIncome: 0,
   totalExpense: 0,
   balance: 0,
