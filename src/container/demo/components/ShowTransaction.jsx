@@ -1,8 +1,14 @@
 import { format } from "date-fns";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTransaction } from "../../../features/demoSlice";
 
 const ShowTransaction = ({ handleToggleTransaction }) => {
+  const dispatch = useDispatch();
   const { openBudgetItem } = useSelector((store) => store.demo);
+
+  const handleDeleteTransaction = () => {
+    dispatch(deleteTransaction(openBudgetItem));
+  };
   return (
     <div className="overlay">
       <div className="container transaction-show">
@@ -41,6 +47,14 @@ const ShowTransaction = ({ handleToggleTransaction }) => {
               {openBudgetItem.notes || "No notes available"}
             </p>
           </div>
+        </div>
+        <div className="transaction-actions">
+          <button
+            className="button delete-button"
+            onClick={handleDeleteTransaction(openBudgetItem)}
+          >
+            Delete Transaction
+          </button>
         </div>
       </div>
     </div>

@@ -368,6 +368,12 @@
   margin: 0;
   font-size: 0.875rem;
 }
+.demo-home .overlay .transaction-show .transaction-actions {
+  margin: 1rem auto;
+}
+.demo-home .overlay .transaction-show .transaction-actions .delete-button {
+  background-color: rgb(255, 30, 30) !important;
+}
 .demo-home > .transactions-list {
   display: flex;
   flex-direction: column;

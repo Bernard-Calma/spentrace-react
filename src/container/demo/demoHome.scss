@@ -402,6 +402,12 @@
           }
         }
       }
+      .transaction-actions {
+        margin: 1rem auto;
+        .delete-button {
+          background-color: v.$warning-color !important;
+        }
+      }
     }
   }
 
