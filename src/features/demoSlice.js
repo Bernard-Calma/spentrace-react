@@ -52,8 +52,17 @@ const demoSlice = createSlice({
       state.balance = state.totalIncome - state.totalExpense;
     },
     deleteTransaction: (state, { payload }) => {
-      console.log(payload);
-      console.log(state);
+      //update totals first before removing the item
+      if (payload.amount < 0) {
+        state.totalExpense -= Math.abs(payload.amount);
+      } else {
+        state.totalIncome -= payload.amount;
+      }
+      state.budgetItems = state.budgetItems.filter(
+        (item) => item.id !== payload.id
+      );
+
+      state.isLoading = false;
     },
     setOpenBudgetItem: (state, action) => {
       state.openBudgetItem = action.payload;

@@ -8,6 +8,7 @@ const ShowTransaction = ({ handleToggleTransaction }) => {
 
   const handleDeleteTransaction = () => {
     dispatch(deleteTransaction(openBudgetItem));
+    handleToggleTransaction();
   };
   return (
     <div className="overlay">
@@ -51,7 +52,7 @@ const ShowTransaction = ({ handleToggleTransaction }) => {
         <div className="transaction-actions">
           <button
             className="button delete-button"
-            onClick={handleDeleteTransaction(openBudgetItem)}
+            onClick={handleDeleteTransaction}
           >
             Delete Transaction
           </button>
