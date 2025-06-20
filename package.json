@@ -1,6 +1,6 @@
 {
   "name": "spentrace-react",
-  "version": "1.1.2",
+  "version": "2.0.1",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
