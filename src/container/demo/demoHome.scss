@@ -404,6 +404,8 @@
       }
       .transaction-actions {
         margin: 1rem auto;
+        display: flex;
+        gap: 1rem;
         .delete-button {
           background-color: v.$warning-color !important;
         }

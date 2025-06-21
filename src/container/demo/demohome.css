@@ -370,6 +370,8 @@
 }
 .demo-home .overlay .transaction-show .transaction-actions {
   margin: 1rem auto;
+  display: flex;
+  gap: 1rem;
 }
 .demo-home .overlay .transaction-show .transaction-actions .delete-button {
   background-color: rgb(255, 30, 30) !important;
