@@ -2,7 +2,10 @@ import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTransaction } from "../../../features/demoSlice";
 
-const ShowTransaction = ({ handleToggleTransaction }) => {
+const ShowTransaction = ({
+  handleToggleTransaction,
+  handleEditTransaction,
+}) => {
   const dispatch = useDispatch();
   const { openBudgetItem } = useSelector((store) => store.demo);
 
@@ -50,6 +53,12 @@ const ShowTransaction = ({ handleToggleTransaction }) => {
           </div>
         </div>
         <div className="transaction-actions">
+          <button
+            className="button edit-button"
+            onClick={handleEditTransaction}
+          >
+            Edit Transaction
+          </button>
           <button
             className="button delete-button"
             onClick={handleDeleteTransaction}

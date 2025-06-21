@@ -51,6 +51,33 @@ const demoSlice = createSlice({
       }
       state.balance = state.totalIncome - state.totalExpense;
     },
+    editTransaction: (state, { payload }) => {
+      const { id, date, name, amount } = payload;
+      const itemIndex = state.budgetItems.findIndex((item) => item.id === id);
+
+      if (itemIndex !== -1) {
+        // Update totals first
+        const oldAmount = state.budgetItems[itemIndex].amount;
+        if (oldAmount < 0) {
+          state.totalExpense -= Math.abs(oldAmount);
+        } else {
+          state.totalIncome -= oldAmount;
+        }
+
+        // Update the item
+        state.budgetItems[itemIndex] = { id, date, name, amount };
+
+        // Update totals again after the change
+        if (amount < 0) {
+          state.totalExpense += Math.abs(amount);
+        } else {
+          state.totalIncome += amount;
+        }
+        state.balance = state.totalIncome - state.totalExpense;
+      }
+
+      state.isLoading = false;
+    },
     deleteTransaction: (state, { payload }) => {
       //update totals first before removing the item
       if (payload.amount < 0) {
@@ -97,6 +124,7 @@ export const {
   createBudget,
   addTransaction,
   setOpenBudgetItem,
+  editTransaction,
   deleteTransaction,
 } = demoSlice.actions;
 export default demoSlice.reducer;

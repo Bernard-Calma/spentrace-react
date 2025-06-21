@@ -4,12 +4,15 @@ import TotalBalance from "../../../common/TotalBalance";
 import { useState } from "react";
 import ShowTransaction from "./ShowTransaction";
 import { setOpenBudgetItem } from "../../../features/demoSlice";
+import EditTransaction from "./EditTransaction";
 
 const TransactionsList = ({ budgetName }) => {
   const dispatch = useDispatch();
   const { budgetItems, openBudgetItem } = useSelector((store) => store.demo);
 
   const [showTransaction, setShowTransaction] = useState(false);
+  const [showEditTransaction, setShowEditTransaction] = useState(false);
+
   const handleToggleTransaction = (transaction) => {
     if (transaction) {
       dispatch(setOpenBudgetItem(transaction));
@@ -42,9 +45,22 @@ const TransactionsList = ({ budgetName }) => {
 
   return (
     <div className="container transactions-list">
-      {showTransaction && (
-        <ShowTransaction handleToggleTransaction={handleToggleTransaction} />
+      {showTransaction && !showEditTransaction ? (
+        <ShowTransaction
+          handleToggleTransaction={handleToggleTransaction}
+          handleEditTransaction={() => {
+            setShowEditTransaction(true);
+          }}
+        />
+      ) : (
+        showEditTransaction && (
+          <EditTransaction
+            handleToggleTransaction={handleToggleTransaction}
+            handleToggleAddTransaction={() => setShowEditTransaction(false)}
+          />
+        )
       )}
+
       <h1 className="title">{budgetName}</h1>
       <h2 className="subtitle">Transactions List</h2>
       <TotalBalance className="totals" />
