@@ -19,9 +19,7 @@ const EditTransaction = ({
     const { name, value } = e.target;
     // Format date using date-fns
     if (name === "date") {
-      console.log("Date value:", value);
       const formattedDate = parseISO(value);
-      console.log("Formatted date:", formattedDate);
       setNewTransaction((prev) => ({
         ...prev,
         [name]: formattedDate,

@@ -41,8 +41,6 @@ const demoSlice = createSlice({
     },
     addTransaction: (state, { payload }) => {
       const { amount } = payload;
-      state.budgetItems.push({ id: state.newBudgetId++, ...payload });
-      state.isLoading = false;
 
       // Update totals
       if (amount < 0) {
@@ -51,10 +49,16 @@ const demoSlice = createSlice({
         state.totalIncome += amount;
       }
       state.balance = state.totalIncome - state.totalExpense;
+      state.budgetItems = [...state.budgetItems, payload];
+      state.isLoading = false;
     },
     editTransaction: (state, { payload }) => {
       const { id, amount } = payload;
       const itemIndex = state.budgetItems.findIndex((item) => item.id === id);
+      console.log("Adding transaction:", payload);
+      console.log("Date before formatting:", payload.date);
+      // Convert date to Date object if it's in ISO string format
+      console.log("Date after conversion:", format(payload.date, "yyyy-MM-dd"));
 
       if (itemIndex !== -1) {
         // Update totals first
@@ -65,16 +69,14 @@ const demoSlice = createSlice({
           state.totalIncome -= oldAmount;
         }
 
+        let updatedTransaction = {
+          ...state.budgetItems[itemIndex],
+          ...payload,
+          date: format(payload.date, "yyyy-MM-dd"), // Ensure date is formatted
+        };
+
         // Update the item
         state.budgetItems[itemIndex] = payload;
-
-        // Date is coming in as iso string, convert it to Date object
-        if (payload.date) {
-          state.budgetItems[itemIndex].date = format(
-            payload.date,
-            "yyyy-MM-dd"
-          );
-        }
 
         // Update totals again after the change
         if (amount < 0) {

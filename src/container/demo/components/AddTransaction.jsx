@@ -2,13 +2,13 @@ import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../../../features/demoSlice";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 const AddTransaction = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
   const [newTransaction, setNewTransaction] = useState({
     amount: 0,
-    date: "",
+    date: parseISO(format(new Date(), "yyyy-MM-dd")), // Default to current date,
     name: "",
     type: "expense", // Default type is expense
     category: "",
@@ -18,11 +18,10 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
     const { name, value } = e.target;
     // Format date using date-fns
     if (name === "date") {
-      const formattedDate = format(new Date(value), "yyyy-MM-dd");
-      setNewTransaction((prev) => ({
-        ...prev,
-        [name]: formattedDate,
-      }));
+      setNewTransaction({
+        ...newTransaction,
+        date: parseISO(value),
+      });
       return;
     }
     // Limit amount to two decimal places and max value of 1000000
@@ -58,9 +57,16 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
       ...newTransaction,
       amount: transactionAmount,
     };
-    // Dispatch the action to add the new transaction
-    console.log("Adding new transaction:", newTransactionData);
-    dispatch(addTransaction(newTransactionData));
+    console.log("New Transaction Data:", {
+      ...newTransactionData,
+      date: format(newTransactionData.date, "yyyy-MM-dd"),
+    });
+    dispatch(
+      addTransaction({
+        ...newTransactionData,
+        date: format(newTransactionData.date, "yyyy-MM-dd"),
+      })
+    );
     // Reset form after submission
     setNewTransaction({
       amount: 0,
@@ -132,7 +138,7 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
             text="Transaction Date"
             name="date"
             className="label-input"
-            value={newTransaction.date}
+            value={format(newTransaction.date, "yyyy-MM-dd")}
             onChange={handleChange}
             required
           />
