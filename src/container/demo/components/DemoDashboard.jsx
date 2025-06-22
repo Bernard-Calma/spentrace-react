@@ -6,11 +6,9 @@ import { changeView } from "../../../features/viewSlice";
 import TotalBalance from "../../../common/TotalBalance";
 import { format, parseISO } from "date-fns";
 
-const DemoDashboard = () => {
+const DemoDashboard = ({ showAddTransaction, handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
   const { budgetName, budgetItems } = useSelector((store) => store.demo);
-
-  const [showAddTransaction, setShowAddTransaction] = useState(false);
 
   // Sort budget items by date (newest first) and then by name
   // Format the date to "MMM dd" (e.g., "Jan 01")
@@ -27,28 +25,9 @@ const DemoDashboard = () => {
       date: format(parseISO(item.date), "MMM dd"),
     }));
 
-  console.log("Sorted Transactions:", sortedTransactions);
-
-  const handleToggleAddTransaction = () => {
-    setShowAddTransaction((prev) => !prev);
-  };
-
   return (
     <div className="container dashboard">
       <h1 className="title">{budgetName}</h1>
-      {showAddTransaction && (
-        <AddTransaction
-          handleToggleAddTransaction={handleToggleAddTransaction}
-        />
-      )}
-      <div className="mobile-only add-transaction">
-        <button
-          className="button add-transaction-button"
-          onClick={handleToggleAddTransaction}
-        >
-          +
-        </button>
-      </div>
       <div className="dashboard-header">
         <TotalBalance className="totals" />
         <button

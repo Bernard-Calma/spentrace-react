@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeView, toggleNavBar } from "../../features/viewSlice";
 import { loadFromLocalStorage } from "../../features/demoSlice";
@@ -8,6 +8,7 @@ import CreateBudget from "./components/CreateBudget";
 import "./demoHome.scss";
 import TransactionsList from "./components/TransactionsList";
 import Header from "../../common/Header/Header";
+import AddTransaction from "./components/AddTransaction";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,12 @@ const DemoHome = () => {
   const { homeView, planView, billView, accountView } = useSelector(
     (store) => store.view
   );
+
+  const [showAddTransaction, setShowAddTransaction] = useState(false);
+
+  const handleToggleAddTransaction = () => {
+    setShowAddTransaction((prev) => !prev);
+  };
 
   const hadleChangeView = (view) => {
     // planView: homeView === "Plan" ? "Plan List" : planView
@@ -65,11 +72,28 @@ const DemoHome = () => {
 
   return (
     <section className="container demo-home">
+      <div className="mobile-only add-transaction">
+        <button
+          className="button add-transaction-button"
+          onClick={handleToggleAddTransaction}
+        >
+          +
+        </button>
+      </div>
+
       <Header />
+      {showAddTransaction && (
+        <AddTransaction
+          handleToggleAddTransaction={handleToggleAddTransaction}
+        />
+      )}
       {budgetName === "" ? (
         <CreateBudget />
       ) : demoView === "Demo" ? (
-        <DemoDashboard />
+        <DemoDashboard
+          showAddTransaction={showAddTransaction}
+          handleToggleAddTransaction={handleToggleAddTransaction}
+        />
       ) : (
         <TransactionsList budgetName={budgetName} />
       )}

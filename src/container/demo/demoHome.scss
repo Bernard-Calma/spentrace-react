@@ -274,7 +274,7 @@
 
     .add-transaction {
       padding: 1.5rem;
-      margin-top: 2.5rem;
+      margin: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -567,7 +567,7 @@
       .add-transaction {
         width: 90%;
         height: 100%;
-        z-index: 1000;
+        z-index: 1001;
         max-width: 400px;
         margin: 0;
 
