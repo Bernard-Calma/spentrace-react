@@ -156,7 +156,6 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
             placeholder="e.g., Food, Utilities"
             value={newTransaction.category}
             onChange={handleChange}
-            required
           />
           <button className="button" type="submit">
             Add Transaction
