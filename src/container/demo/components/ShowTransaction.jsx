@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTransaction } from "../../../features/demoSlice";
 
@@ -40,7 +40,8 @@ const ShowTransaction = ({
             </span>
           </p>
           <p>
-            Date: <span>{format(openBudgetItem.date, "MMMM dd, yyyy")}</span>
+            Date:{" "}
+            <span>{format(parseISO(openBudgetItem.date), "MMM dd, yyyy")}</span>
           </p>
           <p>
             Category: <span>{openBudgetItem.category || "Uncategorized"}</span>

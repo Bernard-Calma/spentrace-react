@@ -4,7 +4,7 @@ import { useState } from "react";
 import AddTransaction from "./AddTransaction";
 import { changeView } from "../../../features/viewSlice";
 import TotalBalance from "../../../common/TotalBalance";
-import { format, formatDate, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 const DemoDashboard = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const DemoDashboard = () => {
 
   // Sort budget items by date (newest first) and then by name
   // Format the date to "MMM dd" (e.g., "Jan 01")
-  const sortedTransactions = budgetItems
+  const sortedTransactions = [...budgetItems]
     .sort((a, b) => {
       const dateA = new Date(a.date);
       const dateB = new Date(b.date);
