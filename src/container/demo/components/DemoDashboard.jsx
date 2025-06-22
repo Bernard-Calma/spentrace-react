@@ -4,6 +4,7 @@ import { useState } from "react";
 import AddTransaction from "./AddTransaction";
 import { changeView } from "../../../features/viewSlice";
 import TotalBalance from "../../../common/TotalBalance";
+import { format, formatDate, parseISO } from "date-fns";
 
 const DemoDashboard = () => {
   const dispatch = useDispatch();
@@ -11,13 +12,22 @@ const DemoDashboard = () => {
 
   const [showAddTransaction, setShowAddTransaction] = useState(false);
 
-  const sortedTransactions = [...budgetItems].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    if (dateA > dateB) return -1;
-    if (dateA < dateB) return 1;
-    return a.name.localeCompare(b.name);
-  });
+  // Sort budget items by date (newest first) and then by name
+  // Format the date to "MMM dd" (e.g., "Jan 01")
+  const sortedTransactions = budgetItems
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      if (dateA > dateB) return -1;
+      if (dateA < dateB) return 1;
+      return a.name.localeCompare(b.name);
+    })
+    .map((item) => ({
+      ...item,
+      date: format(parseISO(item.date), "MMM dd"),
+    }));
+
+  console.log("Sorted Transactions:", sortedTransactions);
 
   const handleToggleAddTransaction = () => {
     setShowAddTransaction((prev) => !prev);
