@@ -39,8 +39,8 @@ const demoSlice = createSlice({
       state.isLoading = false;
     },
     addTransaction: (state, { payload }) => {
-      const { date, name, amount } = payload;
-      state.budgetItems.push({ id: state.newBudgetId++, date, name, amount });
+      const { amount } = payload;
+      state.budgetItems.push({ id: state.newBudgetId++, ...payload });
       state.isLoading = false;
 
       // Update totals
@@ -52,7 +52,7 @@ const demoSlice = createSlice({
       state.balance = state.totalIncome - state.totalExpense;
     },
     editTransaction: (state, { payload }) => {
-      const { id, date, name, amount } = payload;
+      const { id, amount } = payload;
       const itemIndex = state.budgetItems.findIndex((item) => item.id === id);
 
       if (itemIndex !== -1) {
@@ -65,7 +65,7 @@ const demoSlice = createSlice({
         }
 
         // Update the item
-        state.budgetItems[itemIndex] = { id, date, name, amount };
+        state.budgetItems[itemIndex] = payload;
 
         // Update totals again after the change
         if (amount < 0) {
