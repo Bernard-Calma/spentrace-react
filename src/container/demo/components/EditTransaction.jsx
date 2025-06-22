@@ -2,7 +2,7 @@ import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
 import { useDispatch, useSelector } from "react-redux";
 import { editTransaction } from "../../../features/demoSlice";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 const EditTransaction = ({
   handleToggleTransaction,
@@ -19,7 +19,9 @@ const EditTransaction = ({
     const { name, value } = e.target;
     // Format date using date-fns
     if (name === "date") {
-      const formattedDate = format(new Date(value), "yyyy-MM-dd");
+      console.log("Date value:", value);
+      const formattedDate = parseISO(value);
+      console.log("Formatted date:", formattedDate);
       setNewTransaction((prev) => ({
         ...prev,
         [name]: formattedDate,
@@ -136,7 +138,7 @@ const EditTransaction = ({
             text="Transaction Date"
             name="date"
             className="label-input"
-            value={newTransaction.date}
+            value={format(newTransaction.date, "yyyy-MM-dd")}
             onChange={handleChange}
             required
           />

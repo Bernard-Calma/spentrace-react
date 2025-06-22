@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import TotalBalance from "../../../common/TotalBalance";
 import { useState } from "react";
@@ -75,10 +75,10 @@ const TransactionsList = ({ budgetName }) => {
           >
             <span>
               {/* If date is today show today string instead */}
-              {format(tx.date, "yyyy-MM-dd") ===
+              {format(parseISO(tx.date), "yyyy-MM-dd") ===
               format(new Date(), "yyyy-MM-dd")
                 ? "Today "
-                : `${format(tx.date, "MMMM dd")} `}
+                : `${format(parseISO(tx.date), "MMMM dd")} `}
               - {tx.name}
             </span>
             <span className={tx.amount < 0 ? "expense" : "income"}>
