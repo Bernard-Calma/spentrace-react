@@ -501,6 +501,23 @@
         }
       }
     }
+
+    .deficit-warning {
+      background-image: radial-gradient(
+        circle at 50% 50%,
+        rgba(v.$warning-color, 1) 0%,
+        rgba(v.$warning-color, 0.1) 100%
+      );
+      color: v.$primary-color;
+      border-radius: 0.25rem;
+      text-align: center;
+
+      p {
+        margin: 0;
+        font-weight: bold;
+        font-size: 0.875rem;
+      }
+    }
   }
 }
 

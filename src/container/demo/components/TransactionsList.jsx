@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ShowTransaction from "./ShowTransaction";
 import { setOpenBudgetItem } from "../../../features/demoSlice";
 import EditTransaction from "./EditTransaction";
+import { ru } from "date-fns/locale";
 
 const TransactionsList = ({ budgetName }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,10 @@ const TransactionsList = ({ budgetName }) => {
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [showTransaction, setShowTransaction] = useState(false);
   const [showEditTransaction, setShowEditTransaction] = useState(false);
-  const [deficitTransaction, setDeficitDate] = useState(null);
+  // Object to hold the transaction where income will not cover expenses
+  const [deficitObject, setDeficitObject] = useState();
+
+  const [deficitTransaction, setDeficitTransaction] = useState(null);
 
   const handleToggleTransaction = (transaction) => {
     if (transaction) {
@@ -36,29 +40,6 @@ const TransactionsList = ({ budgetName }) => {
   };
 
   useEffect(() => {
-    // Function to calculate the date when income will not cover expenses
-    const calculateDeficitDate = () => {
-      let runningIncomeTotal = totalIncome;
-      let deficitDate = null;
-
-      // Get the transaction where running income will be negative
-      for (let transaction of sortedTransactions) {
-        if (transaction.type === "expense") {
-          runningIncomeTotal += transaction.amount;
-          if (runningIncomeTotal < 0) {
-            deficitDate = new Date(transaction.date);
-
-            console.log("Transaction: ", transaction);
-            break;
-          }
-        }
-
-        console.log("Running Income Total: ", runningIncomeTotal);
-      }
-
-      setDeficitDate(deficitDate);
-    };
-
     // Sort transactions by date and name
     const sortTransaction = () => {
       setSortedTransactions(
@@ -71,6 +52,33 @@ const TransactionsList = ({ budgetName }) => {
           return dateA - dateB;
         })
       );
+    };
+
+    // Function to calculate the date when income will not cover expenses
+    const calculateDeficitDate = () => {
+      let runningIncomeTotal = totalIncome;
+
+      // Get the transaction where running income will be negative
+      for (let transaction of [...budgetItems].sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        if (dateA.getTime() === dateB.getTime()) {
+          return a.name.localeCompare(b.name);
+        }
+        return dateA - dateB;
+      })) {
+        if (transaction.type === "expense") {
+          runningIncomeTotal += transaction.amount;
+          if (runningIncomeTotal < 0) {
+            setDeficitObject({
+              transactionId: transaction.id,
+              date: transaction.date,
+              amount: runningIncomeTotal,
+            });
+            break;
+          }
+        }
+      }
     };
 
     sortTransaction();
@@ -103,6 +111,22 @@ const TransactionsList = ({ budgetName }) => {
       <div className="budget-items">
         {sortedTransactions.map((tx, index) => (
           <>
+            {/*If deficit object exist add a line*/}
+            {deficitObject && deficitObject.transactionId === tx.id && (
+              <div className="deficit-warning">
+                <p>
+                  Balance starts to be negative starting at{" "}
+                  <span className="deficit-amount">
+                    $
+                    {Math.abs(deficitObject.amount).toLocaleString("en-US", {
+                      style: "decimal",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </span>
+                </p>
+              </div>
+            )}
             <div
               key={index}
               className={`transaction-item ${
