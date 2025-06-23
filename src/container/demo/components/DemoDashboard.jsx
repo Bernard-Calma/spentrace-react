@@ -69,7 +69,11 @@ const DemoDashboard = ({ showAddTransaction, handleToggleAddTransaction }) => {
                 </li>
               ) : null
             )}
-            <div>
+            <div
+              onClick={() =>
+                dispatch(changeView({ demoView: "transactions-list" }))
+              }
+            >
               <p className="transactions-list_more">
                 {sortedTransactions.length >= 5
                   ? `view +${sortedTransactions.length - 5} more`
