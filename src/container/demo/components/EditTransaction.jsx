@@ -13,6 +13,7 @@ const EditTransaction = ({
   const [newTransaction, setNewTransaction] = useState({
     ...openBudgetItem,
     type: openBudgetItem.amount < 0 ? "expense" : "income",
+    amount: Math.abs(openBudgetItem.amount), // Ensure amount is positive for input
   });
 
   const handleChange = (e) => {
