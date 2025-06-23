@@ -117,11 +117,25 @@ const demoSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loadFromLocalStorage.fulfilled, (state, action) => {
+        let totalIncome = 0;
+        let totalExpense = 0;
+
+        totalIncome = action.payload.budgetItems.reduce(
+          (acc, item) => acc + (item.amount > 0 ? item.amount : 0),
+          0
+        );
+        totalExpense = action.payload.budgetItems.reduce(
+          (acc, item) => acc + (item.amount < 0 ? Math.abs(item.amount) : 0),
+          0
+        );
+
+        let balance = totalIncome - totalExpense;
+
         if (action.payload) {
           state.budgetItems = action.payload.budgetItems || [];
-          state.totalIncome = action.payload.totalIncome || 0;
-          state.totalExpense = action.payload.totalExpense || 0;
-          state.balance = action.payload.balance || 0;
+          state.totalIncome = totalIncome;
+          state.totalExpense = totalExpense;
+          state.balance = balance;
           state.nextTarget = action.payload.nextTarget || {};
           state.openBudget = action.payload.openBudget || {};
           state.newBudgetId = action.payload.newBudgetId || 0;
