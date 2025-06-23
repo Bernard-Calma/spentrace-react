@@ -62,7 +62,12 @@ const EditTransaction = ({
     };
     // Dispatch the action to add the new transaction
     console.log("Adding new transaction:", newTransactionData);
-    dispatch(editTransaction(newTransactionData));
+    dispatch(
+      editTransaction({
+        ...newTransactionData,
+        date: format(newTransactionData.date, "yyyy-MM-dd"),
+      })
+    );
     // Reset form after submission
     setNewTransaction({
       amount: 0,
