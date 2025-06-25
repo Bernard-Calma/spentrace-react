@@ -18,15 +18,6 @@ const EditTransaction = ({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Format date using date-fns
-    if (name === "date") {
-      const formattedDate = parseISO(value);
-      setNewTransaction((prev) => ({
-        ...prev,
-        [name]: formattedDate,
-      }));
-      return;
-    }
     // Limit amount to two decimal places and max value of 1000000
     if (name === "amount") {
       if (value === "") {
@@ -61,12 +52,7 @@ const EditTransaction = ({
       amount: transactionAmount,
     };
     // Dispatch the action to add the new transaction
-    dispatch(
-      editTransaction({
-        ...newTransactionData,
-        date: format(newTransactionData.date, "yyyy-MM-dd"),
-      })
-    );
+    dispatch(editTransaction(newTransactionData));
     // Reset form after submission
     setNewTransaction({
       amount: 0,
@@ -141,7 +127,7 @@ const EditTransaction = ({
             text="Transaction Date"
             name="date"
             className="label-input"
-            value={format(newTransaction.date, "yyyy-MM-dd")}
+            value={newTransaction.date}
             onChange={handleChange}
             required
           />
