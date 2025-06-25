@@ -44,8 +44,10 @@ header {
       font-weight: 700;
       color: v.$text-color;
       text-decoration: none;
+      cursor: pointer;
 
-      a:hover {
+      a:hover,
+      p:hover {
         color: v.$accent-color;
       }
     }

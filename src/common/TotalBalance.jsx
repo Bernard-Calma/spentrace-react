@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const TotalBalance = ({ className }) => {
   const { totalIncome, totalExpense } = useSelector((store) => store.demo);

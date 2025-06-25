@@ -22,14 +22,14 @@ const Header = () => {
       <div className="nav-container">
         <nav className="hidden md:flex gap-3 ml-6 text-sm text-gray-600">
           {/* Demo Only */}
-          <a onClick={() => dispatch(changeView({ demoView: "Demo" }))}>Home</a>
-          <a
+          <p onClick={() => dispatch(changeView({ demoView: "Demo" }))}>Home</p>
+          <p
             onClick={() =>
               dispatch(changeView({ demoView: "transactions-list" }))
             }
           >
             Transactions
-          </a>
+          </p>
           {/* Full Access */}
           {/* Budget, Bills, Accounts */}
           {/* TO-DO: Add nav for budget, bills and accounts */}

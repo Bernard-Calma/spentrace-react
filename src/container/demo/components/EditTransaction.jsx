@@ -2,7 +2,6 @@ import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
 import { useDispatch, useSelector } from "react-redux";
 import { editTransaction } from "../../../features/demoSlice";
-import { format, parseISO } from "date-fns";
 
 const EditTransaction = ({
   handleToggleTransaction,

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeView, toggleNavBar } from "../../features/viewSlice";
 import { loadFromLocalStorage, updateBalance } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
 import CreateBudget from "./components/CreateBudget";
@@ -17,9 +16,6 @@ const DemoHome = () => {
   const { budgetName, budgetItems } = useSelector((store) => store.demo);
   // Views
   const { demoView } = useSelector((store) => store.view);
-  const { homeView, planView, billView, accountView } = useSelector(
-    (store) => store.view
-  );
 
   const [showAddTransaction, setShowAddTransaction] = useState(false);
 
@@ -27,43 +23,6 @@ const DemoHome = () => {
     setShowAddTransaction((prev) => !prev);
   };
 
-  const hadleChangeView = (view) => {
-    // planView: homeView === "Plan" ? "Plan List" : planView
-    // This same login accross all cases is to keep the current view on each mainViews
-    // e.g if bill view is add if you change the main view and go back to bill view it will still be on add.
-    switch (view) {
-      case "Plan List":
-        dispatch(
-          changeView({
-            homeView: "Plan",
-            planView: homeView === "Plan" ? "Plan List" : planView,
-          })
-        );
-        break;
-      case "Bills List":
-        dispatch(
-          changeView({
-            homeView: "Bills List",
-            billView: homeView === "Bills List" ? "Bills List" : billView,
-          })
-        );
-        break;
-      case "Account List":
-        dispatch(
-          changeView({
-            homeView: "Account List",
-            accountView: {
-              view:
-                homeView === "Account List" ? "Account List" : accountView.view,
-            },
-          })
-        );
-        break;
-      default:
-        break;
-    }
-    dispatch(toggleNavBar());
-  };
   // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
     dispatch(loadFromLocalStorage());
@@ -72,6 +31,7 @@ const DemoHome = () => {
 
   useEffect(() => {
     dispatch(updateBalance());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [budgetItems]);
 
   return (
