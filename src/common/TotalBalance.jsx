@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const TotalBalance = ({ className }) => {
   const { totalIncome, totalExpense } = useSelector((store) => store.demo);
-
   return (
     <div className={`total-balance ${className}`}>
       <div className="total">
@@ -18,7 +17,7 @@ const TotalBalance = ({ className }) => {
         <p
           className={`${totalIncome + totalExpense > 0 ? "income" : "expense"}`}
         >
-          ${(totalIncome - totalExpense).toFixed(2)}
+          ${(totalIncome + totalExpense).toFixed(2)}
         </p>
       </div>
     </div>

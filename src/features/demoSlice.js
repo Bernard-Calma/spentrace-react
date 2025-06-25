@@ -76,6 +76,21 @@ const demoSlice = createSlice({
     setOpenBudgetItem: (state, action) => {
       state.openBudgetItem = action.payload;
     },
+    updateBalance: (state) => {
+      let totalIncome = 0;
+      let totalExpense = 0;
+      for (let transaction of [...state.budgetItems]) {
+        if (transaction.type === "expense") {
+          totalExpense += transaction.amount;
+        } else {
+          totalIncome += transaction.amount;
+        }
+      }
+
+      state.totalIncome = totalIncome;
+      state.totalExpense = totalExpense;
+      state.balance = totalIncome + totalExpense;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -117,5 +132,6 @@ export const {
   setOpenBudgetItem,
   editTransaction,
   deleteTransaction,
+  updateBalance,
 } = demoSlice.actions;
 export default demoSlice.reducer;

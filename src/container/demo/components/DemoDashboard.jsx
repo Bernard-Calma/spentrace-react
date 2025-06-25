@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import Calendar from "./Calendar";
-import { useState } from "react";
-import AddTransaction from "./AddTransaction";
 import { changeView } from "../../../features/viewSlice";
 import TotalBalance from "../../../common/TotalBalance";
 import { format, parseISO } from "date-fns";
 
-const DemoDashboard = ({ showAddTransaction, handleToggleAddTransaction }) => {
+const DemoDashboard = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
   const { budgetName, budgetItems } = useSelector((store) => store.demo);
 
@@ -24,7 +22,6 @@ const DemoDashboard = ({ showAddTransaction, handleToggleAddTransaction }) => {
       ...item,
       date: format(parseISO(item.date), "MMM dd"),
     }));
-
   return (
     <div className="container dashboard">
       <h1 className="title">{budgetName}</h1>

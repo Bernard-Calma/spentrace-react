@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeView, toggleNavBar } from "../../features/viewSlice";
-import { loadFromLocalStorage } from "../../features/demoSlice";
+import { loadFromLocalStorage, updateBalance } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
 import CreateBudget from "./components/CreateBudget";
 
@@ -14,7 +14,7 @@ const DemoHome = () => {
   const dispatch = useDispatch();
   // ------------------------------ VARIABLES ------------------------------
   // Plans
-  const { budgetName, isLoading } = useSelector((store) => store.demo);
+  const { budgetName, budgetItems } = useSelector((store) => store.demo);
   // Views
   const { demoView } = useSelector((store) => store.view);
   const { homeView, planView, billView, accountView } = useSelector(
@@ -69,6 +69,10 @@ const DemoHome = () => {
     dispatch(loadFromLocalStorage());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    dispatch(updateBalance());
+  }, [budgetItems]);
 
   return (
     <section className="container demo-home">
