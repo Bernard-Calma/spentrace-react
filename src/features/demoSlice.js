@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { format } from "date-fns";
 
 export const loadFromLocalStorage = createAsyncThunk(
   "demo/loadFromLocalStorage",
@@ -55,19 +54,9 @@ const demoSlice = createSlice({
       state.isLoading = false;
     },
     editTransaction: (state, { payload }) => {
-      const { id, amount } = payload;
-      const editTransaction = null;
-
-      state.budgetItems.map((item) => {
-        console.log(item);
-      });
-
-      for (let index of state.budgetItems) {
-        console.log(state.budgetItems[index]);
-        if (state.budgetItems[index].id === id) {
-          console.log(state.budgetItems[index]);
-        }
-      }
+      state.budgetItems = state.budgetItems.map((transaction) =>
+        transaction.id === payload.id ? payload : transaction
+      );
 
       state.isLoading = false;
     },

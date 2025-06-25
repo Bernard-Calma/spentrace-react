@@ -23,7 +23,11 @@ const Header = () => {
         <nav className="hidden md:flex gap-3 ml-6 text-sm text-gray-600">
           {/* Demo Only */}
           <a onClick={() => dispatch(changeView({ demoView: "Demo" }))}>Home</a>
-          <a onClick={() => dispatch(changeView({ demoView: "transactions" }))}>
+          <a
+            onClick={() =>
+              dispatch(changeView({ demoView: "transactions-list" }))
+            }
+          >
             Transactions
           </a>
           {/* Full Access */}
