@@ -16,7 +16,7 @@ const TotalBalance = ({ className }) => {
       <div className="total">
         <p>Balance</p>
         <p
-          className={`${totalIncome - totalExpense > 0 ? "income" : "expense"}`}
+          className={`${totalIncome + totalExpense > 0 ? "income" : "expense"}`}
         >
           ${(totalIncome - totalExpense).toFixed(2)}
         </p>

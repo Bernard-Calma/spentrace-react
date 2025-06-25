@@ -21,7 +21,6 @@ const initialState = {
   totalIncome: 0,
   totalExpense: 0,
   balance: 0,
-  nextTarget: {},
   openBudgetItem: {},
   isLoading: true,
 };
@@ -57,39 +56,17 @@ const demoSlice = createSlice({
     },
     editTransaction: (state, { payload }) => {
       const { id, amount } = payload;
-      const itemIndex = state.budgetItems.findIndex((item) => item.id === id);
-      console.log("Adding transaction:", payload);
-      console.log("Date before formatting:", payload.date);
-      // Convert date to Date object if it's in ISO string format
-      console.log("Date after conversion:", format(payload.date, "yyyy-MM-dd"));
+      const editTransaction = null;
 
-      if (itemIndex !== -1) {
-        // Update totals first
-        const oldAmount = state.budgetItems[itemIndex].amount;
-        if (oldAmount < 0) {
-          state.totalExpense -= Math.abs(oldAmount);
-        } else {
-          state.totalIncome -= oldAmount;
+      state.budgetItems.map((item) => {
+        console.log(item);
+      });
+
+      for (let index of state.budgetItems) {
+        console.log(state.budgetItems[index]);
+        if (state.budgetItems[index].id === id) {
+          console.log(state.budgetItems[index]);
         }
-
-        let updatedTransaction = {
-          ...state.budgetItems[itemIndex],
-          ...payload,
-          date: format(payload.date, "yyyy-MM-dd"), // Ensure date is formatted
-        };
-
-        // Update the item
-        state.budgetItems[itemIndex] = payload;
-
-        // Update totals again after the change
-        if (amount < 0) {
-          state.totalExpense += Math.abs(amount);
-        } else {
-          state.totalIncome += amount;
-        }
-
-        //
-        state.balance = state.totalIncome - state.totalExpense;
       }
 
       state.isLoading = false;
@@ -116,29 +93,24 @@ const demoSlice = createSlice({
       .addCase(loadFromLocalStorage.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loadFromLocalStorage.fulfilled, (state, action) => {
-        let totalIncome = 0;
-        let totalExpense = 0;
+      .addCase(loadFromLocalStorage.fulfilled, (state, { payload }) => {
+        // Set state if payload.budgetItems exist.
+        if (payload.budgetItems.length !== -1) {
+          state.budgetItems = [...payload.budgetItems];
+          let totalIncome = 0;
+          let totalExpense = 0;
 
-        totalIncome = action.payload.budgetItems.reduce(
-          (acc, item) => acc + (item.amount > 0 ? item.amount : 0),
-          0
-        );
-        totalExpense = action.payload.budgetItems.reduce(
-          (acc, item) => acc + (item.amount < 0 ? Math.abs(item.amount) : 0),
-          0
-        );
+          for (let transaction of [...payload.budgetItems]) {
+            if (transaction.type === "expense") {
+              totalExpense += transaction.amount;
+            } else {
+              totalIncome += transaction.amount;
+            }
+          }
 
-        let balance = totalIncome - totalExpense;
-
-        if (action.payload) {
-          state.budgetItems = action.payload.budgetItems || [];
           state.totalIncome = totalIncome;
           state.totalExpense = totalExpense;
-          state.balance = balance;
-          state.nextTarget = action.payload.nextTarget || {};
-          state.openBudget = action.payload.openBudget || {};
-          state.newBudgetId = action.payload.newBudgetId || 0;
+          state.balance = totalIncome + totalExpense;
         }
         state.isLoading = false;
       })

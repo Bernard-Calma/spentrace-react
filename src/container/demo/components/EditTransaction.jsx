@@ -61,7 +61,6 @@ const EditTransaction = ({
       amount: transactionAmount,
     };
     // Dispatch the action to add the new transaction
-    console.log("Adding new transaction:", newTransactionData);
     dispatch(
       editTransaction({
         ...newTransactionData,

@@ -87,15 +87,17 @@ const DemoHome = () => {
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
       )}
-      {budgetName === "" ? (
+      {budgetName === "" || !budgetName ? (
         <CreateBudget />
       ) : demoView === "Demo" ? (
         <DemoDashboard
           showAddTransaction={showAddTransaction}
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
-      ) : (
+      ) : demoView === "transactions-list" ? (
         <TransactionsList budgetName={budgetName} />
+      ) : (
+        <></>
       )}
     </section>
   );
