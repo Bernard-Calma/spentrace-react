@@ -519,6 +519,121 @@
       }
     }
   }
+
+  & > .demo-bill {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: v.$text-color;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: v.$text-color_darker;
+    }
+
+    p {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    //     <div className="button add-bill flex justify-end mb-4">
+    //   <button className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:from-blue-600 hover:to-blue-800 transition">
+    //     <svg
+    //       xmlns="http://www.w3.org/2000/svg"
+    //       fill="none"
+    //       viewBox="0 0 24 24"
+    //       strokeWidth="1.5"
+    //       stroke="currentColor"
+    //       className="w-5 h-5"
+    //     >
+    //       <path
+    //         strokeLinecap="round"
+    //         strokeLinejoin="round"
+    //         d="M12 4.5v15m7.5-7.5h-15"
+    //       />
+    //     </svg>
+    //     Add Bill
+    //   </button>
+    // </div>
+    .add-bill {
+      width: 25%;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0.5rem auto;
+
+      .add-bill_button {
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(to right, #2196f3, #1976d2);
+        border: none;
+        border-radius: 1rem;
+        color: v.$primary-color;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:hover {
+          background-image: linear-gradient(to right, #2199f3, #19add2);
+        }
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .demo-bill_body {
+      display: flex;
+      min-width: 25%;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .bills-type {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+        background-color: v.$secondary-color;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+        .bills-list {
+          width: 100%;
+          .bill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0.25rem;
+            color: v.$text-color_darker;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+
+            border-bottom: v.$primary-color 1px solid;
+
+            p {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 900px) {
