@@ -30,6 +30,9 @@ const Header = () => {
           >
             Transactions
           </p>
+          <p onClick={() => dispatch(changeView({ demoView: "bills" }))}>
+            Bills
+          </p>
           {/* Full Access */}
           {/* Budget, Bills, Accounts */}
           {/* TO-DO: Add nav for budget, bills and accounts */}

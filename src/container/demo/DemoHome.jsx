@@ -8,6 +8,7 @@ import "./demoHome.scss";
 import TransactionsList from "./components/TransactionsList";
 import Header from "../../common/Header/Header";
 import AddTransaction from "./components/AddTransaction";
+import DemoBill from "./components/DemoBill";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,8 @@ const DemoHome = () => {
         />
       ) : demoView === "transactions-list" ? (
         <TransactionsList budgetName={budgetName} />
+      ) : demoView === "bills" ? (
+        <DemoBill />
       ) : (
         <></>
       )}
