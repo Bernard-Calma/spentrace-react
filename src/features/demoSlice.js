@@ -17,6 +17,38 @@ const initialState = {
   budgetName: "",
   owner: "",
   budgetItems: [],
+  billItems: [
+    {
+      id: 1,
+      name: "Electricity Bill",
+      amount: -100,
+      date: "2023-10-15",
+    },
+    {
+      id: 2,
+      name: "Water Bill",
+      amount: -50,
+      date: "2023-10-20",
+    },
+    {
+      id: 3,
+      name: "Internet Bill",
+      amount: -75,
+      date: "2023-10-25",
+    },
+    {
+      id: 4,
+      name: "Rent",
+      amount: -1200,
+      date: "2023-10-01",
+    },
+    {
+      id: 5,
+      name: "Phone Bill",
+      amount: -60,
+      date: "2023-10-05",
+    },
+  ],
   totalIncome: 0,
   totalExpense: 0,
   balance: 0,
@@ -90,6 +122,12 @@ const demoSlice = createSlice({
       state.totalIncome = totalIncome;
       state.totalExpense = totalExpense;
       state.balance = totalIncome + totalExpense;
+    },
+    addBill: (state, { payload }) => {
+      // Attach a unique ID if not present, using billItems length
+      payload.id = state.billItems.length + 1;
+      state.billItems = [...state.billItems, payload];
+      state.isLoading = false;
     },
   },
   extraReducers: (builder) => {
