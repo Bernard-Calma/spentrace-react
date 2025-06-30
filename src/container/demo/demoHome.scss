@@ -546,26 +546,6 @@
       font-size: 1rem;
       text-align: center;
     }
-
-    //     <div className="button add-bill flex justify-end mb-4">
-    //   <button className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold px-5 py-2 rounded-full shadow-md hover:shadow-lg hover:from-blue-600 hover:to-blue-800 transition">
-    //     <svg
-    //       xmlns="http://www.w3.org/2000/svg"
-    //       fill="none"
-    //       viewBox="0 0 24 24"
-    //       strokeWidth="1.5"
-    //       stroke="currentColor"
-    //       className="w-5 h-5"
-    //     >
-    //       <path
-    //         strokeLinecap="round"
-    //         strokeLinejoin="round"
-    //         d="M12 4.5v15m7.5-7.5h-15"
-    //       />
-    //     </svg>
-    //     Add Bill
-    //   </button>
-    // </div>
     .add-bill {
       width: 25%;
       display: flex;
@@ -629,6 +609,25 @@
             p {
               margin: 0;
             }
+          }
+        }
+      }
+    }
+
+    .add-transaction {
+      .input-repeat {
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        input {
+          margin: 0;
+          cursor: pointer;
+
+          &:checked {
+            background-color: v.$accent-color;
           }
         }
       }

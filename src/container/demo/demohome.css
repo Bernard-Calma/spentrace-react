@@ -451,6 +451,114 @@
 .demo-home > .transactions-list .budget-items .transaction-item .item-actions button:hover {
   background-color: #005f8a;
 }
+.demo-home > .transactions-list .deficit-warning {
+  background-image: radial-gradient(circle at 50% 50%, #ff1e1e 0%, rgba(255, 30, 30, 0.1) 100%);
+  color: rgb(243, 244, 246);
+  border-radius: 0.25rem;
+  text-align: center;
+}
+.demo-home > .transactions-list .deficit-warning p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+.demo-home > .demo-bill {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: rgb(75, 85, 99);
+}
+.demo-home > .demo-bill h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.demo-home > .demo-bill h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: rgb(55, 65, 81);
+}
+.demo-home > .demo-bill p {
+  font-size: 1rem;
+  text-align: center;
+}
+.demo-home > .demo-bill .add-bill {
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem auto;
+}
+.demo-home > .demo-bill .add-bill .add-bill_button {
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right, #2196f3, #1976d2);
+  border: none;
+  border-radius: 1rem;
+  color: rgb(243, 244, 246);
+  font-weight: 700;
+  cursor: pointer;
+}
+.demo-home > .demo-bill .add-bill .add-bill_button:hover {
+  background-image: linear-gradient(to right, #2199f3, #19add2);
+}
+.demo-home > .demo-bill .add-bill .add-bill_button svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+.demo-home > .demo-bill .demo-bill_body {
+  display: flex;
+  min-width: 25%;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.demo-home > .demo-bill .demo-bill_body .bills-type {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.demo-home > .demo-bill .demo-bill_body .bills-type .bills-list {
+  width: 100%;
+}
+.demo-home > .demo-bill .demo-bill_body .bills-type .bills-list .bill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.25rem;
+  color: rgb(55, 65, 81);
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: rgb(243, 244, 246) 1px solid;
+}
+.demo-home > .demo-bill .demo-bill_body .bills-type .bills-list .bill-item p {
+  margin: 0;
+}
+.demo-home > .demo-bill .add-transaction .input-repeat {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.demo-home > .demo-bill .add-transaction .input-repeat input {
+  margin: 0;
+  cursor: pointer;
+}
+.demo-home > .demo-bill .add-transaction .input-repeat input:checked {
+  background-color: #0070bb;
+}
 
 @media screen and (max-width: 900px) {
   .demo-home {
@@ -550,4 +658,4 @@
   .demo-home .mobile-only.add-transaction button:hover {
     background-color: #005f8a;
   }
-}/*# sourceMappingURL=demohome.css.map */
+}/*# sourceMappingURL=demoHome.css.map */

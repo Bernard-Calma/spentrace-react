@@ -54,8 +54,10 @@ header .nav-container nav {
   font-weight: 700;
   color: rgb(75, 85, 99);
   text-decoration: none;
+  cursor: pointer;
 }
-header .nav-container nav a:hover {
+header .nav-container nav a:hover,
+header .nav-container nav p:hover {
   color: #0070bb;
 }
 

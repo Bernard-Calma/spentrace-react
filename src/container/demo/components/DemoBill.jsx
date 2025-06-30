@@ -1,8 +1,11 @@
 import { format, parseISO } from "date-fns";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import AddBill from "./AddBill";
 
 const DemoBill = () => {
   const { billItems } = useSelector((store) => store.demo);
+  const [showAddBill, setShowAddBill] = useState(false);
 
   // Sort bills by date (newest first) and then by name
   const sortedBills = [...billItems].sort((a, b) => {
@@ -12,12 +15,20 @@ const DemoBill = () => {
     if (dateA < dateB) return -1;
     return a.name.localeCompare(b.name);
   });
+
+  const handleToggleAddBill = () => {
+    setShowAddBill((prev) => !prev);
+  };
+
   return (
     <div className="container demo-bill">
+      {showAddBill && (
+        <AddBill handleToggleAddTransaction={handleToggleAddBill} />
+      )}
       {/*TO DO: Change to months */}
       <h2>Demo Bills</h2>
       <div className="btn add-bill">
-        <button className="add-bill_button">
+        <button className="add-bill_button" onClick={handleToggleAddBill}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
