@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addBill, addTransaction } from "../../../features/demoSlice";
 import { format, parseISO } from "date-fns";
 import Categories from "../../../common/Categories";
+import { SelectInput } from "../../../common";
 
 const AddBill = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const AddBill = ({ handleToggleAddTransaction }) => {
     amount: 0,
     dueDate: parseISO(format(new Date(), "yyyy-MM-dd")), // Default to current date,
     name: "",
-    repeat: false,
+    repeat: "Never Repeat",
     endDate: null, // Default to current date,
     category: "",
   });
@@ -50,8 +51,8 @@ const AddBill = ({ handleToggleAddTransaction }) => {
     } else if (name === "repeat") {
       setNewBill({
         ...newBill,
-        repeat: e.target.checked,
-        endDate: e.target.checked ? newBill.dueDate : null,
+        repeat: value,
+        endDate: value !== "Never Repeat" ? newBill.dueDate : null,
       });
     } else {
       setNewBill((prev) => ({
@@ -80,7 +81,7 @@ const AddBill = ({ handleToggleAddTransaction }) => {
       amount: 0,
       dueDate: parseISO(format(new Date(), "yyyy-MM-dd")), // Default to current date,
       name: "",
-      repeat: false,
+      repeat: "Never Repeat",
       endDate: null, // Default to current date,
       category: "",
     });
@@ -118,17 +119,22 @@ const AddBill = ({ handleToggleAddTransaction }) => {
             onChange={handleChange}
             required
           />
-          <LabelInput
-            className="input-repeat"
-            type="checkbox"
-            htmlFor="repeat"
-            text="Repeat"
-            name="repeat"
-            checked={newBill.repeat}
+
+          <SelectInput
+            options={[
+              "Never Repeat",
+              "Everyday",
+              "Every Week",
+              "Every other week",
+              "Every Month",
+            ]}
+            value={newBill.repeat}
             onChange={handleChange}
+            name="repeat"
+            text="Repeat"
           />
 
-          {newBill.repeat && (
+          {newBill.repeat !== "Never Repeat" && (
             <LabelInput
               type="date"
               htmlFor="endDate"
