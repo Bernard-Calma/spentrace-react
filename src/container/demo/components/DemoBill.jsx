@@ -9,10 +9,15 @@ import {
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import AddBill from "./AddBill";
+import ShowBill from "./ShowBill";
 
 const DemoBill = () => {
   const { billItems } = useSelector((store) => store.demo);
   const [showAddBill, setShowAddBill] = useState(false);
+  const [showBill, setShowBill] = useState({
+    status: false,
+    bill: null,
+  });
 
   // Recreate the billItems array with if a bill repeat is not "Never Repeat" it will add another bill in the array
   const [billItemsWithRepeats] = useState(
@@ -84,10 +89,25 @@ const DemoBill = () => {
     setShowAddBill((prev) => !prev);
   };
 
+  const handleShowBill = (bill) => {
+    setShowBill({
+      status: !showBill.status,
+      bill: bill,
+    });
+  };
+
   return (
     <div className="container demo-bill">
       {showAddBill && (
         <AddBill handleToggleAddTransaction={handleToggleAddBill} />
+      )}
+      {showBill.status && (
+        <ShowBill
+          bill={showBill.bill}
+          handleToggleTransaction={() =>
+            setShowBill({ status: false, bill: null })
+          }
+        />
       )}
       {/*TO DO: Change to months */}
       <h2>Demo Bills</h2>
@@ -115,7 +135,11 @@ const DemoBill = () => {
           <div className="bills-list">
             {" "}
             {sortedBills?.map((bill, index) => (
-              <div className="bill-item" key={index}>
+              <div
+                className="bill-item"
+                key={index}
+                onClick={() => handleShowBill(bill)}
+              >
                 <p className="date">
                   {/* Only a random day of the month */}
                   {format(parseISO(bill.dueDate), "d")}th

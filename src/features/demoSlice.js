@@ -98,6 +98,19 @@ const demoSlice = createSlice({
       state.billItems = [...state.billItems, payload];
       state.isLoading = false;
     },
+    editBill: (state, { payload }) => {
+      state.billItems = state.billItems.map((bill) =>
+        bill.id === payload.id ? payload : bill
+      );
+      state.isLoading = false;
+    },
+    deleteBill: (state, { payload }) => {
+      console.log("Deleting bill:", payload);
+      state.billItems = state.billItems.filter(
+        (bill) => bill.id !== payload.id
+      );
+      state.isLoading = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -141,5 +154,7 @@ export const {
   deleteTransaction,
   updateBalance,
   addBill,
+  editBill,
+  deleteBill,
 } = demoSlice.actions;
 export default demoSlice.reducer;

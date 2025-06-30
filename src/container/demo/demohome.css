@@ -536,11 +536,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0.25rem;
   color: rgb(55, 65, 81);
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border-bottom: rgb(243, 244, 246) 1px solid;
+  cursor: pointer;
+  border-bottom: #0070bb 1px solid;
+}
+.demo-home > .demo-bill .demo-bill_body .bills-type .bills-list .bill-item:hover {
+  background-color: rgba(0, 112, 187, 0.1);
 }
 .demo-home > .demo-bill .demo-bill_body .bills-type .bills-list .bill-item p {
   margin: 0;
@@ -565,6 +568,27 @@
 .demo-home > .demo-bill .add-transaction .input-select select:focus {
   outline: none;
   border-color: #0070bb;
+}
+.demo-home > .demo-bill .add-transaction .transaction-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.demo-home > .demo-bill .add-transaction .transaction-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.demo-home > .demo-bill .add-transaction .transaction-actions button.edit-button:hover {
+  background-color: #e4e7eb;
+}
+.demo-home > .demo-bill .add-transaction .transaction-actions button.delete-button {
+  background-color: rgb(255, 30, 30) !important;
+  color: white;
+}
+.demo-home > .demo-bill .add-transaction .transaction-actions button.delete-button:hover {
+  background-color: #b70000 !important;
 }
 
 @media screen and (max-width: 900px) {
