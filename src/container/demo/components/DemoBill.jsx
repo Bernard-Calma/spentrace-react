@@ -1,4 +1,11 @@
-import { format, parseISO } from "date-fns";
+import {
+  addDays,
+  addWeeks,
+  format,
+  isAfter,
+  isEqual,
+  parseISO,
+} from "date-fns";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import AddBill from "./AddBill";
@@ -7,10 +14,67 @@ const DemoBill = () => {
   const { billItems } = useSelector((store) => store.demo);
   const [showAddBill, setShowAddBill] = useState(false);
 
+  // Recreate the billItems array with if a bill repeat is not "Never Repeat" it will add another bill in the array
+  const [billItemsWithRepeats] = useState(
+    [...billItems].flatMap((bill) => {
+      if (bill.repeat === "Never Repeat") {
+        return [bill];
+      }
+      // Everyday
+      else if (bill.repeat === "Everyday") {
+        const bills = [];
+        let newDate = parseISO(bill.dueDate);
+        while (
+          isAfter(parseISO(bill.endDate), newDate) ||
+          isEqual(parseISO(bill.endDate), newDate)
+        ) {
+          bills.push({
+            ...bill,
+            dueDate: format(newDate, "yyyy-MM-dd"),
+          });
+          newDate = addDays(newDate, 1);
+        }
+        return bills;
+      }
+      // Every Week
+      else if (bill.repeat === "Every Week") {
+        const bills = [];
+        let newDate = parseISO(bill.dueDate);
+        while (
+          isAfter(parseISO(bill.endDate), newDate) ||
+          isEqual(parseISO(bill.endDate), newDate)
+        ) {
+          bills.push({
+            ...bill,
+            dueDate: format(newDate, "yyyy-MM-dd"),
+          });
+          newDate = addWeeks(newDate, 1);
+        }
+        return bills;
+      }
+      // Every other week
+      else if (bill.repeat === "Every other week") {
+        const bills = [];
+        let newDate = parseISO(bill.dueDate);
+        while (
+          isAfter(parseISO(bill.endDate), newDate) ||
+          isEqual(parseISO(bill.endDate), newDate)
+        ) {
+          bills.push({
+            ...bill,
+            dueDate: format(newDate, "yyyy-MM-dd"),
+          });
+          newDate = addWeeks(newDate, 2);
+        }
+        return bills;
+      } else return bill;
+    })
+  );
+
   // Sort bills by date (newest first) and then by name
-  const sortedBills = [...billItems].sort((a, b) => {
-    const dateA = parseISO(a.date);
-    const dateB = parseISO(b.date);
+  const sortedBills = [...billItemsWithRepeats].sort((a, b) => {
+    const dateA = parseISO(a.dueDate);
+    const dateB = parseISO(b.dueDate);
     if (dateA > dateB) return 1;
     if (dateA < dateB) return -1;
     return a.name.localeCompare(b.name);
