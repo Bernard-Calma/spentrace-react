@@ -1,8 +1,9 @@
 import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
 import { useDispatch } from "react-redux";
-import { addTransaction } from "../../../features/demoSlice";
+import { addBill, addTransaction } from "../../../features/demoSlice";
 import { format, parseISO } from "date-fns";
+import Categories from "../../../common/Categories";
 
 const AddBill = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
@@ -62,25 +63,28 @@ const AddBill = ({ handleToggleAddTransaction }) => {
 
   const handleSubmitnewBill = (e) => {
     e.preventDefault();
-    console.log("New Bill Data:", {
-      ...newBill,
-      dueDate: format(newBill.dueDate, "yyyy-MM-dd"),
-      endDate: format(newBill.endDate, "yyyy-MM-dd"),
-    });
-    // dispatch(
-    //   addTransaction({
-    //     ...newBill,
-    //     date: format(newBill.date, "yyyy-MM-dd"),
-    //   })
-    // );
-    // // Reset form after submission
-    // setNewBill({
-    //   amount: 0,
-    //   date: "",
-    //   name: "",
-    //   category: "",
+    // console.log("New Bill Data:", {
+    //   ...newBill,
+    //   dueDate: format(newBill.dueDate, "yyyy-MM-dd"),
+    //   endDate: format(newBill.endDate, "yyyy-MM-dd"),
     // });
-    // handleToggleAddTransaction();
+    dispatch(
+      addBill({
+        ...newBill,
+        dueDate: format(newBill.dueDate, "yyyy-MM-dd"),
+        endDate: format(newBill.endDate, "yyyy-MM-dd"),
+      })
+    );
+    // Reset form after submission
+    setNewBill({
+      amount: 0,
+      dueDate: parseISO(format(new Date(), "yyyy-MM-dd")), // Default to current date,
+      name: "",
+      repeat: false,
+      endDate: null, // Default to current date,
+      category: "",
+    });
+    handleToggleAddTransaction();
   };
 
   return (

@@ -140,5 +140,6 @@ export const {
   editTransaction,
   deleteTransaction,
   updateBalance,
+  addBill,
 } = demoSlice.actions;
 export default demoSlice.reducer;

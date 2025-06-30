@@ -54,14 +54,10 @@ const DemoBill = () => {
               <div className="bill-item" key={index}>
                 <p className="date">
                   {/* Only a random day of the month */}
-                  {format(parseISO(bill.date), "d")}th
+                  {format(parseISO(bill.dueDate), "d")}th
                 </p>
                 <p>{bill.name}</p>
-                <p
-                  className={`bill-amount ${
-                    bill.amount < 0 ? "expense" : "income"
-                  }`}
-                >
+                <p className={`bill-amount`}>
                   $
                   {Math.abs(bill.amount).toLocaleString("en-US", {
                     style: "decimal",
