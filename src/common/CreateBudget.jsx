@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createBudget } from "../features/demoSlice";
 import LabelInput from "./LabelInput";
 
-const CreateBudget = () => {
-  const dispatch = useDispatch();
+// handleSubmitCreateBudget - From parent component: CreateDemoBudget / CreateBudget
+// Function should contain name and owner parameters handleSubmitCreateBudget(e, budgetName, owner)
+const CreateBudget = ({ handleSubmitCreateBudget }) => {
   const [budget, setBudget] = useState({
     budgetName: "",
     owner: "",
@@ -19,14 +18,14 @@ const CreateBudget = () => {
     }));
   };
 
-  const handleSubmitCreateBudget = (e) => {
-    e.preventDefault();
-    dispatch(createBudget(budget));
-  };
   return (
     <div className="create-budget">
       <h2>🧾 Create Your Budget</h2>
-      <form onSubmit={handleSubmitCreateBudget}>
+      <form
+        onSubmit={(e) =>
+          handleSubmitCreateBudget(e, budget.budgetName, budget.owner)
+        }
+      >
         <LabelInput
           type="text"
           htmlFor="budgetName"

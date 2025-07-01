@@ -33,7 +33,8 @@ const demoSlice = createSlice({
       state.planItems = action.payload;
       state.isLoading = false;
     },
-    createBudget: (state, { payload }) => {
+    createDemoBudget: (state, { payload }) => {
+      // console.log("Creating demo budget:", payload);
       state.budgetName = payload.budgetName;
       state.owner = payload.owner;
       state.isLoading = false;
@@ -147,7 +148,7 @@ const demoSlice = createSlice({
 
 export const {
   getBudgets,
-  createBudget,
+  createDemoBudget,
   addTransaction,
   setOpenBudgetItem,
   editTransaction,

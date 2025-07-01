@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadFromLocalStorage, updateBalance } from "../../features/demoSlice";
+import {
+  createDemoBudget,
+  loadFromLocalStorage,
+  updateBalance,
+} from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
 import CreateBudget from "../../common/CreateBudget";
 
@@ -29,6 +33,11 @@ const DemoHome = () => {
   const handleToggleAddBill = () => {
     console.log("Toggle Add Bill");
     setShowAddBill((prev) => !prev);
+  };
+
+  const handleCreateDemoBudget = (e, budgetName, owner) => {
+    e.preventDefault();
+    dispatch(createDemoBudget({ budgetName, owner }));
   };
 
   // ------------------------------ END OF FUNCTIONS ------------------------------
@@ -79,7 +88,7 @@ const DemoHome = () => {
       )}
 
       {budgetName === "" || !budgetName ? (
-        <CreateBudget />
+        <CreateBudget handleSubmitCreateBudget={handleCreateDemoBudget} />
       ) : demoView === "Demo" ? (
         <DemoDashboard
           showAddTransaction={showAddTransaction}
