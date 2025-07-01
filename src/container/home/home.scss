@@ -1,21 +1,5 @@
-@font-face {
-  font-family: "Russo One";
-  font-weight: normal;
-  font-style: normal;
-  src: url("../assets/fonts/Russo_One/russo-one.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Kanit";
-  font-weight: 700;
-  font-style: normal;
-  src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Kanit";
-  font-weight: 500;
-  font-style: light;
-  src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
-}
+@use "../../styles/variables" as v;
+
 /* HOME STYLES*/
 .container.home {
   display: flex;
@@ -36,8 +20,8 @@
 .sectionAccountList {
   align-self: flex-start;
 }
-
 /* ----- END OF HOME STYLES ----- */
+
 /* NAVBAR */
 .homeNavBar {
   display: flex;
@@ -60,12 +44,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: -moz-min-content;
   width: min-content;
   font-size: 2em;
 }
 
 /* ----- END OF NAVBAR STYLES ----- */
+
 /* EMPTY DASHBOARD STYLES */
 .containerEmptyDashboard {
   display: flex;
@@ -97,8 +81,8 @@
 .addEmptyDashboard {
   margin: auto;
 }
-
 /* ----- END OF EMPTY DASHBOARD STYLES ----- */
+
 /* DASHBOARD STYLES*/
 .dashboard {
   display: flex;
@@ -169,6 +153,7 @@
 }
 
 /* ACCOUNT LIST STYLE */
+
 /* GLOBAL STYLES */
 .containerHomeView input#submit {
   padding: 5px 10px;
@@ -177,9 +162,10 @@
   border: white 5px;
   border-style: solid;
 }
-
 /* ----- END OF ACCOUNT LIST STYLE -----*/
+
 /* ----- END OF EMPTY DASHBOARD STYLES ----- */
+
 @media screen and (max-width: 900px) {
   /* MARGIN: 0 */
   .containerDashboard,
@@ -191,60 +177,73 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .graphSubTitle {
     font-size: 12px;
     width: 80px;
   }
+
   .dashboard {
     justify-content: flex-start;
   }
+
   .dashboardBillMonth {
     font-size: 1.75rem;
   }
+
   .containerPlansDashboard {
     height: 100vh;
     margin: 30px 0;
   }
+
   .containerNextTarget {
     margin: 10px;
   }
+
   .containerNextTarget > .nextTarget {
     font-size: 20px;
     font-family: "Russo One";
   }
+
   .containerNextTarget > .addBillTarget,
   .containerNextTarget > .addBillTarget > i {
     font-size: 1.25em;
     font-weight: 500;
   }
+
   .containerEmptyPlan {
     margin: 10px;
   }
+
   .nextTarget {
     text-align: center;
   }
+
   canvas {
     width: 200px;
     height: 200px;
   }
 }
+
 @media only screen and (max-width: 700px) {
   .containerHomeView {
     width: 100%;
     align-items: flex-start;
   }
+
   .fi-rr-bars-staggered {
     display: block;
   }
+
   .homeNavBar.true {
     z-index: 1;
-    height: -moz-min-content;
     height: min-content;
     margin-bottom: 0.75rem;
     background-color: rgb(56, 56, 56);
     flex-direction: column;
     align-items: center;
   }
+
   .homeNavBar.true > .navItem.selected {
     width: 50%;
     margin: 0.25rem 0;
@@ -252,4 +251,4 @@
     background-color: rgb(20, 80, 120);
     border-radius: 5px;
   }
-}/*# sourceMappingURL=home.css.map */
+}

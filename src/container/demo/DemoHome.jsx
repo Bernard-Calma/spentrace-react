@@ -6,7 +6,7 @@ import {
   updateBalance,
 } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
-import CreateBudget from "../../common/CreateBudget";
+import CreateBudget from "../../common/CreateBudget/CreateBudget";
 
 import "./demoHome.scss";
 import TransactionsList from "./components/TransactionsList";

@@ -8,14 +8,12 @@ import { changeView, toggleNavBar } from "../../features/viewSlice";
 import BillsList from "../bills/BillsList";
 import PlanList from "../plan/PlansList";
 import DashBoard from "./Dashboard";
-import EmptyDashboard from "./EmptyDashboard";
 import AccountList from "../accounts/AccountList";
-
-import "./home.css";
 import "../../Components/NavBar.css";
-import Loading from "../../Components/Loading";
 import Icon from "../../common/Icon";
-import CreateBudget from "../../common/CreateBudget";
+import CreateBudget from "../../common/CreateBudget/CreateBudget";
+
+import "./home.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -76,7 +74,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="containerHome">
+    <section className="container home">
       {budgetId === "" || !budgetId ? (
         <CreateBudget />
       ) : (

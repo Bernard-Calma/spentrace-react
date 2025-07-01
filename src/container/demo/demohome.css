@@ -23,48 +23,6 @@
   flex-direction: column;
   align-items: center;
 }
-.demo-home .create-budget {
-  padding: 2rem;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: rgb(75, 85, 99);
-}
-.demo-home .create-budget h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-.demo-home .create-budget form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-}
-.demo-home .create-budget form .text-required {
-  font-size: 0.75rem;
-  color: rgb(255, 30, 30);
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-.demo-home .create-budget form button {
-  padding: 0.5rem 1rem;
-  background-color: #0070bb;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-.demo-home .create-budget form button:hover {
-  background-color: #005f8a;
-}
 .demo-home .dashboard {
   display: flex;
   justify-content: flex-start;

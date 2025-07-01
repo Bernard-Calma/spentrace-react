@@ -1,5 +1,7 @@
 import { useState } from "react";
-import LabelInput from "./LabelInput";
+import LabelInput from "../LabelInput";
+
+import "./createBudget.scss";
 
 // handleSubmitCreateBudget - From parent component: CreateDemoBudget / CreateBudget
 // Function should contain name and owner parameters handleSubmitCreateBudget(e, budgetName, owner)

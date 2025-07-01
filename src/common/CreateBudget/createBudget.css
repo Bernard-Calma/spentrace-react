@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "Russo One";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../assets/fonts/Russo_One/russo-one.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 500;
+  font-style: light;
+  src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
+}
+.create-budget {
+  padding: 2rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: rgb(75, 85, 99);
+}
+.create-budget h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.create-budget form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+.create-budget form .text-required {
+  font-size: 0.75rem;
+  color: rgb(255, 30, 30);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.create-budget form button {
+  padding: 0.5rem 1rem;
+  background-color: #0070bb;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.create-budget form button:hover {
+  background-color: #005f8a;
+}/*# sourceMappingURL=createBudget.css.map */
