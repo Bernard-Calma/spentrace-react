@@ -19,6 +19,9 @@ const DemoBill = () => {
     bill: null,
   });
 
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
   // Recreate the billItems array with if a bill repeat is not "Never Repeat" it will add another bill in the array
   const [billItemsWithRepeats] = useState(
     [...billItems].flatMap((bill) => {
@@ -76,8 +79,17 @@ const DemoBill = () => {
     })
   );
 
+  // Only show bills by current month
+  const billItemsCurrentMonth = billItemsWithRepeats.filter((bill) => {
+    const billDate = parseISO(bill.dueDate);
+    return (
+      billDate.getMonth() === currentMonth &&
+      billDate.getFullYear() === currentYear
+    );
+  });
+
   // Sort bills by date (newest first) and then by name
-  const sortedBills = [...billItemsWithRepeats].sort((a, b) => {
+  const sortedBills = [...billItemsCurrentMonth].sort((a, b) => {
     const dateA = parseISO(a.dueDate);
     const dateB = parseISO(b.dueDate);
     if (dateA > dateB) return 1;
@@ -94,6 +106,18 @@ const DemoBill = () => {
       status: !showBill.status,
       bill: bill,
     });
+  };
+
+  const handleNextMonth = () => {
+    const nextMonth = new Date(currentYear, currentMonth + 1, 1);
+    setCurrentMonth(nextMonth.getMonth());
+    setCurrentYear(nextMonth.getFullYear());
+  };
+
+  const handlePrevMonth = () => {
+    const prevMonth = new Date(currentYear, currentMonth - 1, 1);
+    setCurrentMonth(prevMonth.getMonth());
+    setCurrentYear(prevMonth.getFullYear());
   };
 
   return (
@@ -131,6 +155,17 @@ const DemoBill = () => {
         </button>
       </div>
       <div className="demo-bill_body">
+        <div className="bills-header">
+          <button onClick={handlePrevMonth}>&lt;</button>
+          <h3>
+            {new Date(currentYear, currentMonth).toLocaleString("default", {
+              month: "long",
+            })}{" "}
+            {currentYear}
+          </h3>
+          <button onClick={handleNextMonth}>&gt;</button>
+        </div>
+
         <div className="bills-type">
           <div className="bills-list">
             {" "}
@@ -144,7 +179,7 @@ const DemoBill = () => {
                   {/* Only a random day of the month */}
                   {format(parseISO(bill.dueDate), "d")}th
                 </p>
-                <p>{bill.name}</p>
+                <p className="bill-name">{bill.name}</p>
                 <p className={`bill-amount`}>
                   $
                   {Math.abs(bill.amount).toLocaleString("en-US", {

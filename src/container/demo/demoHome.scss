@@ -578,9 +578,29 @@
 
     .demo-bill_body {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       min-width: 25%;
       justify-content: space-between;
       gap: 1rem;
+
+      .bills-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        h3 {
+          font-size: 2rem;
+          color: v.$text-color_darker;
+          margin: 0;
+        }
+
+        button {
+          cursor: pointer;
+        }
+      }
 
       .bills-type {
         width: 100%;
@@ -609,8 +629,16 @@
               background-color: rgba(v.$accent-color, 0.1);
             }
 
+            .bill-name {
+              flex: 2;
+              margin-left: 0;
+              text-align: left;
+            }
+
             p {
+              flex: 0.5;
               margin: 0;
+              text-align: left;
             }
           }
         }
