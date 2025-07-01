@@ -22,7 +22,8 @@ const budgetSlice = createSlice({
   initialState,
   reducers: {
     createBudget: (state, { payload }) => {
-      state.budgetId = payload.budgetId;
+      //   console.log("Creating budget with:", payload);
+      state.budgetId = 1; // This should be replaced with actual logic to generate a unique ID
       state.budgetName = payload.budgetName;
       state.owner = payload.owner;
       state.collaborators = {

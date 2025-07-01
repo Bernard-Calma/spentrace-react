@@ -14,6 +14,7 @@ import Icon from "../../common/Icon";
 import CreateBudget from "../../common/CreateBudget/CreateBudget";
 
 import "./home.scss";
+import { createBudget } from "../../features/budgetSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,12 @@ const Home = () => {
     }
     dispatch(toggleNavBar());
   };
+
+  const handleCreateBudget = (e, newBudget) => {
+    e.preventDefault();
+    // console.log("Creating budget with: ", newBudget);
+    dispatch(createBudget(newBudget));
+  };
   // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
     dispatch(getPlans());
@@ -76,7 +83,7 @@ const Home = () => {
   return (
     <section className="container home">
       {budgetId === "" || !budgetId ? (
-        <CreateBudget />
+        <CreateBudget handleSubmitCreateBudget={handleCreateBudget} />
       ) : (
         <>
           <Icon

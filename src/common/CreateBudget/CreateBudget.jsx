@@ -23,11 +23,7 @@ const CreateBudget = ({ handleSubmitCreateBudget }) => {
   return (
     <div className="create-budget">
       <h2>🧾 Create Your Budget</h2>
-      <form
-        onSubmit={(e) =>
-          handleSubmitCreateBudget(e, budget.budgetName, budget.owner)
-        }
-      >
+      <form onSubmit={(e) => handleSubmitCreateBudget(e, budget)}>
         <LabelInput
           type="text"
           htmlFor="budgetName"

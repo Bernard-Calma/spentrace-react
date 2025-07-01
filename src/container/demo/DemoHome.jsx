@@ -35,9 +35,9 @@ const DemoHome = () => {
     setShowAddBill((prev) => !prev);
   };
 
-  const handleCreateDemoBudget = (e, budgetName, owner) => {
+  const handleCreateDemoBudget = (e, budget) => {
     e.preventDefault();
-    dispatch(createDemoBudget({ budgetName, owner }));
+    dispatch(createDemoBudget(budget));
   };
 
   // ------------------------------ END OF FUNCTIONS ------------------------------
