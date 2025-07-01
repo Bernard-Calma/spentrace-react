@@ -9,6 +9,7 @@ import TransactionsList from "./components/TransactionsList";
 import Header from "../../common/Header/Header";
 import AddTransaction from "./components/AddTransaction";
 import DemoBill from "./components/DemoBill";
+import AddBill from "./components/AddBill";
 
 const DemoHome = () => {
   const dispatch = useDispatch();
@@ -19,9 +20,15 @@ const DemoHome = () => {
   const { demoView } = useSelector((store) => store.view);
 
   const [showAddTransaction, setShowAddTransaction] = useState(false);
+  const [showAddBill, setShowAddBill] = useState(false);
 
   const handleToggleAddTransaction = () => {
     setShowAddTransaction((prev) => !prev);
+  };
+
+  const handleToggleAddBill = () => {
+    console.log("Toggle Add Bill");
+    setShowAddBill((prev) => !prev);
   };
 
   // ------------------------------ END OF FUNCTIONS ------------------------------
@@ -37,21 +44,40 @@ const DemoHome = () => {
 
   return (
     <section className="container demo-home">
-      <div className="mobile-only add-transaction">
-        <button
-          className="button add-transaction-button"
-          onClick={handleToggleAddTransaction}
-        >
-          +
-        </button>
-      </div>
+      {demoView !== "bills" ? (
+        <div className="mobile-only add-transaction">
+          <button
+            className="button add-transaction-button"
+            onClick={handleToggleAddTransaction}
+          >
+            +
+          </button>
+        </div>
+      ) : (
+        <div className="mobile-only add-transaction">
+          <button
+            className="button add-transaction-button"
+            onClick={handleToggleAddBill}
+          >
+            +
+          </button>
+        </div>
+      )}
 
       <Header />
-      {showAddTransaction && (
+      {showAddTransaction ? (
         <AddTransaction
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
+      ) : showAddBill ? (
+        <AddBill
+          handleToggleAddBill={handleToggleAddBill}
+          showAddBill={showAddBill}
+        />
+      ) : (
+        <></>
       )}
+
       {budgetName === "" || !budgetName ? (
         <CreateBudget />
       ) : demoView === "Demo" ? (
@@ -62,7 +88,7 @@ const DemoHome = () => {
       ) : demoView === "transactions-list" ? (
         <TransactionsList budgetName={budgetName} />
       ) : demoView === "bills" ? (
-        <DemoBill />
+        <DemoBill handleToggleAddBill={handleToggleAddBill} />
       ) : (
         <></>
       )}

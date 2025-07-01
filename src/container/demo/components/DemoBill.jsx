@@ -8,12 +8,10 @@ import {
 } from "date-fns";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import AddBill from "./AddBill";
 import ShowBill from "./ShowBill";
 
-const DemoBill = () => {
+const DemoBill = ({ handleToggleAddBill }) => {
   const { billItems } = useSelector((store) => store.demo);
-  const [showAddBill, setShowAddBill] = useState(false);
   const [showBill, setShowBill] = useState({
     status: false,
     bill: null,
@@ -97,10 +95,6 @@ const DemoBill = () => {
     return a.name.localeCompare(b.name);
   });
 
-  const handleToggleAddBill = () => {
-    setShowAddBill((prev) => !prev);
-  };
-
   const handleShowBill = (bill) => {
     setShowBill({
       status: !showBill.status,
@@ -122,9 +116,6 @@ const DemoBill = () => {
 
   return (
     <div className="container demo-bill">
-      {showAddBill && (
-        <AddBill handleToggleAddTransaction={handleToggleAddBill} />
-      )}
       {showBill.status && (
         <ShowBill
           bill={showBill.bill}
@@ -134,8 +125,8 @@ const DemoBill = () => {
         />
       )}
       {/*TO DO: Change to months */}
-      <h2>Demo Bills</h2>
-      <div className="btn add-bill">
+      <h2 className="full">Demo Bills</h2>
+      <div className="btn add-bill hidden-mobile">
         <button className="add-bill_button" onClick={handleToggleAddBill}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

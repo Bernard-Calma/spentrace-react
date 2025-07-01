@@ -1,12 +1,11 @@
 import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
 import { useDispatch } from "react-redux";
-import { addBill, addTransaction } from "../../../features/demoSlice";
+import { addBill } from "../../../features/demoSlice";
 import { format, parseISO } from "date-fns";
-import Categories from "../../../common/Categories";
 import { SelectInput } from "../../../common";
 
-const AddBill = ({ handleToggleAddTransaction }) => {
+const AddBill = ({ handleToggleAddBill }) => {
   const dispatch = useDispatch();
   const [newBill, setNewBill] = useState({
     amount: 0,
@@ -85,16 +84,13 @@ const AddBill = ({ handleToggleAddTransaction }) => {
       endDate: null, // Default to current date,
       category: "",
     });
-    handleToggleAddTransaction();
+    handleToggleAddBill();
   };
 
   return (
     <div className="overlay">
       <div className="container add-transaction">
-        <button
-          className="button btn-close"
-          onClick={handleToggleAddTransaction}
-        >
+        <button className="button btn-close" onClick={handleToggleAddBill}>
           <span className="close-icon">&times;</span>
         </button>
         <h2 className="title">Add new bill</h2>
