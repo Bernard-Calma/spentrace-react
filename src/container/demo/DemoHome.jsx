@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadFromLocalStorage, updateBalance } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
-import CreateBudget from "./components/CreateBudget";
+import CreateBudget from "../../common/CreateBudget";
 
 import "./demoHome.scss";
 import TransactionsList from "./components/TransactionsList";

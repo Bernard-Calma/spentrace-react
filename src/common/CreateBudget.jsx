@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createBudget } from "../../../features/demoSlice";
-import LabelInput from "../../../common/LabelInput";
+import { createBudget } from "../features/demoSlice";
+import LabelInput from "./LabelInput";
 
 const CreateBudget = () => {
   const dispatch = useDispatch();
