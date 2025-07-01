@@ -58,8 +58,8 @@ header {
     display: flex;
     align-items: center;
 
-    .subscribe {
-      color: v.$text-color_lighter;
+    & > .subscribe {
+      color: v.$text-color;
       font-size: 0.8em;
       font-weight: 400;
       margin-left: 10px;
