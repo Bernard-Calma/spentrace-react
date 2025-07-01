@@ -48,7 +48,7 @@ const Header = () => {
         ) : (
           <p
             className="subscribe"
-            onClick={() => dispatch(changeView({ demoView: "login" }))}
+            onClick={() => dispatch(changeView({ view: "subscribe" }))}
           >
             Register & Subscribe
           </p>

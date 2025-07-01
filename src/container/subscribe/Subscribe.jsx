@@ -1,0 +1,59 @@
+const Subscribe = () => {
+  // Simulated user data for preview/demo purposes
+  const isDemo = true; // set false to simulate registered user
+  const isSubscribed = false; // set true to simulate subscribed user
+
+  const features = [
+    { title: "Recurring Bills", unlocked: !isDemo },
+    { title: "Budget Planning Tools", unlocked: isSubscribed },
+    { title: "Custom Categories", unlocked: !isDemo },
+    { title: "Export to CSV", unlocked: isSubscribed },
+    { title: "Multi-device Sync", unlocked: isSubscribed },
+    { title: "Invite Collaborators", unlocked: isSubscribed },
+  ];
+
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+        {isSubscribed ? "You’ve Unlocked Everything!" : "Unlock More Features"}
+      </h1>
+
+      <p className="text-center text-gray-600 mb-6">
+        {isSubscribed
+          ? "Thank you for supporting Spentrace."
+          : "Register and subscribe to access these premium features."}
+      </p>
+
+      <div className="space-y-4">
+        {features.map((feature, i) => (
+          <div
+            key={i}
+            className={`flex justify-between items-center p-4 rounded-lg border ${
+              feature.unlocked
+                ? "bg-green-50 border-green-200 text-green-800"
+                : "bg-gray-50 border-gray-200 text-gray-500"
+            }`}
+          >
+            <span>{feature.title}</span>
+            <span className="text-sm font-medium">
+              {feature.unlocked ? "Unlocked ✅" : "Locked 🔒"}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {!isSubscribed && (
+        <div className="mt-8 text-center">
+          <a
+            href="/subscribe"
+            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition"
+          >
+            Subscribe Now
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Subscribe;

@@ -1,11 +1,10 @@
-import { format, parseISO, set } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import TotalBalance from "../../../common/TotalBalance";
 import { useEffect, useState } from "react";
 import ShowTransaction from "./ShowTransaction";
 import { setOpenBudgetItem } from "../../../features/demoSlice";
 import EditTransaction from "./EditTransaction";
-import { ru } from "date-fns/locale";
 
 const TransactionsList = ({ budgetName }) => {
   const dispatch = useDispatch();
@@ -15,8 +14,6 @@ const TransactionsList = ({ budgetName }) => {
   const [showEditTransaction, setShowEditTransaction] = useState(false);
   // Object to hold the transaction where income will not cover expenses
   const [deficitObject, setDeficitObject] = useState();
-
-  const [deficitTransaction, setDeficitTransaction] = useState(null);
 
   const handleToggleTransaction = (transaction) => {
     if (transaction) {
