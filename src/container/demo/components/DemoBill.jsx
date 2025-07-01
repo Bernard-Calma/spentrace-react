@@ -1,5 +1,6 @@
 import {
   addDays,
+  addMonths,
   addWeeks,
   format,
   isAfter,
@@ -73,7 +74,24 @@ const DemoBill = ({ handleToggleAddBill }) => {
           newDate = addWeeks(newDate, 2);
         }
         return bills;
-      } else return bill;
+      } else if (bill.repeat === "Every Month") {
+        const bills = [];
+        let newDate = parseISO(bill.dueDate);
+        while (
+          isAfter(parseISO(bill.endDate), newDate) ||
+          isEqual(parseISO(bill.endDate), newDate)
+        ) {
+          bills.push({
+            ...bill,
+            dueDate: format(newDate, "yyyy-MM-dd"),
+          });
+          newDate = addMonths(newDate, 1);
+        }
+        return bills;
+      }
+      {
+      }
+      return bill;
     })
   );
 
