@@ -19,6 +19,7 @@
 header {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 0;
@@ -58,6 +59,20 @@ header .nav-container nav {
 }
 header .nav-container nav a:hover,
 header .nav-container nav p:hover {
+  color: #0070bb;
+}
+header .user-menu {
+  display: flex;
+  align-items: center;
+}
+header .user-menu .subscribe {
+  color: rgb(107, 114, 128);
+  font-size: 0.8em;
+  font-weight: 400;
+  margin-left: 10px;
+  cursor: pointer;
+}
+header .user-menu .subscribe:hover {
   color: #0070bb;
 }
 

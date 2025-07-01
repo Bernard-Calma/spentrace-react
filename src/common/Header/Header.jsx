@@ -39,12 +39,19 @@ const Header = () => {
         </nav>
       </div>
 
-      <div className="flex items-center gap-4">
-        {loggedIn && (
+      <div className="user-menu">
+        {loggedIn ? (
           <Icon
             className="fi fi-rr-sign-out-alt"
             onClick={() => dispatch(logout())}
           />
+        ) : (
+          <p
+            className="subscribe"
+            onClick={() => dispatch(changeView({ demoView: "login" }))}
+          >
+            Register & Subscribe
+          </p>
         )}
 
         {/* Mobile menu icon */}

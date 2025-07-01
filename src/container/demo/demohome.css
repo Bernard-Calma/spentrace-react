@@ -514,9 +514,26 @@
 }
 .demo-home > .demo-bill .demo-bill_body {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: 25%;
   justify-content: space-between;
   gap: 1rem;
+}
+.demo-home > .demo-bill .demo-bill_body .bills-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.demo-home > .demo-bill .demo-bill_body .bills-header h3 {
+  font-size: 2rem;
+  color: rgb(55, 65, 81);
+  margin: 0;
+}
+.demo-home > .demo-bill .demo-bill_body .bills-header button {
+  cursor: pointer;
 }
 .demo-home > .demo-bill .demo-bill_body .bills-type {
   width: 100%;
@@ -545,8 +562,15 @@
 .demo-home > .demo-bill .demo-bill_body .bills-type .bills-list .bill-item:hover {
   background-color: rgba(0, 112, 187, 0.1);
 }
+.demo-home > .demo-bill .demo-bill_body .bills-type .bills-list .bill-item .bill-name {
+  flex: 2;
+  margin-left: 0;
+  text-align: left;
+}
 .demo-home > .demo-bill .demo-bill_body .bills-type .bills-list .bill-item p {
+  flex: 0.5;
   margin: 0;
+  text-align: left;
 }
 .demo-home > .demo-bill .add-transaction .input-select {
   margin: 0.5rem 0;
@@ -643,6 +667,35 @@
   .demo-home .transactions-list .budget-items {
     width: 100%;
     padding: 0.5rem;
+  }
+  .demo-home .demo-bill {
+    padding-top: 0;
+  }
+  .demo-home .demo-bill .demo-bill_body {
+    width: 100%;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 1rem;
+  }
+  .demo-home .demo-bill .demo-bill_body .bills-header {
+    width: 90%;
+    align-items: center;
+    margin: 0;
+  }
+  .demo-home .demo-bill .demo-bill_body .bills-header h3 {
+    font-size: 1.5rem;
+    color: rgb(55, 65, 81);
+    margin: 0;
+  }
+  .demo-home .demo-bill .demo-bill_body .bills-type {
+    width: 100%;
+  }
+  .demo-home .demo-bill .demo-bill_body .bills-type .bills-list {
+    width: 100%;
+  }
+  .demo-home .demo-bill .demo-bill_body .bills-type .bills-list .bill-item {
+    padding: 0.5rem;
+    font-size: 0.875rem;
   }
   .demo-home .overlay .add-transaction {
     width: 90%;
