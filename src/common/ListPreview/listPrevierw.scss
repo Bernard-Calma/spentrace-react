@@ -75,6 +75,10 @@
           cursor: pointer;
           color: v.$accent-color;
         }
+
+        &.empty {
+          cursor: default;
+        }
       }
     }
   }

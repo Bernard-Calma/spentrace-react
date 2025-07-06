@@ -36,7 +36,11 @@ const DemoDashboard = ({ handleToggleAddTransaction }) => {
       </div>
 
       <div className="container summaries">
-        <ListPreview listItemProp={sortedTransactions} length={5} />
+        <ListPreview
+          listItemProp={sortedTransactions}
+          length={5}
+          changeViewProp={{ demoView: "transactions-list" }}
+        />
 
         <Calendar itemListProp={budgetItems} />
       </div>

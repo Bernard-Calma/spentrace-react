@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 
 import "./listPrevierw.scss"; // Import the styles
 
-const ListPreview = ({ listItemProp, length }) => {
+// listItemProp: Array of transaction objects
+// length: Number of transactions to display
+// changeViewProp: Function to change the view, typically from Redux
+// changeViewProp format: { subView: "viewName" }
+const ListPreview = ({ listItemProp, length, changeViewProp }) => {
   const dispatch = useDispatch();
   const sortedTransactions = [...listItemProp].sort((a, b) => {
     const dateA = new Date(a.date);
@@ -16,11 +20,7 @@ const ListPreview = ({ listItemProp, length }) => {
     <div className="container list-preview">
       <h2 className="subtitle">
         Recent Transactions{" "}
-        <span
-          onClick={() =>
-            dispatch(changeView({ demoView: "transactions-list" }))
-          }
-        >
+        <span onClick={() => dispatch(changeView(changeViewProp))}>
           View All
         </span>
       </h2>
@@ -42,16 +42,15 @@ const ListPreview = ({ listItemProp, length }) => {
             </li>
           ) : null
         )}
-        <div
-          onClick={() =>
-            dispatch(changeView({ demoView: "transactions-list" }))
-          }
-        >
-          <p className="transactions-list_more">
-            {sortedTransactions.length >= length
-              ? `view +${sortedTransactions.length - length} more`
-              : ""}
-          </p>
+        <div>
+          {sortedTransactions.length >= length ? (
+            <p
+              className="transactions-list_more"
+              onClick={() => dispatch(changeView(changeViewProp))}
+            >{`view +${sortedTransactions.length - length} more`}</p>
+          ) : (
+            <p className="transactions-list_more empty" />
+          )}
         </div>
       </ul>
     </div>
