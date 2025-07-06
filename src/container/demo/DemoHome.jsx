@@ -22,7 +22,9 @@ const DemoHome = () => {
   const dispatch = useDispatch();
   // ------------------------------ VARIABLES ------------------------------
   // Plans
-  const { budgetName, budgetItems } = useSelector((store) => store.demo);
+  const { budgetName, budgetItems, totalExpense, totalIncome } = useSelector(
+    (store) => store.demo
+  );
   // Views
   const { demoView } = useSelector((store) => store.view);
 
@@ -107,6 +109,8 @@ const DemoHome = () => {
         <TransactionsList
           budgetName={budgetName}
           transcationsList={budgetItems}
+          totalExpense={totalExpense}
+          totalIncome={totalIncome}
         />
       ) : demoView === "bills" ? (
         <DemoBill handleToggleAddBill={handleToggleAddBill} />

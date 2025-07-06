@@ -7,11 +7,14 @@ import EditTransaction from "../../container/demo/components/EditTransaction";
 
 import "./transactionsList.scss";
 
-const TransactionsList = ({ budgetName, transcationsList }) => {
+const TransactionsList = ({
+  budgetName,
+  transcationsList,
+  totalExpense,
+  totalIncome,
+}) => {
   const dispatch = useDispatch();
-  const { totalExpense, totalIncome, openTransaction } = useSelector(
-    (store) => store.demo
-  );
+  const { openTransaction } = useSelector((store) => store.demo);
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [showTransaction, setShowTransaction] = useState(false);
   const [showEditTransaction, setShowEditTransaction] = useState(false);

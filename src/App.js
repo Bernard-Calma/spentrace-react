@@ -21,9 +21,8 @@ const App = () => {
   // View information
   const { view, homeView } = useSelector((store) => store.view);
   // Budget information
-  const { budgetId, budgetName, budgetItems } = useSelector(
-    (store) => store.budget
-  );
+  const { budgetId, budgetName, budgetItems, totalExpense, totalIncome } =
+    useSelector((store) => store.budget);
   // ------------------------------ END OF VARIABLES ------------------------------
 
   const handleCreateBudget = (e, newBudget) => {
@@ -51,6 +50,8 @@ const App = () => {
                 <TransactionsList
                   budgetName={budgetName}
                   transcationsList={budgetItems}
+                  totalExpense={totalExpense}
+                  totalIncome={totalIncome}
                 />
               ) : (
                 <></>
