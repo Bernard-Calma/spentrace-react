@@ -5,7 +5,9 @@ import { format, parseISO } from "date-fns";
 import ListPreview from "../../../common/ListPreview/ListPreview";
 
 const DemoDashboard = ({ handleToggleAddTransaction }) => {
-  const { budgetName, budgetItems } = useSelector((store) => store.demo);
+  const { budgetName, budgetItems, totalExpense, totalIncome } = useSelector(
+    (store) => store.demo
+  );
 
   // Sort budget items by date (newest first) and then by name
   // Format the date to "MMM dd" (e.g., "Jan 01")
@@ -25,7 +27,11 @@ const DemoDashboard = ({ handleToggleAddTransaction }) => {
     <div className="container dashboard">
       <h1 className="title">{budgetName}</h1>
       <div className="dashboard-header">
-        <TotalBalance className="totals" />
+        <TotalBalance
+          className="totals"
+          totalIncomeProp={totalIncome}
+          totalExpenseProp={totalExpense}
+        />
         <button
           className="add-transaction-button"
           onClick={handleToggleAddTransaction}

@@ -1,7 +1,21 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-const TotalBalance = ({ className }) => {
-  const { totalIncome, totalExpense } = useSelector((store) => store.demo);
+const TotalBalance = ({ totalIncomeProp, totalExpenseProp, className }) => {
+  // ------------------------------ VARIABLES ------------------------------
+  const [totalIncome, setTotalIncome] = useState(totalIncomeProp || 0);
+  const [totalExpense, setTotalExpense] = useState(totalExpenseProp || 0);
+  // ------------------------------ END OF VARIABLES ------------------------------
+
+  useEffect(() => {
+    // Update total income and expense if props change
+    if (totalIncomeProp !== undefined) {
+      setTotalIncome(totalIncomeProp);
+    }
+    if (totalExpenseProp !== undefined) {
+      setTotalExpense(totalExpenseProp);
+    }
+  }, [totalIncomeProp, totalExpenseProp]);
+
   return (
     <div className={`total-balance ${className}`}>
       <div className="total">
