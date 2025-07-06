@@ -1,15 +1,17 @@
 import { format, parseISO } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
-import TotalBalance from "../../../common/TotalBalance";
 import { useEffect, useState } from "react";
-import { setOpenTransaction } from "../../../features/demoSlice";
-import EditTransaction from "./EditTransaction";
-import { ShowTransaction } from "../../../common";
+import { ShowTransaction, TotalBalance } from "../";
+import { setOpenTransaction } from "../../features/demoSlice";
+import EditTransaction from "../../container/demo/components/EditTransaction";
 
-const TransactionsList = ({ budgetName }) => {
+import "./transactionsList.scss";
+
+const TransactionsList = ({ budgetName, transcationsList }) => {
   const dispatch = useDispatch();
-  const { budgetItems, totalExpense, totalIncome, openTransaction } =
-    useSelector((store) => store.demo);
+  const { totalExpense, totalIncome, openTransaction } = useSelector(
+    (store) => store.demo
+  );
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [showTransaction, setShowTransaction] = useState(false);
   const [showEditTransaction, setShowEditTransaction] = useState(false);
@@ -41,7 +43,7 @@ const TransactionsList = ({ budgetName }) => {
     // Sort transactions by date and name
     const sortTransaction = () => {
       setSortedTransactions(
-        [...budgetItems].sort((a, b) => {
+        [...transcationsList].sort((a, b) => {
           const dateA = new Date(a.date);
           const dateB = new Date(b.date);
           if (dateA.getTime() === dateB.getTime()) {
@@ -57,7 +59,7 @@ const TransactionsList = ({ budgetName }) => {
       let runningIncomeTotal = totalIncome;
 
       // Get the transaction where running income will be negative
-      for (let transaction of [...budgetItems].sort((a, b) => {
+      for (let transaction of [...transcationsList].sort((a, b) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
         if (dateA.getTime() === dateB.getTime()) {
@@ -81,7 +83,7 @@ const TransactionsList = ({ budgetName }) => {
 
     sortTransaction();
     calculateDeficitDate();
-  }, [budgetItems]);
+  }, [transcationsList]);
 
   // Get date where income will be not enough to cover expenses
 

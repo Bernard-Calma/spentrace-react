@@ -7,10 +7,14 @@ import {
   updateBalance,
 } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
-import TransactionsList from "./components/TransactionsList";
 import DemoBill from "./components/DemoBill";
 import AddBill from "./components/AddBill";
-import { AddTransaction, CreateBudget, Header } from "../../common";
+import {
+  TransactionsList,
+  AddTransaction,
+  CreateBudget,
+  Header,
+} from "../../common";
 
 import "./demoHome.scss";
 
@@ -100,7 +104,10 @@ const DemoHome = () => {
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
       ) : demoView === "transactions-list" ? (
-        <TransactionsList budgetName={budgetName} />
+        <TransactionsList
+          budgetName={budgetName}
+          transcationsList={budgetItems}
+        />
       ) : demoView === "bills" ? (
         <DemoBill handleToggleAddBill={handleToggleAddBill} />
       ) : (

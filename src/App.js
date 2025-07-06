@@ -11,6 +11,7 @@ import Subscribe from "./container/subscribe/Subscribe";
 import CreateBudget from "./common/CreateBudget/CreateBudget";
 import { createBudget } from "./features/budgetSlice";
 import Header from "./common/Header/Header";
+import { TransactionsList } from "./common";
 
 const App = () => {
   // ------------------------------ VARIABLES ------------------------------
@@ -18,9 +19,11 @@ const App = () => {
   // User information
   const { loggedIn, demo } = useSelector((store) => store.user);
   // View information
-  const { view } = useSelector((store) => store.view);
+  const { view, homeView } = useSelector((store) => store.view);
   // Budget information
-  const { budgetId } = useSelector((store) => store.budget);
+  const { budgetId, budgetName, budgetItems } = useSelector(
+    (store) => store.budget
+  );
   // ------------------------------ END OF VARIABLES ------------------------------
 
   const handleCreateBudget = (e, newBudget) => {
@@ -42,7 +45,16 @@ const App = () => {
           {budgetId ? (
             <>
               <Header />
-              {view === "home" ? <Home /> : <></>}
+              {homeView === "home" ? (
+                <Home />
+              ) : homeView === "transactions-list" ? (
+                <TransactionsList
+                  budgetName={budgetName}
+                  transcationsList={budgetItems}
+                />
+              ) : (
+                <></>
+              )}
             </>
           ) : (
             <CreateBudget handleSubmitCreateBudget={handleCreateBudget} />
