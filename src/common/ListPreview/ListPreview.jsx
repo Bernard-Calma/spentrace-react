@@ -1,6 +1,7 @@
-import { format, parseISO } from "date-fns";
 import { changeView } from "../../features/viewSlice";
 import { useDispatch } from "react-redux";
+
+import "./listPrevierw.scss"; // Import the styles
 
 const ListPreview = ({ listItemProp, length }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const ListPreview = ({ listItemProp, length }) => {
     return a.name.localeCompare(b.name);
   });
   return (
-    <div className="container summary">
+    <div className="container list-preview">
       <h2 className="subtitle">
         Recent Transactions{" "}
         <span

@@ -1,0 +1,95 @@
+@use "../../styles/variables" as v;
+
+.list-preview {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  background-color: v.$secondary-color;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: v.$text-color;
+  text-align: left;
+
+  .subtitle,
+  .calendar-header {
+    position: relative;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+
+    span {
+      position: absolute;
+      right: 0;
+      font-size: 0.875rem;
+      color: v.$text-color_lighter;
+      &:hover {
+        cursor: pointer;
+        color: v.$accent-color;
+      }
+    }
+  }
+
+  .summary-content {
+    margin: 0;
+    padding: 0;
+    width: 350px;
+    height: 320px;
+
+    &.transactions-list {
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .transaction-item {
+        display: flex;
+        justify-content: space-between;
+        color: v.$text-color;
+        border-bottom: rgba(v.$text-color_lighter, 0.5) 1px solid;
+        font-size: 0.75rem;
+        .transaction-item_details {
+          p {
+            color: v.$text-color_lighter;
+            margin: 0;
+          }
+
+          .transaction-amount {
+            font-weight: bold;
+            color: v.$success-color; // or v.$warning-color based on the transaction type
+          }
+        }
+      }
+
+      .transactions-list_more {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.875rem;
+        color: v.$text-color_lighter;
+        font-style: italic;
+        background-color: v.$primary-color;
+        border: 1px dashed v.$text-color;
+        border-radius: 0.25rem;
+
+        &:hover {
+          cursor: pointer;
+          color: v.$accent-color;
+        }
+      }
+    }
+  }
+
+  .coming-soon {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    color: v.$text-color_lighter;
+    font-style: italic;
+    background-color: v.$primary-color;
+    border: 1px dashed v.$text-color;
+    border-radius: 0.25rem;
+  }
+}

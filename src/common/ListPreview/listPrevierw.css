@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "Russo One";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../assets/fonts/Russo_One/russo-one.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 500;
+  font-style: light;
+  src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
+}
+.list-preview {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: rgb(75, 85, 99);
+  text-align: left;
+}
+.list-preview .subtitle,
+.list-preview .calendar-header {
+  position: relative;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.list-preview .subtitle span,
+.list-preview .calendar-header span {
+  position: absolute;
+  right: 0;
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+}
+.list-preview .subtitle span:hover,
+.list-preview .calendar-header span:hover {
+  cursor: pointer;
+  color: #0070bb;
+}
+.list-preview .summary-content {
+  margin: 0;
+  padding: 0;
+  width: 350px;
+  height: 320px;
+}
+.list-preview .summary-content.transactions-list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.list-preview .summary-content.transactions-list .transaction-item {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(75, 85, 99);
+  border-bottom: rgba(107, 114, 128, 0.5) 1px solid;
+  font-size: 0.75rem;
+}
+.list-preview .summary-content.transactions-list .transaction-item .transaction-item_details p {
+  color: rgb(107, 114, 128);
+  margin: 0;
+}
+.list-preview .summary-content.transactions-list .transaction-item .transaction-item_details .transaction-amount {
+  font-weight: bold;
+  color: rgb(22, 163, 74);
+}
+.list-preview .summary-content.transactions-list .transactions-list_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+  font-style: italic;
+  background-color: rgb(243, 244, 246);
+  border: 1px dashed rgb(75, 85, 99);
+  border-radius: 0.25rem;
+}
+.list-preview .summary-content.transactions-list .transactions-list_more:hover {
+  cursor: pointer;
+  color: #0070bb;
+}
+.list-preview .coming-soon {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+  font-style: italic;
+  background-color: rgb(243, 244, 246);
+  border: 1px dashed rgb(75, 85, 99);
+  border-radius: 0.25rem;
+}/*# sourceMappingURL=listPrevierw.css.map */
