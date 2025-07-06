@@ -1,16 +1,13 @@
 import { format, parseISO } from "date-fns";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTransaction } from "../../../features/demoSlice";
+import { useDispatch } from "react-redux";
 
 const ShowTransaction = ({
   handleToggleTransaction,
   handleEditTransaction,
+  transaction,
 }) => {
   const dispatch = useDispatch();
-  const { openBudgetItem } = useSelector((store) => store.demo);
-
   const handleDeleteTransaction = () => {
-    dispatch(deleteTransaction(openBudgetItem));
     handleToggleTransaction();
   };
   return (
@@ -26,13 +23,13 @@ const ShowTransaction = ({
           </button>
         </div>
 
-        <h2 className="transaction-title">{openBudgetItem.name}</h2>
+        <h2 className="transaction-title">{transaction.name}</h2>
         <div className="transaction-details">
           <p>
             Amount:{" "}
-            <span className={openBudgetItem.amount < 0 ? "expense" : "income"}>
+            <span className={transaction.amount < 0 ? "expense" : "income"}>
               $
-              {Math.abs(openBudgetItem.amount).toLocaleString("en-US", {
+              {Math.abs(transaction.amount).toLocaleString("en-US", {
                 style: "decimal",
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
@@ -41,16 +38,14 @@ const ShowTransaction = ({
           </p>
           <p>
             Date:{" "}
-            <span>{format(parseISO(openBudgetItem.date), "MMM dd, yyyy")}</span>
+            <span>{format(parseISO(transaction.date), "MMM dd, yyyy")}</span>
           </p>
           <p>
-            Category: <span>{openBudgetItem.category || "Uncategorized"}</span>
+            Category: <span>{transaction.category || "Uncategorized"}</span>
           </p>
           <p>Notes:</p>
           <div className="notes-container">
-            <p className="notes">
-              {openBudgetItem.notes || "No notes available"}
-            </p>
+            <p className="notes">{transaction.notes || "No notes available"}</p>
           </div>
         </div>
         <div className="transaction-actions">

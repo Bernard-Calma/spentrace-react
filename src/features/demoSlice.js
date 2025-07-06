@@ -21,7 +21,7 @@ const initialState = {
   totalIncome: 0,
   totalExpense: 0,
   balance: 0,
-  openBudgetItem: {},
+  openTransaction: {},
   isLoading: true,
 };
 
@@ -76,8 +76,8 @@ const demoSlice = createSlice({
 
       state.isLoading = false;
     },
-    setOpenBudgetItem: (state, action) => {
-      state.openBudgetItem = action.payload;
+    setOpenTransaction: (state, action) => {
+      state.openTransaction = action.payload;
     },
     updateBalance: (state) => {
       let totalIncome = 0;
@@ -151,7 +151,7 @@ export const {
   getBudgets,
   createDemoBudget,
   addTransaction,
-  setOpenBudgetItem,
+  setOpenTransaction,
   editTransaction,
   deleteTransaction,
   updateBalance,

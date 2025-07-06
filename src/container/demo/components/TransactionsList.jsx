@@ -2,15 +2,14 @@ import { format, parseISO } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import TotalBalance from "../../../common/TotalBalance";
 import { useEffect, useState } from "react";
-import ShowTransaction from "./ShowTransaction";
-import { setOpenBudgetItem } from "../../../features/demoSlice";
+import { setOpenTransaction } from "../../../features/demoSlice";
 import EditTransaction from "./EditTransaction";
+import { ShowTransaction } from "../../../common";
 
 const TransactionsList = ({ budgetName }) => {
   const dispatch = useDispatch();
-  const { budgetItems, totalExpense, totalIncome } = useSelector(
-    (store) => store.demo
-  );
+  const { budgetItems, totalExpense, totalIncome, openTransaction } =
+    useSelector((store) => store.demo);
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [showTransaction, setShowTransaction] = useState(false);
   const [showEditTransaction, setShowEditTransaction] = useState(false);
@@ -19,9 +18,9 @@ const TransactionsList = ({ budgetName }) => {
 
   const handleToggleTransaction = (transaction) => {
     if (transaction) {
-      dispatch(setOpenBudgetItem(transaction));
+      dispatch(setOpenTransaction(transaction));
     } else {
-      dispatch(setOpenBudgetItem({}));
+      dispatch(setOpenTransaction({}));
     }
 
     setShowTransaction((prev) => !prev);
@@ -90,6 +89,7 @@ const TransactionsList = ({ budgetName }) => {
     <div className="container transactions-list">
       {showTransaction && !showEditTransaction ? (
         <ShowTransaction
+          transaction={openTransaction}
           handleToggleTransaction={handleToggleTransaction}
           handleEditTransaction={() => {
             setShowEditTransaction(true);
