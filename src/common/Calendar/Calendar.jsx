@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import "./calendar.scss";
+
 const Calendar = ({ itemListProp }) => {
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const today = new Date();
