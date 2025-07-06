@@ -6,14 +6,12 @@ import {
   updateBalance,
 } from "../../features/demoSlice";
 import DemoDashboard from "./components/DemoDashboard";
-import CreateBudget from "../../common/CreateBudget/CreateBudget";
-
-import "./demoHome.scss";
 import TransactionsList from "./components/TransactionsList";
-import Header from "../../common/Header/Header";
-import AddTransaction from "./components/AddTransaction";
 import DemoBill from "./components/DemoBill";
 import AddBill from "./components/AddBill";
+import { AddTransaction, CreateBudget, Header } from "../../common";
+
+import "./demoHome.scss";
 
 const DemoHome = () => {
   const dispatch = useDispatch();

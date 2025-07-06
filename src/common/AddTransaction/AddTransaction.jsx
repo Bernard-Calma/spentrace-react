@@ -1,10 +1,12 @@
 import { useState } from "react";
-import LabelInput from "../../../common/LabelInput";
 import { useDispatch } from "react-redux";
-import { addTransaction } from "../../../features/demoSlice";
 import { format, parseISO } from "date-fns";
+import { LabelInput } from "../";
 
-const AddTransaction = ({ handleToggleAddTransaction }) => {
+const AddTransaction = ({
+  handleAddTransaction,
+  handleToggleAddTransaction,
+}) => {
   const dispatch = useDispatch();
   const [newTransaction, setNewTransaction] = useState({
     amount: 0,
@@ -62,7 +64,7 @@ const AddTransaction = ({ handleToggleAddTransaction }) => {
       date: format(newTransactionData.date, "yyyy-MM-dd"),
     });
     dispatch(
-      addTransaction({
+      handleAddTransaction({
         ...newTransactionData,
         date: format(newTransactionData.date, "yyyy-MM-dd"),
       })
