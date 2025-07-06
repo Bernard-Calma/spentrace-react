@@ -13,7 +13,7 @@ import "./landingpage.scss";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-  const [view, setView] = useState("Login");
+  const [view, setView] = useState("login");
 
   useEffect(() => {
     dispatch(clearError());
@@ -41,10 +41,10 @@ const LandingPage = () => {
           alt="Main Page"
           className="mobilePageImage hidden-mobile"
         />
-        {view === "Login" ? (
-          <Login handleChangeView={() => setView("Register")} />
+        {view === "login" ? (
+          <Login handleChangeView={() => setView("register")} />
         ) : (
-          <Register handleChangeView={() => setView("Login")} />
+          <Register handleChangeView={() => setView("login")} />
         )}
       </div>
     </div>

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  view: "Login",
-  homeView: "Home",
+  view: "login",
+  homeView: "home",
   planView: "Plan List",
   billView: "Bills List",
   emptyView: "Empty Dashboard",
