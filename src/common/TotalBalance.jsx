@@ -29,9 +29,12 @@ const TotalBalance = ({ totalIncomeProp, totalExpenseProp, className }) => {
       <div className="total">
         <p>Balance</p>
         <p
-          className={`${totalIncome + totalExpense > 0 ? "income" : "expense"}`}
+          className={`${
+            totalIncome - Math.abs(totalExpense) > 0 ? "income" : "expense"
+          }`}
         >
-          ${(totalIncome + totalExpense).toFixed(2)}
+          {totalIncome - Math.abs(totalExpense) > 0 ? "" : "-"}$
+          {Math.abs(totalIncome - Math.abs(totalExpense).toFixed(2)).toFixed(2)}
         </p>
       </div>
     </div>

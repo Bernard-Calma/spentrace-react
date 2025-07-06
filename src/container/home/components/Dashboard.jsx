@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { format, parseISO } from "date-fns";
-import Calendar from "../../../common/Calendar/Calendar";
-import { changeView } from "../../../features/viewSlice";
-import TotalBalance from "../../../common/TotalBalance";
-import ListPreview from "../../../common/ListPreview/ListPreview";
-import { AddTransaction } from "../../../common";
 import { useState } from "react";
 import { addTransaction } from "../../../features/budgetSlice";
+
+import {
+  AddTransaction,
+  ListPreview,
+  TotalBalance,
+  Calendar,
+} from "../../../common";
 
 const Dashboard = () => {
   const dispatch = useDispatch();

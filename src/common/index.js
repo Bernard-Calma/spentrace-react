@@ -6,6 +6,7 @@ import AddTransaction from "./AddTransaction/AddTransaction";
 import LabelInput from "./LabelInput";
 import ParagraphSpan from "./ParagraphSpan";
 import SelectInput from "./SelectInput";
+import TotalBalance from "./TotalBalance";
 
 export {
   Calendar,
@@ -16,4 +17,5 @@ export {
   LabelInput,
   ParagraphSpan,
   SelectInput,
+  TotalBalance,
 };
