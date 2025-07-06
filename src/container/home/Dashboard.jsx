@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { format, parseISO } from "date-fns";
-import Calendar from "../demo/components/Calendar";
+import Calendar from "../../common/Calendar/Calendar";
 import { changeView } from "../../features/viewSlice";
 import TotalBalance from "../../common/TotalBalance";
 

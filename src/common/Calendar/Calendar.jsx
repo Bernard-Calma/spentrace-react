@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-const Calendar = () => {
-  const { budgetItems } = useSelector((store) => store.demo);
+const Calendar = ({ itemListProp }) => {
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const today = new Date();
   const [currentDate, setCurrentDate] = useState(
     new Date(today.getFullYear(), today.getMonth(), 1)
   );
+
+  const [itemList, setItemList] = useState(itemListProp || []);
 
   const daysInMonth = new Date(
     currentDate.getFullYear(),
@@ -28,7 +28,7 @@ const Calendar = () => {
     )
       .toISOString()
       .split("T")[0];
-    return budgetItems
+    return itemList
       .filter((t) => t.date === dateStr && t.amount < 0)
       .reduce((sum, t) => sum + Math.abs(t.amount), 0);
   };
@@ -79,6 +79,11 @@ const Calendar = () => {
     }
     return cells;
   };
+
+  // Update itemList when prop changes
+  useEffect(() => {
+    setItemList(itemListProp || []);
+  }, [itemListProp]);
 
   return (
     <div className="summary calendar-box">

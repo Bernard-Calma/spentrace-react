@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Calendar from "./Calendar";
+import Calendar from "../../../common/Calendar/Calendar";
 import { changeView } from "../../../features/viewSlice";
 import TotalBalance from "../../../common/TotalBalance";
 import { format, parseISO } from "date-fns";
@@ -80,7 +80,7 @@ const DemoDashboard = ({ handleToggleAddTransaction }) => {
           </ul>
         </div>
 
-        <Calendar />
+        <Calendar itemListProp={budgetItems} />
       </div>
     </div>
   );
