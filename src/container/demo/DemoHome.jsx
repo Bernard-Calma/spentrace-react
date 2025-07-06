@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addTransaction,
   createDemoBudget,
   loadFromLocalStorage,
   updateBalance,
@@ -36,6 +37,11 @@ const DemoHome = () => {
   const handleCreateDemoBudget = (e, budget) => {
     e.preventDefault();
     dispatch(createDemoBudget(budget));
+  };
+
+  const handleAddTransaction = (newTransactionData) => {
+    // console.log("Adding transaction with: ", newTransactionData);
+    dispatch(addTransaction(newTransactionData));
   };
 
   // ------------------------------ END OF FUNCTIONS ------------------------------
@@ -74,6 +80,7 @@ const DemoHome = () => {
       <Header />
       {showAddTransaction ? (
         <AddTransaction
+          handleAddTransaction={handleAddTransaction}
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
       ) : showAddBill ? (

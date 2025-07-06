@@ -59,16 +59,14 @@ const AddTransaction = ({
       ...newTransaction,
       amount: transactionAmount,
     };
-    console.log("New Transaction Data:", {
+    // console.log("New Transaction Data:", {
+    //   ...newTransactionData,
+    //   date: format(newTransactionData.date, "yyyy-MM-dd"),
+    // });
+    handleAddTransaction({
       ...newTransactionData,
       date: format(newTransactionData.date, "yyyy-MM-dd"),
     });
-    dispatch(
-      handleAddTransaction({
-        ...newTransactionData,
-        date: format(newTransactionData.date, "yyyy-MM-dd"),
-      })
-    );
     // Reset form after submission
     setNewTransaction({
       amount: 0,

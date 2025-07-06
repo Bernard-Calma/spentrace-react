@@ -40,6 +40,7 @@ const demoSlice = createSlice({
       state.isLoading = false;
     },
     addTransaction: (state, { payload }) => {
+      console.log("Adding transaction:", payload);
       // amount coming in as a positive number, negative for expenses
       const { amount } = payload;
       // Attach a unique ID if not present, using budgetItems length
