@@ -64,9 +64,15 @@ const budgetSlice = createSlice({
       state.isLoading = false;
     },
     editTransaction: (state, { payload }) => {
-      state.budgetItems = state.budgetItems.map((transaction) =>
-        transaction.id === payload.id ? payload : transaction
-      );
+      state.budgetItems = state.budgetItems.map((transaction) => {
+        if (transaction.type === "income") {
+          state.totalIncome += Math.abs(transaction.amount - payload.amount);
+        } else {
+          state.totalExpense += Math.abs(transaction.amount - payload.amount);
+        }
+        return transaction.id === payload.id ? payload : transaction;
+      });
+      state.balance = state.totalIncome - state.totalExpense;
     },
   },
   extraReducers: (builder) => {},
