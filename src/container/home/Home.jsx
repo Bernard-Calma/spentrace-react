@@ -4,17 +4,17 @@ import { getPlans } from "../../features/planSlice";
 import { getBills } from "../../features/billSlice";
 import { getAccounts } from "../../features/accountSlice";
 import { changeView, toggleNavBar } from "../../features/viewSlice";
+import { createBudget } from "../../features/budgetSlice";
 
+import { Dashboard } from "./components";
 import BillsList from "../bills/BillsList";
 import PlanList from "../plan/PlansList";
-import DashBoard from "./Dashboard";
 import AccountList from "../accounts/AccountList";
 import "../../Components/NavBar.css";
 import Icon from "../../common/Icon";
 import CreateBudget from "../../common/CreateBudget/CreateBudget";
 
 import "./home.scss";
-import { createBudget } from "../../features/budgetSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Home = () => {
   // Plans
   const { planItems } = useSelector((store) => store.plan);
   // Bills
-  const { billItems, isLoading } = useSelector((store) => store.bill);
+  const { billItems } = useSelector((store) => store.bill);
   // Views
   const { view, homeView, planView, billView, accountView, showNav } =
     useSelector((store) => store.view);
@@ -67,11 +67,6 @@ const Home = () => {
     dispatch(toggleNavBar());
   };
 
-  const handleCreateBudget = (e, newBudget) => {
-    e.preventDefault();
-    // console.log("Creating budget with: ", newBudget);
-    dispatch(createBudget(newBudget));
-  };
   // ------------------------------ END OF FUNCTIONS ------------------------------
   useEffect(() => {
     dispatch(getPlans());
@@ -82,55 +77,45 @@ const Home = () => {
 
   return (
     <section className="container home">
-      {budgetId === "" || !budgetId ? (
-        <CreateBudget handleSubmitCreateBudget={handleCreateBudget} />
-      ) : (
-        <>
-          <Icon
-            className="fi fi-rr-bars-staggered"
-            onClick={() => dispatch(toggleNavBar())}
-          />
-          <div className={`homeNavBar ${showNav}`}>
-            <p
-              className={`navItem ${homeView === "Plan" ? "selected" : ""}`}
-              onClick={() => hadleChangeView("Plan List")}
-            >
-              Budget
-            </p>
-            {billItems.length > 0 && (
-              <p
-                className={`navItem ${
-                  homeView === "Bills List" ? "selected" : ""
-                }`}
-                onClick={() => hadleChangeView("Bills List")}
-              >
-                Bills
-              </p>
-            )}
-            <p
-              className={`navItem ${
-                homeView === "Account List" ? "selected" : ""
-              }`}
-              onClick={() => hadleChangeView("Account List")}
-            >
-              Accounts
-            </p>
-          </div>
-          <div className="containerHomeView">
-            {homeView === "Home" || view === "Home" ? (
-              <DashBoard planItems={planItems} />
-            ) : homeView === "Plan" ? (
-              <PlanList />
-            ) : homeView === "Bills List" ? (
-              <BillsList />
-            ) : homeView === "Account List" ? (
-              <AccountList />
-            ) : (
-              <></>
-            )}
-          </div>
-        </>
-      )}
+      <Icon
+        className="fi fi-rr-bars-staggered"
+        onClick={() => dispatch(toggleNavBar())}
+      />
+      <div className={`homeNavBar ${showNav}`}>
+        <p
+          className={`navItem ${homeView === "Plan" ? "selected" : ""}`}
+          onClick={() => hadleChangeView("Plan List")}
+        >
+          Budget
+        </p>
+        {billItems.length > 0 && (
+          <p
+            className={`navItem ${homeView === "Bills List" ? "selected" : ""}`}
+            onClick={() => hadleChangeView("Bills List")}
+          >
+            Bills
+          </p>
+        )}
+        <p
+          className={`navItem ${homeView === "Account List" ? "selected" : ""}`}
+          onClick={() => hadleChangeView("Account List")}
+        >
+          Accounts
+        </p>
+      </div>
+      <div className="containerHomeView">
+        {homeView === "Home" || view === "Home" ? (
+          <Dashboard planItems={planItems} />
+        ) : homeView === "Plan" ? (
+          <PlanList />
+        ) : homeView === "Bills List" ? (
+          <BillsList />
+        ) : homeView === "Account List" ? (
+          <AccountList />
+        ) : (
+          <></>
+        )}
+      </div>
     </section>
   );
 };

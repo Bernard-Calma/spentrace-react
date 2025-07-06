@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { format, parseISO } from "date-fns";
-import Calendar from "../../common/Calendar/Calendar";
-import { changeView } from "../../features/viewSlice";
-import TotalBalance from "../../common/TotalBalance";
+import Calendar from "../../../common/Calendar/Calendar";
+import { changeView } from "../../../features/viewSlice";
+import TotalBalance from "../../../common/TotalBalance";
 
-const DemoDashboard = ({ handleToggleAddTransaction }) => {
+const Dashboard = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
   const { budgetName, budgetItems } = useSelector((store) => store.demo);
 
@@ -86,4 +86,4 @@ const DemoDashboard = ({ handleToggleAddTransaction }) => {
   );
 };
 
-export default DemoDashboard;
+export default Dashboard;
