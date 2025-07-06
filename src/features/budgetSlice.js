@@ -50,10 +50,24 @@ const budgetSlice = createSlice({
       state.budgetItems = [...state.budgetItems, payload];
       state.isLoading = false;
     },
+    deleteTransaction: (state, { payload }) => {
+      // Update totals first before removing the item
+      if (payload.amount < 0) {
+        state.totalExpense -= Math.abs(payload.amount);
+      } else {
+        state.totalIncome -= payload.amount;
+      }
+      state.balance = state.totalIncome - state.totalExpense;
+      state.budgetItems = state.budgetItems.filter(
+        (transaction) => transaction.id !== payload.id
+      );
+      state.isLoading = false;
+    },
   },
   extraReducers: (builder) => {},
 });
 
-export const { createBudget, addTransaction } = budgetSlice.actions;
+export const { createBudget, addTransaction, deleteTransaction } =
+  budgetSlice.actions;
 
 export default budgetSlice.reducer;

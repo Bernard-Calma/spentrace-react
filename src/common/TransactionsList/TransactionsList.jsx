@@ -9,7 +9,7 @@ import "./transactionsList.scss";
 
 const TransactionsList = ({
   budgetName,
-  transcationsList,
+  transactionsList,
   totalExpense,
   totalIncome,
   handleDeleteTransaction,
@@ -47,7 +47,7 @@ const TransactionsList = ({
     // Sort transactions by date and name
     const sortTransaction = () => {
       setSortedTransactions(
-        [...transcationsList].sort((a, b) => {
+        [...transactionsList].sort((a, b) => {
           const dateA = new Date(a.date);
           const dateB = new Date(b.date);
           if (dateA.getTime() === dateB.getTime()) {
@@ -63,7 +63,7 @@ const TransactionsList = ({
       let runningIncomeTotal = totalIncome;
 
       // Get the transaction where running income will be negative
-      for (let transaction of [...transcationsList].sort((a, b) => {
+      for (let transaction of [...transactionsList].sort((a, b) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
         if (dateA.getTime() === dateB.getTime()) {
@@ -87,7 +87,7 @@ const TransactionsList = ({
 
     sortTransaction();
     calculateDeficitDate();
-  }, [transcationsList]);
+  }, [transactionsList]);
 
   // Get date where income will be not enough to cover expenses
 

@@ -113,7 +113,7 @@ const DemoHome = () => {
       ) : demoView === "transactions-list" ? (
         <TransactionsList
           budgetName={budgetName}
-          transcationsList={budgetItems}
+          transactionsList={budgetItems}
           totalExpense={totalExpense}
           totalIncome={totalIncome}
           handleDeleteTransaction={handleDeleteTransaction}
