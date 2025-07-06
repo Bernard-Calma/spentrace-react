@@ -8,7 +8,9 @@ import EditTransaction from "./EditTransaction";
 
 const TransactionsList = ({ budgetName }) => {
   const dispatch = useDispatch();
-  const { budgetItems, totalIncome } = useSelector((store) => store.demo);
+  const { budgetItems, totalExpense, totalIncome } = useSelector(
+    (store) => store.demo
+  );
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [showTransaction, setShowTransaction] = useState(false);
   const [showEditTransaction, setShowEditTransaction] = useState(false);
@@ -104,7 +106,11 @@ const TransactionsList = ({ budgetName }) => {
 
       <h1 className="title">{budgetName}</h1>
       <h2 className="subtitle">Transactions List</h2>
-      <TotalBalance className="totals" />
+      <TotalBalance
+        className="totals"
+        totalIncomeProp={totalIncome}
+        totalExpenseProp={totalExpense}
+      />
       <div className="budget-items">
         {sortedTransactions.map((tx, index) => (
           <>

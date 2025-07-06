@@ -40,6 +40,7 @@ const Login = ({ handleChangeView }) => {
   const handleDemoLogin = () => {
     dispatch(demoLogin());
     dispatch(changeView({ view: "demo" }));
+    dispatch(changeView({ demoView: "home" }));
   };
 
   return (
