@@ -7,9 +7,8 @@ import ListPreview from "../../../common/ListPreview/ListPreview";
 
 const Dashboard = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
-  const { budgetName, budgetItems, totalIncome, totalExpense } = useSelector(
-    (store) => store.budget
-  );
+  const { budgetName, owner, budgetItems, totalIncome, totalExpense } =
+    useSelector((store) => store.budget);
 
   // Sort budget items by date (newest first) and then by name
   // Format the date to "MMM dd" (e.g., "Jan 01")
@@ -27,7 +26,11 @@ const Dashboard = ({ handleToggleAddTransaction }) => {
     }));
   return (
     <div className="container dashboard">
-      <h1 className="title">{budgetName}</h1>
+      <div className="budget-info">
+        <h1 className="title">{budgetName}</h1>
+        <p>Owner: {owner}</p>
+      </div>
+
       <div className="dashboard-header">
         <TotalBalance
           className="totals"

@@ -89,7 +89,7 @@ const DemoHome = () => {
 
       {budgetName === "" || !budgetName ? (
         <CreateBudget handleSubmitCreateBudget={handleCreateDemoBudget} />
-      ) : demoView === "Demo" ? (
+      ) : demoView === "home" ? (
         <DemoDashboard
           showAddTransaction={showAddTransaction}
           handleToggleAddTransaction={handleToggleAddTransaction}

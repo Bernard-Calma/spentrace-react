@@ -39,7 +39,7 @@ const Login = ({ handleChangeView }) => {
 
   const handleDemoLogin = () => {
     dispatch(demoLogin());
-    dispatch(changeView({ view: "Demo" }));
+    dispatch(changeView({ view: "demo" }));
   };
 
   return (

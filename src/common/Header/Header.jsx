@@ -8,28 +8,31 @@ import "./header.scss";
 
 const Header = () => {
   const { loggedIn } = useSelector((store) => store.user);
+  const { view } = useSelector((store) => store.view);
   const dispatch = useDispatch();
 
   return (
     <header>
       <h1
         className="title"
-        onClick={() => dispatch(changeView({ demoView: "Demo" }))}
+        onClick={() => dispatch(changeView({ [`${view}View`]: "home" }))}
       >
         Spen<span>trace</span>
       </h1>
       <div className="nav-container">
         <nav className="hidden md:flex gap-3 ml-6 text-sm text-gray-600">
           {/* Demo Only */}
-          <p onClick={() => dispatch(changeView({ demoView: "Demo" }))}>Home</p>
+          <p onClick={() => dispatch(changeView({ [`${view}View`]: "home" }))}>
+            Home
+          </p>
           <p
             onClick={() =>
-              dispatch(changeView({ demoView: "transactions-list" }))
+              dispatch(changeView({ [`${view}View`]: "transactions-list" }))
             }
           >
             Transactions
           </p>
-          <p onClick={() => dispatch(changeView({ demoView: "bills" }))}>
+          <p onClick={() => dispatch(changeView({ [`${view}View`]: "bills" }))}>
             Bills
           </p>
           {/* Full Access */}

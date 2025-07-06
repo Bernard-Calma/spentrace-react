@@ -23,7 +23,7 @@ const viewSlice = createSlice({
   initialState,
   reducers: {
     changeView: (state, { payload }) => {
-      // console.log(payload)
+      console.log(payload);
       const {
         view,
         billView,
