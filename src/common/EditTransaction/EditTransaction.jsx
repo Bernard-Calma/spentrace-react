@@ -1,18 +1,16 @@
 import { useState } from "react";
-import LabelInput from "../../../common/LabelInput";
-import { useDispatch, useSelector } from "react-redux";
-import { editTransaction } from "../../../features/demoSlice";
+
+import { LabelInput } from "../";
 
 const EditTransaction = ({
-  handleToggleTransaction,
-  handleToggleAddTransaction,
+  transaction,
+  handleCloseTransaction,
+  handleEditTransaction,
 }) => {
-  const dispatch = useDispatch();
-  const { openBudgetItem } = useSelector((store) => store.demo);
   const [newTransaction, setNewTransaction] = useState({
-    ...openBudgetItem,
-    type: openBudgetItem.amount < 0 ? "expense" : "income",
-    amount: Math.abs(openBudgetItem.amount), // Ensure amount is positive for input
+    ...transaction,
+    type: transaction.amount < 0 ? "expense" : "income",
+    amount: Math.abs(transaction.amount), // Ensure amount is positive for input
   });
 
   const handleChange = (e) => {
@@ -39,7 +37,7 @@ const EditTransaction = ({
     }
   };
 
-  const handleSubmitNewTransaction = (e) => {
+  const handleSubmitEditTransaction = (e) => {
     e.preventDefault();
     // Modify amount to be negative for expenses
     const transactionAmount =
@@ -50,8 +48,8 @@ const EditTransaction = ({
       ...newTransaction,
       amount: transactionAmount,
     };
-    // Dispatch the action to add the new transaction
-    dispatch(editTransaction(newTransactionData));
+    // Dispatch the action to edit the transaction
+    handleEditTransaction(newTransactionData);
     // Reset form after submission
     setNewTransaction({
       amount: 0,
@@ -59,23 +57,18 @@ const EditTransaction = ({
       name: "",
       category: "",
     });
-    // TO DO: Change naming of this function to handleEditTransaction
-    // Close the add transaction modal and transaction details modal
-    handleToggleAddTransaction();
-    handleToggleTransaction();
+    // Close the transaction after edit.
+    handleCloseTransaction();
   };
 
   return (
     <div className="overlay">
       <div className="container add-transaction">
-        <button
-          className="button btn-close"
-          onClick={handleToggleAddTransaction}
-        >
+        <button className="button btn-close" onClick={handleCloseTransaction}>
           <span className="close-icon">&times;</span>
         </button>
         <h2 className="title">Add Transaction</h2>
-        <form onSubmit={handleSubmitNewTransaction}>
+        <form onSubmit={handleSubmitEditTransaction}>
           <LabelInput
             className="input-amount"
             type="number"

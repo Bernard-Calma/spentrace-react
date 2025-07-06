@@ -9,7 +9,11 @@ import "./app.scss";
 import DemoHome from "./container/demo/DemoHome";
 import Subscribe from "./container/subscribe/Subscribe";
 import CreateBudget from "./common/CreateBudget/CreateBudget";
-import { createBudget, deleteTransaction } from "./features/budgetSlice";
+import {
+  createBudget,
+  deleteTransaction,
+  editTransaction,
+} from "./features/budgetSlice";
 import Header from "./common/Header/Header";
 import { TransactionsList } from "./common";
 
@@ -35,6 +39,10 @@ const App = () => {
     dispatch(deleteTransaction(transaction));
   };
 
+  const handleEditTransaction = (newTransactionData) => {
+    dispatch(editTransaction(newTransactionData));
+  };
+
   useEffect(() => {
     // Check if current session has user
     // dispatch(getUser());
@@ -57,6 +65,7 @@ const App = () => {
                   totalExpense={totalExpense}
                   totalIncome={totalIncome}
                   handleDeleteTransaction={handleDeleteTransaction}
+                  handleEditTransaction={handleEditTransaction}
                 />
               ) : (
                 <></>

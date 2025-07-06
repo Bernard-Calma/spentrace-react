@@ -1,18 +1,19 @@
 import { format, parseISO } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { ShowTransaction, TotalBalance } from "../";
+import { ShowTransaction, TotalBalance, EditTransaction } from "../";
 import { setOpenTransaction } from "../../features/demoSlice";
-import EditTransaction from "../../container/demo/components/EditTransaction";
 
 import "./transactionsList.scss";
 
+// TransactionsList should have props to handle editing transactions
 const TransactionsList = ({
   budgetName,
   transactionsList,
   totalExpense,
   totalIncome,
   handleDeleteTransaction,
+  handleEditTransaction,
 }) => {
   const dispatch = useDispatch();
   const { openTransaction } = useSelector((store) => store.demo);
@@ -105,8 +106,12 @@ const TransactionsList = ({
       ) : (
         showEditTransaction && (
           <EditTransaction
-            handleToggleTransaction={handleToggleTransaction}
-            handleToggleAddTransaction={() => setShowEditTransaction(false)}
+            transaction={openTransaction}
+            handleCloseTransaction={() => {
+              setShowEditTransaction(false);
+              handleToggleTransaction();
+            }}
+            handleEditTransaction={handleEditTransaction}
           />
         )
       )}

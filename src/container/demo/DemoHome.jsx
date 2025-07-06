@@ -4,6 +4,7 @@ import {
   addTransaction,
   createDemoBudget,
   deleteTransaction,
+  editTransaction,
   loadFromLocalStorage,
   updateBalance,
 } from "../../features/demoSlice";
@@ -53,6 +54,10 @@ const DemoHome = () => {
 
   const handleDeleteTransaction = (transaction) => {
     dispatch(deleteTransaction(transaction));
+  };
+
+  const handleEditTransaction = (newTransactionData) => {
+    dispatch(editTransaction(newTransactionData));
   };
 
   // ------------------------------ END OF FUNCTIONS ------------------------------
@@ -117,6 +122,7 @@ const DemoHome = () => {
           totalExpense={totalExpense}
           totalIncome={totalIncome}
           handleDeleteTransaction={handleDeleteTransaction}
+          handleEditTransaction={handleEditTransaction}
         />
       ) : demoView === "bills" ? (
         <DemoBill handleToggleAddBill={handleToggleAddBill} />

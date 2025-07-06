@@ -5,6 +5,7 @@ import ListPreview from "./ListPreview/ListPreview";
 import TransactionsList from "./TransactionsList/TransactionsList";
 import AddTransaction from "./AddTransaction/AddTransaction";
 import ShowTransaction from "./ShowTransaction/ShowTransaction";
+import EditTransaction from "./EditTransaction/EditTransaction";
 import LabelInput from "./LabelInput";
 import ParagraphSpan from "./ParagraphSpan";
 import SelectInput from "./SelectInput";
@@ -18,6 +19,7 @@ export {
   TransactionsList,
   AddTransaction,
   ShowTransaction,
+  EditTransaction,
   LabelInput,
   ParagraphSpan,
   SelectInput,

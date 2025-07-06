@@ -63,11 +63,20 @@ const budgetSlice = createSlice({
       );
       state.isLoading = false;
     },
+    editTransaction: (state, { payload }) => {
+      state.budgetItems = state.budgetItems.map((transaction) =>
+        transaction.id === payload.id ? payload : transaction
+      );
+    },
   },
   extraReducers: (builder) => {},
 });
 
-export const { createBudget, addTransaction, deleteTransaction } =
-  budgetSlice.actions;
+export const {
+  createBudget,
+  addTransaction,
+  deleteTransaction,
+  editTransaction,
+} = budgetSlice.actions;
 
 export default budgetSlice.reducer;
