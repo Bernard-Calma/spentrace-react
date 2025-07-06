@@ -1,15 +1,15 @@
 import { format, parseISO } from "date-fns";
-import { useDispatch } from "react-redux";
 
 import "./showTransaction.scss";
 
 const ShowTransaction = ({
   handleToggleTransaction,
   handleEditTransaction,
+  handleDeleteTransaction,
   transaction,
 }) => {
-  const dispatch = useDispatch();
-  const handleDeleteTransaction = () => {
+  const handleSubmitDeleteTransaction = () => {
+    handleDeleteTransaction(transaction);
     handleToggleTransaction();
   };
   return (
@@ -59,7 +59,7 @@ const ShowTransaction = ({
           </button>
           <button
             className="button delete-button"
-            onClick={handleDeleteTransaction}
+            onClick={handleSubmitDeleteTransaction}
           >
             Delete Transaction
           </button>

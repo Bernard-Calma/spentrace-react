@@ -12,6 +12,7 @@ const TransactionsList = ({
   transcationsList,
   totalExpense,
   totalIncome,
+  handleDeleteTransaction,
 }) => {
   const dispatch = useDispatch();
   const { openTransaction } = useSelector((store) => store.demo);
@@ -99,6 +100,7 @@ const TransactionsList = ({
           handleEditTransaction={() => {
             setShowEditTransaction(true);
           }}
+          handleDeleteTransaction={handleDeleteTransaction}
         />
       ) : (
         showEditTransaction && (

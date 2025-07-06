@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addTransaction,
   createDemoBudget,
+  deleteTransaction,
   loadFromLocalStorage,
   updateBalance,
 } from "../../features/demoSlice";
@@ -48,6 +49,10 @@ const DemoHome = () => {
   const handleAddTransaction = (newTransactionData) => {
     // console.log("Adding transaction with: ", newTransactionData);
     dispatch(addTransaction(newTransactionData));
+  };
+
+  const handleDeleteTransaction = (transaction) => {
+    dispatch(deleteTransaction(transaction));
   };
 
   // ------------------------------ END OF FUNCTIONS ------------------------------
@@ -111,6 +116,7 @@ const DemoHome = () => {
           transcationsList={budgetItems}
           totalExpense={totalExpense}
           totalIncome={totalIncome}
+          handleDeleteTransaction={handleDeleteTransaction}
         />
       ) : demoView === "bills" ? (
         <DemoBill handleToggleAddBill={handleToggleAddBill} />
