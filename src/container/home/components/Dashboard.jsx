@@ -71,7 +71,7 @@ const Dashboard = () => {
         <ListPreview
           listItemProp={sortedTransactions}
           length={5}
-          changeViewProp={{ view: "transactions-list" }}
+          changeViewProp={{ homeView: "transactions-list" }}
         />
         <Calendar itemListProp={budgetItems} />
       </div>
