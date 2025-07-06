@@ -73,7 +73,7 @@ const Dashboard = () => {
           length={5}
           changeViewProp={{ view: "transactions-list" }}
         />
-        <Calendar />
+        <Calendar itemListProp={budgetItems} />
       </div>
     </div>
   );
