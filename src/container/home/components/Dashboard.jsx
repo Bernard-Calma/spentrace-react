@@ -3,10 +3,13 @@ import { format, parseISO } from "date-fns";
 import Calendar from "../../../common/Calendar/Calendar";
 import { changeView } from "../../../features/viewSlice";
 import TotalBalance from "../../../common/TotalBalance";
+import ListPreview from "../../../common/ListPreview/ListPreview";
 
 const Dashboard = ({ handleToggleAddTransaction }) => {
   const dispatch = useDispatch();
-  const { budgetName, budgetItems } = useSelector((store) => store.demo);
+  const { budgetName, budgetItems, totalIncome, totalExpense } = useSelector(
+    (store) => store.budget
+  );
 
   // Sort budget items by date (newest first) and then by name
   // Format the date to "MMM dd" (e.g., "Jan 01")
@@ -26,7 +29,11 @@ const Dashboard = ({ handleToggleAddTransaction }) => {
     <div className="container dashboard">
       <h1 className="title">{budgetName}</h1>
       <div className="dashboard-header">
-        <TotalBalance className="totals" />
+        <TotalBalance
+          className="totals"
+          totalIncomeProp={totalIncome}
+          totalExpenseProp={totalExpense}
+        />
         <button
           className="add-transaction-button"
           onClick={handleToggleAddTransaction}
@@ -37,49 +44,11 @@ const Dashboard = ({ handleToggleAddTransaction }) => {
       </div>
 
       <div className="container summaries">
-        <div className="container summary">
-          <h2 className="subtitle">
-            Recent Transactions{" "}
-            <span
-              onClick={() =>
-                dispatch(changeView({ demoView: "transactions-list" }))
-              }
-            >
-              View All
-            </span>
-          </h2>
-          <ul className="summary-content transactions-list">
-            {sortedTransactions.map((t, idx) =>
-              idx <= 4 ? (
-                <li key={idx} className="transaction-item">
-                  <div className="transaction-item_details">
-                    <p className="transaction-item_name">{t.name}</p>
-                    <p className="transaction-item_date">{t.date}</p>
-                  </div>
-                  <p
-                    className={`transaction-item_amount ${
-                      t.amount < 0 ? "expense" : "income"
-                    }`}
-                  >
-                    {t.amount < 0 ? "-" : "+"}${Math.abs(t.amount).toFixed(2)}
-                  </p>
-                </li>
-              ) : null
-            )}
-            <div
-              onClick={() =>
-                dispatch(changeView({ demoView: "transactions-list" }))
-              }
-            >
-              <p className="transactions-list_more">
-                {sortedTransactions.length >= 5
-                  ? `view +${sortedTransactions.length - 5} more`
-                  : ""}
-              </p>
-            </div>
-          </ul>
-        </div>
-
+        <ListPreview
+          listItemProp={sortedTransactions}
+          length={5}
+          changeViewProp={{ view: "transactions-list" }}
+        />
         <Calendar />
       </div>
     </div>

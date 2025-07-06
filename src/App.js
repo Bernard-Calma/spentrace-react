@@ -10,6 +10,7 @@ import DemoHome from "./container/demo/DemoHome";
 import Subscribe from "./container/subscribe/Subscribe";
 import CreateBudget from "./common/CreateBudget/CreateBudget";
 import { createBudget } from "./features/budgetSlice";
+import Header from "./common/Header/Header";
 
 const App = () => {
   // ------------------------------ VARIABLES ------------------------------
@@ -39,7 +40,10 @@ const App = () => {
       {loggedIn ? (
         <>
           {budgetId ? (
-            <Home />
+            <>
+              <Header />
+              {view === "home" ? <Home /> : <></>}
+            </>
           ) : (
             <CreateBudget handleSubmitCreateBudget={handleCreateBudget} />
           )}

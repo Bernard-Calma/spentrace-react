@@ -6,6 +6,7 @@ const serverURL = process.env.REACT_APP_SERVER_URL;
 const initialState = {
   budgetId: "",
   budgetName: "",
+  budgetItems: [],
   owner: "",
   collaborators: {
     pending: [],

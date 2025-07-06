@@ -32,6 +32,7 @@ const Login = ({ handleChangeView }) => {
       return;
     } else {
       dispatch(userLogin(user));
+      dispatch(changeView({ view: "home" }));
       setUser({ ...user, password: "" });
     }
   };

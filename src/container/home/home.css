@@ -18,17 +18,16 @@
 }
 /* HOME STYLES*/
 .container.home {
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-family: "Kanit", sans-serif;
   flex-grow: 1;
 }
-
-.containerHomeView {
-  height: 100%;
+.container.home .dashboard .container.summaries {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 1rem;
 }
 
 .containerPlanList,
