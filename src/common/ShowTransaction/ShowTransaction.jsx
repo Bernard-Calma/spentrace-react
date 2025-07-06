@@ -1,6 +1,8 @@
 import { format, parseISO } from "date-fns";
 import { useDispatch } from "react-redux";
 
+import "./showTransaction.scss";
+
 const ShowTransaction = ({
   handleToggleTransaction,
   handleEditTransaction,

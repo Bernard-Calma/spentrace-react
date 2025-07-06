@@ -1,0 +1,82 @@
+@use "../../styles/variables" as v;
+
+.transaction-show {
+  padding: 1.5rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: v.$secondary-color;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: v.$text-color;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+
+  .transaction-show-header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+
+    .subtitle {
+      margin: 0;
+    }
+
+    .close-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: v.$text-color_lighter;
+
+      &:hover {
+        color: v.$accent-color;
+      }
+    }
+  }
+
+  .transaction-title {
+    margin: 0;
+  }
+
+  .transaction-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    p {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.25rem 0;
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    .notes-container {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      background-color: v.$primary-color;
+      border-radius: 0.25rem;
+      color: v.$text-color_lighter;
+
+      p {
+        margin: 0;
+        font-size: 0.875rem;
+      }
+    }
+  }
+  .transaction-actions {
+    margin: 1rem auto;
+    display: flex;
+    gap: 1rem;
+    .delete-button {
+      background-color: v.$warning-color !important;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "Russo One";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../assets/fonts/Russo_One/russo-one.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 500;
+  font-style: light;
+  src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
+}
+.transaction-show {
+  padding: 1.5rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: rgb(75, 85, 99);
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+}
+.transaction-show .transaction-show-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+.transaction-show .transaction-show-header .subtitle {
+  margin: 0;
+}
+.transaction-show .transaction-show-header .close-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(107, 114, 128);
+}
+.transaction-show .transaction-show-header .close-button:hover {
+  color: #0070bb;
+}
+.transaction-show .transaction-title {
+  margin: 0;
+}
+.transaction-show .transaction-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.transaction-show .transaction-details p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 0;
+}
+.transaction-show .transaction-details p span {
+  font-weight: 700;
+}
+.transaction-show .transaction-details .notes-container {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: rgb(243, 244, 246);
+  border-radius: 0.25rem;
+  color: rgb(107, 114, 128);
+}
+.transaction-show .transaction-details .notes-container p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+.transaction-show .transaction-actions {
+  margin: 1rem auto;
+  display: flex;
+  gap: 1rem;
+}
+.transaction-show .transaction-actions .delete-button {
+  background-color: rgb(255, 30, 30) !important;
+}/*# sourceMappingURL=showTransaction.css.map */
