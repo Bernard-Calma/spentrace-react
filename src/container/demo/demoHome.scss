@@ -72,65 +72,6 @@
     justify-content: center;
     z-index: 1000;
 
-    .add-transaction {
-      padding: 1.5rem;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: v.$secondary-color;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      color: v.$text-color;
-      width: 400px;
-      max-width: 90%;
-      position: relative;
-
-      .btn-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        color: v.$text-color_lighter;
-
-        &:hover {
-          color: v.$accent-color;
-        }
-      }
-
-      form {
-        width: 100%;
-
-        .input-amount {
-          font-size: 5rem;
-          display: flex;
-          align-items: baseline;
-          color: v.$text-color_darker;
-          font-size: 1.5rem;
-
-          input[type="number"] {
-            field-sizing: content;
-            font-size: 3rem;
-            text-align: center;
-            font-weight: 700;
-            background-color: transparent;
-            border: none;
-            color: v.$text-color_darker;
-            &:focus {
-              outline: none;
-            }
-          }
-        }
-
-        .button {
-          margin-top: 1rem;
-        }
-      }
-    }
-
     .transaction-show {
       padding: 1.5rem;
       margin: auto;

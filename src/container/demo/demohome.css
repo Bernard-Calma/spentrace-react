@@ -79,58 +79,6 @@
   justify-content: center;
   z-index: 1000;
 }
-.demo-home .overlay .add-transaction {
-  padding: 1.5rem;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: rgb(75, 85, 99);
-  width: 400px;
-  max-width: 90%;
-  position: relative;
-}
-.demo-home .overlay .add-transaction .btn-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: rgb(107, 114, 128);
-}
-.demo-home .overlay .add-transaction .btn-close:hover {
-  color: #0070bb;
-}
-.demo-home .overlay .add-transaction form {
-  width: 100%;
-}
-.demo-home .overlay .add-transaction form .input-amount {
-  font-size: 5rem;
-  display: flex;
-  align-items: baseline;
-  color: rgb(55, 65, 81);
-  font-size: 1.5rem;
-}
-.demo-home .overlay .add-transaction form .input-amount input[type=number] {
-  field-sizing: content;
-  font-size: 3rem;
-  text-align: center;
-  font-weight: 700;
-  background-color: transparent;
-  border: none;
-  color: rgb(55, 65, 81);
-}
-.demo-home .overlay .add-transaction form .input-amount input[type=number]:focus {
-  outline: none;
-}
-.demo-home .overlay .add-transaction form .button {
-  margin-top: 1rem;
-}
 .demo-home .overlay .transaction-show {
   padding: 1.5rem;
   margin: auto;

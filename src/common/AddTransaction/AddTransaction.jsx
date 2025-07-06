@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { format, parseISO } from "date-fns";
 import { LabelInput } from "../";
 
+import "./addTransaction.scss";
+
 const AddTransaction = ({
   handleAddTransaction,
   handleToggleAddTransaction,

@@ -33,10 +33,27 @@ const budgetSlice = createSlice({
       };
       state.isLoading = false;
     },
+    addTransaction: (state, { payload }) => {
+      // console.log("Adding transaction:", payload);
+      // amount coming in as a positive number, negative for expenses
+      const { amount } = payload;
+      // Attach a unique ID if not present, using budgetItems length
+      payload.id = state.budgetItems.length + 1;
+
+      // Update totals
+      if (amount < 0) {
+        state.totalExpense += Math.abs(amount);
+      } else {
+        state.totalIncome += amount;
+      }
+      state.balance = state.totalIncome - state.totalExpense;
+      state.budgetItems = [...state.budgetItems, payload];
+      state.isLoading = false;
+    },
   },
   extraReducers: (builder) => {},
 });
 
-export const { createBudget } = budgetSlice.actions;
+export const { createBudget, addTransaction } = budgetSlice.actions;
 
 export default budgetSlice.reducer;
