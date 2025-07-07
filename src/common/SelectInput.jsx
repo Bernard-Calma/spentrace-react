@@ -1,4 +1,12 @@
-const SelectInput = ({ options, value, onChange, name, text, className }) => {
+const SelectInput = ({
+  options,
+  value,
+  onChange,
+  name,
+  text,
+  className,
+  disabled,
+}) => {
   return (
     <div className={`input-select ${className}`}>
       <label htmlFor={name}>{text} </label>
@@ -7,6 +15,7 @@ const SelectInput = ({ options, value, onChange, name, text, className }) => {
         value={value}
         onChange={onChange}
         className={`select-input ${className}`}
+        disabled={disabled}
       >
         {options.map((option) => (
           <option key={option} value={option}>

@@ -158,6 +158,42 @@ body .mobile-only,
   font-style: italic;
 }
 
+.input-select {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+.input-select select {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0;
+  border: 1px solid rgb(75, 85, 99);
+  background-color: rgb(243, 244, 246);
+  font-size: 1rem;
+  font-family: "Kanit", sans-serif;
+}
+.input-select select:focus {
+  outline: none;
+  border-color: #0070bb;
+  border-width: 2px;
+}
+.input-select select:disabled {
+  background-color: rgb(5, 15, 35);
+  border-color: #0070bb;
+  cursor: not-allowed;
+}
+.input-select select:disabled::-moz-placeholder {
+  color: rgb(107, 114, 128);
+  font-style: italic;
+}
+.input-select select:disabled::placeholder {
+  color: rgb(107, 114, 128);
+  font-style: italic;
+}
+
 a {
   text-decoration: none;
   color: inherit;

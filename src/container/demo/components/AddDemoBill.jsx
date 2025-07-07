@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addBill } from "../../../features/demoSlice";
 import { format, parseISO } from "date-fns";
 import { SelectInput, LabelInput } from "../../../common";
+import { tr } from "date-fns/locale";
 
 const AddDemoBill = ({ handleToggleAddBill }) => {
   const dispatch = useDispatch();
@@ -127,6 +128,7 @@ const AddDemoBill = ({ handleToggleAddBill }) => {
             onChange={handleChange}
             name="repeat"
             text="Repeat"
+            disabled={true}
           />
 
           {newBill.repeat !== "Never Repeat" && (
@@ -160,6 +162,7 @@ const AddDemoBill = ({ handleToggleAddBill }) => {
             placeholder="e.g., Food, Utilities"
             value={newBill.category}
             onChange={handleChange}
+            disabled={true}
           />
           <button className="button" type="submit">
             Add Transaction

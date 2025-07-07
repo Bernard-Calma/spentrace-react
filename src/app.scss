@@ -119,6 +119,42 @@ body,
   }
 }
 
+.input-select {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0;
+    border: 1px solid v.$text-color;
+    background-color: v.$primary-color;
+    font-size: 1rem;
+    font-family: "Kanit", sans-serif;
+
+    &:focus {
+      outline: none;
+      border-color: v.$accent-color;
+      border-width: 2px;
+    }
+
+    &:disabled {
+      background-color: rgb(5, 15, 35);
+      border-color: v.$accent-color;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: v.$text-color_lighter;
+        font-style: italic;
+      }
+    }
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;

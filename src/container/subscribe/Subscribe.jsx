@@ -10,9 +10,9 @@ const Subscribe = () => {
     { title: "Recurring Bills", unlocked: !isDemo },
     { title: "Budget Planning Tools", unlocked: isSubscribed },
     { title: "Custom Categories", unlocked: !isDemo },
-    { title: "Export to CSV", unlocked: isSubscribed },
     { title: "Multi-device Sync", unlocked: isSubscribed },
     { title: "Invite Collaborators", unlocked: isSubscribed },
+    { title: "Export to CSV", unlocked: isSubscribed },
   ];
 
   return (
