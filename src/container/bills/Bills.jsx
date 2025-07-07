@@ -9,11 +9,10 @@ import {
 } from "date-fns";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { BillsHeader } from "./components";
+import { BillsHeader, AddBill, ShowBill } from "./components";
 // import ShowBill from "./ShowBill";
 
 import "./bills.scss";
-import AddBill from "./components/AddBill";
 
 const Bills = () => {
   const { billItems } = useSelector((store) => store.demo);
@@ -242,14 +241,14 @@ const Bills = () => {
 
   return (
     <div className="container bills">
-      {/* {showBill.status && (
+      {showBill.status && (
         <ShowBill
           bill={showBill.bill}
           handleToggleTransaction={() =>
             setShowBill({ status: false, bill: null })
           }
         />
-      )} */}
+      )}
       {showAddBill && <AddBill handleToggleAddBill={handleToggleAddBill} />}
 
       <h2 className="full">Bills</h2>
