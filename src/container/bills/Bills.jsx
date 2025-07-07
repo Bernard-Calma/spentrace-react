@@ -13,16 +13,22 @@ import { BillsHeader } from "./components";
 // import ShowBill from "./ShowBill";
 
 import "./bills.scss";
+import AddBill from "./components/AddBill";
 
-const Bills = ({ handleToggleAddBill }) => {
+const Bills = () => {
   const { billItems } = useSelector((store) => store.demo);
   const [showBill, setShowBill] = useState({
     status: false,
     bill: null,
   });
+  const [showAddBill, setShowAddBill] = useState(false);
 
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  const handleToggleAddBill = () => {
+    setShowAddBill((prev) => !prev);
+  };
 
   // Recreate the billItems array with if a bill repeat is not "Never Repeat" it will add another bill in the array
   const [billItemsWithRepeats, setBillItemsWithRepeats] = useState(
@@ -244,7 +250,8 @@ const Bills = ({ handleToggleAddBill }) => {
           }
         />
       )} */}
-      {/*TO DO: Change to months */}
+      {showAddBill && <AddBill handleToggleAddBill={handleToggleAddBill} />}
+
       <h2 className="full">Bills</h2>
       <div className="btn add-bill hidden-mobile">
         <button className="add-bill_button" onClick={handleToggleAddBill}>
