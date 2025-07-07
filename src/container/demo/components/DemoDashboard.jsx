@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
-import Calendar from "../../../common/Calendar/Calendar";
-import TotalBalance from "../../../common/TotalBalance";
 import { format, parseISO } from "date-fns";
-import ListPreview from "../../../common/ListPreview/ListPreview";
+
+import { Calendar, TotalBalance, ListPreview } from "../../../common";
 
 const DemoDashboard = ({ handleToggleAddTransaction }) => {
   const { budgetName, budgetItems, totalExpense, totalIncome } = useSelector(

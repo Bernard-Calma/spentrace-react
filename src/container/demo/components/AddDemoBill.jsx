@@ -1,11 +1,10 @@
 import { useState } from "react";
-import LabelInput from "../../../common/LabelInput";
 import { useDispatch } from "react-redux";
 import { addBill } from "../../../features/demoSlice";
 import { format, parseISO } from "date-fns";
-import { SelectInput } from "../../../common";
+import { SelectInput, LabelInput } from "../../../common";
 
-const AddBill = ({ handleToggleAddBill }) => {
+const AddDemoBill = ({ handleToggleAddBill }) => {
   const dispatch = useDispatch();
   const [newBill, setNewBill] = useState({
     amount: 0,
@@ -171,4 +170,4 @@ const AddBill = ({ handleToggleAddBill }) => {
   );
 };
 
-export default AddBill;
+export default AddDemoBill;

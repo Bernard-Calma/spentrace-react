@@ -2,8 +2,7 @@ import { format, parseISO } from "date-fns";
 import { useDispatch } from "react-redux";
 import { deleteBill, editBill } from "../../../features/demoSlice";
 import { useState } from "react";
-import LabelInput from "../../../common/LabelInput";
-import { SelectInput } from "../../../common";
+import { SelectInput, LabelInput } from "../../../common";
 
 const ShowDemoBill = ({ bill, handleToggleTransaction }) => {
   const dispatch = useDispatch();
