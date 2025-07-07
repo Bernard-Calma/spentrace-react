@@ -16,6 +16,7 @@ import {
 } from "./features/budgetSlice";
 import Header from "./common/Header/Header";
 import { TransactionsList } from "./common";
+import Bills from "./container/bills/Bills";
 
 const App = () => {
   // ------------------------------ VARIABLES ------------------------------
@@ -67,6 +68,8 @@ const App = () => {
                   handleDeleteTransaction={handleDeleteTransaction}
                   handleEditTransaction={handleEditTransaction}
                 />
+              ) : homeView === "bills" ? (
+                <Bills />
               ) : (
                 <></>
               )}

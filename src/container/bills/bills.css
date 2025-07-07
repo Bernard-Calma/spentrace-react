@@ -1,0 +1,170 @@
+@font-face {
+  font-family: "Russo One";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../assets/fonts/Russo_One/russo-one.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kanit";
+  font-weight: 500;
+  font-style: light;
+  src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
+}
+.container.bills {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: rgb(75, 85, 99);
+}
+.container.bills h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.container.bills h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: rgb(55, 65, 81);
+}
+.container.bills p {
+  font-size: 1rem;
+  text-align: center;
+}
+.container.bills .add-bill {
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem auto;
+}
+.container.bills .add-bill .add-bill_button {
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right, #2196f3, #1976d2);
+  border: none;
+  border-radius: 1rem;
+  color: rgb(243, 244, 246);
+  font-weight: 700;
+  cursor: pointer;
+}
+.container.bills .add-bill .add-bill_button:hover {
+  background-image: linear-gradient(to right, #2199f3, #19add2);
+}
+.container.bills .add-bill .add-bill_button svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+.container.bills .demo-bill_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 25%;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.container.bills .demo-bill_body .bills-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.container.bills .demo-bill_body .bills-header h3 {
+  font-size: 2rem;
+  color: rgb(55, 65, 81);
+  margin: 0;
+}
+.container.bills .demo-bill_body .bills-header button {
+  cursor: pointer;
+}
+.container.bills .demo-bill_body .bills-type {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.container.bills .demo-bill_body .bills-type .bills-list {
+  width: 100%;
+}
+.container.bills .demo-bill_body .bills-type .bills-list .bill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(55, 65, 81);
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border-bottom: #0070bb 1px solid;
+}
+.container.bills .demo-bill_body .bills-type .bills-list .bill-item:hover {
+  background-color: rgba(0, 112, 187, 0.1);
+}
+.container.bills .demo-bill_body .bills-type .bills-list .bill-item .bill-name {
+  flex: 2;
+  margin-left: 0;
+  text-align: left;
+}
+.container.bills .demo-bill_body .bills-type .bills-list .bill-item p {
+  flex: 0.5;
+  margin: 0;
+  text-align: left;
+}
+.container.bills .add-transaction .input-select {
+  margin: 0.5rem 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+.container.bills .add-transaction .input-select select {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0;
+  border: 1px solid rgb(75, 85, 99);
+  background-color: rgb(243, 244, 246);
+  font-size: 1rem;
+  font-family: "Kanit", sans-serif;
+}
+.container.bills .add-transaction .input-select select:focus {
+  outline: none;
+  border-color: #0070bb;
+}
+.container.bills .add-transaction .transaction-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.container.bills .add-transaction .transaction-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.container.bills .add-transaction .transaction-actions button.edit-button:hover {
+  background-color: #e4e7eb;
+}
+.container.bills .add-transaction .transaction-actions button.delete-button {
+  background-color: rgb(255, 30, 30) !important;
+  color: white;
+}
+.container.bills .add-transaction .transaction-actions button.delete-button:hover {
+  background-color: #b70000 !important;
+}/*# sourceMappingURL=bills.css.map */
