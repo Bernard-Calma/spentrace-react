@@ -18,94 +18,8 @@ const DemoBill = ({ handleToggleAddBill }) => {
     bill: null,
   });
 
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-
-  // Recreate the billItems array with if a bill repeat is not "Never Repeat" it will add another bill in the array
-  const [billItemsWithRepeats, setBillItemsWithRepeats] = useState(
-    [...billItems].flatMap((bill) => {
-      if (bill.repeat === "Never Repeat") {
-        return [bill];
-      }
-      // Everyday
-      else if (bill.repeat === "Everyday") {
-        const bills = [];
-        let newDate = parseISO(bill.dueDate);
-        while (
-          isAfter(parseISO(bill.endDate), newDate) ||
-          isEqual(parseISO(bill.endDate), newDate)
-        ) {
-          bills.push({
-            ...bill,
-            dueDate: format(newDate, "yyyy-MM-dd"),
-          });
-          newDate = addDays(newDate, 1);
-        }
-        return bills;
-      }
-      // Every Week
-      else if (bill.repeat === "Every Week") {
-        const bills = [];
-        let newDate = parseISO(bill.dueDate);
-        while (
-          isAfter(parseISO(bill.endDate), newDate) ||
-          isEqual(parseISO(bill.endDate), newDate)
-        ) {
-          bills.push({
-            ...bill,
-            dueDate: format(newDate, "yyyy-MM-dd"),
-          });
-          newDate = addWeeks(newDate, 1);
-        }
-        return bills;
-      }
-      // Every other week
-      else if (bill.repeat === "Every other week") {
-        const bills = [];
-        let newDate = parseISO(bill.dueDate);
-        while (
-          isAfter(parseISO(bill.endDate), newDate) ||
-          isEqual(parseISO(bill.endDate), newDate)
-        ) {
-          bills.push({
-            ...bill,
-            dueDate: format(newDate, "yyyy-MM-dd"),
-          });
-          newDate = addWeeks(newDate, 2);
-        }
-        return bills;
-      } else if (bill.repeat === "Every Month") {
-        const bills = [];
-        let newDate = parseISO(bill.dueDate);
-        while (
-          isAfter(parseISO(bill.endDate), newDate) ||
-          isEqual(parseISO(bill.endDate), newDate)
-        ) {
-          bills.push({
-            ...bill,
-            dueDate: format(newDate, "yyyy-MM-dd"),
-          });
-          newDate = addMonths(newDate, 1);
-        }
-        return bills;
-      }
-      {
-      }
-      return bill;
-    })
-  );
-
-  // Only show bills by current month
-  const billItemsCurrentMonth = billItemsWithRepeats.filter((bill) => {
-    const billDate = parseISO(bill.dueDate);
-    return (
-      billDate.getMonth() === currentMonth &&
-      billDate.getFullYear() === currentYear
-    );
-  });
-
   // Sort bills by date (newest first) and then by name
-  const sortedBills = [...billItemsCurrentMonth].sort((a, b) => {
+  const sortedBills = [...billItems].sort((a, b) => {
     const dateA = parseISO(a.dueDate);
     const dateB = parseISO(b.dueDate);
     if (dateA > dateB) return 1;
@@ -120,114 +34,7 @@ const DemoBill = ({ handleToggleAddBill }) => {
     });
   };
 
-  const handleNextMonth = () => {
-    const nextMonth = new Date(currentYear, currentMonth + 1, 1);
-    setCurrentMonth(nextMonth.getMonth());
-    setCurrentYear(nextMonth.getFullYear());
-  };
-
-  const handlePrevMonth = () => {
-    const prevMonth = new Date(currentYear, currentMonth - 1, 1);
-    setCurrentMonth(prevMonth.getMonth());
-    setCurrentYear(prevMonth.getFullYear());
-  };
-
   useEffect(() => {
-    const reloadBills = () => {
-      setBillItemsWithRepeats((prev) => {
-        const newItems = prev.map((item) => {
-          if (item.repeat) {
-            return {
-              ...item,
-              dueDate: format(addDays(parseISO(item.dueDate), 1), "yyyy-MM-dd"),
-            };
-          }
-          return item;
-        });
-        return newItems;
-      });
-    };
-
-    // Reload bills when billItems change
-    // This is to ensure that the billItemsWithRepeats is updated when a new bill is added or modified
-    if (billItems.length > 0)
-      setBillItemsWithRepeats(
-        [...billItems].flatMap((bill) => {
-          if (bill.repeat === "Never Repeat") {
-            return [bill];
-          }
-          // Everyday
-          else if (bill.repeat === "Everyday") {
-            const bills = [];
-            let newDate = parseISO(bill.dueDate);
-            while (
-              isAfter(parseISO(bill.endDate), newDate) ||
-              isEqual(parseISO(bill.endDate), newDate)
-            ) {
-              bills.push({
-                ...bill,
-                dueDate: format(newDate, "yyyy-MM-dd"),
-              });
-              newDate = addDays(newDate, 1);
-            }
-            return bills;
-          }
-          // Every Week
-          else if (bill.repeat === "Every Week") {
-            const bills = [];
-            let newDate = parseISO(bill.dueDate);
-            while (
-              isAfter(parseISO(bill.endDate), newDate) ||
-              isEqual(parseISO(bill.endDate), newDate)
-            ) {
-              bills.push({
-                ...bill,
-                dueDate: format(newDate, "yyyy-MM-dd"),
-              });
-              newDate = addWeeks(newDate, 1);
-            }
-            return bills;
-          }
-          // Every other week
-          else if (bill.repeat === "Every other week") {
-            const bills = [];
-            let newDate = parseISO(bill.dueDate);
-            while (
-              isAfter(parseISO(bill.endDate), newDate) ||
-              isEqual(parseISO(bill.endDate), newDate)
-            ) {
-              bills.push({
-                ...bill,
-                dueDate: format(newDate, "yyyy-MM-dd"),
-              });
-              newDate = addWeeks(newDate, 2);
-            }
-            return bills;
-          } else if (bill.repeat === "Every Month") {
-            const bills = [];
-            let newDate = parseISO(bill.dueDate);
-            while (
-              isAfter(parseISO(bill.endDate), newDate) ||
-              isEqual(parseISO(bill.endDate), newDate)
-            ) {
-              bills.push({
-                ...bill,
-                dueDate: format(newDate, "yyyy-MM-dd"),
-              });
-              newDate = addMonths(newDate, 1);
-            }
-            return bills;
-          }
-          return bill;
-        })
-      );
-    // If billItems is empty, set billItemsWithRepeats to an empty array
-    else setBillItemsWithRepeats([]);
-    // Call reloadBills to update the billItemsWithRepeats
-    // This is to ensure that the billItemsWithRepeats is updated when a new bill
-    // is added or modified
-    // This will also trigger a re-render of the component
-    if (billItems.length > 0) reloadBills();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [billItems]);
 
@@ -263,17 +70,6 @@ const DemoBill = ({ handleToggleAddBill }) => {
         </button>
       </div>
       <div className="demo-bill_body">
-        <div className="bills-header">
-          <button onClick={handlePrevMonth}>&lt;</button>
-          <h3>
-            {new Date(currentYear, currentMonth).toLocaleString("default", {
-              month: "long",
-            })}{" "}
-            {currentYear}
-          </h3>
-          <button onClick={handleNextMonth}>&gt;</button>
-        </div>
-
         <div className="bills-type">
           <div className="bills-list">
             {" "}
