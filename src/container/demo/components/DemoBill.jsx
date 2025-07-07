@@ -9,7 +9,7 @@ import {
 } from "date-fns";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import ShowBill from "./ShowBill";
+import ShowBill from "./ShowDemoBill";
 
 const DemoBill = ({ handleToggleAddBill }) => {
   const { billItems } = useSelector((store) => store.demo);

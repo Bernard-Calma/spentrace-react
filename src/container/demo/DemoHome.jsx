@@ -8,15 +8,14 @@ import {
   loadFromLocalStorage,
   updateBalance,
 } from "../../features/demoSlice";
-import DemoDashboard from "./components/DemoDashboard";
-import DemoBill from "./components/DemoBill";
-import AddBill from "./components/AddBill";
 import {
   TransactionsList,
   AddTransaction,
   CreateBudget,
   Header,
 } from "../../common";
+
+import { AddDemoBill, DemoBill, DemoDashboard } from "./components";
 
 import "./demoHome.scss";
 
@@ -100,7 +99,7 @@ const DemoHome = () => {
           handleToggleAddTransaction={handleToggleAddTransaction}
         />
       ) : showAddBill ? (
-        <AddBill
+        <AddDemoBill
           handleToggleAddBill={handleToggleAddBill}
           showAddBill={showAddBill}
         />

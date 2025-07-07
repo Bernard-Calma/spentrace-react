@@ -5,7 +5,7 @@ import { useState } from "react";
 import LabelInput from "../../../common/LabelInput";
 import { SelectInput } from "../../../common";
 
-const ShowBill = ({ bill, handleToggleTransaction }) => {
+const ShowDemoBill = ({ bill, handleToggleTransaction }) => {
   const dispatch = useDispatch();
   const [billToEdit, setbillToEdit] = useState({
     ...bill,
@@ -178,4 +178,4 @@ const ShowBill = ({ bill, handleToggleTransaction }) => {
   );
 };
 
-export default ShowBill;
+export default ShowDemoBill;

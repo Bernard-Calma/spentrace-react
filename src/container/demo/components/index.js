@@ -1,3 +1,6 @@
-import ShowBill from "./ShowBill";
+import ShowDemoBill from "./ShowDemoBill";
+import AddDemoBill from "./AddDemoBill";
+import DemoBill from "./DemoBill";
+import DemoDashboard from "./DemoDashboard";
 
-export { ShowBill };
+export { ShowDemoBill, AddDemoBill, DemoBill, DemoDashboard };
