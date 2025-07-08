@@ -181,7 +181,7 @@ body .mobile-only,
   border-width: 2px;
 }
 .input-select select:disabled {
-  background-color: rgb(5, 15, 35);
+  background-color: rgb(5, 15, 35) !important;
   border-color: #0070bb;
   cursor: not-allowed;
 }

@@ -123,6 +123,7 @@ const ShowDemoBill = ({ bill, handleToggleTransaction }) => {
             onChange={handleChange}
             name="repeat"
             text="Repeat"
+            disabled={true}
           />
 
           {billToEdit.repeat !== "Never Repeat" && (
@@ -156,6 +157,7 @@ const ShowDemoBill = ({ bill, handleToggleTransaction }) => {
             placeholder="e.g., Food, Utilities"
             value={billToEdit.category}
             onChange={handleChange}
+            disabled={true}
           />
           <div className="transaction-actions">
             <button

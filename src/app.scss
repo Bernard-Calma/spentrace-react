@@ -143,7 +143,7 @@ body,
     }
 
     &:disabled {
-      background-color: rgb(5, 15, 35);
+      background-color: rgb(5, 15, 35) !important;
       border-color: v.$accent-color;
       cursor: not-allowed;
 
