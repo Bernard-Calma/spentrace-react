@@ -1,3 +1,4 @@
-import Feature from "./feature";
+import Feature from "./Feature";
+import Features from "./Features";
 
-export { Feature };
+export { Feature, Features };
