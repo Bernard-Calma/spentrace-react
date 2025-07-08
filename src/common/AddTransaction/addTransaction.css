@@ -16,7 +16,7 @@
   font-style: light;
   src: url("../assets/fonts/Kanit/Kanit-Light.ttf") format("truetype");
 }
-.add-transaction {
+.container.add-transaction {
   padding: 1.5rem;
   margin: auto;
   display: flex;
@@ -31,7 +31,7 @@
   max-width: 90%;
   position: relative;
 }
-.add-transaction .btn-close {
+.container.add-transaction .btn-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -40,20 +40,20 @@
   cursor: pointer;
   color: rgb(107, 114, 128);
 }
-.add-transaction .btn-close:hover {
+.container.add-transaction .btn-close:hover {
   color: #0070bb;
 }
-.add-transaction form {
+.container.add-transaction form {
   width: 100%;
 }
-.add-transaction form .input-amount {
+.container.add-transaction form .input-amount {
   font-size: 5rem;
   display: flex;
   align-items: baseline;
   color: rgb(55, 65, 81);
   font-size: 1.5rem;
 }
-.add-transaction form .input-amount input[type=number] {
+.container.add-transaction form .input-amount input[type=number] {
   field-sizing: content;
   font-size: 3rem;
   text-align: center;
@@ -62,9 +62,9 @@
   border: none;
   color: rgb(55, 65, 81);
 }
-.add-transaction form .input-amount input[type=number]:focus {
+.container.add-transaction form .input-amount input[type=number]:focus {
   outline: none;
 }
-.add-transaction form .button {
+.container.add-transaction form .button {
   margin-top: 1rem;
 }/*# sourceMappingURL=addTransaction.css.map */
