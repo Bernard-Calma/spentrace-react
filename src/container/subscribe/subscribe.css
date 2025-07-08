@@ -62,4 +62,56 @@
 }
 .container.subscribe .subscribe-action a:hover {
   background-color: #005f8a;
+}
+.container.subscribe > .container.plans {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.container.subscribe > .container.plans .plan-options {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.container.subscribe > .container.plans .plan-options .plan-option {
+  width: 20%;
+  width: 18rem;
+  max-width: 20rem;
+  height: 12rem;
+  background-color: rgb(243, 244, 246);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container.subscribe > .container.plans .plan-options .plan-option h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: rgb(55, 65, 81);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.container.subscribe > .container.plans .plan-options .plan-option p {
+  flex: 1;
+  color: rgb(55, 65, 81);
+  margin-bottom: 1rem;
+}
+.container.subscribe > .container.plans .plan-options .plan-option button {
+  background-color: #0070bb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.container.subscribe > .container.plans .plan-options .plan-option button:hover {
+  background-color: #005f8a;
 }/*# sourceMappingURL=subscribe.css.map */

@@ -1,6 +1,6 @@
 import { Feature } from "./";
 
-const Features = () => {
+const Features = ({ handleChangeSubscribeView }) => {
   const features = [
     { title: "Recurring Bills" },
     { title: "Budget Planning Tools" },
@@ -9,6 +9,7 @@ const Features = () => {
     { title: "Invite Collaborators" },
     { title: "Export to CSV" },
   ];
+
   return (
     <div className="container features">
       <h1>Unlock More Features</h1>
@@ -19,7 +20,10 @@ const Features = () => {
           <Feature key={i} feature={feature} />
         ))}
       </div>
-      <div className="subscribe-action">
+      <div
+        className="subscribe-action"
+        onClick={() => handleChangeSubscribeView("plans")}
+      >
         <button className="button subscribe-button">Subscribe Now</button>
       </div>
     </div>
