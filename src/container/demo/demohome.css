@@ -320,6 +320,9 @@
     padding: 0.5rem;
     font-size: 0.875rem;
   }
+  .demo-home .demo-bill .demo-bill_body .bills-type .bills-list .bill-item:hover {
+    background-color: unset;
+  }
   .demo-home .overlay .add-transaction {
     width: 90%;
     height: 100%;

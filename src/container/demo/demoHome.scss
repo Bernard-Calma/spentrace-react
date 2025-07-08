@@ -344,6 +344,9 @@
             .bill-item {
               padding: 0.5rem;
               font-size: 0.875rem;
+              &:hover {
+                background-color: unset;
+              }
             }
           }
         }
