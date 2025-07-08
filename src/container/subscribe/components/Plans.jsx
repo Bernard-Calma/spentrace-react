@@ -1,3 +1,8 @@
+import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
+
+const serverURL = process.env.REACT_APP_SERVER_URL;
+
 const Plans = () => {
   const plans = [
     {
@@ -17,11 +22,23 @@ const Plans = () => {
     },
   ];
 
-  const handleSubmitSelectPlan = (priceId) => {
-    // Handle the plan selection logic here, e.g., redirect to Stripe checkout
-    console.log(`Selected plan with price ID: ${priceId}`);
-    // You can implement the Stripe checkout flow here
+  const handleSubmitSelectPlan = async (e, priceId) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `${serverURL}/create-checkout-session`,
+        { priceId }
+      );
+
+      // Redirect to Stripe Checkout
+      window.location.href = response.data.url;
+    } catch (err) {
+      console.error("Error selecting plan:", err);
+      alert("Failed to start checkout. Please try again.");
+    }
   };
+
   return (
     <div className="container plans">
       <h2>Choose Your Plan</h2>
@@ -32,7 +49,7 @@ const Plans = () => {
             <p>{plan.price}</p>
             <button
               className="button"
-              onClick={() => handleSubmitSelectPlan(plan.priceId)}
+              onClick={(e) => handleSubmitSelectPlan(e, plan.priceId)}
             >
               Select
             </button>
