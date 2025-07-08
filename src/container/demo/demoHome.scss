@@ -178,6 +178,13 @@
             cursor: pointer;
             border-bottom: v.$accent-color 1px solid;
 
+            &.past-due {
+              margin: 0;
+              padding: 0 0.5rem;
+              border: none;
+              background-color: v.$text-color_lighter;
+            }
+
             &:hover {
               background-color: rgba(v.$accent-color, 0.1);
             }

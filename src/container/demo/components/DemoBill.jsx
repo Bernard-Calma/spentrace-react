@@ -75,7 +75,11 @@ const DemoBill = ({ handleToggleAddBill }) => {
             {" "}
             {sortedBills?.map((bill, index) => (
               <div
-                className="bill-item"
+                className={`bill-item ${
+                  parseISO(bill.dueDate).getDate() <= new Date().getDate()
+                    ? "past-due"
+                    : ""
+                }`}
                 key={index}
                 onClick={() => handleShowBill(bill)}
               >
