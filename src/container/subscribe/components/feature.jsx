@@ -8,7 +8,7 @@ const Feature = ({ feature }) => {
       }`}
     >
       <span>{feature.title}</span>
-      <span className="text-sm font-medium">Locked 🔒</span>
+      <span className="text-sm font-medium">Unlock 🔓</span>
     </div>
   );
 };
